@@ -1,0 +1,258 @@
+#!/bin/bash
+## lf config
+# map . set hidden! 
+# map <esc> quit
+# map i set icons!
+# map F setfilter
+# map <c-f> filter
+# map <c-r> reload
+# map <c-q> quit
+# map <c-c> quit
+# map <enter> :shell 
+# map <?> maps
+# map <pgdn> half-down
+# map <s-down> invert-below
+# map <pgup> half-up
+# map <a-up> top
+# map <a-down> bottom
+# map <s-up> :invert && :invert-below 
+# map M set mouse!
+# map <c-a> invert glob-select *
+# map a invert glob-select *
+# map <lt> :cd /ants
+# map n toch 
+# map <tab> :push :<tab> 
+# map m :push %mkdir<space>
+# map <delete> delete
+# map d trash
+# map zu unzip
+# map zz zip
+# map c copy
+# map ss :search 
+# map sr :set reverse!
+# map S :search 
+# map <c-s> :search-next
+# cmap w
+# map ww :search 
+# map 11 mark-save
+# map 12 :mark-load
+# map 122 :mark-remove 
+# map v paste
+# map k cut
+# map A :cd /ants
+# map p :chmod_p
+# map <c-p> reload
+# map 1 !true
+# map x $$f
+# map X !$f
+# cmap o 
+# map O $mimeopen --ask $f
+# map oj !jp2a --color-depth=8 --fill $f
+# map oc !chafa $f
+# map ok !cacaview $f
+# map ox !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
+# map oo open $f
+# map op $mimeopen --ask $f
+# map h :cd ~
+# map sh :cmds
+# map H :maps 
+# map m :push %mkdir<space>
+# map D :depl
+# map t tag-toggle
+# map l !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
+# map <enter> !printf "\n\n\n\n\n\n\e[4A"; read -n1 -rep "[C]hafa [K]akaview [B]atcat e[X]iftool" "x"; if [ $x = c ]; then chafa $f; elif [ $x = k ]; then cacaview $f; elif [ $x = b ]; then batcat $f -pl c#; elif [ $x = x ]; then printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++; fi 
+# map g :lala
+# # map <enter> pger
+# map - maps
+# map _ cmds
+# map <+> drawbox! 
+# map x !$f 
+# # map x :push :shell<space>$f 
+# 
+# 
+# ####
+# ####
+set drawbox
+cmd lala $read -rep "ln from: " -i "$fx" "kk"; read -rep "to: " -i "$PWD" "kt"; ln "${kk}" "${kt}" --symbolic; ls $kt; sleep 1;
+set mouse
+set icons
+set shell bash
+set info size:time
+set sortby time
+set reverse 
+# 
+# # map x $printf "\033[?47h\033[H\033[0J -- exif-viewer -- \n\n"; [ -x "/bin/exiftool" ]&&(exiftool $f; jp2a --width=88 --color-depth=8 $f)|batcat -pfl c --paging always; printf "\033[?47l"; 
+# 
+# # map x $printf "\033[?47hh \n\n\n\n\033[2A"; exiftool $f|batcat -fpl c; read -n1 -prs "" 2>/dev/null; printf "\033[?47l"; 
+# 
+# 
+# ####
+# cmd pger ${{
+# batcat --paging always -fpl c $f||cacaview $f||exiftool $f; read -r "x";
+# }}
+# #set drawbox
+# # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
+# set shellopts '-eu'
+# set ifs "\n"
+# set scrolloff 20
+# set cursorpreviewfmt "\033[7;2m"
+# ## cmds
+# cmd open &{{
+# case $(file --mime-type -Lb $f) in
+# text/*) lf -remote "send $id \$$EDITOR \$fx";;
+# *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+# esac
+# }}
+# cmd depl ${{
+# bash -c 'read -n1 -rp "this you? ${PWD##*/} " "gg"; [ "$gg" ]||npx wrangler pages deploy ./ --project-name ${PWD##*/} --commit-dirty=true; echo gg; '
+# }}
+# cmd toch ${{
+# read -rp "newfile: " "nf"; touch "$nf"; 
+# }}
+# 
+# 
+# 
+# cmd trash ${{
+# set -f
+# printf "\n--------\n\n\n\n$fx\n--------\n\n"
+# printf "delete? [T]rash [P]ermanent [A]bort "
+# read -n1 -rp " " "ans";
+# if [ "$ans" = "t" ]; then
+# mkdir -p ~/.trash 2>/dev/null;
+# mv $fx ~/.trash/;
+# elif [ "$ans" = "d" ]; then
+# rm -rf $fx;
+# fi; 
+# }}
+# cmd delete ${{
+# set -f
+# printf "\n\n\n\n$fx\n"
+# printf "delete? [Y/n]"
+# read -n1 -rp " " "ans"; 
+# if [ "$ans" != "n" ]; then 
+# rm -rf $fx; else echo ok; fi; 
+# }}
+# 
+# # use '<delete>' key for either 'trash' or 'delete' command
+# # map <delete> trash
+# # map <delete> delete
+# 
+# # extract the current file with the right command
+# # (xkcd link: https://xkcd.com/1168/)
+# cmd unzip ${{
+#     set -f
+#     case $f in
+#         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+#         *.tar.gz|*.tgz) tar xzvf $f;;
+#         *.tar.xz|*.txz) tar xJvf $f;;
+#         *.zip) unzip $f;;
+#         *.rar) unrar x $f;;
+#         *.7z) 7z x $f;;
+#     esac
+# }}
+# 
+# # compress current file or selected files with tar and gunzip
+# cmd tar ${{
+#     set -f
+#     mkdir $1
+#     cp -r $fx $1
+#     tar czf $1.tar.gz $1
+#     rm -rf $1
+# }}
+# 
+# # cmd zip ${{
+# # set -f
+# # mkdir $f
+# # cp -r $fx $f
+# # zip -r $f.zip $f
+# # # rm -rf $1
+# # }}
+# # # 
+# #  cmd zip ${{
+# #  set -f
+# # zip -r $f.zip $fx
+# #  }} 
+# 
+# 
+#  
+# cmd zip ${{
+# printf "\n\n\n\nfiles: 
+# --
+# $fx
+# --
+# ";
+# set -f; 
+# read -rp " ~ zip-name: " "ee";
+# zip -r $ee.zip $fx
+# }}
+# 
+# # compress current file or selected files with zip
+# #zip ${{
+# #zip $1.zip $1
+# #}}
+# 
+# cmd chmod_p ${{
+# printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
+# read -rep " " -i "775" "chmod"; 
+# sudo chmod $chmod $fx; 
+# lf -remote "send $id unselect *"; 
+# lf -remote "send $id reload"; 
+# }}
+# 
+# # 
+# # cmd tata ${{
+# # printf " tt\tll";
+# # read -rep " " -i "aa $id aaaal" "chmod";
+# # $(lf -remote "send $id echomsg "$id qqqq"");
+# # }}
+# # Main options
+# # set icons
+# # set sixel true
+# # set period 1
+# #set relativenumber
+# #set number
+# #set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+# set hiddenfiles ".*"
+# set cleaner "~/.config/lf/cleaner"
+# set previewer "~/.config/lf/previewer"
+# source "~/.config/lf/opener"
+# source "~/.config/lf/lf_m"
+# set promptfmt "
+# \033[48;2;35;38;39;38m  %u\033[97m@\033[38;2;235;138;139;38m%h
+# \033[96m   
+# \033[38;2;255;255;255m\033[48;2;15;25;25m  %w/\033[96m\033[48;2;38;84;86m\033[38;2;255;255;255m%f  \033[0m"
+# set incsearch true
+# set incfilter true
+# set globsearch true
+# set ratios 4:8 #2:2:6 # 2:3:7:7
+# set truncatechar "..."
+# set waitmsg "\n\n >_<  "
+# set timefmt 		"\033[0m \033[38;5;222m "12/22" \033[38;5;222m 06:04 \033[0m "
+# set infotimefmtnew	"\033[0m \033[38;5;142m "02/12" \033[38;5;212m 08:24 \033[0m "
+# set infotimefmtold 	"\033[0m \033[38;5;182m "06/08" \033[38;5;202m 22:44 \033[0m "
+# set numberfmt 		"\033[0m \033[38;5;116m "09/11" \033[38;5;188m 05:54 \033[0m "
+# # set errorfmt 		"\033[0m \033[7;31m xx \033[0m"
+# set tabstop 2
+# set scrolloff 22
+# set wrapscroll
+# set borderfmt "\033[38;5;200mx\e[0m"
+# #set rulerfmt df:acc:progress:selection:filter:ind
+# set rulerfmt "\033[38;5;200m|| %s \033[0m|\033[2;32m%{lf_user_selected_size}\033[0m 
+# \033[2m| %i \033[0;1;98m\e/\033[2m %t |
+# \033[0m \033[0m %d \033[0m "
+# 
+# 
+# cmd on-select &{{
+#     s=$(find $fx -type f -maxdepth 1 -ls | awk '{total += $7} END {print total}' | numfmt --to=iec --format='%.2fB')
+# 	lf -remote "send $id set user_selected_size $s"
+# }}
+# 
+# 
+# ##
+# # set cursorpreviewfmt "\033[2;7m"
+# 
+# %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
+# 
+ set cursorparentfmt "\033[44m" 
+ set cursorpreviewfmt "\033[4m" 
+ set cursoractivefmt "\033[7m" 

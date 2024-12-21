@@ -1,0 +1,11 @@
+{
+    "autoclose": false,
+    "colorscheme": "cmc-16",
+    "fakecursor": true,
+    "mkparents": true,
+    "savecursor": true,
+    "saveundo": true,
+    "scrollbar": true,
+    "softwrap": true,
+    "wordwrap": true
+}

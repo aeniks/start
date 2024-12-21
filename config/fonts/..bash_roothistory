@@ -1,0 +1,65 @@
+cd /home/aa/
+ls
+cd Documents/
+ls
+cp tard.jpg /boot/
+cp tard.jpg /boot/grub/
+update-grub
+reboot 
+ls
+wget git.new/ants
+cat ants 
+. ants 
+ls
+#git clone https://github.com/aeniks/ants
+mv ants ants.sh
+git clone https://github.com/aeniks/ants
+apt install micro bash-completion lf batcat jp2a curl 
+apt install micro bash-completion lf bat jp2a curl 
+micro .bashrc 
+. .bashrc 
+micro .bashrc 
+. .bashrc 
+cp ants ~/
+cp ants ~/ -r
+cat .bashrc 
+cd
+micro .bashrc 
+l
+apt install lsd
+q
+l
+apt install guake fontforge
+apt install btop
+apt install figlet
+12_make_admin 
+update-grub
+l
+hello 
+l
+. install_fonts.sh 
+hello 
+ssh-keygen 
+snap list 
+apt remove libreoffice-base-core 
+apt remove libreoffice-common 
+apt autoremove 
+apt purge 
+apt remove libreoffice-style-*
+apt autoremove 
+apt autopurge 
+apt clean 
+apt update
+apt upgrade 
+apt upgrade --solver 
+apt install python3
+apt upgrade pytho3-distupgrade
+apt upgrade python3-distupgrade
+apt upgrade python3-distupgrade --install-recommends 
+apt upgrade python3-distupgrade --fix-missing 
+apt upgrade python3-distupgrade --allow-downgrades 
+apt upgrade python3-distupgrade --allow-change-held-packages 
+apt install ubuntu-release-upgrader-core 
+apt upgrade 
+apt upgrade --ignore-hold 
+apt upgrade --ignore-missing 
