@@ -14,7 +14,7 @@ map <c-up> half-up
 map <a-up> half-up
 map <a-down> half-down
 map <c-down> half-down
-map <c-d> quit
+map <c-d> :read quit
 map <?> maps
 map <pgdn> half-down
 map <s-down> invert-below
