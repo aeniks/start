@@ -1,0 +1,1 @@
+qe() { unset qe; qe="$@"; [ -z "$qe" ]&& cd $PREFIX/bin&& printf %b "/bin/"&& read -e "qe"; (apropos ${qe} && echo "--"; echo -ne "\$TYPE: "; type ${qe} 2>/dev/null && echo "--"; echo -ne "\$WHATIS: "; whatis 2>/dev/null ${qe}|tr -s " " " ";)|batcat -ppfld; };  

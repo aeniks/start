@@ -53,7 +53,9 @@ for i in ~/start/funcs/*.sh; do . $i; done;
 [ -n "${PREFIX}" ]&& model=($(getprop ro.product.model))&& \
 [ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -z "${PREFIX}" ]&& [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
-model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq -u|tr '\n' ' '))
+model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor \
+/sys/devices/virtual/dmi/id/sys_vendor /sys/devices/virtual/dmi/id/bios_vendor \
+2>/dev/null|sort|uniq -u|tr '\n' ' '))
 #### (systemd-analyze|batcat -ppflzig; echo;); 
 ###############################################
 dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; dahh="$(date +%H)"; damm="$(date +%M)";
@@ -69,7 +71,9 @@ ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)";
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
-[ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
+[ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|\
+grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
+[ -n "$iploc" ]|| iploc="${ipgateway}"; 
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
@@ -86,8 +90,8 @@ printf "$pink$HOSTNAME\e[1;37m -\e[0m\e[40m$(uptime) $re\n$dots";
 printf "$re$dim$(fortshort 2>/dev/null)\n$dots"; 
 cat ~/logs/gcalagenda.sh|grep " "2>/dev/null&& \
 printf "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)\n$dots"; 
-printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n$dots"; 
-printf "$green$rev${model[*]}$re\n$dots"; 
+printf "$cyan$HOST$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n$dots"; 
+printf "$green$rev${model[*]}$re | $yellow$MACHTYPE$re\n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$iploc$re\n$dots"; 
 printf "$dim$(date -R)$re | $re$dim$(uptime -p)\n$dots"; 
