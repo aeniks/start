@@ -1,5 +1,6 @@
 #!/bin/bash
 ## aaaaaa
+alias sd='cd /sdcard';
 besh() { 
 test -n $TMUX && return 0;  
 test -n $SSH_TTY && return 0; 

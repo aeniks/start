@@ -90,7 +90,7 @@ printf "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots";
 printf "$re$dim$(fortshort 2>/dev/null)\n$dots"; 
 cat ~/logs/gcalagenda.sh|grep " "2>/dev/null&& \
 printf "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)\n$dots"; 
-printf "$(calget)\n$dots"
+printf "$(getcal)\n$dots"
 printf "$yellow$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n$dots"; 
 printf "$cyan$HOST$re | $green$rev ${model[*]} $re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
