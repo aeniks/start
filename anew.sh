@@ -73,7 +73,7 @@ ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12";
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
 [ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|\
 grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
-[ -n "$iploc" ]|| iploc="${ipgateway}"; 
+[ -n "$iploc" ]|| iploc="$(ip -c a|grep -v "lo" -A8|grep -w "inet" -m1|tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
@@ -113,7 +113,9 @@ mod="$(echo -e "${model[*]}"|tr " " "-";)";
 apts=(fzf ccze lf batcat bat ncdu bash-completion lsd tmux git gh)
 }; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
-[ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -n "$TMUX" ]&& inbash;  
+[ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux && exit 0; 
+[ -n "$TMUX" ]&& inbash; 
+[ -n "$SSH_CONNECTION" ]&& inbash; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] ['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re' >_ \n'; 
+	
