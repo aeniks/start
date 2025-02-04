@@ -394,7 +394,6 @@ set ratios 1:1
 #set truncatechar "..."
 # set waitmsg ">_<"
 set dircounts
-
 set errorfmt 		"\033[7;31m"
 set tabstop 2
 set scrolloff 22
@@ -426,7 +425,7 @@ set cursorpreviewfmt "\033[4m"
 set cursoractivefmt "\033[7m" 
 set drawbox false
 set mouse
-set icons
+set icons false 
 set shell bash
 set info size:time
 set sortby time
