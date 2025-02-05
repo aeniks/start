@@ -272,7 +272,7 @@ tmux_conf_theme_status_left=" #{username}#{root}| #{pwod}| #{up} |#S ❐ #P |#W"
 tmux_conf_theme_status_right="#{prefix}#{mouse} | %d/%m/%y | %a | %T#{pairing}#{synchronized} |#{?battery_status,#{battery_status},}#{?battery_bar,#{battery_bar},}#{?battery_percentage, #{battery_percentage},}"
 
 # status left style
-tmux_conf_theme_status_left_fg="#88bbbbb,#446666,#bbbb88,#BBBBBB,#eeeeee,#444444,#440044,#444622,#124622"
+tmux_conf_theme_status_left_fg="#88bbbbb,#446666,#668888,#BBBBBB,#eeeeee,#444444,#440044,#444622,#124622"
 tmux_conf_theme_status_left_bg="#082208,#0b0802,#001111,#121212,#001111,#020202,#040404,#060606,#080808"
 tmux_conf_theme_status_left_attr="bold,none,none,none,none"
 
@@ -465,7 +465,7 @@ tmux_conf_uninstall_plugins_on_reload=true
 #   sleep 900                                         # sleep for 15 minutes, throttle network requests whatever the value of status-interval
 # }
 # up() {
-# uptime|tail -c18|head -c5
+# uptime|cut -f8 -d" "|tr -d " ,"; sleep 6; 
 # }
 # pwod() {
 # cat $HOME/.iploc.sh; 

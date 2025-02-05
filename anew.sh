@@ -73,7 +73,7 @@ ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12";
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
 [ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|\
 grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
-[ -n "$iploc" ]|| iploc="$(ip -c a|grep -v "lo" -A8|grep -w "inet" -m1|tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"
+[ -n "$iploc" ]|| iploc="$(ip -c a|grep -v "lo" -A8|grep -w "inet" -m1|tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"; printf %b "$iploc" > $HOME/.iploc.sh; 
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
