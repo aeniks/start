@@ -1,6 +1,10 @@
 #!/bin/bash
 ## aaaaaa
+<<<<<<< HEAD
 alias sd='cd /sdcard';
+=======
+alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
+>>>>>>> f29ca82 (2025-02-09_11_28)
 besh() { 
 test -n $TMUX && return 0;  
 test -n $SSH_TTY && return 0; 
