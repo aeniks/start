@@ -120,6 +120,7 @@ apts=(fzf ccze lf batcat bat ncdu bash-completion lsd tmux git gh)
 [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux && exit 0; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
+[ -x "$HOME/tmux.sh" ]&& echo "$HOME/tmux.sh" is xe;
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] ['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re' >_ \n'; 
 	
