@@ -30,6 +30,7 @@ dim='\e[2m';
 c2='\e[0m\e[36m--\e[0m'; 
 invis='\e[8m'; 
 me="$(id -nu)"; 
+alias me='id; echo; id -un'; 
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
@@ -73,7 +74,9 @@ ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12";
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
 [ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|\
 grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
-[ -n "$iploc" ]|| iploc="$(ip -c a|grep -v "lo" -A8|grep -w "inet" -m1|tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"; printf %b "$iploc" > $HOME/.iploc.sh; 
+[ -n "$iploc" ]|| iploc="$(ip a|grep -v "lo" -A8|grep -w "inet" -m1|\
+tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"; printf %b "$iploc" > $HOME/.iploc.sh; 
+iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
@@ -91,10 +94,11 @@ printf "$re$dim$(fortshort 2>/dev/null)\n$dots";
 cat ~/logs/gcalagenda.sh|grep " "2>/dev/null&& \
 printf "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)\n$dots"; 
 printf "$(getcal)\n$dots"
-printf "$yellow$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n$dots"; 
-printf "$cyan$HOST$re | $green$rev ${model[*]} $re \n$dots"; 
+printf "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
+printf "$green$rev ${model[*]} $re\n$dots"; 
+printf "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
-printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$iploc$re | $(mac)\n$dots"; 
+printf "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
 printf "$dim$(date -R)$re | $re$dim$(uptime -p)\n$dots"; 
 ####
 ####
