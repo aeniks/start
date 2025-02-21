@@ -1,5 +1,10 @@
 #!/bin/bash
 ## aaaaaa
+<<<<<<< HEAD
+alias sd='cd /sdcard';
+=======
+alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
+>>>>>>> f29ca82 (2025-02-09_11_28)
 besh() { 
 test -n $TMUX && return 0;  
 test -n $SSH_TTY && return 0; 
@@ -15,5 +20,5 @@ for i in $(ls ~/start/funcs|grep -v "~"); do . ~/start/funcs/$i; done;
 . ~/start/anew.sh; 
 . ~/start/mac.sh; mac; echo; 
 }; 
-test -z $TMUX && tmux && besh; 
-echo besh; 
+#test -z $TMUX && tmux && besh; 
+#echo besh; 
