@@ -89,17 +89,17 @@ iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)";
 ####
 inbash() { 
 dots="${re}··········\n"; 
-printf "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
-printf "$re$dim$(fortshort 2>/dev/null)\n$dots"; 
+printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
+printf %b "$re$dim$(fortshort 2>/dev/null)\n$dots"; 
 cat ~/logs/gcalagenda.sh|grep " "2>/dev/null&& \
-printf "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)\n$dots"; 
-printf "$(getcal)\n$dots"
-printf "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
-printf "$green$rev ${model[*]} $re\n$dots"; 
-printf "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
+printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)\n$dots"; 
+printf %b "$(getcal)\n$dots"
+printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
+printf %b "$green$rev ${model[*]}$re | $pink $(df -h|head -n2|tail -n1|tr -s " " " ";) $re \n$dots"; 
+printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
-printf "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
-printf "$dim$(date -R)$re | $re$dim$(uptime -p)\n$dots"; 
+printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime -p)\n$dots"; 
 ####
 ####
 error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
