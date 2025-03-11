@@ -95,11 +95,14 @@ cat ~/logs/gcalagenda.sh|grep " "2>/dev/null&& \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)\n$dots"; 
 printf %b "$(getcal)\n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
+test -e "~/._aptup.nfo"&&\ 
+cat ~/._aptup.nfo|grep -e '[0-9]' --color&& 
+printf %b "$re$dots"; 
 printf %b "$green$rev ${model[*]}$re | $pink $(df -h|head -n2|tail -n1|tr -s " " " ";) $re \n$dots"; 
 printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime -p)\n$dots"; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime)\n$dots"; 
 ####
 ####
 error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
