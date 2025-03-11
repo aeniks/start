@@ -41,7 +41,7 @@ export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32
 #printf %b "export ants=$ants\n" ) >> ~/.bashrc; 
 . $ants/alias.sh; 
 . $ants/func/func.sh; 
-[ -e $ants/func/func.sh ]&& 
+# [ -e $ants/func/func.sh ]&& 
 for i in ~/start/funcs/*.sh; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
@@ -64,7 +64,7 @@ alias fortshort='seq 12 > $HOME/.ff.sh;
 while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "4" ]; 
 do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
 alias vim='nano'; 
-alias ff='fastfetch'
+alias ffff='fastfetch'
 ####
 ####
 sshc=($SSH_CONNECTION); 
