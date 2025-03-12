@@ -98,7 +98,7 @@ printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column|head -n4;)
 printf %b "$(getcal)\n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
 test -e "~/._aptup.nfo"&&\ 
-cat ~/._aptup.nfo|grep -e '[0-9]' --color&& 
+cat ~/._aptup.nfo|grep -e '[0-9]' --color&& \
 printf %b "$re$dots"; 
 printf %b "$green$rev ${model[*]}$re | $pink $(df -h|head -n2|tail -n1|tr -s " " " ";) $re \n$dots"; 
 printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
@@ -109,7 +109,7 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime)\n$dots";
 ####
 # error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-[ "${LF_LEVEL}" ]&& printf "\n\e[7;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
+[ "${LF_LEVEL}" ]&& printf "\n\e[7;91m -- LF_LEVEL \e[92m = $LF_LEVEL  \e[0m\n"; 
 ######## << TMUX TO BASHRC
 #tmux source-file "$HOME/.tmux.conf"; 
 #if [ -z "${TMUX}" ]; then [ "$SSH_CONNECTION" ]|| tmux source&& exit; 
