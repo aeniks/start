@@ -8,8 +8,10 @@ esac
 if [ -z "${PREFIX}" ]; then if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ]; 
 then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; fi; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
-export BROWSER='google-chrome'; # export BROWSER_CLI='links2';  # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
-export PROMPT_COMMAND="history -a; history -n;" NVM_DIR="$HOME/.nvm"; alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ]&& \
+export BROWSER='google-chrome';
+[ -z $TMPDIR ]&& TMPDIR="$HOME/tmp"; 
+ # export BROWSER_CLI='links2';  # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
+export PROMPT_COMMAND="history -a; history -n; echo $SECONDS" NVM_DIR="$HOME/.nvm"; alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ]&& \
 . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
 ####
 [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
@@ -39,8 +41,8 @@ export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32
 #[ -z "${ants}" ]&& read -rp "ants: " -i "$PWD" "ants"; 
 #[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; 
 #printf %b "export ants=$ants\n" ) >> ~/.bashrc; 
-. $ants/alias.sh; 
-. $ants/func/func.sh; 
+# . $ants/alias.sh; 
+ . $ants/func/func.sh; 
 # [ -e $ants/func/func.sh ]&& 
 for i in ~/start/funcs/*.sh; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
@@ -63,7 +65,7 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 alias fortshort='seq 12 > $HOME/.ff.sh; 
 while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "4" ]; 
 do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
-alias vim='nano'; 
+# alias vim='nano'; 
 alias ffff='fastfetch'
 ####
 ####
@@ -105,9 +107,9 @@ printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots";
 printf %b "$dim$(date -R)$re | $re$dim$(uptime)\n$dots"; 
 ####
 ####
-error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
+# error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-[ "${LF_LEVEL}" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
+[ "${LF_LEVEL}" ]&& printf "\n\e[7;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 ######## << TMUX TO BASHRC
 #tmux source-file "$HOME/.tmux.conf"; 
 #if [ -z "${TMUX}" ]; then [ "$SSH_CONNECTION" ]|| tmux source&& exit; 
@@ -123,7 +125,7 @@ apts=(fzf ccze lf batcat bat ncdu bash-completion lsd tmux git gh)
 [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux && exit 0; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
-[ -x "$HOME/tmux.sh" ]&& echo "$HOME/tmux.sh" is xe;
+[ -x "$HOME/._tmux.sh" ]&& echo "$HOME/_.tmux.sh" is xe; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] ['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
-['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re' >_ \n'; 
+['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
 	

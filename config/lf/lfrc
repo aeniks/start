@@ -1,5 +1,7 @@
-#!/bin/bash
+##
 ## lf config
+set globfilter false
+map f :filter
 map . set hidden! 
 map <esc> quit
 map i set icons!
@@ -27,7 +29,7 @@ map <c-a> invert glob-select *
 map a invert glob-select *
 map <lt> :cd /ants
 map n toch 
-map <tab> :push :<tab> 
+map <tab> :push :<tab>
 map <delete> delete
 map d trash
 map zu unzip
@@ -58,8 +60,8 @@ map 122 :mark-remove
 map v paste
 map k cut
 map A :cd /ants
-map pm :chmod_p 
-map po :chown_p 
+map p :chmod_p && reload
+map O :chown_p 
 map <c-p> :reload && :history 
 map 1 !true
 map x $$f
@@ -87,6 +89,7 @@ map b $batcat --paging always -ld --decorations never $f
 map l :lenk
 # map <enter> pger
 map - maps
+map \\ :push :<up>
 map _ cmds
 map <+> drawbox! 
 map x !$f 
@@ -403,10 +406,10 @@ set borderfmt "\033[38;5;200m"
 #set rulerfmt "\033[38;5;200m|| %s \033[0m|\033[2;32m%{lf_user_selected_size}\033[0m 
 #\033[2m| %i \033[0;1;98m\e/\033[2m %t |
 #\033[0m \033[0m %d \033[0m "
-#set timefmt "\033[36m2006\033[0m-\033[95mJan\033[0m-\033[31m02\033[94m\033[0m-\033[92m15:04:05\033[0m" 
-set timefmt 'Mon Jan _2 15:04:05 2006' ## default
-set infotimefmtnew "Jan-02-15:04"
-set infotimefmtold "Jan+02+15:04" 
+set timefmt "\033[36m2006\033[0m-\033[95mJan\033[0m-\033[31m02\033[94m\033[0m-\033[92m15:04:05\033[0m" 
+# set timefmt 'Mon Jan _2 15:04:05 2006' ## default
+set infotimefmtnew "Jan 02 15:04"
+set infotimefmtold "Jan 02 2006" 
 
 set promptfmt "
 \033[37m\033[48;2;15;25;25m  %w/
