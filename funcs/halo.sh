@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 # figlet -f DOS_Rebel -c -w $COLUMNS "hello!"; 
 ## 
 halo() {

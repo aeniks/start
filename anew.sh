@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 ## A better bash. Written by 12ants.github.io
 ## _do nothing if not interactive
 case $- in

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 unalias apa 2>/dev/null; 
 apa() { [ "$k" ]|| k="$HOME/k" && mkdir $HOME/k 2>/dev/null;
 [ -f "$k/apts.sh" ] || apt list 2>/dev/null|tail -n+2|cut -f1 -d"/" > "$k/apts.sh"; 

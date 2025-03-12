@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 qe() { unset qq; qq="$@"; cd $PREFIX/bin; 
 [ -z "$qq" ] && printf %b "\n\n\n\n\e[2A" && read -ep "$PREFIX/bin/" "qq"; 
 ( echo -e "\e[4;95m"; 
