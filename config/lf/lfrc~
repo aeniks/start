@@ -387,13 +387,9 @@ read; printf "\e[?47l\n"
 #set number
 #set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set hiddenfiles ".*"
-[ -e "$PREFIX/etc/lf/previewer" ]&& lf_cdir="$PREFIX/etc/lf"; 
-[ -e "$HOME/.config/lf/previewer" ]&& lf_cdir="$HOME/.config/lf"; 
-set cleaner "$lf_cdir/cleaner"
-set opener "$lf_cdir/opener"
-set previewer "$lf_cdir/previewer"
-#set previewer "~/.config/lf/previewer"
-#set previewer "$PREFIX/etc/lf/previewer" 
+## [ -e $PREFIX/etc/lf/previewer ]&& set previewer $PREFIX/etc/lf/previewer
+set cleaner "~/.config/lf/cleaner"||set opener "$PREFIX/etc/lf/opener"
+set previewer "~/.config/lf/previewer"||set previewer "$PREFIX/etc/lf/previewer" 
 set incsearch true
 set incfilter true
 set globsearch true
