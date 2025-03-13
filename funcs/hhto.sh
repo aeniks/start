@@ -3,10 +3,13 @@
 #fzf$fzt --height ~88% --tac --inline-info --expect "q" -m -i
 unalias hh 2>/dev/null; 
 hh() { [ $TMUX ]&& fzt="-tmux -h"; [ "$TMPDIR" ]||(mkdir $HOME/tmp 2>/dev/null; TMPDIR="$HOME/tmp"; ); h1="$TMPDIR/$(id -nu|tr -d "\n"; date +__%__y%m%d_%X).sh"; 
-touch $h1; tac $HISTFILE|tr -s "\n" "\n"|uniq -u|\
-fzf -i -m --wrap --cycle --highlight-line --expect "q" --style="minimal" \
---tmux="center,88%" --info inline\
-|tee $h1 -a $HISTFILE; 
+touch $h1; 
+if [ "$PREFIX" ]; then cat $HISTFILE|tr -s "\n" "\n"|uniq -u|fzf --tac -i -m \
+--cycle --expect "q" --scheme history \
+--no-inline-info --no-border|tee $h1 -a $HISTFILE; 
+else 
+cat $HISTFILE|tr -s "\n" "\n"|uniq -u|fzf --tac -i -m --wrap --cycle --highlight-line --expect "q" --style="minimal" --tmux="center,88%" --info inline|tee $h1 -a $HISTFILE; 
+fi; 
 printf %b "saved to: $dim$h1$re\n\n\
 1) open/edit\n\
 2) cp to: \n\
