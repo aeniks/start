@@ -4,7 +4,7 @@
 unalias hh 2>/dev/null; 
 hh() { [ $TMUX ]&& fzt="-tmux -h"; [ "$TMPDIR" ]||(mkdir $HOME/tmp 2>/dev/null; TMPDIR="$HOME/tmp"; ); h1="$TMPDIR/$(id -nu|tr -d "\n"; date +__%__y%m%d_%X).sh"; 
 touch $h1; 
-if [ "$PREFIX" ]; then cat $HISTFILE|tr -s "\n" "\n"|uniq -u|fzf --tac -i -m \
+if [ -z "$PREFIX" ]; then cat $HISTFILE|tr -s "\n" "\n"|uniq -u|fzf --tac -i -m \
 --cycle --expect "q" --scheme history \
 --no-inline-info --no-border|tee $h1 -a $HISTFILE; 
 else 
