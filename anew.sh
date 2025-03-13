@@ -11,7 +11,7 @@ shopt -s histappend; ## append to history, don't overwrite it
 export BROWSER='google-chrome';
 [ -z $TMPDIR ]&& TMPDIR="$HOME/tmp"; 
  # export BROWSER_CLI='links2';  # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
-export PROMPT_COMMAND="history -a; history -n; echo $SECONDS" NVM_DIR="$HOME/.nvm"; alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ]&& \
+export PROMPT_COMMAND="history -a; history -n; " NVM_DIR="$HOME/.nvm"; alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ]&& \
 . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
 ####
 [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
