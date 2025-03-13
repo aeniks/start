@@ -1,6 +1,9 @@
-##
+#!/bin/env bash
 ## lf config
-set globfilter false
+[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&& \
+PREFIX="/data/data/com.termux/files/usr"; 
+# set previewer $PREFIX/etc/lf/previewer
+set globfilter true
 map f :filter
 map . set hidden! 
 map <esc> quit
@@ -98,7 +101,7 @@ map <c-s> sese
 map F :filter
 map D :set dironly! 
 map R :rs
-map f :push F<backspace><right><backspace><right><backspace>**<left>
+# map f :push F<backspace><right><backspace><right><backspace>**<left>
 cmd sese ${{
 mv $(basename $f) $(slugify ${f/*\/})
 }}
@@ -215,7 +218,7 @@ fi;
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
 # exiftool $f|batcat --paging always -pl c++; read; 
-set shellopts '-eu'
+set shellopts '-e'
 set ifs ""
 set scrolloff 20
 set cursorpreviewfmt "\033[7;2m"
@@ -234,8 +237,6 @@ seq 12; printf "\e[12A\e[J"; pwd; lsd -p 2>/dev/null|tail -c44;
 read -rp " -- newfile: " -i "$" "nf"; touch "$nf"; 
 read -rp " -- edit $(realpath $nf) $nf [Y/n] " "yn"; [ $yn ]||$EDITOR $nf
 }}
-
-
 
 cmd trash ${{
 set -f
@@ -387,16 +388,20 @@ read; printf "\e[?47l\n"
 #set number
 #set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set hiddenfiles ".*"
-[ -e "$PREFIX/etc/lf/previewer" ]&& lf_cdir="$PREFIX/etc/lf"; 
-[ -e "$HOME/.config/lf/previewer" ]&& lf_cdir="$HOME/.config/lf"; 
-set cleaner "$lf_cdir/cleaner"
-set opener "$lf_cdir/opener"
-set previewer "$lf_cdir/previewer"
+# [ -e "$PREFIX/etc/lf/previewer" ]&& lf_cdir="$PREFIX/etc/lf"; 
+previewer
+
+# " ]&& 
+# lf_cdir="~/.config/lf"; 
+set cleaner "~/.config/cleaner"
+set opener "~/.config/lf/opener"
+# "$lf_cdir/opener"
+set previewer "~/.config/lf/previewer"
 #set previewer "~/.config/lf/previewer"
 #set previewer "$PREFIX/etc/lf/previewer" 
 set incsearch true
-set incfilter true
-set globsearch true
+set incfilter false
+set globsearch false
 set ratios 1:1 
 #2:2:6 # 2:3:7:7
 #set truncatechar "..."
