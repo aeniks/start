@@ -1,0 +1,3 @@
+# -- qq.ftp.sh / ip6 updater -- ; 
+echo -e "\n········"; date -R; 
+curl -sL "http://v6.sync.afraid.org/u/DB9YHo2g2wkn6xhGV7xHauuw/"; 
