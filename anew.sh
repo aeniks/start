@@ -79,6 +79,7 @@ grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)";
 [ -n "$iploc" ]|| iploc="$(ip a|grep -v "lo" -A8|grep -w "inet" -m1|\
 tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"; printf %b "$iploc" > $HOME/.iploc.sh; 
 iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
+iploc="$(ip -4 -brief address show scope global|tail -c24|cut -f1 -d"/"|tr -d " ")"; 
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
@@ -89,6 +90,8 @@ iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)";
 #figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; printf "\n\n"; fi; 
 ####
 ####
+. $HOME/start/config/tmux/tmuxbashcompletions.sh; 
+. $HOME/start/alias.sh; 
 inbash() { 
 dots="${re}··········\n"; 
 printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
