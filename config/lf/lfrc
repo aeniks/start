@@ -416,7 +416,7 @@ set borderfmt "\033[38;5;200m"
 #set rulerfmt "\033[38;5;200m|| %s \033[0m|\033[2;32m%{lf_user_selected_size}\033[0m 
 #\033[2m| %i \033[0;1;98m\e/\033[2m %t |
 #\033[0m \033[0m %d \033[0m "
-set timefmt "\033[36m2006\033[0m-\033[95mJan\033[0m-\033[31m02\033[94m\033[0m-\033[92m15:04:05\033[0m" 
+set timefmt "\033[0m2006\033[0m-\033[95mJan\033[0m-\033[31m02\033[94m\033[0m-\033[92m15:04:05\033[0m" 
 # set timefmt 'Mon Jan _2 15:04:05 2006' ## default
 set infotimefmtnew "Jan 02 15:04"
 set infotimefmtold "Jan 02 2006" 
@@ -428,7 +428,7 @@ set promptfmt "
 \033[96m\033[48;2;38;84;86m\033[0m%f
 \033[0m"
 ##
-set statfmt "\033[36m%p\033[0m| %c| %u| %g| %S| %t| -> %l" ## default
+set statfmt "\033[35m%l| \033[96m%p\033[0m| %t|\033[106;37m %S \033[0m|%u" ## default
 set rulerfmt "%a  |%p  |\033[7;31m %m \033[0m| %{lf_user_selected_size} |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t " 
 cmd on-select &{{ s=$(find $fx -type f -maxdepth 1 -ls | awk '{total += $7} END {print total}' | numfmt --to=iec --format='%.2fB')
 lf -remote "send $id set user_selected_size $s" }} 
