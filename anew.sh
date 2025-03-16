@@ -79,7 +79,7 @@ grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)";
 [ -n "$iploc" ]|| iploc="$(ip a|grep -v "lo" -A8|grep -w "inet" -m1|\
 tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"; printf %b "$iploc" > $HOME/.iploc.sh; 
 iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
-iploc="$(ip -4 -brief address show scope global|tail -c24|cut -f1 -d"/"|tr -d " ")"; 
+iploc="$(ip -4 -brief address show scope global|grep -e "UP"|tail -c24|cut -f1 -d"/"|tr -d " ")"; 
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
@@ -126,10 +126,11 @@ mod="$(echo -e "${model[*]}"|tr " " "-";)";
 apts=(fzf ccze lf batcat bat ncdu bash-completion lsd tmux git gh)
 }; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
-[ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux && exit 0; 
+[ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"
+[ -x "$HOME/._tmux" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
-[ -x "$HOME/._tmux.sh" ]&& echo "$HOME/_.tmux.sh" is execetuble!; 
+[ -x "$HOME/._tmux.sh" ]&& echo "$HOME/_.tmux" is execetuble!; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] ['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
 	

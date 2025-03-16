@@ -2,7 +2,8 @@
 ## aaaaaa
 #<<<<<<< HEAD
 alias sd='cd /sdcard';
-#=======
+
+ #=======
 alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
 #>>>>>>> f29ca82 (2025-02-09_11_28)
 besh() { 
@@ -22,3 +23,7 @@ for i in $(ls ~/start/funcs|grep -v "~"); do . ~/start/funcs/$i; done;
 }; 
 #test -z $TMUX && tmux && besh; 
 #echo besh; 
+
+
+alias tmuxon='chmod 775 $HOME/._tmux; echo "on!"';
+alias tmuxoff='chmod 600 $HOME/._tmux; echo "off!"';
