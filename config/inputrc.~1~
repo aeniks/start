@@ -7,14 +7,14 @@ C-o: '\ek\ncd $(lf -print-last-dir); \n'
 C-p: '\ek\nsed -n l;\n' 
 C-x: '\ek\nexec bash;\n'
 C-f: '\ek\nserch\n'
+C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
 C-z: undo
-C-q: insert-comment
 ^Z: undo
 "\e[z": undo
-"\ez": undo
 "\eq": insert-comment
 "\e3": insert-comment
 "£": insert-insert
+C-3: insert-comment
 "\eU": upcase-word
 "\eu": upcase-word
 "\e1": dump-functions
@@ -24,12 +24,10 @@ C-q: insert-comment
 "\eb": copy-region-as-kill
 "\e[1;2D": copy-backward-word
 "\ep": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
-"\e[5~": '\ek\ hh\n'
+"\e[5~": 'hh\n'
 "\e[6~": kill-whole-line
 
 
-# C-3: insert-comment
-# C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
 
 # read -rei "$hh" "hh";\n$hh\n'
 # "\eq": '\ek\C-d'

@@ -28,7 +28,7 @@ tmux_conf_new_session_prompt=false
 #   - true
 #   - false (default)
 #   - disabled (do not modify new-session bindings)
-tmux_conf_new_session_retain_current_path=true
+tmux_conf_new_session_retain_current_path=false
 
 
 # -- windows & pane creation ---------------------------------------------------
@@ -37,7 +37,7 @@ tmux_conf_new_session_retain_current_path=true
 #   - true
 #   - false (default)
 #   - disabled (do not modify new-window bindings)
-tmux_conf_new_window_retain_current_path=true
+tmux_conf_new_window_retain_current_path=false
 
 # new window tries to reconnect ssh sessions, possible values are:
 #   - true
@@ -49,13 +49,13 @@ tmux_conf_new_window_reconnect_ssh=false
 #   - true (default)
 #   - false
 #   - disabled (do not modify split-window bindings)
-tmux_conf_new_pane_retain_current_path=true
+tmux_conf_new_pane_retain_current_path=false
 
 # new pane tries to reconnect ssh sessions, possible values are:
 #   - true
 #   - false (default)
 #   - disabled (do not modify split-window bindings)
-tmux_conf_new_pane_reconnect_ssh=true
+tmux_conf_new_pane_reconnect_ssh=false
 
 
 # -- display -------------------------------------------------------------------
@@ -268,7 +268,7 @@ tmux_conf_theme_right_separator_sub="|"
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" #{username}#{root}| #{pwod}| #{up} |#S ❐ #P |#W"
+tmux_conf_theme_status_left=" #{username}#{root}| #{pwod} | #{up} |#S ❐ #P |#W"
 tmux_conf_theme_status_right="#{prefix}#{mouse} | %d/%m/%y | %a | %T#{pairing}#{synchronized} |#{?battery_status,#{battery_status},}#{?battery_bar,#{battery_bar},}#{?battery_percentage, #{battery_percentage},}"
 
 # status left style
@@ -312,8 +312,8 @@ tmux_conf_theme_synchronized_bg="none"
 tmux_conf_theme_synchronized_attr="none"
 
 # battery bar symbols
-tmux_conf_battery_bar_symbol_full="♥"
-tmux_conf_battery_bar_symbol_empty="·"
+tmux_conf_battery_bar_symbol_full="·"
+tmux_conf_battery_bar_symbol_empty="<"
 #tmux_conf_battery_bar_symbol_full="♥"
 #tmux_conf_battery_bar_symbol_empty="·"
 

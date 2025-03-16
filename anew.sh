@@ -119,13 +119,14 @@ mod="$(echo -e "${model[*]}"|tr " " "-";)";
 ## PS1='\e[2;40;96m\t\e[37m$(echo $PWD|bat --theme Nord -ppflr;)/\e[0m\n'
 ##PS1='\e[2;37m${mod:0:22}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
 ##################################
+12_whtr 
 apts=(fzf ccze lf batcat bat ncdu bash-completion lsd tmux git gh)
 }; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux && exit 0; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
-[ -x "$HOME/._tmux.sh" ]&& echo "$HOME/_.tmux.sh" is xe; 
+[ -x "$HOME/._tmux.sh" ]&& echo "$HOME/_.tmux.sh" is execetuble!; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] ['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
 	
