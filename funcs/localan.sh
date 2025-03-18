@@ -1,0 +1,2 @@
+
+localan() { ipt=$(mktemp;); echo -e "\nchecking:\t\t [q]uit\n\n\n\n\e[4A\n"; for i in {0..255}; do ping -c 1 ${iploc%.*}.${i} >/dev/null && printf %b "\e[K\n${iploc%.*}.$i"&& printf %b "${iploc%.*}.$i\n">>"$ipt"& disown; printf %b "\e[K\e[A\e[K"; read -t 0.02 -n1 -s -p "${iploc%.*}.$i " "ny"; [ $ny ]&& break; done; printf %b "\e[K\n--------\n\$iplocall\t$ipt\n\n--------\n\n"; iplocall=($(cat $ipt; )); cat "$ipt"; echo; }; 

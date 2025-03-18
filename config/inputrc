@@ -4,7 +4,8 @@
 "\ek": kill-whole-line
 C-t: '\ek\nklock\n'
 C-o: '\ek\ncd $(lf -print-last-dir); \n'
-C-p: '\ek\nsed -n l;\n' 
+C-p: 'printf %b ""\e[D' 
+"\ei": '\ek\nsed -n l;\n' 
 C-x: '\ek\nexec bash;\n'
 C-f: '\ek\nserch\n'
 C-z: undo
@@ -18,13 +19,14 @@ C-q: insert-comment
 "\eU": upcase-word
 "\eu": upcase-word
 "\e1": dump-functions
-"\e2": dump-variables
+"\e2": '2>/dev/null'
 "\e4": insert-comment
 "\e9": complete-into-braces 
 "\eb": copy-region-as-kill
 "\e[1;2D": copy-backward-word
 "\ep": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
 "\e[5~": '\ek\ hh\n'
+"\e[1;2A": '\ek\ hh\n'
 "\e[6~": kill-whole-line
 
 
