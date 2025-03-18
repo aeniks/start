@@ -1,0 +1,2 @@
+
+alias iiii='$EDITOR ~/.inputrc'

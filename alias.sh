@@ -27,3 +27,11 @@ for i in $(ls ~/start/funcs|grep -v "~"); do . ~/start/funcs/$i; done;
 
 alias tmuxon='chmod 775 $HOME/._tmux; echo "on!"';
 alias tmuxoff='chmod 600 $HOME/._tmux; echo "off!"';
+alias 12edit-alias='$EDITOR ~/start/alias.sh'
+alias 12edit-termux='$EDITOR ~/.termux/termux.properties'
+alias 12edit-input='$EDITOR ~/.inputrc'
+alias 12edit-lf='$EDITOR ~/.config/lf/lfrc'
+alias 12edit-bashrc='$EDITOR ~/.bashrc'
+alias 12edit-tmuxlocal='$EDITOR ~/.tmux.conf.local'
+alias 12edit-anews_tart='$EDITOR ~/start/anew.sh'
+
