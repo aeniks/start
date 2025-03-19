@@ -36,7 +36,7 @@ alias me='id; echo; id -un';
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
-export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36'! 
 # qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; # qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; # qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 #[ -z "${ants}" ]&& read -rp "ants: " -i "$PWD" "ants"; 
 #[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; 
@@ -122,8 +122,18 @@ mod="$(echo -e "${model[*]}"|tr " " "-";)";
 ## PS1='\e[2;40;96m\t\e[37m$(echo $PWD|bat --theme Nord -ppflr;)/\e[0m\n'
 ##PS1='\e[2;37m${mod:0:22}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
 ##################################
-12_whtr 
-apts=(fzf ccze lf batcat bat ncdu bash-completion lsd tmux git gh)
+# 12_whtr 
+apts=(\
+openssl openssh-server sshfs rsync \
+rclone googler figlet lolcat \
+toilet iproute2 net-tools nmap \
+nmtui fastfetch neofetch \
+fzf ccze lf batcat \
+bat ncdu bash-completion lsd \
+tmux git gh nodejs \
+texinfo aha micro \
+wget curl aria2 python \
+)
 }; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 [ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"
