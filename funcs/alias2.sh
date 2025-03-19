@@ -9,16 +9,12 @@
 # white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
 alias sshknown='cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq'
-# alias kk='kk||printf "\nalias kk = |kk\n--\n"'
-# kk() {
-# 
-
-# }
-alias speed='speedtest --bytes --no-upload||speedtest-cli'
+alias speed='speedtest --bytes --no-upload 2>/dev/null; ||speedtest-cli 2>/dev/null; '
 alias ipme='wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
-alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'
-# alias tt='tilde';
+alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; \
+ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|\
+tr -d "[]"|uniq|fzf$tt --height "~42%")'
 alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 " split - V " v "split-window -v" \
 " split | H " h "split-window -h" \
@@ -26,6 +22,7 @@ alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 " serch " s "display-popup lsd|fzf"';
 ####
 ####
+alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
 # alias ttmenu='
 # [ "$TMUX" ] && tmux display-menu \
 # " split - V " v "split-window -v" \
@@ -39,11 +36,12 @@ alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
-alias aascihelp='batcat -pfl d $ants/sh/info/ansii.md'
-alias ansihelp='aascihelp' 
+alias 12info_ansi='batcat -pfl d $HOME/start/info/ansii.md'
+alias gpg='gpg --pinentry loopback'; 
 note() {
 echo -e "\n\n -- syncing...\n\n"; 
-gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||
+gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||\
+gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||\
 (read -n1 -rep "-- login with token? [Y/n] " "yn"; [ "$yn" ]&& return; 
 printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
 gpg --pinentry-mode loopback -o "~/gh.txt" -d "$ants/sh/config/gh_aeniks.gpg"; 
@@ -51,7 +49,6 @@ gh auth login --with-token < "~/gh.txt"; printf "$c2 "; rm ~/gh.txt;
 gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n"; 
 printf "\n  try again \n\n"; )
 }
-alias gpg='gpg --pinentry loopback'; 
 # alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c||getprop system.productname|kat; printf "\n$HOSTNAME : $HOSTTYPE : $MACHTYPE : $OS_TYPE\n\n"; '
 # getprop ro.
 
@@ -59,11 +56,11 @@ alias gpg='gpg --pinentry loopback';
 # 
 # }
 alias ss='ssss -l'
-alias iiii='$EDITOR $ants/sh/config/inputrc; echo gg; exec $0'
+alias iiii='$EDITOR $HOME/start/config/inputrc; echo gg; exec $0'
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
-alias 12='menu $ants/12'
-alias qqqq='cd $ants/sh/q;'
+# alias 12='menu $ants/12'
+# alias qqqq='cd $ants/sh/q;'
 ###############################
 # alias m11='ssh -p 8022 192.168.0.105||(read -rep "$c2 open findmydevice? [Y/n] " "gf"||open https://www.google.com/android/find/;)'
 # alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
@@ -81,16 +78,18 @@ read -rep " " "slto"
 ssh "aa@ants.ftp.sh"; 
 '
 ##alias sl='sshs="aa@ants.ftp.sh"; read -rep "-- ssh: " -i "${sshs}" "sshs"; ssh ${sshs}; '
-alias hhhh='batcat -pfl sh ~/.bash_history' 
+# alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
 # info() { (printf "\ninfo $@\n\n"; whatis $@; echo; whereis $@; command info $@)|batcat -ppf||man $@; }
 # man() { man $@|batcat -ppf||whatis $@; help $@; } 
 # help() { printf "$cyan ------ $green$1 $red$2 $blue$3 $green$4 $re \n"; command help $@|batcat -ppfld||apropos $@; }   
 #### wrangler stuff ###########
 alias wrangler_server='wrangler pages dev ./||npm i -g wrangler'
-alias wrangler_deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
+alias wrangler_deploy='wrangler pages deploy ./ \
+--commit-dirty=true --project-name="${PWD##*/}"'
 alias wrangler_list='wrangler pages project list'
-alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
+alias deploy='wrangler pages deploy ./ \
+--commit-dirty=true --project-name="${PWD##*/}"'
 ###############################
 ###############################
 # apt() { apt $@||(printf "\n\n\e[1;32m  Going no sudo! \e[0m\n\n"; sudo apt $@;)  }
@@ -118,13 +117,14 @@ alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
 alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
+# export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ###############################
 ###############################
-alias lan_portscan='nmap localhost|batcat -pP --language c++; printf "\n\nuse nmap to do more\n\n"; '
-alias lan_neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
-alias 12_it_portscan='portscan'
-alias 12_it_neighbours='neighbours'
+alias 12local_portscan='nmap localhost|batcat -pP --language c++; 
+printf %b "\n\nuse ss to do more\n\n"; '
+# alias lan_neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
+# alias 12_it_portscan='portscan'
+# alias 12_it_neighbours='neighbours'
 # klockan="$ants/12/klockan.sh"
 ###############################
 ###############################
@@ -137,21 +137,24 @@ alias 12_it_neighbours='neighbours'
 # $dim  -- $pink$dim${bathb}$re \e[0m\n  --------------------\n"; 
 # fortune|batcat --style numbers --theme "${bathb//_/ }" --language ${batn};
 # } 
-alias rrrrch='$EDITOR $ants/functions/rrrr.sh'; 
+# alias rrrrch='$EDITOR $ants/functions/rrrr.sh'; 
 alias quotes='fortune $s|tr -s "\t" " "'
 
-kl() {
-batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d ":"));
-batn=$(shuf -e -n1 ${batlist[@]})
-printf "$cyan${batn}$re\n"; date +%A|figlet -f $(shuf -e $HOME/ff.sh)|batcat -ppfl $batn; echo; 
-}
+
+# kl() {
+# batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d ":"));
+# batn=$(shuf -e -n1 ${batlist[@]})
+# printf "$cyan${batn}$re\n"; 
+# date +%A|figlet -f $(shuf -e $HOME/ff.sh)|batcat -ppfl $batn; echo; 
+# }
 ################################
-hhhhhh() {
-linesh=222; 
-[ -n "${1} "]&& linesh="${1}";
-tail ~/.bash_history -n${linesh}|batcat -ppl c;
-}
-alias kk='batcat -pf|less --use-color --tilde --file-size'
+# hhhhhh() {
+# linesh=222; 
+# [ -n "${1} "]&& linesh="${1}";
+# tail ~/.bash_history -n${linesh}|batcat -ppl c;
+# }
+alias kk='batcat -ppf $(tmux set-option mouse off; )|\
+less --use-color --tilde --file-size --incsearc --prompt="(%T) ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s. rr .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "; '
 alias kat='batcat -pfld'
 # kat() {
 # unset -v kat; 
@@ -395,7 +398,6 @@ git push -u origin main;
  } 
 alias 12_new_github_repo='gh_new';
 alias gpg='gpg --pinentry-mode loopback'
-alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
 fffff() { fzf --height ~12 --preview "(batcat -pfld {})" --preview-window=border-none --info inline --scrollbar --scroll-off 12 --hscroll; }; 
 alias calle='printf "\n$(it -)\nleonljunghorn@gmail.com - gcal\n$(it -)"; gcalcli --default-calendar leonljunghorn@gmail.com agenda  --details description --details location; printf "\n$(it -)\n\n"; ' 
 alias cdd='dd=(*/); cd $(for df in ${dd[@]}; do echo $df; done|fzf --height ~22)'

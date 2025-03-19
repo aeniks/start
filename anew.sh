@@ -5,34 +5,35 @@ case $- in
 *i*) ;;
 *) return;;
 esac
-if [ -z "${PREFIX}" ]; then if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ]; 
-then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; fi; fi; fi; 
+if [ -z "${PREFIX}" ]; 
+then if ! shopt -oq posix; 
+then if [ -f /usr/share/bash-completion/bash_completion ]; 
+then . /usr/share/bash-completion/bash_completion; 
+elif [ -f /etc/bash_completion ]; 
+then . /etc/bash_completion; 
+fi; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
-export BROWSER='google-chrome';
-[ -z $TMPDIR ]&& TMPDIR="$HOME/tmp"; 
- # export BROWSER_CLI='links2';  # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
-export PROMPT_COMMAND="history -a; history -n; " NVM_DIR="$HOME/.nvm"; alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ]&& \
-. "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
+[ -z $TMPDIR ]&& \
+export TMPDIR="$HOME/tmp" && mkdir $TMPDIR; 
+export PROMPT_COMMAND="history -a; history -n; " NVM_DIR="$HOME/.nvm"; 
+alias me='id; echo; id -un'; 
+alias ffff='fastfetch'
+alias nvm_initzz='\
+[ -s "$NVM_DIR/nvm.sh" ]&& \
+. "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ]&& \
+. "$NVM_DIR/bash_completion"'
 ####
 [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
-timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+timeout 6 gcalcli remind \
+--locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
+-u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 ## COLORS -- VARIABLES ##########################
-black='\e[30m'; 
-red='\e[31m'; 
-green='\e[92m'; 
-yellow='\e[93m'; 
-blue='\e[94m'; 
-pink='\e[95m';
-cyan='\e[96m'; 
-white='\e[37m'; 
-rev='\e[7m'; 
-re='\e[0m'; 
-bold='\e[1m'; 
-dim='\e[2m'; 
-c2='\e[0m\e[36m--\e[0m'; 
-invis='\e[8m'; 
-me="$(id -nu)"; 
-alias me='id; echo; id -un'; 
+export \
+red='\e[31m' green='\e[92m' yellow='\e[93m' blue='\e[94m' \
+pink='\e[95m' cyan='\e[96m' white='\e[37m' rev='\e[7m' \
+re='\e[0m' bold='\e[1m' dim='\e[2m' c2='\e[0m\e[36m--\e[0m' \
+black='\e[30m' invis='\e[8m' me="$(id -nu)"; 
+######
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
@@ -42,7 +43,6 @@ export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32
 #[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; 
 #printf %b "export ants=$ants\n" ) >> ~/.bashrc; 
 # . $ants/alias.sh; 
- . $ants/func/func.sh; 
 # [ -e $ants/func/func.sh ]&& 
 for i in ~/start/funcs/*.sh; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
@@ -54,9 +54,11 @@ for i in ~/start/funcs/*.sh; do . $i; done;
 [ -n "${PREFIX}" ]&& model=($(getprop ro.product.model))&& \
 [ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -z "${PREFIX}" ]&& [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
-model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor \
-/sys/devices/virtual/dmi/id/sys_vendor /sys/devices/virtual/dmi/id/bios_vendor 2>/dev/null\
-|sort|uniq -u|tr '\n' ' '))
+model=($(cat /sys/devices/virtual/dmi/id/product_sku \
+/sys/devices/virtual/dmi/id/board_vendor \
+/sys/devices/virtual/dmi/id/sys_vendor \
+/sys/devices/virtual/dmi/id/bios_vendor 2>/dev/null\
+|sort|uniq -u|tr '\n' ' '; ))
 #### (systemd-analyze|batcat -ppflzig; echo;); 
 ###############################################
 #dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; dahh="$(date +%H)"; damm="$(date +%M)";
@@ -66,7 +68,6 @@ alias fortshort='seq 12 > $HOME/.ff.sh;
 while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "4" ]; 
 do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
 # alias vim='nano'; 
-alias ffff='fastfetch'
 ####
 ####
 sshc=($SSH_CONNECTION); 
@@ -99,10 +100,10 @@ printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots";
 cat ~/logs/gcalagenda.sh 2>/dev/null|grep " " && \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
 column|head -n4 2>/dev/null; )\n$dots"; 
-printf %b "$(dfree)\n$dots"; 
+printf %b "$(dfree)$re\n$dots"; 
 printf %b "$(getcal 2>/dev/null; )\n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
-test -e "~/._aptup.nfo" &&\ 
+test -e "~/._aptup.nfo" 2>/dev/null &&\ 
 cat ~/._aptup.nfo 2>/dev/null|grep -e '[0-9]' --color && \
 printf %b "$re$dots"; 
 printf %b "$green$rev ${model[*]} $re | $dim$mod$re \n$dots";  
@@ -114,7 +115,8 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime)\n$dots";
 ####
 # error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-[ "${LF_LEVEL}" ]&& printf "\n\e[7;91m -- LF_LEVEL \e[92m = $LF_LEVEL  \e[0m\n"; 
+[ "${LF_LEVEL}" ]&& \
+printf "\n\e[7;91m -- LF_LEVEL \e[92m = $LF_LEVEL  \e[0m\n"; 
 ######## << TMUX TO BASHRC
 #tmux source-file "$HOME/.tmux.conf"; 
 #if [ -z "${TMUX}" ]; then [ "$SSH_CONNECTION" ]|| tmux source&& exit; 
@@ -142,7 +144,9 @@ wget curl aria2 python \
 [ -x "$HOME/._tmux" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
-[ -x "$HOME/._tmux.sh" ]&& echo "$HOME/_.tmux" is execetuble!; 
-PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] ['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
-['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
+[ -x "$HOME/._tmux" ]&& echo "$HOME/_.tmux" is execetuble!; 
+PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
+['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
+['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
+['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
 	
