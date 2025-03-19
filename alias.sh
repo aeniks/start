@@ -6,9 +6,11 @@ alias dfree='\
 printf %b "\e[0;2m$(df -h|head -n1|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; \
 df="/"; [ $PREFIX ]&& df="/dev/fuse"; df -h|grep -v '100%'|\
 grep -v "tmpfs"|grep -v "efivars"|\
-grep -v "boot"|grep -v loop|grep -e "$df"|batcat --theme=Nord -ppflc++; ';
+grep -v "boot"|grep -v loop|grep -e "$df"|batcat --theme=Dracula -ppflc++';
+# (df -h|head -n1|tr -s " " "\t"; df -h|\
+# grep /dev/fuse --color|tr -s " " "\t")|batcat --theme Dracula -ppflc++
  #=======
-alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
+# alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
 #>>>>>>> f29ca82 (2025-02-09_11_28)
 besh() { 
 test -n $TMUX && return 0;  
