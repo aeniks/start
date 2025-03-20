@@ -6,7 +6,7 @@ dim='\e[2m' q="$(printf %b "\e[0;2m--\e[0m";)";
 unset filelist new newchange gg; 
 ## perl function 
 #newf() { echo -n $1 | perl -pe 's/[\?\[\]\/\\=<>:;,''"@&\$#*()|~`!{}%+]//g;' -pe 's/[\r\n\t -]+/_/g;'; }; 
-newf() { echo -n $1 | tr -d "\'\' %&/?@!*[]{}()<>=*#"; }; 
+newf() { echo -n ${1/\//} | tr -s '////' '_'|tr -d "\'\'\\%&\/////?@!*[]{}()<>=*#"; }; 
 #perl -pe 's/[\?\[\]\/\\=<>:;,''"@&\$#*()|~`!{}%+]//g;' -pe 's/[\r\n\t -]+/_/g;'; }; 
 ## 
 files=($(newf $(command ls $@ 2>/dev/null))); 
@@ -21,8 +21,8 @@ return 1)||return 1; filelist=($(command ls $@ 2>/dev/null));
 filelist=($(command ls 2>/dev/null)); fi; 
 
 #echo nada; return 1; fi; 
-
-printf %b "\n$re$dim-----------------\n$q\e[0m Filenames found:\n$re$dim-----------------\e[1A";
+line="$re$dim---------------------"; 
+printf %b "$line\n$q\e[0m Filenames found:\n$line\e[1A";
 ##
 ga=($(for i in ${filelist[@]}; do new="$(newf $i)"; if [ '"'"$i"'"' != '"'"$new"'"' ]; 
 then printf %b "$re$red$i$re >> \n${green}${new,,}$re\n\n"; fi; done; )); 
@@ -34,7 +34,7 @@ printf %b "${ga[*]}"
 
 printf %b "$re\n\n\n\n"; 
 printf %b "\e[2A"; 
-printf %b "\n$re$dim-----------------\n$q\e[0m OK? ["$dim"Y"$re"/"$dim"n"$re"] \n$re$dim-----------------";
+printf %b " $q\e[0m OK? ["$dim"Y"$re"/"$dim"n"$re"] ";
 #printf %b " $q Change these filenames? ["$dim"Y"$re"/"$dim"n"$re"]"; 
 read -n1 -sp " " "ny"; [ "$ny" ]&& (printf %b "$red nope$re\n\n"; 
 return 0; )&& return 0; 
