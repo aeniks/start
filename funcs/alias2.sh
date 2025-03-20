@@ -275,7 +275,8 @@ alias kf='guf=$(ls|fzf);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title: $
 ############################################
 #### ANTS ##################################
 #alias ali='tilde /alias.sh && read -t2 -n1 -ep "update /alias.sh? " ab && source /alias.sh'ions.sh'
-alias uu='sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove; sudo apt full-upgrade -y && sudo snap refresh 2>/dev/null;  && jp2a $HOME/start/media/tard.jpg|pv --rate-limit=2222 --quiet'
+alias uu='sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove; sudo apt full-upgrade -y && sudo snap refresh 2>/dev/null; 
+jp2a $HOME/start/media/tard.jpg|pv --rate-limit=2222 --quiet'
 alias rb='sudo wall "gg"; sleep 1; sudo systemctl reboot'
 ##
 alias www='www-browser'
