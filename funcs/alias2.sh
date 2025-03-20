@@ -335,13 +335,14 @@ if [ "$run"  = 2 ]; then $hm; fi; history -s "$hm"; else printf "\nnothing new..
 
 cmdss() { 
 kk=($(cat $ants/sh/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
-alias ff='timeout .2 fastfetch & disown||neofetch||hostnamectl||id'
-alias serch='
-info=" -- [TAB]_mark choice(s)     -- [ENTER]_confirm     -- [C-q] quit "
-printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; 
-kk=($(ls --group-directories-first -tp $ss|fzf --inline-info --preview "file -ibs {}" --preview-window noborder --tac -m --height ~42% --header "$PWD $info")); 
-printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
-printf " ----\n${filist[*]}\n ----\nvar=\${filist[@]} " '; 
+alias ff='fastfetch 2>/dev/null||neofetch 2>/dev/null||\
+hostnamectl 2>/dev/null||id'
+# alias serch='
+# info=" -- [TAB]_mark choice(s)     -- [ENTER]_confirm     -- [C-q] quit "
+# printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; 
+# kk=($(ls --group-directories-first -tp $ss|fzf --inline-info --preview "file -ibs {}" --preview-window noborder --tac -m --height ~42% --header "$PWD $info")); 
+# printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
+# printf " ----\n${filist[*]}\n ----\nvar=\${filist[@]} " '; 
 
 
 #alias fakta='neofetch 2>/dev/null '
@@ -371,14 +372,17 @@ alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|\
 lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
 if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); fi; 
 alias 12_quote="/usr/games/fortune"
+
 alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push'
+alias uu='push'
 alias pull='git pull'
+alias pp='push'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
-alias cm2'=cat $ants/sh/cmd.sh'
+# alias cm2'=cat $ants/sh/cmd.sh'
 # alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
 ################################
 alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"|batcat -ppfl zig; printf "\n\n"'
-alias pub='curl ip.me -4'
+alias ippub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
 alias apa='sudo apt install'
