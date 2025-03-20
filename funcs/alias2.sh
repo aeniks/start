@@ -25,7 +25,13 @@ alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 #alias kk='batcat -ppf $(tmux set-option mouse off; )|less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] "; tmux set-option mouse on; '; 
 alias kat='batcat -pfld --pager="more"'; 
 
-alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
+alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; \
+sudo apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
+alias 12_info_tput='batcat -ppf "$HOME/start/info/tput.nfo"; '; 
+alias 12_info_ansi='batcat -ppf "$HOME/start/info/ansi.md"; '; 
+alias 12_info_bash='batcat -ppf "$HOME/start/info/bash.md"; '; 
+alias 12_info_cmd='batcat -ppf "$HOME/start/info/cmd.sh"; '; 
+
 # alias ttmenu='
 # [ "$TMUX" ] && tmux display-menu \
 # " split - V " v "split-window -v" \
@@ -114,7 +120,7 @@ alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
 ###############################
 ################ _functions
-alias sl_cc='ssh cc@192.168.0.105'
+# alias sl_cc='ssh cc@192.168.0.105'
 alias key-bindings='batcat $ants/sh/info/emacs.sh -p'
 alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
 alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
@@ -123,8 +129,8 @@ alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${H
 # export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ###############################
 ###############################
-alias 12local_portscan='nmap localhost|batcat -pP --language c++; 
-printf %b "\n\nuse ss to do more\n\n"; '
+# alias 12local_portscan='nmap localhost|batcat -pP --language c++; 
+# printf %b "\n\nuse ss to do more\n\n"; '
 # alias lan_neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
 # alias 12_it_portscan='portscan'
 # alias 12_it_neighbours='neighbours'
