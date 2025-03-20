@@ -69,18 +69,17 @@ while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "4" ];
 do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
 # alias vim='nano'; 
 ####
+apt_upgradable=($(apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
 ####
 sshc=($SSH_CONNECTION); 
-ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
+#ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
-ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
+#ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
-[ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|\
-grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
-[ -n "$iploc" ]|| iploc="$(ip -4 -brief address show scope global|grep -e "UP"|tail -c24|cut -f1 -d"/"|tr -d " ")"; 
-# iploc="$(ip a|grep -v "lo" -A8|grep -w "inet" -m1|tr -s "inet/" "_"|cut -f2 -d"_"|tr -d " ")"; 
+[ -z "$iploc" ]&& iploc=($(ip --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
+[ -z "$iploc" ]&& iploc="$(ifconfig 2>/dev/null|grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
 printf %b "$iploc" > $HOME/.iploc.sh; 
-iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
+#iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
@@ -99,20 +98,21 @@ printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots";
 printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots"; 
 cat ~/logs/gcalagenda.sh 2>/dev/null|grep " " && \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
-column|head -n4 2>/dev/null; )\n$dots"; 
-printf %b "$(dfree)$re\n$dots"; 
+column|head -n4 2>/dev/null; ) \n$dots"; 
+printf %b "$(dfree)$re \n$dots"; 
 printf %b "$(getcal 2>/dev/null; )\n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
-test -e "~/._aptup.nfo" 2>/dev/null &&\ 
-cat ~/._aptup.nfo 2>/dev/null|grep -e '[0-9]' --color && \
-printf %b "$re$dots"; 
-printf %b "$green$rev ${model[*]} $re | $dim$mod$re \n$dots";  
+[ "${#apt_upgradable[*]}" -gt 1 ]&& \
+printf %b "$red${#apt_upgradable[*]}$re upgrades available$re"; 
+printf %b "\n$dots"; 
+printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
 printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime)\n$dots"; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
 ####
 ####
+
 # error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 [ "${LF_LEVEL}" ]&& \
