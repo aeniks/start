@@ -1,0 +1,1 @@
+alias kk='tee -a|batcat -pf $(tmux set-option mouse off; ) --pager="less --use-color --file-size --incsearc -srR --prompt="\"" [/]search [n]ext-match [N]prev-match  %lt-%lb/%L  %pB\%  [%T]"\"" "; tmux set-option mouse on; '; 

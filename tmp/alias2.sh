@@ -1,4 +1,7 @@
+alias kk='tee -a|batcat -pf $(tmux set-option mouse off; ) --pager="less --use-color --file-size --incsearc -srR --prompt="\"" [/]search [n]ext-match [N]prev-match  %lt-%lb/%L  %pB\%  [%T]"\"" "; tmux set-option mouse on; '; 
 #!/bin/bash
+
+#alias kk='tee -a|batcat -pf $(tmux set-option mouse off; ) \
 #" alias for bash terminal
 ############# _COLORS ##########
 # e='echo -e '; 
@@ -22,7 +25,6 @@ alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 " serch " s "display-popup lsd|fzf"';
 ####
 ####
-alias kk='batcat -ppf $(tmux set-option mouse off; ) --pager="less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] " "; tmux set-option mouse on; '; 
 alias kat='batcat -pfld'; 
 
 alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
