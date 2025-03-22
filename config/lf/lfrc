@@ -424,8 +424,8 @@ set infotimefmtold "Jan 02 2006"
 set promptfmt "
 \033[37m\033[48;2;15;25;25m %w/\033[96m%f\033[95m  \033[0m %u\033[2m@\033[0m%h"
 ##
-set statfmt "\033[35m%l| \033[96m%p\033[0m| %t|\033[106;37m %S \033[0m|%u" ## default
-set rulerfmt "%a  |%p  |\033[7;31m %m \033[0m| %{lf_user_selected_size} |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t " 
+set statfmt "\033[35m%l| \033[96m%p\033[0m| %t|\033[45;30m %S \033[0m|%u" ## default
+set rulerfmt "%a  |%p  |\033[7;31m %m \033[30;44m| %{lf_user_selected_size} |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t " 
 cmd on-select &{{ s=$(find $fx -type f -maxdepth 1 -ls | awk '{total += $7} END {print total}' | numfmt --to=iec --format='%.2fB')
 lf -remote "send $id set user_selected_size $s" }} 
 ##
@@ -434,14 +434,14 @@ set cursorpreviewfmt "\033[4m"
 set cursoractivefmt "\033[2;107m" 
 set drawbox false
 set mouse
-set icons false 
+set icons true 
 set shell bash
 set info size:time
 set sortby time
 set reverse 
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
 source "~/.config/lf/opener"
-# source "~/.config/lf/lf_m"
+source "~/.config/lf/lf_m"
 
 
 
