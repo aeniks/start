@@ -11,6 +11,9 @@ mv $HOME/.tmux.conf.local $HOME/tmp/ 2>/dev/null;
 ln $HOME/start/config/tmux/tmux.conf.local $HOME/.tmux.conf.local --symbolic; 
 echo 'ln $HOME/start/config/tmux/tmux.conf.local $HOME/.tmux.conf.local --symbolic; '; 
 rm $HOME/.config/lf -r 2>/dev/null; 
-ln $HOME/start/config/lf $HOME/.config/ --symbolic; 
 echo 'ln $HOME/start/config/lf $HOME/.config/ --symbolic; '; 
+
+rm $HOME/.config/htop -r 2>/dev/null; 
+ln $HOME/start/config/htop $HOME/.config/htop --symbolic; 
+echo 'ln $HOME/start/config/htop $HOME/.config/ --symbolic; '; 
 echo -e "\n\n -- done!\n\n"
