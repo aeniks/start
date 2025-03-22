@@ -37,7 +37,8 @@ black='\e[30m' invis='\e[8m' me="$(id -nu)";
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
-export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36'! 
+export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' \
+GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36'; 
 # qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; # qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; # qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 #[ -z "${ants}" ]&& read -rp "ants: " -i "$PWD" "ants"; 
 #[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; 
@@ -47,10 +48,13 @@ export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32
 for i in ~/start/funcs/*.sh; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
-# model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; 
+modl=("$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk \
+ro.build.version.sdk ro.product.abilist \
+ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; ); 
 # [ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
+
 [ -n "${PREFIX}" ]&& model=($(getprop ro.product.model))&& \
 [ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -z "${PREFIX}" ]&& [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
@@ -102,8 +106,8 @@ column|head -n4 2>/dev/null; ) \n$dots";
 printf %b "$(dfree)$re \n$dots"; 
 printf %b "$(getcal 2>/dev/null; )\n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
-[ "${#apt_upgradable[*]}" -gt 1 ]&& \
-printf %b "$red${#apt_upgradable[*]}$re upgrades available$re"; 
+[ "${#apt_upgradable[*]}" -gt 2 ]&& \
+printf %b "$red${#apt_upgradable[*]}$re upgrades available$re" &&\
 printf %b "\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
 printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 

@@ -27,10 +27,10 @@ alias kat='batcat -pfld --pager="more"';
 
 alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; \
 sudo apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
-alias 12_info_tput='batcat -ppf "$HOME/start/info/tput.nfo"; '; 
-alias 12_info_ansi='batcat -ppf "$HOME/start/info/ansi.md"; '; 
-alias 12_info_bash='batcat -ppf "$HOME/start/info/bash.md"; '; 
-alias 12_info_cmd='batcat -ppf "$HOME/start/info/cmd.sh"; '; 
+alias 12info_tput='batcat -ppf "$HOME/start/info/tput.nfo"; '; 
+alias 12info_ansi='batcat -ppf "$HOME/start/info/ansi.md"; '; 
+alias 12info_bash='batcat -ppf "$HOME/start/info/bash.md"; '; 
+alias 12info_cmd='batcat -ppf "$HOME/start/info/cmd.sh"; '; 
 
 # alias ttmenu='
 # [ "$TMUX" ] && tmux display-menu \
@@ -45,7 +45,7 @@ alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
-alias 12info_ansi='batcat -pfl d $HOME/start/info/ansii.md'
+#alias 12info_ansi='batcat -pfl d $HOME/start/info/ansii.md'
 alias gpg='gpg --pinentry loopback'; 
 note() {
 echo -e "\n\n -- syncing...\n\n"; 
@@ -64,8 +64,8 @@ printf "\n  try again \n\n"; )
 # less (){
 # 
 # }
-alias ss='ssss -l'
-alias iiii='$EDITOR $HOME/start/config/inputrc; echo gg; exec $0'
+alias ss='cd $HOME/start; ls -p'
+alias iiii='$EDITOR $HOME/.inputrc; echo gg; exec bash; '
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 # alias 12='menu $ants/12'
@@ -112,16 +112,16 @@ type $@; whatis $@;
 apt show $@ 2>/dev/null|grep -wi "description" -A12; type
 } 
 
-alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 
+alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; printf %b "$HOME/.local/" ; 
 #############################
-alias infobash='batcat -pf "$ants/sh/info/cmd.sh"'
+alias 12info__bash='batcat -pf "$ants/sh/info/cmd.sh"'
 # alias o='/home/aa/go/bin/o'
 alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
 ###############################
 ################ _functions
 # alias sl_cc='ssh cc@192.168.0.105'
-alias key-bindings='batcat $ants/sh/info/emacs.sh -p'
+alias 12info_key-bindings='batcat $ants/sh/info/emacs.sh -p'
 alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
 alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
@@ -176,14 +176,14 @@ alias quotes='fortune $s|tr -s "\t" " "'
 # [ $2 ]&& batcat -Ppf $kat  $1 --language $lng||batcat -Ppf $kat $1;
 # 
 # }
-alias ipip='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
-alias fill='hash lolcat && seq -s " " 2222';
-alias 12_nuke_ants='
-read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
-read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
-read "$nk${cyan} ok${re}? " "okok" 2>/dev/null;
-sudo rm $ok -R;  git clone https://github.com/aeniks/ants /tmp/ants; 
-sudo mv /tmp/ants $nk 2>/dev/null; cd $nk/ants; exec bash;'
+alias 12info_ipip='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
+alias fill='seq -s " " 2222';
+#alias 12_nuke_ants='
+#read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
+#read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
+#read "$nk${cyan} ok${re}? " "okok" 2>/dev/null;
+#sudo rm $ok -R;  git clone https://github.com/aeniks/ants /tmp/ants; 
+#sudo mv /tmp/ants $nk 2>/dev/null; cd $nk/ants; exec bash;'
 alias 12make_admin='
 if [ -e != /etc/sudoers.d/admins ]; 
 then sudo touch /etc/sudoers.d/admins; fi; 
@@ -211,8 +211,8 @@ alias goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "
 #alias apt='sudo apt'
 alias gmail='open gmail.com'
 alias no='echo -e "\e[?25h"; printf "\e[0m"'
-alias 12_info_ansi='batcat -p $ants/sh/info/ansi.md'
-alias 12_tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
+#alias 12_info_ansi='batcat -p $ants/sh/info/ansi.md'
+alias 12tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
 alias tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
@@ -224,9 +224,9 @@ alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5));
 nn=; for i in ${figlist[*]}; do printf "\n\n\e[0m --\t\e[7;46m $i\e[0m \e[38;5;$((nn++))m\n\n"; figlet -f "$i" "$i"; done; '; 
 alias reloadbash='exec bash'
 #alias norm=' echo -e '\e[0m'; tput cnorm 2>/dev/null;' 
-alias aa='[ -z "$ants" ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants'
-alias aaaa="$EDITOR "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; exec bash;"
-alias bbbb="$EDITOR "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; exec bash;"
+#alias aa='[ -z "$ants" ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants'
+alias aaaa="$EDITOR "$HOME/alias.sh"; read -ep 'update alias.sh? '; exec bash;"
+alias bbbb="$EDITOR "$HOME/anew.sh"; read -ep 'update anew.sh? '; exec bash;"
 # alias cccc="$EDITOR "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; exec bash;"
 alias cccc="crontab -e"
 ####
@@ -373,10 +373,11 @@ lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$
 if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); fi; 
 alias 12_quote="/usr/games/fortune"
 
-alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push'
-alias uu='push'
+alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push -v|batcat -ppflzig'
+alias uuuu='push'
 alias pull='git pull'
-alias pp='push'
+alias pppp='git pull|batcat -ppflzig'
+alias uu='sudo apt update | batcat -ppflzig --theme=Nord && sudo apt upgrade -y'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
 # alias cm2'=cat $ants/sh/cmd.sh'
 # alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
