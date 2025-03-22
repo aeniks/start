@@ -48,9 +48,13 @@ GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36';
 for i in ~/start/funcs/*.sh; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
-modl=("$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk \
-ro.build.version.sdk ro.product.abilist \
-ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; ); 
+modl=($(getprop ro.product.model 2>/dev/null; 
+getprop ro.build.version.min_supported_target_sdk 2>/dev/null; 
+getprop ro.build.version.sdk ro.product.abilist 2>/dev/null; 
+getprop ro.product.name 2>/dev/null; 
+getprop ro.soc.manufacturer 2>/dev/null; 
+getprop ro.soc.model 2>/dev/null; 
+getprop gsm.sim.operator.alpha 2>/dev/null;)); 
 # [ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
@@ -80,8 +84,9 @@ sshc=($SSH_CONNECTION);
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
-[ -z "$iploc" ]&& iploc=($(ip --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
-[ -z "$iploc" ]&& iploc="$(ifconfig 2>/dev/null|grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
+[ -n "$iploc" ]||iploc=($(ip -4 -brief a show scope global up|tr -s "/" " "|grep "UP"|cut -f3 -d" "; )); 
+[ -n "$iploc" ]|| iploc="$(ifconfig 2>/dev/null|grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
+# ip --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
 printf %b "$iploc" > $HOME/.iploc.sh; 
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
@@ -109,7 +114,7 @@ printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
 [ "${#apt_upgradable[*]}" -gt 2 ]&& \
 printf %b "$red${#apt_upgradable[*]}$re upgrades available$re" &&\
 printf %b "\n$dots"; 
-printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
+printf %b "\e[1;37;45m ${modl[*]} $re | $dim$mod$re \n$dots";  
 printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
