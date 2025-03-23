@@ -96,7 +96,8 @@ map \\ :push :<up>
 map _ cmds
 map <+> drawbox! 
 map x !$f 
-map t hora
+map k hora
+map t tag-toggle
 map <c-s> sese
 map F :filter
 map D :set dironly! 

@@ -9,7 +9,8 @@
 # white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
 alias sshknown='cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq'
-alias speed='speedtest --bytes --no-upload 2>/dev/null; ||speedtest-cli 2>/dev/null; '
+alias speed='speedtest --bytes --no-upload 2>/dev/null||speedtest-go --unit=decimal-bits \
+--no-upload||speedtest-cli 2>/dev/null; '
 alias ipme='wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
 alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; \
@@ -23,7 +24,7 @@ alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 ####
 ####
 #alias kk='batcat -ppf $(tmux set-option mouse off; )|less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] "; tmux set-option mouse on; '; 
-alias kat='batcat -pfld --pager="more"'; 
+alias kat='batcat -pfld'; 
 
 alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; \
 sudo apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
@@ -112,16 +113,17 @@ type $@; whatis $@;
 apt show $@ 2>/dev/null|grep -wi "description" -A12; type
 } 
 
-alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; printf %b "$HOME/.local/" ; 
+# alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir); \
+# printf %b "\n$(head -n-1 $HOME/.local/share/lf/files)\n"; '; 
 #############################
-alias 12info__bash='batcat -pf "$ants/sh/info/cmd.sh"'
+alias 12info__bash='batcat -Pf "$HOME/start/info/cmd.sh"'
 # alias o='/home/aa/go/bin/o'
 alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
 ###############################
 ################ _functions
 # alias sl_cc='ssh cc@192.168.0.105'
-alias 12info_key-bindings='batcat $ants/sh/info/emacs.sh -p'
+alias 12info_key-bindings='batcat -Pf $HOME/start/info/emacs.sh'
 alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
 alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
