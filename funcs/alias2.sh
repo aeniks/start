@@ -108,10 +108,6 @@ alias deploy='wrangler pages deploy ./ \
 ############################
 ######## LF ################
 # LFRC="$ants/sh/config/lf/lfrc"; 
-qe() { 
-type $@; whatis $@; 
-apt show $@ 2>/dev/null|grep -wi "description" -A12; type
-} 
 
 # alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir); \
 # printf %b "\n$(head -n-1 $HOME/.local/share/lf/files)\n"; '; 
@@ -430,3 +426,9 @@ open ${gs[*]};
 
 alias aantslog='sl "sudo tail -f /home/ants/logs/nginx/access.log"|batcat -ppfld'
 
+
+
+#qe() { 
+#type $@; whatis $@; 
+#apt show $@ 2>/dev/null|grep -wi "description" -A12; type
+#} 
