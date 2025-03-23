@@ -23,7 +23,8 @@ export \
 red='\e[31m' green='\e[92m' yellow='\e[93m' blue='\e[94m' \
 pink='\e[95m' cyan='\e[96m' white='\e[37m' rev='\e[7m' \
 re='\e[0m' bold='\e[1m' dim='\e[2m' c2='\e[0m\e[36m--\e[0m' \
-black='\e[30m' invis='\e[8m' me="$(id -nu)"; 
+black='\e[30m' invis='\e[8m' c2='\e[0m\e[36m -- \e[0m' 
+nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]' me="$(id -nu)"; 
 ######
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
@@ -54,6 +55,7 @@ while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "4" ];
 do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
 # alias vim='nano'; 
 ####
+#apt_upgradable=(no); 
 apt_upgradable=($(apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
 ####
 sshc=($SSH_CONNECTION); 
@@ -61,10 +63,12 @@ sshc=($SSH_CONNECTION);
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
-[ -n "$iploc" ]||iploc=($(ip -4 -brief a show scope global up|tr -s "/" " "|grep "UP"|cut -f3 -d" "; )); 
-[ -n "$iploc" ]||iploc="$(ifconfig 2>/dev/null|grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
-# ip --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
-printf %b "$iploc" > $HOME/.iploc.sh; 
+[ -z "$PREFIX" ]&& iploc=($(ip -4 -brief a show scope global up|\
+tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
+[ -n "$iploc" ]||iploc="$(ifconfig 2>/dev/null|\
+grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
+# ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
+printf %b "$iploc">$HOME/.iploc.sh; 
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
@@ -76,7 +80,8 @@ printf %b "$iploc" > $HOME/.iploc.sh;
 #figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; printf "\n\n"; fi; 
 ####
 ####
-. $HOME/start/config/tmux/tmuxbashcompletions.sh; 
+mkdir $HOME/logs 2>/dev/null; 
+. $HOME/.tmux_bash.sh 2>/dev/null; 
 . $HOME/start/alias.sh; 
 inbash() { 
 dots="${re}··········\n"; 
@@ -86,11 +91,11 @@ cat ~/logs/gcalagenda.sh 2>/dev/null|grep " " && \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
 column|head -n4 2>/dev/null; ) \n$dots"; 
 printf %b "$(dfree)$re \n$dots"; 
+[ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; )\n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
-[ "${#apt_upgradable[*]}" -gt 2 ]&& \
-printf %b "$red${#apt_upgradable[*]}$re upgrades available$re" &&\
-printf %b "\n$dots"; 
+[ ${#apt_upgradable[*]} -gt 2 ]&& \
+printf %b "$red${#apt_upgradable[*]}$re upgrades available$re\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
 printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
@@ -114,16 +119,17 @@ printf "\n\e[7;91m -- LF_LEVEL \e[92m = $LF_LEVEL  \e[0m\n";
 ##################################
 # 12_whtr 
 apts=(\
-openssl openssh-server sshfs rsync \
-rclone googler figlet lolcat \
+file libexif-dev openssl openssh-server sshfs rsync \
+rclone w3m googler exiftool mediainfo \
+figlet lolcat lynx links2 ffmpeg \
 toilet iproute2 net-tools nmap \
-nmtui fastfetch neofetch \
+fastfetch neofetch \
 fzf ccze lf bat batcat \
 bat ncdu bash-completion lsd \
-tmux git gh nodejs \
-texinfo aha micro \
-wget curl aria2  \
-)
+tmux git gh nodejs nmap \
+texinfo aha micro golang\
+wget wget2 curl aria2 iw\
+); 
 }; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 [ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"

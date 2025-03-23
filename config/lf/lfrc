@@ -1,7 +1,6 @@
-#!/bin/env bash
+#!/bin/bash
 ## lf config
-[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&& \
-PREFIX="/data/data/com.termux/files/usr"; 
+#[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&&PREFIX="/data/data/com.termux/files/usr"; 
 # set previewer $PREFIX/etc/lf/previewer
 set globfilter true
 map f :filter
@@ -96,7 +95,7 @@ map \\ :push :<up>
 map _ cmds
 map <+> drawbox! 
 map x !$f 
-map k hora
+map T hora
 map t tag-toggle
 map <c-s> sese
 map F :filter
@@ -390,7 +389,7 @@ read; printf "\e[?47l\n"
 #set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set hiddenfiles ".*"
 # [ -e "$PREFIX/etc/lf/previewer" ]&& lf_cdir="$PREFIX/etc/lf"; 
-previewer
+
 
 # " ]&& 
 # lf_cdir="~/.config/lf"; 
@@ -422,8 +421,7 @@ set timefmt "\033[0m2006\033[0m-\033[95mJan\033[0m-\033[31m02\033[94m\033[0m-\03
 set infotimefmtnew "Jan 02 15:04"
 set infotimefmtold "Jan 02 2006" 
 
-set promptfmt "
-\033[37m\033[48;2;15;25;25m %w/\033[96m%f\033[95m  \033[0m %u\033[2m@\033[0m%h"
+set promptfmt "\033[37m\033[48;2;15;25;25m %w/\033[96m%f\033[95m  \033[0m %u\033[2m@\033[0m%h"
 ##
 set statfmt "\033[35m%l| \033[96m%p\033[0m| %t|\033[45;30m %S \033[0m|%u" ## default
 set rulerfmt "%a  |%p  |\033[7;31m %m \033[30;44m| %{lf_user_selected_size} |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t " 
@@ -442,7 +440,8 @@ set sortby time
 set reverse 
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
 source "~/.config/lf/opener"
-source "~/.config/lf/lf_m"
+#source "~/.config/lf/previewer"
+#source "~/.config/lf/lf_m"
 
 
 
