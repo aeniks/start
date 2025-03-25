@@ -115,7 +115,7 @@ printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
 [ ${#apt_upgradable[*]} -gt 2 ]&& \
 printf %b "$red${#apt_upgradable[*]}$re upgrades available$re\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
-printf %b "$cyan$me$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
+printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
 printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
