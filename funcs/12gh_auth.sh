@@ -4,7 +4,7 @@
 printf "\e[0m\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\e[22A"; 
 sudo apt install gpg git gh -qqy 2>/dev/null; 
 c2='\e[0m\e[36m--\e[0m'; 
-printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
+# printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
 gpg --pinentry-mode loopback -o "gh.txt" -d "$HOME/start/config/gpg/gh_aeniks.gpg";
 gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt;sleep .2;
 gh auth status&& printf "\n\n     \e[42m       OK      \e[0m\n\n"; sleep 2; echo;echo;echo; 

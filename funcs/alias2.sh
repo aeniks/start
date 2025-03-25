@@ -47,7 +47,7 @@ alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
 #alias 12info_ansi='batcat -pfl d $HOME/start/info/ansii.md'
-alias gist='echo; read -sre -1p " -- [c]reate [v]iew [u]pload " "g"; \
+alias gist='echo; read -sr -p " -- [c]reate [v]iew [u]pload " "g"; \
 if [ $g = "c" ]; then $EDITOR|gh gist create; 
 elif [ $g = "v" ]; then gh gist view; 
 elif [ $g = "u" ]; then ls|fzf|gh gist create; 
@@ -395,7 +395,6 @@ alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_H
 alias ippub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
-alias apa='sudo apt install'
 alias less='less -Rr --use-color --no-histdups --incsearch --file-size --chop-long-lines'; 
 alias save_as_alias='printf "\n\n\n\n\n\n\22B
 \e[25A\e[J\n\n\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
