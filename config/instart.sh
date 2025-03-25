@@ -67,7 +67,15 @@ tput setaf 5 2>/dev/null;
 sudo apt update; 
 tput setaf 6 2>/dev/null; 
 sudo apt upgrade -y; 
-tput setaf 4 2>/dev/null; echo;
+tput setaf 4 2>/dev/null; echo; 
+apts=(file libexif-dev openssl openssh-server sshfs \
+rsync rclone w3m w3m-img googler exiftool lib\
+mediainfo figlet lolcat lynx links2 ffmpeg \
+toilet iproute2 net-tools nmap mpv fastfetch \
+neofetch fzf ccze lf bat batcat btop htop ncdu \
+bash-completion lsd tmux git gh nodejs \
+nmap texinfo aha micro golang gnupg \
+wget wget2 curl aria2 iw); 
 for i in ${apts[*]}; do 
 read -t 0.2 -rn1 -p "[ ]" "ny"; [ $ny ]&& return 0; 
 printf %b "installing \e[0;95m$i\n\e[0;2m"; 
