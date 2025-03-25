@@ -26,12 +26,12 @@ alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 #alias kk='batcat -ppf $(tmux set-option mouse off; )|less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] "; tmux set-option mouse on; '; 
 alias kat='batcat -pfld'; 
 
-alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; \
-sudo apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
-alias 12info_tput='batcat -ppf "$HOME/start/info/tput.nfo"; '; 
-alias 12info_ansi='batcat -ppf "$HOME/start/info/ansi.md"; '; 
-alias 12info_bash='batcat -ppf "$HOME/start/info/bash.md"; '; 
-alias 12info_cmd='batcat -ppf "$HOME/start/info/cmd.sh"; '; 
+#alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; \
+#sudo apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
+alias 12info_tput='batcat -pf "$HOME/start/info/tput.nfo"; '; 
+alias 12info_ansi='batcat -pf "$HOME/start/info/ansi.md"; '; 
+alias 12info_bash='batcat -pf "$HOME/start/info/bash.md"; '; 
+alias 12info_cmd='batcat -pf "$HOME/start/info/cmd.sh"; '; 
 
 # alias ttmenu='
 # [ "$TMUX" ] && tmux display-menu \
@@ -47,18 +47,25 @@ alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
 #alias 12info_ansi='batcat -pfl d $HOME/start/info/ansii.md'
+alias gist='echo; read -sre -1p " -- [c]reate [v]iew [u]pload " "g"; \
+if [ $g = "c" ]; then $EDITOR|gh gist create; 
+elif [ $g = "v" ]; then gh gist view; 
+elif [ $g = "u" ]; then ls|fzf|gh gist create; 
+elif [ $g = "q" ]; then return 0; 
+elif [ -z "$g" ]; then printf %b "\nok\n"; return 0; 
+fi; '; 
 alias gpg='gpg --pinentry loopback'; 
 note() {
 echo -e "\n\n -- syncing...\n\n"; 
 gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||\
 gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||\
 (read -n1 -rep "-- login with token? [Y/n] " "yn"; [ "$yn" ]&& return; 
-printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
-gpg --pinentry-mode loopback -o "~/gh.txt" -d "$ants/sh/config/gh_aeniks.gpg"; 
+gpg --pinentry-mode loopback -o "~/gh.txt" -d "$HOME/start/config/gh_aeniks.gpg"; 
 gh auth login --with-token < "~/gh.txt"; printf "$c2 "; rm ~/gh.txt;
 gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n"; 
 printf "\n  try again \n\n"; )
 }
+
 # alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c||getprop system.productname|kat; printf "\n$HOSTNAME : $HOSTTYPE : $MACHTYPE : $OS_TYPE\n\n"; '
 # getprop ro.
 
@@ -119,7 +126,7 @@ alias kkkk='sudo batcat -Ppfl c --line-range 1:88
 ###############################
 ################ _functions
 # alias sl_cc='ssh cc@192.168.0.105'
-alias 12info_key-bindings='batcat -Pf $HOME/start/info/emacs.sh'
+alias 12info_key-bindings='batcat -pf $HOME/start/info/emacs.sh'
 alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
 alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
@@ -192,9 +199,9 @@ $newsudo ALL=(ALL) NOPASSWD:ALL
 
 12admins() {
 ## make new sudo user 
-read -rep "$c2 new admin user: " -i "$1" "newsudo"; 
+read -rep "$c2 new admin user: " -i "$USER$1" "newsudo"; 
 [ -e /etc/sudoers.d/admins ]|| sudo touch /etc/sudoers.d/admins; 
-sudo echo -e "\n $newsudo ALL=(ALL) NOPASSWD:ALL
+sudo printf %b "\n$newsudo ALL=(ALL) NOPASSWD:ALL\n\
 %"$newsudo" ALL=(ALL) NOPASSWD:ALL \n" | tee -a "/etc/sudoers.d/admins"
 }
 ##### << make this a function
@@ -208,12 +215,12 @@ alias goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "
 
 #alias apt='sudo apt'
 alias gmail='open gmail.com'
-alias no='echo -e "\e[?25h"; printf "\e[0m"'
+alias no='echo -e "\e[?25h"; printf "\e[0m; reset -I 2>/~.x"'
 #alias 12_info_ansi='batcat -p $ants/sh/info/ansi.md'
-alias 12tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
+alias 12tard='lo="$(jp2a $HOME/start/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
-alias tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
+alias tard='lo="$(jp2a $HOME/start/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
 #alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
@@ -223,8 +230,8 @@ nn=; for i in ${figlist[*]}; do printf "\n\n\e[0m --\t\e[7;46m $i\e[0m \e[38;5;$
 alias reloadbash='exec bash'
 #alias norm=' echo -e '\e[0m'; tput cnorm 2>/dev/null;' 
 #alias aa='[ -z "$ants" ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants'
-alias aaaa="$EDITOR "$HOME/alias.sh"; read -ep 'update alias.sh? '; exec bash;"
-alias bbbb="$EDITOR "$HOME/anew.sh"; read -ep 'update anew.sh? '; exec bash;"
+alias aaaa="$EDITOR "$HOME/start/alias.sh"; read -ep 'update alias.sh? '; exec bash;"
+alias bbbb="$EDITOR "$HOME/start/anew.sh"; read -ep 'update anew.sh? '; exec bash;"
 # alias cccc="$EDITOR "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; exec bash;"
 alias cccc="crontab -e"
 ####
@@ -273,7 +280,9 @@ alias kf='guf=$(ls|fzf);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title: $
 ############################################
 #### ANTS ##################################
 #alias ali='tilde /alias.sh && read -t2 -n1 -ep "update /alias.sh? " ab && source /alias.sh'ions.sh'
-alias uu='sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove; sudo apt full-upgrade -y && sudo snap refresh 2>/dev/null; 
+alias uu='sudo apt update && sudo apt upgrade -y && \
+sudo apt -y autoremove; sudo apt full-upgrade -y && \
+sudo snap refresh 2>/dev/null; 
 jp2a $HOME/start/media/tard.jpg|pv --rate-limit=2222 --quiet'
 alias rb='sudo wall "gg"; sleep 1; sudo systemctl reboot'
 ##
@@ -287,8 +296,8 @@ curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++; tput cup 6 $((COLUMNS-28
 #curl http://wttr.in/Stockholm?format=%l:+%c%t+-+%C++-++Feels+like:+%f++H:+%h; 
 ############################################
 ## MISC_STUFF ##############################
-alias 12_fill='seq -s " # " 4444|lolcat'
-alias 12_info_tput='less /sh/info/tputhelp.txt'
+alias 12_fill='seq -s " # " 4444'
+alias 12info_tput='less $HOME/start/info/tputhelp.txt'
 alias coolors='printf "\e[38;5;211m [code] m >> \n\n"; 
 for i in $(seq --equal-width 255); do 
 printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; ' 
@@ -372,10 +381,12 @@ if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//
 alias 12_quote="/usr/games/fortune"
 
 alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push -v|batcat -ppflzig'
-alias uuuu='push'
+alias pp='push'
 alias pull='git pull'
 alias pppp='git pull|batcat -ppflzig'
-alias uu='sudo apt update | batcat -ppflzig --theme=Nord && sudo apt upgrade -y'
+alias uu='sudo apt update | batcat -ppflzig --theme=Nord && \
+sudo apt upgrade -y | batcat -ppflzig --theme=Nord; \
+sudo apt autoremove -y'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
 # alias cm2'=cat $ants/sh/cmd.sh'
 # alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'

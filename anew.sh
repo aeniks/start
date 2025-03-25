@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/bin/bash
 ## A better bash. Written by 12ants.github.io
 ## _do nothing if not interactive
 case $- in
@@ -24,14 +24,14 @@ red='\e[31m' green='\e[92m' yellow='\e[93m' blue='\e[94m' \
 pink='\e[95m' cyan='\e[96m' white='\e[37m' rev='\e[7m' \
 re='\e[0m' bold='\e[1m' dim='\e[2m' c2='\e[0m\e[36m--\e[0m' \
 black='\e[30m' invis='\e[8m' c2='\e[0m\e[36m -- \e[0m' 
-nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]' me="$(id -nu)"; 
+nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]' 
+[ -z $USER ]&&USER="$(id -nu)"; 
 ######
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' \
 GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36' PAGER='less'; 
-for i in ~/start/funcs/*.sh; do . $i; done; 
 [ $PREFIX ]&& model=($(getprop ro.product.model; 
 getprop ro.build.version.min_supported_target_sdk; 
 getprop ro.build.version.sdk ro.product.abilist; 
@@ -56,7 +56,7 @@ do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh';
 # alias vim='nano'; 
 ####
 #apt_upgradable=(no); 
-apt_upgradable=($(apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
+apt_upgradable=($(sudo apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
 ####
 sshc=($SSH_CONNECTION); 
 #ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
@@ -80,9 +80,27 @@ printf %b "$iploc">$HOME/.iploc.sh;
 #figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; printf "\n\n"; fi; 
 ####
 ####
+apts=(\
+file libexif-dev openssl openssh-server sshfs rsync \
+rclone w3m googler exiftool mediainfo \
+figlet lolcat lynx links2 ffmpeg \
+toilet iproute2 net-tools nmap \
+mpv fastfetch neofetch \
+fzf ccze lf bat batcat \
+bat ncdu bash-completion lsd \
+tmux git gh nodejs nmap \
+texinfo aha micro golang gnupg \
+wget wget2 curl aria2 iw \
+); 
+[ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
+mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
+########
 mkdir $HOME/logs 2>/dev/null; 
 . $HOME/.tmux_bash.sh 2>/dev/null; 
+for i in ~/start/funcs/*.sh; do . $i; done; 
 . $HOME/start/alias.sh; 
+##########
+##########
 inbash() { 
 dots="${re}··········\n"; 
 printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
@@ -105,9 +123,6 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 ####
 
 # error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
-mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-[ "${LF_LEVEL}" ]&& \
-printf "\n\e[7;91m -- LF_LEVEL \e[92m = $LF_LEVEL  \e[0m\n"; 
 ######## << TMUX TO BASHRC
 #tmux source-file "$HOME/.tmux.conf"; 
 #if [ -z "${TMUX}" ]; then [ "$SSH_CONNECTION" ]|| tmux source&& exit; 
@@ -118,18 +133,6 @@ printf "\n\e[7;91m -- LF_LEVEL \e[92m = $LF_LEVEL  \e[0m\n";
 ##PS1='\e[2;37m${mod:0:22}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
 ##################################
 # 12_whtr 
-apts=(\
-file libexif-dev openssl openssh-server sshfs rsync \
-rclone w3m googler exiftool mediainfo \
-figlet lolcat lynx links2 ffmpeg \
-toilet iproute2 net-tools nmap \
-fastfetch neofetch \
-fzf ccze lf bat batcat \
-bat ncdu bash-completion lsd \
-tmux git gh nodejs nmap \
-texinfo aha micro golang\
-wget wget2 curl aria2 iw\
-); 
 }; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 [ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"

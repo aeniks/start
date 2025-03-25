@@ -1,47 +1,10 @@
 #!/bin/bash 
 ## install config-files 
 instart() { 
-## COLORS -- VARIABLES ##########################
-export red='\e[31m' green='\e[92m' yellow='\e[93m' blue='\e[94m' \
-pink='\e[95m' cyan='\e[96m' white='\e[37m' rev='\e[7m' \
-re='\e[0m' bold='\e[1m' dim='\e[2m' c2='\e[0m\e[36m--\e[0m' \
-black='\e[30m' invis='\e[8m' c2='\e[0m\e[36m -- \e[0m'
-nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'; 
-[ -z $USER ]&& USER="$(id -nu)";
-local IFS=$'\n '; 
-######
-[ $(echo $HOME|grep -w "termux") ]&& alias sudo='command';
-hash gh git gpg &>~.x||sudo apt install -y gh git gnupg &>~.x; 
-git clone https://github.com/aeniks/start $HOME/start &>~.x; 
-for i in $HOME/start/funcs/*.sh; do . $i; done; 
-gh auth status 2>~/.x||\
-gpg --pinentry-mode loopback --pinentry-mode loopback \
--o "~/gh.txt" -d "$HOME/start/config/gpg/gh_aeniks.gpg"; 
-gh auth login --with-token < "~/gh.txt"; 
-printf "$c2 "; rm ~/gh.txt; 
-gh auth status && printf "\n\e[42m OK \e[0m\n"; 
-gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
-cd $HOME/start; 
-git config set remote.origin.url git@github.com:aeniks/start.git; 
-cd $OLDPWD; 
-########
-########
-apts=(file libexif-dev openssl openssh-server sshfs rsync \
-rclone w3m googler exiftool mediainfo \
-figlet lolcat lynx links2 ffmpeg \
-toilet iproute2 net-tools nmap \
-mpv fastfetch neofetch \
-fzf ccze lf bat batcat pv \
-ncdu bash-completion lsd \
-tmux git gh nodejs nmap \
-texinfo aha micro golang gnupg \
-wget wget2 curl aria2 iw \
-); 
-####
 printf %b "\n\n\n\n\n\n\e[4A\n -- Install apps/conf? [Y/n] "; 
 cat $HOME/.bashrc|grep '. $HOME/start/anew.sh'||printf %b '\n. $HOME/start/anew.sh; \n' >> $HOME/.bashrc; 
 printf "install conf? [Y/n] "; read -srn1 "ny"; [ $ny ]&& printf %b "\n\n\e[A" && return 0; 
-# for i in ${apts[*]}; do sudo apt install -qqy $i; done; 
+for i in ${apts[*]}; do sudo apt install -qqy $i; done; 
 mkdir $HOME/tmp 2>/dev/null; 
 touch $HOME/._tmux 2>/dev/null; chmod 775 $HOME/._tmux; 
 ########
@@ -75,6 +38,6 @@ for i in ${apts[*]}; do printf %b "\e[0minstalling \e[38;5;$((oi++))m$i\n\e[2m";
 sudo apt install -y $i 2>/dev/null; done; 
 sudo apt autoremove -y; 
 sudo apt full-upgrade -y; 
-reset; exec bash; 
+
 }; 
 
