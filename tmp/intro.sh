@@ -1,8 +1,5 @@
 #!/bin/bash
 #### installer 
-
-
-
 intro12() {
 size=($(stty size)); 
 s=sudo; [ "$SUDO_UID" ]&& s=' ';

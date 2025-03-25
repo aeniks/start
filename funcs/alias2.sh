@@ -47,13 +47,19 @@ alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
 #alias 12info_ansi='batcat -pfl d $HOME/start/info/ansii.md'
-alias gist='echo; read -sr -p " -- [c]reate [v]iew [u]pload " "g"; \
-if [ $g = "c" ]; then $EDITOR|gh gist create; 
+gist() { printf %b "\n\n\n\n\e[4A 
+ $c2 ${dim}[${re}c${dim}]${re}reate \
+ ${dim}[${re}v${dim}]${re}iew \
+ ${dim}[${re}u${dim}]${re}pload \
+ ${dim}[${re}q${dim}]${re}uit \e[96m"; 
+read -esn1 "g"; 
+if [ -z "$g" ] 2>/dev/null; then printf %b "\nok\n\n"; return 0; 
+elif [ $g = "c" ]; then $EDITOR|gh gist create; 
 elif [ $g = "v" ]; then gh gist view; 
 elif [ $g = "u" ]; then ls|fzf|gh gist create; 
-elif [ $g = "q" ]; then return 0; 
-elif [ -z "$g" ]; then printf %b "\nok\n"; return 0; 
-fi; '; 
+elif [ $g = "q" ]; then printf %b "\nok\n\n"; return 0; 
+fi; echo; }; 
+
 alias gpg='gpg --pinentry loopback'; 
 note() {
 echo -e "\n\n -- syncing...\n\n"; 

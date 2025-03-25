@@ -14,8 +14,9 @@
 #   - true
 #   - false (default)
 tmux_conf_preserve_stock_bindings=false
-
-
+bind k "send-keys -X select-line; run-shell -d 0.4; send-keys -X copy-pipe"
+bind p choose-buffer
+bind -n ⁰ send-prefix 
 # -- session creation ----------------------------------------------------------
 
 # prompt for session name when creating a new session, possible values are:
@@ -268,7 +269,7 @@ tmux_conf_theme_right_separator_sub="|"
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" #{username_ssh}#{username}#{root}| #{pwod} | #{up} |#S ❐ #P |#W"
+tmux_conf_theme_status_left="#{username_ssh} #{username}#{root}| #{pwod} | #{up} |#S ❐ #P |#W"
 tmux_conf_theme_status_right="#{prefix}#{mouse} | #{?battery_status,#{battery_status}, } \
 #{?battery_bar,#{battery_bar},}#{?battery_percentage,#{battery_percentage},}#{pairing}#{synchronized}| %d/%m/%y | %A | %T "
 
@@ -465,8 +466,11 @@ tmux_conf_uninstall_plugins_on_reload=true
 #   curl -f -s -m 2 'wttr.in?format=3' || printf '\n' # /!\ make sure curl is installed
 #   sleep 900                                         # sleep for 15 minutes, throttle network requests whatever the value of status-interval
 # }
+# bbpwr() {
+# termux-batter
+# }
 # up() {
-# uptime|tail -c18|head -c5
+# uptime ; uptime |tr -d " "|cut -f5 -d":"|cut -f1 -d","
 # }
 # pwod() {
 # cat $HOME/.iploc.sh; 

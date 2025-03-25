@@ -25,7 +25,7 @@ pink='\e[95m' cyan='\e[96m' white='\e[37m' rev='\e[7m' \
 re='\e[0m' bold='\e[1m' dim='\e[2m' c2='\e[0m\e[36m--\e[0m' \
 black='\e[30m' invis='\e[8m' c2='\e[0m\e[36m -- \e[0m' 
 nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]' 
-[ -z $USER ]&&USER="$(id -nu)"; 
+[ -z $USER ]&& export USER="$(id -nu)"; 
 ######
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
@@ -56,7 +56,7 @@ do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh';
 # alias vim='nano'; 
 ####
 #apt_upgradable=(no); 
-apt_upgradable=($(sudo apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
+#apt_upgradable=($(sudo apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
 ####
 sshc=($SSH_CONNECTION); 
 #ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
@@ -65,10 +65,10 @@ ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope";
 [ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
 [ -z "$PREFIX" ]&& iploc=($(ip -4 -brief a show scope global up|\
 tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
-[ -n "$iploc" ]||iploc="$(ifconfig 2>/dev/null|\
+[ "$iploc" ]||iploc="$(ifconfig 2>/dev/null|\
 grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
-printf %b "$iploc">$HOME/.iploc.sh; 
+printf %b "$iploc">$HOME/logs/iploc.log; 
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
@@ -92,13 +92,15 @@ tmux git gh nodejs nmap \
 texinfo aha micro golang gnupg \
 wget wget2 curl aria2 iw \
 ); 
-[ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 ########
 mkdir $HOME/logs 2>/dev/null; 
 . $HOME/.tmux_bash.sh 2>/dev/null; 
 for i in ~/start/funcs/*.sh; do . $i; done; 
 . $HOME/start/alias.sh; 
+####
+battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
+iploc="$(cat $HOME/.iploc.sh)"; 
 ##########
 ##########
 inbash() { 
@@ -115,7 +117,7 @@ printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
 [ ${#apt_upgradable[*]} -gt 2 ]&& \
 printf %b "$red${#apt_upgradable[*]}$re upgrades available$re\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
-printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$pink$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
+printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
 printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
@@ -134,13 +136,16 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 ##################################
 # 12_whtr 
 }; 
+[ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
+# battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
+iploc="$(cat $HOME/.iploc.sh)"; 
 [ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"
 [ -x "$HOME/._tmux" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
-['$re''$white'\t'$re$dim'] ['$re$pink'$iploc'$re$dim'] \
+['$re''$white'\t'$re$dim'] ['$re$pink"$(cat ~/logs/bat.sh)"$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
 ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
 	
