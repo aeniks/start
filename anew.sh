@@ -62,13 +62,12 @@ sshc=($SSH_CONNECTION);
 #ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
-[ -n "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
-[ -z "$PREFIX" ]&& iploc=($(ip -4 -brief a show scope global up|\
+[ "$PREFIX" ] && iploc="$(getprop "vendor.arc.net.ipv4.host_address"; )" \
+&& ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
+[ "$PREFIX" ]|| iploc=($(ip -4 -brief a show scope global up|\
 tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
-[ "$iploc" ]||iploc="$(ifconfig 2>/dev/null|\
-grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
+printf %b "$iploc" > $HOME/logs/iploc.log; printf %b "$ipgate" > $HOME/logs/ipgate.log; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
-printf %b "$iploc">$HOME/logs/iploc.log; 
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
@@ -139,13 +138,11 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 [ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
-iploc="$(cat $HOME/.iploc.sh)"; 
 [ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"
 [ -x "$HOME/._tmux" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
-['$re''$white'\t'$re$dim'] ['$re$pink"$(cat ~/logs/bat.sh)"$re$dim'] \
+['$re''$white'\t'$re$dim'] ['$re$pink"$(cat ~/logs/bat.sh 2>/dev/null||printf %b $iploc)"$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
 ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
-	
