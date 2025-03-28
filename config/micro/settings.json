@@ -1,11 +1,13 @@
 {
-    "autoclose": false,
-    "colorscheme": "cmc-16",
-    "fakecursor": true,
-    "mkparents": true,
-    "savecursor": true,
-    "saveundo": true,
-    "scrollbar": true,
-    "softwrap": true,
-    "wordwrap": true
+"autoclose": false,
+"clipboard": "internal",
+"paste": true,
+// "colorscheme": "cmc-16",
+"fakecursor": true,
+"mkparents": true,
+"savecursor": true,
+"saveundo": true,
+"scrollbar": true,
+"softwrap": true,
+"wordwrap": true
 }

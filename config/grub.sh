@@ -1,12 +1,12 @@
 #!/bin/bash
 ## install grub
-sudo cp $ants/media/tard.jpg /boot/grub/tard.jpg; 
+sudo cp $start/media/tard.jpg /boot/grub/tard.jpg; 
 sudo mv /etc/default/grub /etc/default/grub_$(date +%y%m%d_%H%M)
 printf '
 GRUB_BACKGROUND="/boot/grub/tard.jpg"
 GRUB_MENU_BACKGROUND="/boot/grub/tard.jpg"
 GRUB_MENU_PICTURE="/boot/grub/tard.jpg"
-GRUB_GFXMODE="1920x1080x32"
+GRUB_GFXMODE="1024x768x32"
 GRUB_GFXMODE="auto"
 GRUB_DEFAULT="saved"
 GRUB_SAVEDEFAULT="true"
