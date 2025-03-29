@@ -1,8 +1,8 @@
 #!/bin/bash 
 ## install config-files 
 instart() { 
-[ $start ]||start="$HOME/start"; 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
+[ -z "$start" ]&& start="$HOME/start"; 
 mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; 
 local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
@@ -11,7 +11,7 @@ yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
 enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
 ####
 (hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' ' 2>/dev/null; 
-sudo apt update &>/dev/null && sudo apt install -y git &>/dev/null )& disown &>/dev/null; 
+sudo apt update &>/dev/null && sudo apt install -y git &>/dev/null )& disown &>/dev/null;
 ####
 
 
@@ -30,7 +30,7 @@ _link() { ln -s $1 $2 2>/dev/null; };
 _move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
 _backup() { [ -z "$tmp" ]&& mkdir "$HOME/tmp" 2>/dev/null; tmp="$HOME/tmp"; 
 time="$(date +%Y-%m-%d-%H-%m-%S)"; mv -b $1 $tmp/$1_$time 2>/dev/null; 
-printf %b "\n\e[92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n" }; 
+printf %b "\n\e[92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n"; }; 
 ####
 echo;echo;
 for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
