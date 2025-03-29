@@ -2,7 +2,7 @@
 ## install config-files 
 instart() { 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
-[ -z "$start" ]&& start="$HOME/start"; 
+# [ -z "$start" ]&& start="$HOME/start"; 
 mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; 
 local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
@@ -16,9 +16,9 @@ rsync rclone w3m w3m-img googler exiftool \
 mediainfo figlet lolcat lynx fortune-mod links2 \
 toilet iproute2 net-tools nmap fastfetch \
 neofetch fzf fortune fortune-mod fortunes \
-ccze lf bat batcat btop htop ncdu \
+ccze lf bat batcat btop htop ncdu termux-api \
 bash-completion lsd tmux git gh nodejs \
-nmap texinfo aha micro fortunes gnupg \
+nmap texinfo aha micro fortunes gnupg termux-tools \
 wget wget2 curl aria2 gh git rclone rsync iw timg); 
 ####
 apts_extra=(ffmpeg mpv);
@@ -33,7 +33,7 @@ _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; };
 _link() { ln -s $1 $2 2>/dev/null; }; 
 _move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
 _backup() { [ -z "$tmp" ]&& mkdir "$HOME/tmp" 2>/dev/null; tmp="$HOME/tmp"; 
-time="$(date +%Y-%m-%d-%H-%m-%S)"; mv -b $1 $tmp/$1_$time 2>/dev/null; 
+time="$(date +%Y-%m-%d-%H-%m-%S)"; mv $1 $tmp/$1_$time 2>/dev/null; 
 printf %b "\n\e[92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n"; }; 
 ####
 echo;echo;
@@ -43,7 +43,8 @@ for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done;
 p2 " $c2 "; p1 "Download config files? "; p2 "\e[1m$enter "; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
-p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start1"; start="${start1}/start"; 
+p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start"; 
+start="${start}/start"; start="${start/\/\///}"; 
 printf %b "\e[A\e[48G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n";
 ####
 _backup "$start"; _newcolor; 
