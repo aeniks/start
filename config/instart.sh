@@ -1,15 +1,16 @@
 #!/bin/bash 
 ## install config-files 
 instart() { 
+[ $start ]||start="$HOME/start"; 
+hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
 mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; 
-[ $start ]||start="$HOME/start"; hash sudo 2>/dev/null||alias sudo=' '; 
 local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
 height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
 yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
 enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
 ####
-(hash sudo 2>/dev/null||alias sudo=' '; 
+(hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' ' 2>/dev/null; 
 sudo apt update &>/dev/null && \
 sudo apt install -y git &>/dev/null && \
 git clone https://github.com/aeniks/start.git && \
@@ -86,13 +87,15 @@ cp $HOME/start/config/figlet/fonts/* $PREFIX/usr/share/figlet/ 2>/dev/null||\
 $sudo cp $HOME/start/config/figlet/fonts/* $PREFIX/usr/share/figlet/ 2>/dev/null; 
 $sudo chmod 775 $PREFIX/usr/share/figlet -R 2>/dev/null; 
 ####
+hash sudo 2>/dev/null && sudo="sudo"; 
+sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss; 
 printf %b "\n\n\n\n\e[4A\n $c2"; p1 " Install apps"; p2 "\e[1m? $yno "; 
 read -esn1 "ny"; [ $ny ]&& printf %b "\t\t $green OK$re\n\n" && return 0; 
 p2 " $c2 "; p1 "updating system ..."; echo;echo; 
 tput setaf 5 2>/dev/null; $sudo apt update; 
+tput setaf 5 2>/dev/null; $sudo pkg update -y; 
 tput setaf 6 2>/dev/null; $sudo apt upgrade -y; 
 tput setaf 4 2>/dev/null; echo ok; 
-$sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss; 
 ####
 apts_basic=(file libexif-dev openssl openssh-server \
 rsync rclone w3m w3m-img googler exiftool \
@@ -106,7 +109,7 @@ wget wget2 curl aria2 gh git rclone rsync iw timg);
 ########
 apts_extra=(ffmpeg mpv);
 ########
-hash sudo 2>/dev/null && sudo="sudo"; 
+
 ########
 [ -e "$HOME/logs/apa.log" ]||apt list>$tmp/x; 
 tail -n+1 $tmp/x|cut -f1 -d"/">$HOME/logs/apa.log; 
@@ -114,7 +117,8 @@ tail -n+1 $tmp/x|cut -f1 -d"/">$HOME/logs/apa.log;
 apts_install=($(for i in ${apts_basic[*]}; do hash $i 2>/dev/null || \
 grep $HOME/logs/apa.log -x -e "$i"; done; )); 
 ########
-#### ####
+########
+
 for i in ${apts_install[*]}; do 
 hash $i 2>/dev/null && printf %b "\n$reSkipping $cyan $i$re already installed$green"; 
 printf %b "\e[38;5;$((uu++))m\n"; 
