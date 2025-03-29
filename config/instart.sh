@@ -37,9 +37,12 @@ for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
 ####
 p2 " $c2 "; p1 "Download config files?"; p2 "\e[1m $enter"; 
-read -ei "$start" "start"; 
+read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
+p2 " $c2 \e[A\e[$((width / 2 - 12))G\e[0m[\e[92m"; p1 OK; p2 "\e[0m]\n";
+p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start1"; start="${start1}/start"; 
+########
 _backup "$start"; _newcolor; 
-git clone https://github.com/aeniks/start.git && \
+git clone https://github.com/aeniks/start.git $start&& \
 mv $start/.git/config $start/.git/config_old; 
 printf %b '[core]\n  repositoryformatversion = 0 \n  filemode = true\n  bare = false
 logallrefupdates = true\n  [remote "origin"]\n  url = git@github.com:aeniks/start.git
@@ -49,7 +52,8 @@ merge = refs/heads/main\n  [pull]\n  rebase = true' > $start/.git/config; cd $st
 ########
 p2 " $c2 "; p1 "Install config?"; p2 "\e[1m $enter"; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
-printf %b "$green OK$re"; sleep .2; echo; sleep .2; echo; 
+p2 " $c2 \e[A\e[$((width / 2 - 12))G\e[0m[\e[92m" p1 OK; p2 "\e[0m]\n";
+# printf %b "$green OK$re"; sleep .2; echo; sleep .2; echo; 
 $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
 mkdir $HOME/.config 2>/dev/null; cd $HOME/.config;  _newcolor; 
