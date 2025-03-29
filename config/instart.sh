@@ -11,35 +11,46 @@ yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
 enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
 ####
 (hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' ' 2>/dev/null; 
-sudo apt update &>/dev/null && \
-sudo apt install -y git &>/dev/null && \
+sudo apt update &>/dev/null && sudo apt install -y git &>/dev/null )& disown &>/dev/null; 
+####
+
+
+
+# )& disown &>/dev/null; 
+#(apt update &>/dev/null && apt install -y git &>/dev/null) & disown &>/dev/null; ps -e
+####
+
+
+####
+unalias p1 p2 2>/dev/null; 
+p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .1; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
+p2() { printf %b "$@"; }; 
+_newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
+_link() { ln -s $1 $2 2>/dev/null; }; 
+_move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
+_backup() { [ -z "$tmp" ]&& mkdir "$HOME/tmp" 2>/dev/null; tmp="$HOME/tmp"; 
+time="$(date +%Y-%m-%d-%H-%m-%S)"; mv -b $1 $tmp/$1_$time 2>/dev/null; 
+printf %b "\n\e[92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n" }; 
+####
+echo;echo;
+for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
+for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
+####
+p2 " $c2 "; p1 "Download config files?"; p2 "\e[1m $enter"; 
+read -ei "$start" "start"; 
+_backup "$start"; _newcolor; 
 git clone https://github.com/aeniks/start.git && \
-mv ./start/.git/config ./start/.git/config_old; 
+mv $start/.git/config $start/.git/config_old; 
 printf %b '[core]\n  repositoryformatversion = 0 \n  filemode = true\n  bare = false
 logallrefupdates = true\n  [remote "origin"]\n  url = git@github.com:aeniks/start.git
 fetch = +refs/heads/*:refs/remotes/origin/*\n  [branch "main"]\n  remote = origin
-merge = refs/heads/main\n  [pull]\n  rebase = true' > ./start/.git/config; cd start; 
-)& disown &>/dev/null; 
-#(apt update &>/dev/null && apt install -y git &>/dev/null) & disown &>/dev/null; ps -e
-####
-unalias p1 p2 2>/dev/null; 
-p2() { printf %b "$@"; }; 
-p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .08; \
-printf %b "${p2:${i}:1}"; done; }; ## rolling text 
-####
-for i in $(seq $height); do printf %b "\n\e[K"; sleep .04; done; ## scroll page 
-for i in $(seq $((height - 2))); do printf %b "\e[A"; sleep .04; done; 
-####
-p2 " $c2 "; p1 "Install config?"; p2 "\e[1m $enter"; p1 " to continue ";
+merge = refs/heads/main\n  [pull]\n  rebase = true' > $start/.git/config; cd $start; 
+########
+########
+p2 " $c2 "; p1 "Install config?"; p2 "\e[1m $enter"; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
 printf %b "$green OK$re"; sleep .2; echo; sleep .2; echo; 
-#tput setaf $((RANDOM%6 + 1)) 2>/dev/null; 
-####
-_newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
-_move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
-_link() { ln -s $1 $2 2>/dev/null; }; 
-####
-$sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; 		_newcolor; 
+$sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
 mkdir $HOME/.config 2>/dev/null; cd $HOME/.config;  _newcolor; 
 echo; 
