@@ -111,6 +111,7 @@ hash $i 2>/dev/null || $sudo apt install -y $i &>/dev/null; done;
 for i in {1..6}; do echo; sleep .2; done; 
 printf %b "\e[0m\e[4A"; p1 Installation complete!; 
 for i in {1..6}; do echo; sleep .2; done; 
+sleep 1; . $start/conf/12_gh_auth.sh; 12_gh_auth; 
 cd; echo; sleep 1; exec bash; 
 }; 
 instart
