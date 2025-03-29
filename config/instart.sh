@@ -2,15 +2,12 @@
 ## install config-files 
 instart() { 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
-# [ -z "$start" ]&& start="$HOME/start"; 
 mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; 
 local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
 height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
 yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
 enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
-conf=(rclone lf micro tmux htop gh); 
-####
 apts_basic=(file libexif-dev openssl openssh-server \
 rsync rclone w3m w3m-img googler exiftool \
 mediainfo figlet lolcat lynx fortune-mod links2 \
@@ -40,6 +37,7 @@ echo;echo;
 for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
 ####
+#### Download config files? 
 p2 " $c2 "; p1 "Download config files? "; p2 "\e[1m$enter "; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
@@ -60,11 +58,11 @@ read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0;
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
-mkdir $HOME/.config 2>/dev/null; cd $HOME/.config;  _newcolor; 
-echo; 
+mkdir $HOME/.config 2>/dev/null; cd $HOME/.config;  _newcolor; echo; 
 ####
+conf=(rclone lf micro tmux htop gh); 
 for q in ${conf[*]}; do 
-_move $HOME/.config/$i $tmp/; 
+_backup $HOME/.config/$i; # _newcolor; 
 _link $start/config/$q $HOME/.config/ -s; sleep .2; 
 _newcolor; printf %b " $q"; 
 printf %b "\n\e[0m"; p1 "updated"; 
@@ -90,6 +88,27 @@ $sudo chmod 775 $PREFIX/usr/share/figlet -R 2>/dev/null;
 ####
 hash sudo 2>/dev/null && sudo="sudo"; 
 sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss; 
+####
+#### Authenticates github
+p2 " $c2 "; p1 "Login ti ghithub? "; p2 "\e[1m$enter "; 
+read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
+printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
+####
+$sudo apt install -y gpg git gh &>/dev/null; 
+ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
+[ -e != "$start/config/gpg/gh_aeniks.gpg" ] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
+####
+gpg --pinentry-mode loopback -o "gh.txt" -d "$gh_aeniks"; 
+gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt; sleep .2;
+gh auth status && printf "\n\n     \e[42m       OK      \e[0m\n\n"; sleep 2; echo;echo;echo; 
+git config --global user.name $ghuser; 
+git config --global user.email $ghmail; 
+git config --global init.defaultBranch main; 
+printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
+gh config set git_protocol ssh; gh ssh-key add echo $HOME/.ssh/*.pub; 
+ssh -T git@github.com; printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
+####
+#### Install apps?
 printf %b "\n\n\n\n\e[4A\n $c2"; p1 " Install apps"; p2 "\e[1m? $yno "; 
 read -esn1 "ny"; [ $ny ]&& printf %b "\t\t $green OK$re\n\n" && return 0; 
 p2 " $c2 "; p1 "updating system ..."; echo; echo; _newcolor; 
@@ -111,7 +130,9 @@ hash $i 2>/dev/null || $sudo apt install -y $i &>/dev/null; done;
 for i in {1..6}; do echo; sleep .2; done; 
 printf %b "\e[0m\e[4A"; p1 Installation complete!; 
 for i in {1..6}; do echo; sleep .2; done; 
-sleep 1; . $start/conf/12_gh_auth.sh; 12_gh_auth; 
+sleep 1;
+####
+####
 cd; echo; sleep 1; exec bash; 
 }; 
 instart
