@@ -91,7 +91,7 @@ hash sudo 2>/dev/null && sudo="sudo";
 sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss; 
 ####
 #### Authenticates github
-p2 " $c2 "; p1 "Login ti ghithub? "; p2 "\e[1m$enter "; 
+p2 " $c2 "; p1 "Login to github? "; p2 "\e[1m$enter "; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 ####
@@ -116,8 +116,8 @@ p2 " $c2 "; p1 "updating system ..."; echo; echo; _newcolor;
 $sudo apt update;  _newcolor; $sudo apt upgrade -y; _newcolor; echo; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 ####
-[ -e "$HOME/logs/apa.log" ]||apt list>$tmp/x; 
-tail -n+1 $tmp/x|cut -f1 -d"/">$HOME/logs/apa.log; 
+[ -e =! "$HOME/logs/apa.log" ] && $sudo apt list > "$HOME/logs/apa_1.log"; 
+tail -n+1 "$HOME/logs/apa_1.log"|cut -f1 -d"/" > $HOME/logs/apa.log; 
 ####
 apts_install=($(for i in ${apts_basic[*]}; do hash $i 2>/dev/null || \
 grep $HOME/logs/apa.log -x -e "$i"; done; )); 
