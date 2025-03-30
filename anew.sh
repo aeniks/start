@@ -26,6 +26,7 @@ re='\e[0m' bold='\e[1m' dim='\e[2m' c2='\e[0m\e[36m--\e[0m' \
 black='\e[30m' invis='\e[8m' c2='\e[0m\e[36m -- \e[0m' 
 nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]' 
 [ -z $USER ]&& export USER="$(id -nu)"; 
+[ -z $start ]&& export start="$HOME/start"; 
 ######
 [ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
 export TERM="xterm-256color"; 
@@ -91,19 +92,20 @@ tmux git gh nodejs nmap \
 texinfo aha micro golang gnupg \
 wget wget2 curl aria2 iw \
 ); 
-mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 ########
 mkdir $HOME/logs 2>/dev/null; 
 . $HOME/.tmux_bash.sh 2>/dev/null; 
 . $HOME/start/alias.sh; 
 ####
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
+mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 iploc="$(cat $HOME/.iploc.sh)"; 
 cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
-aptup=($(cat $HOME/logs/aptup.nfo)); 
+aptup=($(cat $HOME/logs/aptup.log)); 
 ##########
 ##########
 inbash() { 
+$(sleep 12; . $start/crons/apt.sh)& disown; 
 . $start/funcs/getcal.sh; 
 dots="${re}··········\n"; 
 printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
@@ -115,9 +117,9 @@ printf %b "$(dfree)$re \n$dots";
 [ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; ) \n$dots"
 printf %b "$yellow$MACHTYPE$re | $cyan$cpu$re \n$dots"
-grep "[1-9]" $HOME/logs/aptup.nfo &>/dev/null && \
+grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re\n$dots"; 
-printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
+printf %b "\e[1;37;45m ${model[*]} $re \n$dots";  
 printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 

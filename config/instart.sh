@@ -14,14 +14,12 @@ mediainfo figlet lolcat lynx fortune-mod links2 \
 toilet iproute2 net-tools nmap fastfetch \
 neofetch fzf fortune fortune-mod fortunes \
 ccze lf bat batcat btop htop ncdu termux-api \
-bash-completion lsd tmux git gh nodejs \
+bash-completion lsd tmux git gh nodejs cronie \
 nmap texinfo aha micro fortunes gnupg termux-tools \
 wget wget2 curl aria2 gh git rclone rsync iw timg); 
 ####
 apts_extra=(ffmpeg mpv);
 ####
-(hash sudo 2>/dev/null || sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' ' 2>/dev/null; 
-sudo apt update &>/dev/null && sudo apt install -y git &>/dev/null )& disown &>/dev/null;
 ####
 unalias p1 p2 2>/dev/null; 
 p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
@@ -32,31 +30,41 @@ _move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; };
 _backup() { 
 mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time="$(date +%y%m%d%H%m%S; )"; 
 mv -fbS "$time" $1 $tmp/ 2>/dev/null; 
-#printf %b "\n\e[2;92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n\n"; 
 }; 
 ####
 for i in $(seq $((height))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
 ####
-#### Download config files? 
-p2 " $c2 "; p1 "Download config files? "; p2 "\e[1m$enter "; 
-read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
+#### Update system? 
+_update() {
+p2 " $c2 "; p1 "Update system? "; p2 "\e[1m$enter "; 
+read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
+hash sudo 2>/dev/null||sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '2>/dev/null; 
+$sudo apt update &>/dev/null && $sudo apt upgrade -y &>/dev/null && 
+hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; 
+}; 
+#### Download config files? 
+_download() {
+p2 " $c2 "; p1 "Download config files? "; p2 "\e[1m$enter "; 
+read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n" && return 0; 
+printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
+#### where tp?
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start"; printf %b "\e[A"; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n";
 start="${start}/start"; sleep .2; start="${start/\/\///}"; export start; 
-####
 _move $start $tmp; _backup $start; _newcolor; 
-####
-git clone https://github.com/aeniks/start.git $start && \
+git clone https://github.com/aeniks/start.git $start 2>/dev/null && \
 mv $start/.git/config $start/.git/config_old 2>/dev/null; 
 printf %b '[core]\n  repositoryformatversion = 0 \n  filemode = true\n  bare = false
 logallrefupdates = true\n  [remote "origin"]\n  url = git@github.com:aeniks/start.git
 fetch = +refs/heads/*:refs/remotes/origin/*\n  [branch "main"]\n  remote = origin
-merge = refs/heads/main\n  [pull]\n  rebase = true' > $start/.git/config; cd $start; 
+merge = refs/heads/main\n  [pull]\n  rebase = true' > $start/.git/config; 2>/dev/null; cd $start; 
 ####
+}; 
+_install_conf() {
 p2 " $c2 "; p1 "Install config? "; p2 "\e[1m$enter "; 
-read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
+read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
@@ -89,35 +97,40 @@ $sudo chmod 775 $PREFIX/usr/share/figlet -R 2>/dev/null;
 ####
 hash sudo 2>/dev/null && sudo="sudo"; 
 sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss; 
+}; 
 ####
 #### Authenticates github
+_login_gh() {
 p2 " $c2 "; p1 "Login to github? "; p2 "\e[1m$enter "; 
-read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
+read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 $sudo apt install -y gpg git gh &>/dev/null; 
 ####
 ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
-[ -e != "$start/config/gpg/gh_aeniks.gpg" ] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
+[ -e != $start/config/gpg/gh_aeniks.gpg ] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
 ####
 gpg --pinentry-mode loopback -o "gh.txt" -d "$gh_aeniks"; 
 gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt; sleep .2;
-gh auth status && printf "\n\n     \e[42m       OK      \e[0m\n\n"; sleep 2; echo;echo;
+gh auth status && 
+printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; sleep .2; 
 git config --global user.name $ghuser; 
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-gh config set git_protocol ssh; gh ssh-key add echo $HOME/.ssh/*.pub; 
+gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
 ssh -T git@github.com; printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
+}; 
 ####
 #### Install apps?
-printf %b "\n\n\n\n\e[4A\n $c2"; p1 " Install apps"; p2 "\e[1m? $yno "; 
-read -esn1 "ny"; [ $ny ]&& printf %b "\t\t $green OK$re\n\n" && return 0; 
+_install_apps() {
+printf %b "\n\n\n\n\e[6A\n $c2"; p1 " Install apps"; p2 "\e[1m? $yno "; 
+read -esn1 "ny"; [ $ny ]&& printf %b "\t\t $green OK$re\n" && return 0; 
 p2 " $c2 "; p1 "updating system ..."; echo; echo; _newcolor; 
 $sudo apt update;  _newcolor; $sudo apt upgrade -y; _newcolor; echo; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 ####
-[ -e =! "$HOME/logs/apa.log" ] && $sudo apt list > "$HOME/logs/apa_1.log"; 
-tail -n+1 "$HOME/logs/apa_1.log"|cut -f1 -d"/" > $HOME/logs/apa.log; 
+[ -e =! $HOME/logs/apa.log ] && $sudo apt list > $HOME/logs/apa_1.log; 
+tail -n+1 $HOME/logs/apa_1.log|cut -f1 -d"/" > $HOME/logs/apa.log; 
 ####
 apts_install=($(for i in ${apts_basic[*]}; do hash $i 2>/dev/null || \
 grep $HOME/logs/apa.log -x -e "$i"; done; )); 
@@ -131,9 +144,25 @@ hash $i 2>/dev/null || $sudo apt install -y $i &>/dev/null; done;
 for i in {1..6}; do echo; sleep .2; done; 
 printf %b "\e[0m\e[4A"; p1 Installation complete!; 
 for i in {1..6}; do echo; sleep .2; done; 
-sleep 1;
+sleep 1; 
+}; 
+apts() { 
+IFS=$'\n '; mkdir -p -m 775 $HOME/logs/apts_basic 2>/dev/null; 
+hash sudo 2>/dev/null && sudo=sudo; 
+printf %b "\n \e[96m--\e[0m Updating apts..."; $sudo apt update &>/dev/null; 
+for i in ${apts_basic[*]}; do $sudo apt show $i 2>/dev/null|grep -e "Installed-Size" -e "Description" > $HOME/logs/apts_basic/_$i; 
+cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i; 
+[ $(wc -l $HOME/logs/apts_basic/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
+done; rm $HOME/logs/apts_basic/_*; 
+printf %b "\n \e[96m--\e[0m DONE\n"; 
+}; 
 ####
 ####
+_update; 
+_download; 
+_install_conf; 
+_login_gh; 
+_install_apps; 
 cd; echo; sleep 1; exec bash; 
 }; 
 instart
