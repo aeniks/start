@@ -14,9 +14,9 @@ grep -e "$df"|batcat --theme=Dracula -ppflc++';
  #=======
 # alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
 #>>>>>>> f29ca82 (2025-02-09_11_28)
-touch $HOME/._tmux 2>/dev/null; 
-alias tmuxon='chmod 775 $HOME/._tmux; echo "on!"';
-alias tmuxoff='chmod 600 $HOME/._tmux; echo "off!"';
+touch $HOME/.comfig/tmux_state 2>/dev/null; 
+alias 12tmux_on='chmod 775 $HOME/.comfig/tmux_state; echo "on!"';
+alias 12tmux_off='chmod 600 $HOME/.comfig/tmux_state; echo "off!"';
 alias 12edit-alias='$EDITOR ~/start/alias.sh'
 alias 12edit-termux='$EDITOR ~/.termux/termux.properties'
 alias 12edit-input='$EDITOR ~/.inputrc'
@@ -30,4 +30,5 @@ alias less='less -R --file-size --use-color --quit-if-one-screen \
 --prompt="(%T) [/]search [n]ext-match [p]rev-match \
 ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  \
 %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
-alias start='cd $HOME/start; '
+alias start='cd $start; '; 
+alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir); grep -e "/" '~/.local/share/lf/files'; grep -e "/" '~/.local/share/lf/tags' --no-messages 2>/dev/null'; 

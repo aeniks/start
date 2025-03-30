@@ -95,26 +95,28 @@ mod="$(echo -e "${model[*]}"|tr " " "-";)";
 ########
 mkdir $HOME/logs 2>/dev/null; 
 . $HOME/.tmux_bash.sh 2>/dev/null; 
-for i in ~/start/funcs/*.sh; do . $i; done; 
 . $HOME/start/alias.sh; 
 ####
-battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
+#battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 iploc="$(cat $HOME/.iploc.sh)"; 
+cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
+aptup=($(cat $HOME/logs/aptup.nfo)); 
 ##########
 ##########
 inbash() { 
+. $start/funcs/getcal.sh; 
 dots="${re}··········\n"; 
 printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
 printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots"; 
-cat ~/logs/gcalagenda.sh 2>/dev/null|grep " " && \
+[ -e $HOME/logs/gcalagena.sh ] && \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
 column|head -n4 2>/dev/null; ) \n$dots"; 
 printf %b "$(dfree)$re \n$dots"; 
 [ -e $HOME/logs/calendar.json ] && \
-printf %b "$(getcal 2>/dev/null; )\n$dots"
-printf %b "$yellow$MACHTYPE$re | $cyan$HOST$re \n$dots"
-[ ${#apt_upgradable[*]} -gt 2 ]&& \
-printf %b "$red${#apt_upgradable[*]}$re upgrades available$re\n$dots"; 
+printf %b "$(getcal 2>/dev/null; ) \n$dots"
+printf %b "$yellow$MACHTYPE$re | $cyan$cpu$re \n$dots"
+grep "[1-9]" $HOME/logs/aptup.nfo &>/dev/null && \
+printf %b "$red${aptup[0]}$re upgrades available$re\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re | $dim$mod$re \n$dots";  
 printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
@@ -122,7 +124,8 @@ printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots";
 printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
 ####
 ####
-
+# [ ${#apt_upgradable[*]} -gt 2 ]&& \
+# aptup="$(cat $HOME/logs/aptup.nfo)"; 
 # error_code() { printf %b "\n\e[38;5;$1mG $1"; return $@; }; 
 ######## << TMUX TO BASHRC
 #tmux source-file "$HOME/.tmux.conf"; 
@@ -146,3 +149,5 @@ PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
 ['$re''$white'\t'$re$dim'] ['$re$pink"$(cat ~/logs/bat.sh 2>/dev/null||printf %b $iploc)"$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
 ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
+
+for i in ~/start/funcs/*.sh; do . $i; done; 

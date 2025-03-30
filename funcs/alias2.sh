@@ -24,15 +24,13 @@ alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 ####
 ####
 #alias kk='batcat -ppf $(tmux set-option mouse off; )|less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] "; tmux set-option mouse on; '; 
-alias kat='batcat -pfld'; 
-
+alias kat='batcat -pfld|less'; 
 #alias aptss='for i in ${apts[*]}; do printf "\n______${cyan}${i^^}${re}______ \n"; \
 #sudo apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
 alias 12info_tput='batcat -pf "$HOME/start/info/tput.nfo"; '; 
 alias 12info_ansi='batcat -pf "$HOME/start/info/ansi.md"; '; 
 alias 12info_bash='batcat -pf "$HOME/start/info/bash.md"; '; 
 alias 12info_cmd='batcat -pf "$HOME/start/info/cmd.sh"; '; 
-
 # alias ttmenu='
 # [ "$TMUX" ] && tmux display-menu \
 # " split - V " v "split-window -v" \
@@ -401,7 +399,7 @@ alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_H
 alias ippub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
-alias less='less -Rr --use-color --no-histdups --incsearch --file-size --chop-long-lines'; 
+alias less='less -Rr --use-color --no-histdups --incsearch --file-size --chop-long-lines';
 alias save_as_alias='printf "\n\n\n\n\n\n\22B
 \e[25A\e[J\n\n\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
 read -p " " -re "qq"; 
@@ -436,15 +434,11 @@ printf "\n\e[8m$(seq 12)\e[0m\e[12A\e[96m\n --\e[0m google:"; read -rp " " "gg";
 gs="https://www.google.com/search?q=${gg// /+}"; 
 if [ -z "/bin/googler" ]; then googler "$gs" 2>/dev/null||[ -e "/bin/$www_cli" ]&& $www_cli "${gs}"||$BROWSER_CLI "${gs}"; fi; 
 open ${gs[*]}; 
-
 } 
-
-
 alias aantslog='sl "sudo tail -f /home/ants/logs/nginx/access.log"|batcat -ppfld'
-
-
 
 #qe() { 
 #type $@; whatis $@; 
 #apt show $@ 2>/dev/null|grep -wi "description" -A12; type
 #} 
+# alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir); grep -e "/" '~/.local/share/lf/files'; grep -e "/" '~/.local/share/lf/tags' --no-messages 2>/dev/null'; 
