@@ -1,7 +1,7 @@
 #!/bin/bash 
 ## install config-files 
 instart() { 
-hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
+hash sudo 2>/dev/null || sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
 mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; 
 local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
@@ -20,7 +20,7 @@ wget wget2 curl aria2 gh git rclone rsync iw timg);
 ####
 apts_extra=(ffmpeg mpv);
 ####
-(hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' ' 2>/dev/null; 
+(hash sudo 2>/dev/null || sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' ' 2>/dev/null; 
 sudo apt update &>/dev/null && sudo apt install -y git &>/dev/null )& disown &>/dev/null;
 ####
 unalias p1 p2 2>/dev/null; 
@@ -30,8 +30,10 @@ _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; };
 _link() { ln -s $1 $2 2>/dev/null; }; 
 _move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
 _backup() { 
-mkdir "$HOME/tmp" 2>/dev/null; tmp="$HOME/tmp"; time="$(date +%y%m%d%H%m%S; )"; 
-mv $1 $tmp/$1_$time 2>/dev/null; printf %b "\n\e[2;92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n\n"; }; 
+mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time="$(date +%y%m%d%H%m%S; )"; 
+mv -fbS "$time" $1 $tmp/ 2>/dev/null; 
+#printf %b "\n\e[2;92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n\n"; 
+}; 
 ####
 for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
@@ -42,13 +44,12 @@ read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0;
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start"; printf % "\e[A"; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n";
+start="${start}/start"; sleep .2; start="${start/\/\///}"; export start; 
 ####
-start="${start}/start"; sleep 1; export start; #start="${start/\/\///}"; 
-####
-_backup $start; _newcolor; 
+_move $start $tmp; _backup $start; _newcolor; 
 ####
 git clone https://github.com/aeniks/start.git $start && \
-mv $start/.git/config $start/.git/config_old; 
+mv $start/.git/config $start/.git/config_old 2>/dev/null; 
 printf %b '[core]\n  repositoryformatversion = 0 \n  filemode = true\n  bare = false
 logallrefupdates = true\n  [remote "origin"]\n  url = git@github.com:aeniks/start.git
 fetch = +refs/heads/*:refs/remotes/origin/*\n  [branch "main"]\n  remote = origin
@@ -65,8 +66,7 @@ conf=(rclone lf micro tmux htop gh);
 for q in ${conf[*]}; do 
 _backup $HOME/.config/$i; # _newcolor; 
 _link $start/config/$q $HOME/.config/ -s; sleep .2; 
-_newcolor; printf %b " $q"; 
-printf %b "\n\e[0m"; p1 "updated"; 
+printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
 done; echo; cd; 
 #### 
 _newcolor; printf %b "\e[0m\t\t"; 
