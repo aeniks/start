@@ -29,12 +29,10 @@ p2() { printf %b "$@"; };
 _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
 _link() { ln -s $1 $2 2>/dev/null; }; 
 _move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
-_backup() { [ -z "$tmp" ]&& mkdir "$HOME/tmp" 2>/dev/null; tmp="$HOME/tmp"; 
-time="$(date +%y%m%d%H%m%S)"; 
-mv $1 $tmp/$1_$time 2>/dev/null; 
-printf %b "\n\e[2;92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n"; }; 
+_backup() { 
+mkdir "$HOME/tmp" 2>/dev/null; tmp="$HOME/tmp"; time="$(date +%y%m%d%H%m%S; )"; 
+mv $1 $tmp/$1_$time 2>/dev/null; printf %b "\n\e[2;92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n\n"; }; 
 ####
-echo;echo;
 for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
 ####
