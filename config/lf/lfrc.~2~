@@ -16,13 +16,13 @@ cmap p ""
 map p 
 cmap <c-up> "" 
 map <c-up> half-up
-map <a-up> page-up
+map <a-up> half-up
 map <a-down> half-down
-map <c-down> page-down
+map <c-down> half-down
 map <c-d> :read quit
 map <?> maps
 map <pgdn> half-down
-map <s-down> invert-below:pa
+map <s-down> invert-below
 map <pgup> half-up
 # map <a-up> top
 # map <a-down> bottom
@@ -163,9 +163,9 @@ dim="$(printf "\e[2m")"; re="$(printf "\e[0m")";
 #for i in ${cmds_lf[*]}; do printf " $i $i \n"; done
 #for i in $(seq $((lf_height/2))); do printf "\n"; done; 
 cmds_lf=(
-"ls" 
-'micro' 
+"micro" 
 'batcat -p ' 
+"ls" 
 "cd" 
 "chafa" 
 "kakaview" 
@@ -175,20 +175,18 @@ cmds_lf=(
 ); 
 printf "\e[0m\n"; 
 IFS="$(printf %b "\n")"; 
-c=0; a=2; for i in ${cmds_lf[@]}; do printf " $re $((c++)) [\e[38;5;$((a++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; 
+c=0; a=2; for i in ${cmds_lf[*]}; do printf %b " $re $((c++)) [\e[38;5;$((a++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; 
 printf %b "    $re["$dim"o"$re"]other\n\n\n\n\n\n\e[4A"; 
 read -n1 -srep " " "x"; 
-if [ "$x" != "q" ]; then 
-if [ -z "$x" ]; then exit; 
-if [ "$x" = o ]; then read -rep "Command$re: " "x"; 
-printf %b "${x[*]} $f "; read -rep "[OK]? " "ok"; [ -z "$ok" ]&& ${x[*]} $f; fi; 
+# if [ "$x" != "q" ]; then exit; 
+if [ -z "$x" ]; then exit; fi; 
 ##
 unset re dim; 
 printf %b "${cmds_lf[${x}]} $f"; 
 /usr/bin/${cmds_lf[${x}]} $f; 
 read; 
 ##  case "$lf_cmd" in 
-ftype="$(file -bi $f|cut -f1 -d"/")"; 
+ftype=$(file -bi $f|cut -f1 -d"/"); 
 #image
 #text
 #audio
@@ -198,23 +196,24 @@ ftype="$(file -bi $f|cut -f1 -d"/")";
 dim="$(printf "\e[2m")"; re="$(printf "\e[0m")"; 
 printf "\n  --  $ftype\n"; 
 # case in $ftype 
-printf %b "
-${dim}[${re}C${dim}]${re}hafa 
-${dim}[${re}K${dim}]${re}akaview 
-${dim}[${re}B${dim}]${re}atcat 
-${dim}[${re}X${dim}]${re}iftool 
-${dim}[${re}M${dim}]${re}ediainfo 
-${dim}[${re}J${dim}]${re}p2a 
-${dim}[${re}O${dim}]${re}ther ...${re}\n"; 
+#printf %b "
+# ${dim}[${re}C${dim}]${re}hafa 
+# ${dim}[${re}K${dim}]${re}akaview 
+# ${dim}[${re}B${dim}]${re}atcat 
+# ${dim}[${re}X${dim}]${re}iftool 
+# ${dim}[${re}M${dim}]${re}ediainfo 
+# ${dim}[${re}J${dim}]${re}p2a 
+# ${dim}[${re}O${dim}]${re}ther ...${re}\n"; 
 read -n1 -res "x"; 
 ###########
-if [ -z "$x" ]; then exit; 
-elif [ "$x" = o ]; then read -rep "Command:$re " "x"; ${x[*]} $f; 
+if [ "$x" = q ]; then break; return 0; 
+elif [ "$x" = o ]; then read -rep "Command:$re " "x"; ${x[*]} $f; read -rep "Command$re: " "x"; printf %b "${x[*]} $f "; read -rep "[OK]? " "ok"; [ -z "$ok" ]&& ${x[*]} $f; fi; 
 elif [ "$x" = c ]; then chafa $f; 
 elif [ "$x" = k ]; then cacaview $f; 
 elif [ "$x" = b ]; then batcat --paging always $f -pl d; 
 elif [ "$x" = m ]; then mediainfo $f; 
 elif [ "$x" = j ]; then jp2a $f --color-depth=8; 
+elif [ -z "$x" ]; then break; 
 fi; 
 printf %b "\n[\033[6;92mENTER\033[0m] to return\e[A"; 
 read -n1 -res; 

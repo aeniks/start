@@ -219,7 +219,7 @@ alias goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "
 
 #alias apt='sudo apt'
 alias gmail='open gmail.com'
-alias no='echo -e "\e[?25h"; printf "\e[0m; reset -I 2>/~.x"'
+alias no='printf "\e[?25h\e[0m"; tmux set mouse on 2>/dev/null; reset -I 2>dev/null;'
 #alias 12_info_ansi='batcat -p $ants/sh/info/ansi.md'
 alias 12tard='lo="$(jp2a $HOME/start/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
@@ -345,7 +345,7 @@ if [ "$run"  = 2 ]; then $hm; fi; history -s "$hm"; else printf "\nnothing new..
 # alias searcl='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 
 cmdss() { 
-kk=($(cat $ants/sh/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
+kk=($(cat $start/info/cmd.sh|fzf -i --expect "q" -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
 alias ff='fastfetch 2>/dev/null||neofetch 2>/dev/null||\
 hostnamectl 2>/dev/null||id'
 # alias serch='

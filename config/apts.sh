@@ -17,9 +17,9 @@ ffmpeg mpv golang clang
 ####
 apts() { 
 IFS=$'\n '; mkdir -p -m 775 $HOME/logs/apts 2>/dev/null; 
-for i in ${apts_basic[*]}; do $sudo apt show $i 2>/dev/null|grep -e "Installed-Size" -e "Description" > $HOME/logs/apts/_$i; 
-cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts/$i; 
-[ $(wc -l $HOME/logs/apts/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts/$i; 
+for i in ${apts_basic[*]}; do $sudo apt show $i 2>/dev/null|grep -e "Installed-Size" -e "Description" > $HOME/logs/apts_basic/_$i; 
+cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i; 
+[ $(wc -l $HOME/logs/apts_basic/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
 done; rm $HOME/logs/apts/_*; 
 }; 
 
