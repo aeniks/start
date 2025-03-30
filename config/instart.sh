@@ -2,7 +2,7 @@
 ## install config-files 
 instart() { 
 hash sudo 2>/dev/null || sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '; 
-mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; 
+mkdir $HOME/tmp 2>/dev/null; tmp="$HOME/tmp"; cd; 
 local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
 height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
