@@ -24,7 +24,7 @@ apts_extra=(ffmpeg mpv);
 sudo apt update &>/dev/null && sudo apt install -y git &>/dev/null )& disown &>/dev/null;
 ####
 unalias p1 p2 2>/dev/null; 
-p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .1; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
+p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
 p2() { printf %b "$@"; }; 
 _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
 _link() { ln -s $1 $2 2>/dev/null; }; 
@@ -42,7 +42,7 @@ for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done;
 p2 " $c2 "; p1 "Download config files? "; p2 "\e[1m$enter "; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
-p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start"; printf % "\e[A"; 
+p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "start"; printf %b "\e[A"; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n";
 start="${start}/start"; sleep .2; start="${start/\/\///}"; export start; 
 ####
@@ -60,7 +60,7 @@ read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0;
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
-mkdir $HOME/.config 2>/dev/null; cd $HOME/.config;  _newcolor; echo; 
+mkdir $HOME/.config 2>/dev/null; cd $HOME/.config; _newcolor; echo; 
 ####
 conf=(rclone lf micro tmux htop gh); 
 for q in ${conf[*]}; do 
@@ -94,14 +94,14 @@ sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss;
 p2 " $c2 "; p1 "Login to github? "; p2 "\e[1m$enter "; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
-####
 $sudo apt install -y gpg git gh &>/dev/null; 
+####
 ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
 [ -e != "$start/config/gpg/gh_aeniks.gpg" ] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
 ####
 gpg --pinentry-mode loopback -o "gh.txt" -d "$gh_aeniks"; 
 gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt; sleep .2;
-gh auth status && printf "\n\n     \e[42m       OK      \e[0m\n\n"; sleep 2; echo;echo;echo; 
+gh auth status && printf "\n\n     \e[42m       OK      \e[0m\n\n"; sleep 2; echo;echo;
 git config --global user.name $ghuser; 
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
