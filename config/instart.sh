@@ -35,7 +35,7 @@ mv -fbS "$time" $1 $tmp/ 2>/dev/null;
 #printf %b "\n\e[2;92m$start\e[0m backed up to: \e[2m$tmp/$1_$time\e[0m\n\n"; 
 }; 
 ####
-for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
+for i in $(seq $((height))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
 ####
 #### Download config files? 
