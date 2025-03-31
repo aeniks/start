@@ -150,7 +150,7 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
-PS1='\e[A\e[G'$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
+PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
 ['$re''$white'\t'$re$dim'] '$re$pink"$(cat $HOME/logs/bat.sh 2>/dev/null)"$re$dim' \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
 ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ $iploc\n'; 
