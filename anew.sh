@@ -63,9 +63,9 @@ sshc=($SSH_CONNECTION);
 #ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
-[ "$PREFIX" ] && iploc="$(getprop "vendor.arc.net.ipv4.host_address"; )" \
+[ "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_address"; )" \
 && ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
-[ "$PREFIX" ]|| iploc=($(ip -4 -brief a show scope global up|\
+[ "$PREFIX" ]||iploc=($(ip -4 -brief a show scope global up|\
 tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
 printf %b "$iploc" > $HOME/logs/iploc.log; printf %b "$ipgate" > $HOME/logs/ipgate.log; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
@@ -95,22 +95,22 @@ wget wget2 curl aria2 iw \
 ########
 mkdir $HOME/logs 2>/dev/null; 
 . $HOME/.tmux_bash.sh 2>/dev/null; 
-. $HOME/start/alias.sh; 
+. $start/alias.sh; 
 ####
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
-mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-iploc="$(cat $HOME/.iploc.sh)"; 
+# mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
+iploc="$(cat $HOME/logs/iploc.sh)"; 
 cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
 aptup=($(cat $HOME/logs/aptup.log)); 
 ##########
 ##########
 inbash() { 
-$(sleep 12; . $start/crons/apt.sh)& disown; 
+# $(sleep 12; . $start/crons/apt.sh)& disown; 
 . $start/funcs/getcal.sh; 
 dots="${re}··········\n"; 
 printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
 printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots"; 
-[ -e $HOME/logs/gcalagena.sh ] && \
+[ -e $HOME/logs/gcalagenda.sh ] && \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
 column|head -n4 2>/dev/null; ) \n$dots"; 
 printf %b "$(dfree)$re \n$dots"; 
@@ -143,8 +143,8 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 [ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
-[ -f "$HOME/._tmux" ]|| touch "$HOME/_.tmux"
-[ -x "$HOME/._tmux" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
+[ -e "$HOME/.config/tmux_state" ]|| touch "$HOME/.config/tmux_state"; 
+[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
@@ -152,4 +152,4 @@ PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
 ['$re''$green'${mod:0:29}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
 ['$re$yellow'\w'$re$dim']'$re'\e[0m >_ \n'; 
 
-for i in ~/start/funcs/*.sh; do . $i; done; 
+for i in $start/funcs/*.sh; do . $i; done; 
