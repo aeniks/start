@@ -59,13 +59,14 @@ do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh';
 #apt_upgradable=(no); 
 #apt_upgradable=($(sudo apt list --upgradable 2>/dev/null|cut -f1 -d"/" & disown; )); 
 ####
-sshc=($SSH_CONNECTION); 
 #ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
-ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
+sshc=($SSH_CONNECTION); 
+ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
+[ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
-[ "$PREFIX" ]&& iploc="$(getprop "vendor.arc.net.ipv4.host_address"; )" \
-&& ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
-[ "$PREFIX" ]||iploc=($(ip -4 -brief a show scope global up|\
+[ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; )||iploc=$(ip -c -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
+ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
+[ -z "$iploc" ]&&iploc=($(ip -4 -brief a show scope global up|\
 tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
 printf %b "$iploc" > $HOME/logs/iploc.log; printf %b "$ipgate" > $HOME/logs/ipgate.log; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
