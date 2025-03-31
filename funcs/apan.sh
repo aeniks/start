@@ -1,3 +1,0 @@
-
-apan() { 
-cd $HOME/logs/apts &>/dev/null; aapp=($(ls|fzf -i -m --color preview-bg:18 --bind "q:abort" --preview "bat -ppflzig {}" --preview-window "wrap,16,top,noborder" --border none --cycle --ansi --inline-info||(printf %b "  OK\n\n"; cd - &>/dev/null; return 1;);))||return 1; (printf %b "\n -- Install: "; printf %b "${aapp[*]}"|tr -s " " ","; printf %b "\b\b  ?  [Y/n] ")|bat -pflc --theme Nord; cd - &>/dev/null; read -r -s -n1 ny; [ $ny ]&& printf %b "\e[92m OK\e[0m \n\n" && cd - &>/dev/null && return 0; hash sudo 2>/dev/null && sudo=sudo; $sudo apt update|bat -ppflzig --theme Nord; $sudo apt install -y ${aapp[*]}|bat --ppflzig --theme Nord; echo ok; }; 

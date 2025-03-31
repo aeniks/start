@@ -64,9 +64,11 @@ sshc=($SSH_CONNECTION);
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
-[ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; )||iploc=$(ip -c -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
+[ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
+[ -z "$iploc" ]&& iploc="$(ip -4 -brief -oneline a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
+[ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
 ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
-[ -z "$iploc" ]&&iploc=($(ip -4 -brief a show scope global up|\
+[ -z "$iploc" ]&& iploc=($(ip -4 -brief a show scope global up|\
 tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
 printf %b "$iploc" > $HOME/logs/iploc.log; printf %b "$ipgate" > $HOME/logs/ipgate.log; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
@@ -100,7 +102,7 @@ mkdir $HOME/logs 2>/dev/null;
 ####
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 # mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-iploc="$(cat $HOME/logs/iploc.sh)"; 
+iploc="$(cat $HOME/logs/iploc.log)"; 
 cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
 aptup=($(cat $HOME/logs/aptup.log)); 
 ##########
