@@ -1,6 +1,6 @@
 #!/bin/bash
-unalias apa 2>/dev/null; 
-apa() { 
+unalias apass 2>/dev/null; 
+apass() { 
 apa="$HOME/logs/apa.log"; [ -z $PREFIX ]&& sudo=sudo; 
 mkdir -p $HOME/logs/apts 2>/dev/null; c2="\e[96m--\e[0m"
 [ -e "$apa" ]||apt list 2>/dev/null|tail -n+2|cut -f1 -d"/"|tee "$apa"; 
