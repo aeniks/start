@@ -10,7 +10,7 @@ then if [ -f /usr/share/bash-completion/bash_completion ];
 then . /usr/share/bash-completion/bash_completion; 
 elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
 fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
-[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;  
+[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
 export PROMPT_COMMAND="history -a; history -n; " NVM_DIR="$HOME/.nvm"; 
 alias nvm_init='[ -s "$NVM_DIR/nvm.sh" ]&& . "$NVM_DIR/nvm.sh"; 
 [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
@@ -67,10 +67,12 @@ ip4=$(timeout 1 curl icanhazip.com -s4 -L);
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
 [ -z "$iploc" ]&& iploc="$(ip -4 -brief -oneline a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
 [ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
-ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
+[ $PREFIX ]&& ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
 [ -z "$iploc" ]&& iploc=($(ip -4 -brief a show scope global up|\
 tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
-printf %b "$iploc" > $HOME/logs/iploc.log; printf %b "$ipgate" > $HOME/logs/ipgate.log; 
+######
+printf %b "$iploc" > $HOME/logs/iploc.log; 
+printf %b "$ipgate" > $HOME/logs/ipgate.log; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
@@ -83,26 +85,16 @@ printf %b "$iploc" > $HOME/logs/iploc.log; printf %b "$ipgate" > $HOME/logs/ipga
 #figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; printf "\n\n"; fi; 
 ####
 ####
-apts=(\
-file libexif-dev openssl openssh-server sshfs rsync \
-rclone w3m googler exiftool mediainfo \
-figlet lolcat lynx links2 ffmpeg \
-toilet iproute2 net-tools nmap \
-mpv fastfetch neofetch \
-fzf ccze lf bat batcat \
-bat ncdu bash-completion lsd \
-tmux git gh nodejs nmap \
-texinfo aha micro golang gnupg \
-wget wget2 curl aria2 iw \
-); 
+# apts=(file libexif-dev openssl openssh-server sshfs rsync rclone w3m googler exiftool mediainfo figlet lolcat lynx links2 ffmpeg toilet iproute2 net-tools nmap \mpv fastfetch neofetch fzf ccze lf bat batcat bat ncdu bash-completion lsd tmux git gh nodejs nmap texinfo aha micro golang gnupg wget wget2 curl aria2 iw ); 
 ########
-mkdir $HOME/logs 2>/dev/null; 
-. $HOME/.tmux_bash.sh 2>/dev/null; 
-. $start/alias.sh; 
+[ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
+########
+# mkdir $HOME/logs 2>/dev/null; 
+. $HOME/.tmux_bash.sh 2>/dev/null; . $start/alias.sh; 
 ####
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-iploc="$(cat $HOME/logs/iploc.log)"; 
+iploc=($(cat $HOME/logs/iploc.log)); 
 cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
 aptup=($(cat $HOME/logs/aptup.log)); 
 ##########
@@ -143,16 +135,16 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 ##################################
 # 12_whtr 
 }; 
-[ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
+####
 [ -e "$HOME/.config/tmux_state" ]|| touch "$HOME/.config/tmux_state"; 
-[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -n "$TMUX" ]&& inbash; 
-[ -n "$SSH_CONNECTION" ]&& inbash; 
-PS1='\e[A\e[G'$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
+[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
+####
+
+PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
 ['$re''$white'\t'$re$dim'] '$re$pink"$(cat $HOME/logs/bat.sh 2>/dev/null)"$re$dim' \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
-['$re$yellow'\w'$re$dim']'$re'\e[0m >_ $iploc\n'; 
+['$re$yellow'\w'$re$dim']'$re'\e[0m >_ ${iploc[*]}\n'; 
 
 for i in $start/funcs/*.sh; do . $i; done; 
