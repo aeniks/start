@@ -63,13 +63,18 @@ do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh';
 sshc=($SSH_CONNECTION); 
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
-#ip0="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")-12"; 
+#$
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
-[ -z "$iploc" ]&& iploc="$(ip -4 -brief -oneline a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
+##
 [ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
+##
+# [ -z "$iploc" ]&& iploc="$(ip -4 -brief a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
+#$
 [ $PREFIX ]&& ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
-[ -z "$iploc" ]&& iploc=($(ip -4 -brief a show scope global up|\
-tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
+##
+[ -z "$ipgate" ]&&ipgate="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")"; 
+##
+#[ -z "$iploc" ]&& iploc=($(ip -4 -brief a show scope global up|tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
 ######
 printf %b "$iploc" > $HOME/logs/iploc.log; 
 printf %b "$ipgate" > $HOME/logs/ipgate.log; 
@@ -90,13 +95,13 @@ printf %b "$ipgate" > $HOME/logs/ipgate.log;
 [ $LF_LEVEL ]&& printf %b "\n\e[7;91m LF_LEVEL = $LF_LEVEL \e[0m\n"; 
 ########
 # mkdir $HOME/logs 2>/dev/null; 
-. $HOME/.tmux_bash.sh 2>/dev/null; . $start/alias.sh; 
+. $HOME/.tmux_bash.sh 2>/dev/null; 
+. $start/alias.sh; 
 ####
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 iploc=($(cat $HOME/logs/iploc.log)); 
-cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
-aptup=($(cat $HOME/logs/aptup.log)); 
+cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $HOME/logs/aptup.log)); 
 ##########
 ##########
 inbash() { 
@@ -143,12 +148,13 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; };
 
 # [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& #tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
-[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -n "$TMUX" ]&& inbash; 
-[ -n "$SSH_CONNECTION" ]&& inbash; 
+####
+[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
+####
+####
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
-['$re''$white'\t'$re$dim'] '$re$pink"$(cat $HOME/logs/bat.sh 2>/dev/null)"$re$dim' \
+'$(cat $HOME/logs/bat.sh 2>/dev/null)$re$dim' \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
-['$re$yellow'\w'$re$dim']'$re'\e[0m >_ ${iploc[*]}\n'; 
+['$re$yellow'\w'$re$dim']'$re'\e[2;91m ${iploc[*]}\e[0m\n'; 
 
 for i in $start/funcs/*.sh; do . $i; done; 
