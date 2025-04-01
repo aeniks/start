@@ -446,7 +446,7 @@ set reverse
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
 source "~/.config/lf/opener"
 #source "~/.config/lf/previewer"
-#source "~/.config/lf/lf_m"
+source "~/.config/lf/lf_m"
 
 
 

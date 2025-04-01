@@ -152,14 +152,12 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; };
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
-_ps1() {
+for i in $start/funcs/*.sh; do . $i; done; 
+####
 if [ ${#iploc} -gt 2 ] 2>/dev/null; then \
 ipp=' \e[0;2m[\e[91m${iploc[*]}\e[0;2m]\e[0m ';
-else ipp=' \e[0;2m[\e[0;38moffline\e[0;2m]\e[0m '; fi;
+else ipp=' \e[0;2m[\e[0;38moffline\e[0;2m]\e[0m '; fi; 
 ####
-PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re$ipp$re'\
-['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] ['$re$cyan'\u'$re'] '$re$(cat $HOME/logs/bat.sh 2>/dev/null)' \
-['$re$yellow'\w'$re']\e[25h\e[0m\n'; 
-}; 
-_ps1; 
-for i in $start/funcs/*.sh; do . $i; done; 
+####
+# _ps1() { PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re$ipp$re'['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] ['$re$cyan'\u'$re'] '$re$(cat $HOME/logs/bat.sh 2>/dev/null)' ['$re$yellow'\w'$re']\e[25h\e[0m\n'; }; 
+. $start/_ps1.sh; _ps1; 
