@@ -138,8 +138,10 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; };
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 ####
-[ -e "$HOME/.config/tmux_state" ]|| touch "$HOME/.config/tmux_state"; 
-[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
+[ -e "$HOME/.config/tmux_state" ]||touch "$HOME/.config/tmux_state"; 
+
+
+# [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& #tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -n "$TMUX" ]&& inbash; 
