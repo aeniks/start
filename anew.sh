@@ -118,7 +118,8 @@ printf %b "\e[1;37;45m ${model[*]} $re \n$dots";
 printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; }; 
+
 ####
 ####
 # [ ${#apt_upgradable[*]} -gt 2 ]&& \
@@ -134,14 +135,15 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots";
 ##PS1='\e[2;37m${mod:0:22}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
 ##################################
 # 12_whtr 
-}; 
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 ####
 [ -e "$HOME/.config/tmux_state" ]|| touch "$HOME/.config/tmux_state"; 
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
-
+[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
+[ -n "$TMUX" ]&& inbash; 
+[ -n "$SSH_CONNECTION" ]&& inbash; 
 PS1=''$re$dim'[\e[0;1;38;5;$((2 + $?))m$?'$re$dim'] \
 ['$re''$white'\t'$re$dim'] '$re$pink"$(cat $HOME/logs/bat.sh 2>/dev/null)"$re$dim' \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re$dim'] ['$re$cyan'\u'$re$dim'] \
