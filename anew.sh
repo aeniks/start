@@ -105,10 +105,11 @@ cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $H
 ##########
 ##########
 inbash() { 
+for i in $start/funcs/*.sh; do . $i; done; 
 # $(sleep 12; . $start/crons/apt.sh)& disown; 
 . $start/funcs/getcal.sh; 
 dots="${re}··········\n"; 
-printf %b "$pink$HOSTNAME\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
+printf %b "\e[1;37m - \e[0m\e[40m$(uptime) $re\n$dots"; 
 printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots"; 
 [ -e $HOME/logs/gcalagenda.sh ] && \
 printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
@@ -120,6 +121,7 @@ printf %b "$yellow$MACHTYPE$re | $cyan$cpu$re \n$dots"
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re \n$dots";  
+printf %b "\e[0m$(wotd) $re \n$dots";  
 printf %b "\e[9$(( $(id -u|tail -c2) + 1 ))m$USER$re@$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
@@ -152,7 +154,6 @@ printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; };
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
-for i in $start/funcs/*.sh; do . $i; done; 
 ####
 if [ ${#iploc} -gt 2 ] 2>/dev/null; then \
 ipp=' \e[0;2m[\e[91m${iploc[*]}\e[0;2m]\e[0m ';
