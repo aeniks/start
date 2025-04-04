@@ -109,7 +109,7 @@ mime_preview() {
 			man ./ "$1" | col -b
 		;;
 		(*)
-		batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go\
+		batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"\
 		||exiftool -S|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
 		esac
 	;;

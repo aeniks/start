@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## lf config
 #[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&&PREFIX="/data/data/com.termux/files/usr"; 
 # set previewer $PREFIX/etc/lf/previewer
@@ -147,14 +147,14 @@ printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\e[25m\e[0m";
 
 
 cmd lenk ${{ 
-read -rep "ln from: $(printf "\e[96m")" -i "$fx" "kk"; read -rep "$(printf "\e[0m")to: $(printf "\e[92m")" -i "$PWD" "kt"; printf "\e[0m"; ln "${kk}" "${kt}" --symbolic; ls $kt; sleep 1; 
+read -rep "ln from: $(printf "\e[96m")" -i "$fx" "kk"; read -rep "$(printf "\e[0m")to: $(printf "\e[92m")" -i "$PWD" "kt"; printf "\e[0m"; ln -s "${kk}" "${kt}"; ls $kt; sleep 1; 
 }} 
 
 
 
 ####
 cmd pger ${{
-batcat --paging always -fp $f||cacaview $f||exiftool $f; read -r "x";
+bat $f||cacaview $f||exiftool $f; read -r "x";
 }}
 
 cmd dial ${{ 
