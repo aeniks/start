@@ -31,5 +31,5 @@ alias less='less -R --file-size --use-color --quit-if-one-screen \
 ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  \
 %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
 alias start='cd $start; '; 
-alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir); grep -e "/" '~/.local/share/lf/files'; grep -e "/" '~/.local/share/lf/tags' --no-messages 2>/dev/null'; 
+alias l='cd $(lf -config $HOME/.config/lf/lfrc -print-last-dir); grep -e "/" '$HOME/.local/share/lf/files' 2>/dev/null'; 
 alias r='ranger --choosedir=$HOME/logs/path; cd $(cat $HOME/logs/path)'; 
