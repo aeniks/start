@@ -11,9 +11,7 @@ then . /usr/share/bash-completion/bash_completion;
 elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
 fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
-export PROMPT_COMMAND="history -a; history -n; " NVM_DIR="$HOME/.nvm"; 
-alias nvm_init='[ -s "$NVM_DIR/nvm.sh" ]&& . "$NVM_DIR/nvm.sh"; 
-[ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
+export PROMPT_COMMAND="history -a; history -n; "; 
 ####
 [ -e "/bin/gcalcli" ]&& timeout 6 gcalcli remind \
 --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
@@ -105,9 +103,8 @@ cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $H
 ##########
 ##########
 inbash() { 
-for i in $start/funcs/*.sh; do . $i; done; 
 # $(sleep 12; . $start/crons/apt.sh)& disown; 
-. $start/funcs/getcal.sh; 
+# . $start/funcs/getcal.sh; 
 dots="${re}··········\n"; 
 printf %b "\e[1;37m\e[0m\e[40m$(uptime) $re\n$dots"; 
 printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots"; 
@@ -122,11 +119,13 @@ grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re\n$dots"; 
 printf %b "\e[1;37;45m ${model[*]} $re \n$dots";  
 printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;) $re \n$dots";  
-printf %b "\e[38;5;$(( $(id -u|tail -c2) * 2 ))m$USER$re$dim@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
+printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re$dim@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; }; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
+}; 
 
+for i in $start/funcs/*.sh; do . $i; done; 
 ####
 ####
 # [ ${#apt_upgradable[*]} -gt 2 ]&& \
