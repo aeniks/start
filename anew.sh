@@ -49,9 +49,11 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku \
 #dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; dahh="$(date +%H)"; damm="$(date +%M)";
 ####
 #alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|batcat -ppflgo --theme Nord|grep -v "Not"'; 
-alias fortshort='seq 12 > $HOME/.ff.sh; 
-while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "4" ]; 
-do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
+fortshort() { seq 12 > $HOME/logs/ff.log; 
+while [ "$(cat $HOME/logs/ff.log|wc --lines)" -gt "2" ]; 
+do fortune > $HOME/logs/ff.log; done; }; 
+##
+fortshort & disown; 
 # alias vim='nano'; 
 ####
 #apt_upgradable=(no); 
@@ -98,6 +100,11 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 . $start/alias.sh; 
 ####
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
+# [ -e $HOME/logs/gcalagenda.sh ] && \
+# printf %b "$(batcat ~/logs/gcalagenda.sh \
+# -ppflzig --theme Nord 2>/dev/null |\
+# column|head -n4 2>/dev/null; ) \n$dots"; 
+##
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 iploc=($(cat $HOME/logs/iploc.log)); 
 cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $HOME/logs/aptup.log)); 
@@ -106,24 +113,21 @@ cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $H
 inbash() { 
 # $(sleep 12; . $start/crons/apt.sh)& disown; 
 # . $start/funcs/getcal.sh; 
-dots="${re}··········\n"; 
-printf %b "\e[1;37m\e[0m\e[40m$(uptime) $re\n$dots"; 
-printf %b "$re$pink$dim$(fortshort 2>/dev/null)\n$dots"; 
-[ -e $HOME/logs/gcalagenda.sh ] && \
-printf %b "$(batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord 2>/dev/null |\
-column|head -n4 2>/dev/null; ) \n$dots"; 
-printf %b "$(dfree)$re \n$dots"; 
+dots="${re}\n··········${re}\n"; 
+printf %b "\e[1;37m\e[2m\e[48m$(date -R) $dots"; 
+printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null) $dots"; 
+printf %b "$(dfree) $dots"; 
 [ -e $HOME/logs/calendar.json ] && \
-printf %b "$(getcal 2>/dev/null; ) \n$dots"
-printf %b "$yellow$MACHTYPE$re | $cyan$cpu$re \n$dots"
+printf %b "$(getcal 2>/dev/null; ) $dots"
+printf %b "$yellow$MACHTYPE$re | $cyan$cpu $dots"
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
-printf %b "$red${aptup[0]}$re upgrades available$re\n$dots"; 
-printf %b "\e[1;37;45m ${model[*]} $re \n$dots";  
-printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;) $re \n$dots";  
-printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re$dim@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM$re \n$dots"; 
+printf %b "$red${aptup[0]}$re upgrades available$re $dots"; 
+printf %b "\e[1;37;45m ${model[*]} $dots";  
+printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;) $dots";  
+printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM $dots"; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
-printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6$re\n$dots"; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)\n$dots"; 
+printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6 $dots"; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs) $dots"; 
 }; 
 
 for i in $start/funcs/*.sh; do . $i; done; 
@@ -151,7 +155,9 @@ for i in $start/funcs/*.sh; do . $i; done;
 # [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& #tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
-[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
+[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
+[ -z "$TMUX" ]|| tmux list-panes|grep -e "1:" &>/dev/null||inbash; 
+[ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
 ####
