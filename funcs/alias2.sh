@@ -284,7 +284,7 @@ alias kf='guf=$(ls|fzf);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title: $
 ############################################
 #### ANTS ##################################
 #alias ali='tilde /alias.sh && read -t2 -n1 -ep "update /alias.sh? " ab && source /alias.sh'ions.sh'
-alias uu='sudo apt update && sudo apt upgrade -y && \
+alias uu='sudo apt update 2>/dev/null && sudo apt upgrade -y 2>/dev/null && \
 sudo apt -y autoremove; sudo apt full-upgrade -y && \
 sudo snap refresh 2>/dev/null; 
 jp2a $HOME/start/media/tard.jpg|pv --rate-limit=2222 --quiet'
@@ -388,9 +388,10 @@ alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push -v|ba
 alias pp='push'
 alias pull='git pull'
 alias pppp='git pull|batcat -ppflzig'
-alias uu='sudo apt update | batcat -ppflzig --theme=Nord && \
-sudo apt upgrade -y | batcat -ppflzig --theme=Nord; \
-sudo apt autoremove -y'
+alias uu='[ -z $PREFIX ]&& sudo=sudo; $sudo apt update 2>/dev/null| batcat -ppflzig --theme=Nord && $sudo apt upgrade -y 2>/dev/null | batcat -ppfld --theme=1337; $sudo apt autoremove -y 2>/dev/null; printf %b "\n $c2 done\n\n"; $sudo apt update 2>/dev/null|tail -n1 >
+$HOME/logs/aptup.log; '
+
+
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
 # alias cm2'=cat $ants/sh/cmd.sh'
 # alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
@@ -399,7 +400,6 @@ alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_H
 alias ippub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
-alias less='less -Rr --use-color --no-histdups --incsearch --file-size --chop-long-lines';
 alias save_as_alias='printf "\n\n\n\n\n\n\22B
 \e[25A\e[J\n\n\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
 read -p " " -re "qq"; 

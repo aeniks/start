@@ -5,7 +5,10 @@ printf "\e7\e[?25l\e[?47h"; clear;
 ########### variables
 #figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)); 
 ###################
-figlist=(3d 4x4_offr fender contrast Electronic 4maxebbs_1__ aquaplan doh Big_Money-sw Electronic s-relief devilish Big_Money-nw poison )
+
+# figlist=(3d 4x4_offr fender contrast Electronic 4maxebbs_1__ aquaplan doh Big_Money-sw Electronic s-relief devilish Big_Money-nw poison )
+
+figlist=($(cat $HOME/figz.sh)); 
 figfont="$(shuf -n1 -e ${figlist[@]})"; figlength="$(figlet -f "$figfont" $(date +%T))";
 ###########
 ########### funtions

@@ -14,7 +14,7 @@ grep -e "$df"|batcat --theme=Dracula -ppflc++';
  #=======
 # alias diskspace='echo;df -h|head -n2|batcat -ppflc; echo;'; 
 #>>>>>>> f29ca82 (2025-02-09_11_28)
-touch $HOME/.comfig/tmux_state 2>/dev/null; 
+touch $HOME/.config/tmux_state 2>/dev/null; 
 alias 12tmux_on='chmod 775 $HOME/.comfig/tmux_state; echo "on!"';
 alias 12tmux_off='chmod 600 $HOME/.comfig/tmux_state; echo "off!"';
 alias 12edit-alias='$EDITOR ~/start/alias.sh'
