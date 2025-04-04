@@ -26,7 +26,7 @@ nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'
 [ -z $USER ]&& export USER="$(id -nu)"; 
 [ -z $start ]&& export start="$HOME/start"; 
 ######
-[ $(echo $HOME|grep -w "termux") ]&& alias sudo='command'; 
+[ $(echo $HOME|grep -w "termux") ]&& alias sudo='command' && sudo=sudo; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' \
@@ -76,6 +76,7 @@ ip4=$(timeout 1 curl icanhazip.com -s4 -L);
 ######
 printf %b "$iploc" > $HOME/logs/iploc.log; 
 printf %b "$ipgate" > $HOME/logs/ipgate.log; 
+printf %b "${model[*]}" > $HOME/logs/model.log; 
 # ip a --brief a show scope global|tail -c+29|tr -s " " "\n"|cut -f1 -d"/"; )); 
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
@@ -156,7 +157,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 if [ ${#iploc} -gt 2 ] 2>/dev/null; then \
 ipp=' \e[0;2m[\e[91m${iploc[*]}\e[0;2m]\e[0m ';
-else ipp=' \e[0;2m[\e[0;38moffline\e[0;2m]\e[0m '; fi; 
+else ipp=' \e[0;2m[\e[0;38m_\e[0;2m]\e[0m '; fi; 
 ####
 ####
 # _ps1() { PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re$ipp$re'['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] ['$re$cyan'\u'$re'] '$re$(cat $HOME/logs/bat.sh 2>/dev/null)' ['$re$yellow'\w'$re']\e[25h\e[0m\n'; }; 

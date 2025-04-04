@@ -29,7 +29,7 @@ fi		    38;5;66     # FILE
 #Downloads/ 	48;5;162
 #Scripts/ 	48;5;166
 #scripts/ 	48;5;166
-#start/  	48;5;96
+start/  	48;5;96
 #logs/	  	48;5;124
 #Public/  	48;5;124
 #storage/  	48;5;30
@@ -41,7 +41,7 @@ fi		    38;5;66     # FILE
 #Videos/ 	48;5;54
 #Documents/ 	48;5;226
 #Desktop/ 	48;5;42
-#.config/ 	48;5;42
+.config/ 	48;5;42
 # archives or compressed
 *.tar   1;38;5;168
 *.tgz   1;38;5;66
