@@ -25,19 +25,32 @@ unalias p1 p2 2>/dev/null;
 p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
 p2() { printf %b "$@"; }; 
 _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
-_link() { ln -s $1 $2 2>/dev/null; }; 
-_move() { mv -bS "$EPOCHSECONDS" $1 $2 &>/dev/null; }; 
+_link() { ln -s $@ 2>/dev/null; }; 
+_move() { mv -S "$EPOCHSECONDS" $@ &>/dev/null; }; 
 _backup() { 
 mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time="$(date +%y%m%d%H%m%S; )"; 
 mv -fbS "$time" $1 $tmp/ 2>/dev/null; 
 }; 
+_yno() { 
+_ok() { printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; }; 
+p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
+p2() { printf %b "$@"; }; 
+yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' 
+[[ "$1" ]]&& ny=${1}; printf %b "\e[48G$yno "; 
+printf -v _yno_${1} "false"; read -sn1 ny; 
+[[ -z $ny || $ny = y ]] && printf -v _yno_${1} "true"; _ok; 
+# printf %b "\n_yno_$1 = $_yno_${1} \n"; 
+}; 
+
+# printf %b "$green OK$re\n" && \
 ####
-for i in $(seq $((height))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
+for i in $(seq $((height - 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
 for i in $(seq $((height - 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
 ####
 #### Update system? 
 _update() {
-p2 " $c2 "; p1 "Update system? "; p2 "\e[1m$enter "; 
+p2 " $c2 "; p1 "Update system? "; _yno; 
+# p2 "\e[1m$enter "; 
 read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n" && return 0; 
 printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
 hash sudo 2>/dev/null||sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '2>/dev/null; 
@@ -55,11 +68,15 @@ printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  
 start="${start}/start"; sleep .2; start="${start/\/\///}"; export start; 
 _move $start $tmp; _backup $start; _newcolor; 
 git clone https://github.com/aeniks/start.git $start 2>/dev/null && \
-mv $start/.git/config $start/.git/config_old 2>/dev/null; 
-printf %b '[core]\n  repositoryformatversion = 0 \n  filemode = true\n  bare = false
-logallrefupdates = true\n  [remote "origin"]\n  url = git@github.com:aeniks/start.git
-fetch = +refs/heads/*:refs/remotes/origin/*\n  [branch "main"]\n  remote = origin
-merge = refs/heads/main\n  [pull]\n  rebase = true' > $start/.git/config; 2>/dev/null; cd $start; 
+cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; 
+# 
+# mv $start/.git/config $start/.git/config_old 2>/dev/null; printf %b '\
+# [core]\n  repositoryformatversion = 0 \n  filemode = true\n  bare = false
+# logallrefupdates = true\n  [remote "origin"]\n  url = git@github.com:aeniks/start.git
+# fetch = +refs/heads/*:refs/remotes/origin/*\n  [branch "main"]\n  remote = origin
+# merge = refs/heads/main\n  [pull]\n  rebase = true\
+# ' > $start/.git/config; 2>/dev/null; cd $start; 
+# 
 ####
 }; 
 _install_conf() {
@@ -72,15 +89,16 @@ mkdir $HOME/.config 2>/dev/null; cd $HOME/.config; _newcolor; echo;
 ####
 conf=(rclone lf micro tmux htop gh); 
 for q in ${conf[*]}; do 
-_backup $HOME/.config/$i; # _newcolor; 
-_link $start/config/$q $HOME/.config/ -s; sleep .2; 
+mkdi -p $HOME/.config/$q 2>/dev/null; 
+_backup $HOME/.config/$q/*; # _newcolor; 
+_link $start/config/$q/* $HOME/.config/ -s; sleep .2; 
 printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
 done; echo; cd; 
 #### 
 _newcolor; printf %b "\e[0m\t\t"; 
 cat $HOME/.bashrc|grep -e "anew.sh" &>/dev/null||\
 printf %b "\n. $start/anew.sh;"&>/dev/null >> $HOME/.bashrc 2>/dev/null; 
-touch $HOME/._tmux 2>/dev/null; chmod 775 $HOME/._tmux; echo; 
+touch $HOME/.config/tmux_state 2>/dev/null; chmod 775 $HOME/.config/tmux_state; echo; 
 ####
 _move "$HOME/.inputrc" $tmp/;  	_newcolor; 
 _move "$HOME/.tmux.conf $HOME/.tmux.conf.local" $tmp/; 	_newcolor; 
@@ -89,14 +107,15 @@ _move "$HOME/.tmux_bash.sh" $tmp/;  	_newcolor;
 _link "$start/config/tmux/tmux_bash.sh" $HOME/.tmux_bash.sh;  	_newcolor; 
 ####
 sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
-mkdir -p -m 775 $PREFIX/usr/share/figlet 2>/dev/null||\
-$sudo mkdir -p -m 775 $PREFIX/usr/share/figlet 2>/dev/null; 
+mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\
+$sudo mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null; 
 cp $HOME/start/config/figlet/fonts/* $PREFIX/usr/share/figlet/ 2>/dev/null||\
-$sudo cp $HOME/start/config/figlet/fonts/* $PREFIX/usr/share/figlet/ 2>/dev/null; 
-$sudo chmod 775 $PREFIX/usr/share/figlet -R 2>/dev/null; 
+$sudo cp $HOME/start/config/figlet/fonts/* $PREFIX/share/figlet/ 2>/dev/null; 
+$sudo chmod 775 $PREFIX/share/figlet -R 2>/dev/null; 
 ####
 hash sudo 2>/dev/null && sudo="sudo"; 
-sudo cp $start/start/config/ssss.sh $PREFIX/bin/ssss; 
+mkdir -m 775 -p $HOME/.local/bin 2>/dev/null; 
+$sudo cp $start/start/config/ssss.sh $HOME/.local/bin/
 }; 
 ####
 #### Authenticates github
