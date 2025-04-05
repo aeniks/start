@@ -114,7 +114,7 @@ inbash() {
 # $(sleep 12; . $start/crons/apt.sh)& disown; 
 # . $start/funcs/getcal.sh; 
 dots="${re}\n··········${re}\n"; 
-printf %b "\e[1;37m\e[2m\e[48m$(date -R) $dots"; 
+printf %b "\e[0;2m\e[48m$(date -R) $dots"; 
 printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null) $dots"; 
 printf %b "$(dfree) $dots"; 
 [ -e $HOME/logs/calendar.json ] && \
