@@ -25,7 +25,7 @@ fday() {
 dag="$(date +%#A" den"%e":de "%#B)"; daghw=$((${#dag}/2)); halfw=$((${sizew}/2)); printf "\e[2m\e[2J\e[${sizehh};$((${halfw}-${daghw}))H${dag}\e[0m"; ## print day
 } 
 while true; do figfont="$(shuf -n1 -e ${figlist[@]})"; figlength="$(figlet -f "$figfont" $(date +%T))"; [ "${#figlength}" -gt 8 ]&& break; done; fday; 
-while true; do date="$(date +%H:%M;)"; ftime; lang='c#'; 
+while true; do date="$(date +%H:%M;)"; ftime; lang='d'; 
 [ "$1" ] && figfont="$1" && key="s";
 [ "$2" ] && lang="$2";
 if [ "$lang" != 22 ]; then figlet -w "$sizew" -cf "$figfont" "$date"|batcat -Ppl "$lang"; ## time
