@@ -44,6 +44,8 @@
 
 image() {
 ww=$(($2-4))
+# timg "$1"; 
+mediainfo "$1"|tr -s "\t " " "
 chafa  -s ${ww}x$3 "$1" 2>/dev/null|| chafa  -s ${ww}x$3 "$6" 2>/dev/null|| jp2a $1 --width=${ww} --color-depth=8 --fill; 
 } 
 # exifprobe -c -L "$1"|batcat -pPfl go;
@@ -77,7 +79,7 @@ mime_preview() {
 	case "$mime_type","$ran_guard" in
 		(image/svg,0)
 		image "$1" "$2" "$3" "$4" "$5" "$1"
-		exiftool -S "$1"|tac|batcat -pfl d; 
+		mediainfo "$1"|tr -s "\t " " "|tac|batcat -pfl d; 
 		
 	;;
 	(image/svg+xml,0 | image/svg)
@@ -87,18 +89,16 @@ mime_preview() {
 		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/*,0)
-		image "$1" "$2" "$3" "$4" "$5" "$1"
-		exiftool -S "$1"|tac|batcat -pfl d; 
-		
+	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " "|tac|batcat -pfl d; 
 	;;
 	(image/svg,0)
-		image "$1" "$2" "$3" "$4" "$5" "$1"
+	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " ";
 	;;
 	(image/jpg,0)
-		image "$1" "$2" "$3" "$4" "$5" "$1"
+	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " ";
 	;;
 	(image/png,0)
-		image "$1" "$2" "$3" "$4" "$5" "$1"	
+	image "$1" "$2" "$3" "$4" "$5" "$1"	; mediainfo "$1"|tr -s "\t " " "; 
 	;;
 	(text/html,0)
 		batcat "$1" -Ppf --language HTML
@@ -109,14 +109,14 @@ mime_preview() {
 			man ./ "$1" | col -b
 		;;
 		(*)
-		batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"\
+		mediainfo "$1"|tr -s "\t " " "|bat -pflzig; batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"\
 		||exiftool -S|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
 		esac
 	;;
 	(text/*,0 | */xml,0 | application/javascript,0 | application/x-subrip,0 )
 		batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"
 	;;
-	( application/x-pie-executable,0 | application/x-executable,0 | \
+	(application/x-pie-executable,0 | application/x-executable,0 | \
 	application/x-sharedlib,0)
 		objdump -d "$1" -M intel
 		#readelf -WCa "$1"
@@ -134,8 +134,8 @@ zipinfo -t "$1"|batcat -pPfl c;
 	;;
 	(application/zip,0 | application/x-7z-compressed,0 )
 tar -
-	(audio/*,[01])
-		exiftool -S "$1"|batcat -ppfl d
+	(audio/*,0)
+	mediainfo "$1"|tr -s "\t " " "; exiftool -S "$1"|batcat -ppfl d
 	;;
 	(*.mod,0)
 batcat $f -fppl d
@@ -212,7 +212,7 @@ exiftool -S $1|tac|batcat -pfl d;
 			printf "OpenPGP \033[1;31mencrypted\033[m file,\ntry using gpg to decrypt it\n\n"
 		;;
 		(*) 
-	batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go\
+	mediainfo $1 |batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go\
 		||exiftool "$1"|batcat -p --wrap character --terminal-width "$(($2-4))" -l go
 		esac
 	;;
