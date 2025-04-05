@@ -162,7 +162,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 ####
 if [ ${#iploc} -gt 2 ] 2>/dev/null; then \
-ipp=' \e[0;2m[\e[91m${iploc[*]}\e[0;2m]\e[0m ';
+ipp=' \e[0;2m[\e[0;95m${iploc[*]}\e[0;2m]\e[0m ';
 else ipp=' \e[0;2m[\e[0;38m_\e[0;2m]\e[0m '; fi; 
 ####
 ####
