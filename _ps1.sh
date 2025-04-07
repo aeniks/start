@@ -18,9 +18,9 @@ printf -v "batcap" "$HOME/logs/bp.log"; fi;
 printf -v "bs" "\e[0;2m"; 
 cat $batstat 2>/dev/null|grep "Charging" --quiet && printf -v bs '\e[0;92m'; 
 printf -v "bc" "$(cat $batcap)"; 
-printf %b "$(cat $batcap)" > $HOME/logs/bpc.log; 
+printf %b "$bc" > $HOME/logs/bpc.log; 
 printf -v "bat" "\e[${bc}m$bc"; 
-printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re" > $HOME/logs/bp.log; 
+# printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re" > $HOME/logs/bp.log; 
 printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re"; 
 }; 
 
