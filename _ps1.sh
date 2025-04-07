@@ -1,13 +1,34 @@
 #!/bin/bash 
 ## ps1 prompt for bash 
-batt() { 
-[ -e $HOME/logs/bp.log ] 2>/dev/null &&
-printf %b "\e[9$(cat $HOME/logs/bp.log|cut -c1)m" &&
-cat $HOME/logs/bp.log 2>/dev/null && printf %b "\e[0m "; cat "/sys/class/power_supply/BAT1/capacity" 2>/dev/null;
+# batt() { 
+# printf -v bs "\e[0;2m";cat /sys/class/power_supply/BAT0/status|grep -e "Charging"&& printf -v "bs" "\e[0;92m";
+# printf -v bc "$(cat /sys/class/power_supply/BAT0/capacity)" \
+# > $HOME/logs/bp.log
+# # [ -e $HOME/logs/bp.log ] 2>/dev/null &&
+# printf -v bc "\e[9$(cat $HOME/logs/bp.log|cut -c1)m" &&
+# cat $HOME/logs/bp.log 2>/dev/null && printf %b "\e[0m "; cat "/sys/class/power_supply/BAT0/capacity" 2>/dev/null;
+# }; 
+
+_bat() { 
+if [ -e "/sys/class/power_supply/BAT0/status" ]; \
+then printf -v "batstat" "/sys/class/power_supply/BAT0/status"; \
+printf -v "batcap" "/sys/class/power_supply/BAT0/capacity"; 
+else printf -v "batstat" "$HOME/logs/bp.log"; 
+printf -v "batcap" "$HOME/logs/bp.log"; fi; 
+printf -v "bs" "\e[0;2m"; 
+cat $batstat 2>/dev/null|grep "Charging" --quiet && printf -v bs '\e[0;92m'; 
+printf -v "bc" "$(cat $batcap)"; 
+printf %b "$(cat $batcap)" > $HOME/logs/bpc.log; 
+printf -v "bat" "\e[${bc}m$bc"; 
+printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re" > $HOME/logs/bp.log; 
+printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re"; 
 }; 
 
 _ps1() { 
-PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re$ipp$re'\
+PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re'$(_bat) \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] \
-['$re$cyan'\u'$re']'$re$dim' $(batt||uptime|cut -f11 -d" "|tr -d ",") '$re'\
-['$re$yellow'\w'$re']\e[25h\e[0m\n'; }; 
+['$re$cyan'\u'$re']'$re' \
+['$re$pink'\h'$re']'$re' \
+['$re$cyan'\t'$re']'$re' \
+['$re$yellow'\w'$re']\e[?25h\e[0m\n'; }; 
+

@@ -13,9 +13,11 @@ fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
-[ -e "/bin/gcalcli" ]&& timeout 6 gcalcli remind \
---locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
--u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+[ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s" 2>/dev/null & disown; 
+
+# [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
+# --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
+# -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 ## COLORS -- VARIABLES ##########################
 export \
 red='\e[31m' green='\e[92m' yellow='\e[93m' blue='\e[94m' \
@@ -49,7 +51,7 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku \
 #dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; dahh="$(date +%H)"; damm="$(date +%M)";
 ####
 #alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|batcat -ppflgo --theme Nord|grep -v "Not"'; 
-fortshort() { seq 12 > $HOME/logs/ff.log; 
+fortshort() { sleep 4; seq 12 > $HOME/logs/ff.log; 
 while [ "$(cat $HOME/logs/ff.log|wc --lines)" -gt "2" ]; 
 do fortune > $HOME/logs/ff.log; done; }; 
 ##
@@ -61,7 +63,7 @@ fortshort & disown;
 ####
 #ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; 
 sshc=($SSH_CONNECTION); 
-ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
+ip4=$(timeout 1 curl https://icanhazip.com -s4 -L); 
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #$
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
