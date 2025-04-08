@@ -1,0 +1,2 @@
+
+alias cccc='crontab -e'
