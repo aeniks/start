@@ -126,7 +126,7 @@ printf %b "$yellow$MACHTYPE$re | $cyan$cpu $dots"
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re $dots"; 
 printf %b "\e[1;37;45m ${model[*]} $dots";  
-[ -e "${$HOME}/logs/mmww.log" ] && . ${HOME}/logs/mmww.log && \
+[ -e "$HOME/logs/mmww.log" ] && . $HOME/logs/mmww.log && \
 printf %b "$w >$yellow $meaning$re >$dim $def"|bat -ppflzsh --theme Dracula && printf %b "$dots"; 
 printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;) $dots";  
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM $dots"; 
