@@ -54,8 +54,8 @@ _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; };
 _link() { ln -s $@ 2>/dev/null; }; 
 _move() { mv -S "$EPOCHSECONDS" $@ &>/dev/null; }; 
 _backup() { 
-mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time="$(date +%y%m%d%H%m%S; )"; 
-mv -fbS "$time" $1 $tmp/ 2>/dev/null; 
+mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time=$(date +%y%m%d%H%m%S); 
+mv -fbS "$time" $@ $tmp/ 2>/dev/null; 
 }; 
 _yno() { 
 printf %b ""; 
@@ -103,9 +103,7 @@ _backup $start; _newcolor;
 _move $start $tmp; 
 git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader; 
 
-cd $start; 
-git config set remote.origin.url git@github.com:aeniks/start.git; 
-gh config set git_protocol ssh 2>/dev/null; 
+cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; gh config set git_protocol ssh 2>/dev/null; 
 fi; 
 # 
 # mv $start/.git/config $start/.git/config_old 2>/dev/null; printf %b '\
@@ -124,10 +122,12 @@ if [[ $_yno_in_conf == true ]]; then \
 # $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
 mkdir $HOME/.config 2>/dev/null; cd $HOME/.config; _newcolor; echo; 
 ####
+cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; gh config set git_protocol ssh 2>/dev/null; 
+
 conf=(newsboat bat rclone lf micro tmux htop); 
 for q in ${conf[*]}; do 
 mkdir -p $HOME/.config/$q 2>/dev/null; 
-_backup $HOME/.config/$q/* 2>/dev/null; _newcolor; 
+_backup $HOME/.config/$q/*; _newcolor; 
 ln -s $start/config/$q/* $HOME/.config/$q/; sleep .2; 
 printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
 done; echo; cd; 
@@ -137,14 +137,14 @@ cat $HOME/.bashrc|grep -e "anew.sh" &>/dev/null||\
 printf %b "\n. $start/anew.sh;"&>/dev/null >> $HOME/.bashrc 2>/dev/null; 
 touch $HOME/.config/tmux_state 2>/dev/null; chmod 775 $HOME/.config/tmux_state; echo; 
 ####
-_move "$HOME/.inputrc" $tmp/;  	_newcolor; 
-_move "$HOME/.tmux.conf $HOME/.tmux.conf.local" $tmp/; 	_newcolor; 
+_backup $HOME/.inputrc; ;  	_newcolor; 
+_backup $HOME/.tmux.conf $HOME/.tmux.conf.local; 	_newcolor; 
 _link $start/config/inputrc $HOME/.inputrc;  	_newcolor; 
-_move "$HOME/.tmux_bash.sh" $tmp/;  	_newcolor; 
-_link "$start/config/tmux/tmux_bash.sh" $HOME/.tmux_bash.sh;  
+_link $start/config/figlet/figz.sh $HOME/;  	_newcolor; 
+_backup $HOME/.tmux_bash.sh;  	_newcolor; 
+_link $start/config/tmux/tmux_bash.sh $HOME/.tmux_bash.sh;  
 _backup $HOME/.termux/termux.properties; 
-ln -s $start/config/termux.properties $HOME/.termux/; 
-	_newcolor; 
+ln -s $start/config/termux/termux.properties $HOME/.termux/ 2>/dev/null; _newcolor; 
 ####
 # sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
 mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\
@@ -154,7 +154,10 @@ $sudo cp $HOME/start/config/figlet/fonts/* $PREFIX/share/figlet/ 2>/dev/null;
 $sudo chmod 775 $PREFIX/share/figlet -R 2>/dev/null; 
 ####
 mkdir -m 775 -p $HOME/.local/bin 2>/dev/null; 
-$sudo cp $start/config/ssss.sh $HOME/.local/bin/ 2>/dev/null; 
+$sudo cp $start/config/ssss.sh $HOME/.local/bin/ssss 2>/dev/null; 
+export PATH=${PATH}:~/.local/bin; 
+cat $HOME/.bashrc|grep "~/.local/bin" || \
+echo 'export PATH=${PATH}:~/.local/bin; ' >> $HOME/.bashrc; 
 fi; 
 }; 
 ####
@@ -178,6 +181,8 @@ git config --global init.defaultBranch main;
 gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
 ssh -T git@github.com; 
 fi; 
+_link $PREFIX/var/spool/cron $HOME/ 2>/dev/null; 
+
 }; 
 ####
 #### Install apps?
@@ -187,7 +192,7 @@ if [[ $_yno_in_apps == true ]]; then \
 p2 " $c2 "; p1 "updating system ..."; echo; echo; _newcolor; 
 $sudo apt update;  _newcolor; $sudo apt upgrade -y; _newcolor; echo; 
 ####
-[ -e =! $HOME/logs/apa.log ]&& $sudo apt list > $HOME/logs/apa_1.log; 
+[ -e $HOME/logs/apa.log ] || $sudo apt list > $HOME/logs/apa_1.log; 
 tail -n+1 $HOME/logs/apa_1.log|cut -f1 -d"/" > $HOME/logs/apa.log; 
 ####
 apts_install=($(for i in ${apts_basic[*]}; do hash $i 2>/dev/null || \
@@ -211,7 +216,7 @@ for i in ${apts_basic[*]}; do $sudo apt show $i 2>/dev/null|grep -e "Installed-S
 cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i; 
 [ $(wc -l $HOME/logs/apts_basic/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
 done; rm $HOME/logs/apts_basic/_*; 
-printf %b "\n \e[96m--\e[0m DONE\n"; 
+printf %b "\n \e[96m--\e[0m DONE\n"
 }; 
 ####
 ####
