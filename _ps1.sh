@@ -16,7 +16,7 @@ printf -v "batcap" "/sys/class/power_supply/BAT0/capacity";
 else printf -v "batstat" "$HOME/logs/battery.log"; 
 printf -v "batcap" "$HOME/logs/bp.log"; fi; 
 printf -v "bs" "\e[0;2m"; 
-cat $batstat 2>/dev/null|grep -i "Charging" --quiet && \
+cat $batstat 2>/dev/null|grep -wi "Charging" --quiet && \
 printf -v "bs" "\e[0;92m"; 
 printf -v "bc" "$(cat $batcap)"; 
 printf %b "$bc" > $HOME/logs/bpc.log; 
