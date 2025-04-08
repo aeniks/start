@@ -13,7 +13,7 @@ do i=$(( (i+1) %4 ));
 printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] "; 
 read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
 # tail -c21 $tmp/in.log; printf %b "\e[u"; 
-done; 
+done; printf %b "\n"; 
 }; 
 
 # $sudo apt install -y bat iproute2 nmap lf git \
@@ -36,8 +36,9 @@ wget wget2 curl aria2 gh git rclone rsync iw timg\
 _apt_installer() { 
 printf %b "\e7"; 
 for ap in ${apts_basic[*]}; do 
-$sudo apt install -y $ap &>/dev/null & disown; _loader; 
-printf %b "\e[K installed $ap\e8"; 
+$sudo apt install -y $ap &>/dev/null; 
+# _loader; 
+printf %b "\e[2K\b\b\b\b installed $ap\e8"; 
 done; 
 # printf %b "\ndone\n";  
 printf %b "\e[A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
@@ -63,14 +64,15 @@ mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time="$(date +%y%m%d%H%m%S; )"
 mv -fbS "$time" $1 $tmp/ 2>/dev/null; 
 }; 
 _yno() { 
+printf %b ""; 
 _ok() { 
-printf %b "\e[40G    \e[8D  "; 
+printf %b "\e[40G     \e[8D  "; 
 p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; }; 
 p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
 p2() { printf %b "$@"; }; 
 yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' 
-[[ "$1" ]]&& ny=${1}; printf %b "\e[40G\b\b\b\b\b\b\b\b\b$yno "; 
-printf -v _yno_${1} "false"; read -sn1 ny; 
+[[ "$1" ]]&& ny=${1}; printf %b "\e[40G\b\b\b\b\b\b\b\b$yno "; 
+printf -v _yno_${1} "false"; read -rsn1 ny; 
 [[ -z $ny || $ny = y ]] && printf -v _yno_${1} "true"; _ok; 
 # printf %b "\n_yno_$1 = $_yno_${1} \n"; 
 }; 
@@ -206,11 +208,9 @@ printf %b "\n \e[96m--\e[0m DONE\n";
 }; 
 ####
 ####
-p2 " $c2 "; p1 "Install? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
-_apt_installer; 
-fi; 
-
 _update; 
+p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
+_apt_installer; fi; 
 _download; 
 _install_conf; 
 _login_gh; 
