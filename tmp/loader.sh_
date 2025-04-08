@@ -1,0 +1,14 @@
+#!${PREFIX}/bin/env bash
+_loader() {
+unset kill; 
+printf %b "\e[A\e[?25l\e[46G${re}"; 
+# printf "    [   [${dim}a${re}] to abort";
+pid="$!"; spin='-\|/'; i=0; while kill -0 $pid 2>/dev/null; 
+do i=$(( (i+1) %4 )); 
+printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] "; 
+read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
+# tail -c21 $tmp/in.log; printf %b "\e[u";
+done; 
+printf "${re} \e[46G [${dim}done \b${re}] "; 
+printf %b "\n"; 
+}; 

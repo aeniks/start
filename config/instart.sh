@@ -3,17 +3,21 @@
 instart() { 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null || alias sudo=' '; 
 mkdir $HOME/tmp 2>/dev/null; mkdir $HOME/logs 2>/dev/null; 
-mkdir $HOME/gh 2>/dev/null; tmp=$HOME/tmp; 
+mkdir $HOME/gh 2>/dev/null; mkdir $HOME/.config 2>/dev/null; 
+tmp=$HOME/tmp; 
 
 _loader() { 
-unset kill; printf %b "\e[A\e[?25l\e[46G${re}"; 
+unset kill; 
+printf %b "\e[A\e[?25l\e[46G${re}"; 
 # printf "    [   [${dim}a${re}] to abort"; 
-pid="$!"; spin='-\|/'; i=0; while kill -0 $pid &>/dev/null; 
+pid="$!"; spin='-\|/'; i=0; while kill -0 $pid 2>/dev/null; 
 do i=$(( (i+1) %4 )); 
 printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] "; 
 read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
 # tail -c21 $tmp/in.log; printf %b "\e[u"; 
-done; printf %b "\n"; 
+done; 
+printf "${re} \e[46G [${dim}done \b${re}] "; 
+printf %b "\n"; 
 }; 
 
 # $sudo apt install -y bat iproute2 nmap lf git \
@@ -33,16 +37,6 @@ wget wget2 curl aria2 gh git rclone rsync iw timg\
 ); 
 
 
-_apt_installer() { 
-printf %b "\e7"; 
-for ap in ${apts_basic[*]}; do 
-$sudo apt install -y $ap &>/dev/null; 
-# _loader; 
-printf %b "\e[2K\b\b\b\b installed $ap\e8"; 
-done; 
-# printf %b "\ndone\n";  
-printf %b "\e[A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
-}; 
 local IFS=$'\n\t ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
 height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
@@ -91,16 +85,23 @@ $sudo apt upgrade -y &>/dev/null &&
 hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; fi; 
 }; 
 #### Download config files? 
+_apt_installer() { 
+p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
+printf %b "\e7"; for ap in ${apts_basic[*]}; do 
+$sudo apt install -y $ap --assume-yes &>/dev/null && \
+printf %b "\e[2K\b\b\b\b installed $ap\e8"; done; 
+printf %b "\e[A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
+fi; 
+}; 
 _download() {
 p2 " $c2 "; p1 "Download config files? "; _yno download; 
 #### where tp?
 if [[ $_yno_download == true ]]; then \
-p2 " $c2 "; p1 "Where to? "; 
-read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
-printf %b "\e[60G      \e[8D  "; _yno; 
+p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; start="${start/\/\///}"; export start; 
 _move $start $tmp; _backup $start; _newcolor; 
-git clone https://github.com/aeniks/start.git $start 2>/dev/null && \
+git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader \
+
 cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; 
 fi; 
 # 
@@ -139,7 +140,7 @@ _link $start/config/inputrc $HOME/.inputrc;  	_newcolor;
 _move "$HOME/.tmux_bash.sh" $tmp/;  	_newcolor; 
 _link "$start/config/tmux/tmux_bash.sh" $HOME/.tmux_bash.sh;  	_newcolor; 
 ####
-sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
+# sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
 mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\
 $sudo mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null; 
 cp $HOME/start/config/figlet/fonts/* $PREFIX/usr/share/figlet/ 2>/dev/null||\
@@ -147,7 +148,7 @@ $sudo cp $HOME/start/config/figlet/fonts/* $PREFIX/share/figlet/ 2>/dev/null;
 $sudo chmod 775 $PREFIX/share/figlet -R 2>/dev/null; 
 ####
 mkdir -m 775 -p $HOME/.local/bin 2>/dev/null; 
-$sudo cp $start/start/config/ssss.sh $HOME/.local/bin/
+$sudo cp $start/config/ssss.sh $HOME/.local/bin/ 2>/dev/null; 
 fi; 
 }; 
 ####
@@ -209,8 +210,7 @@ printf %b "\n \e[96m--\e[0m DONE\n";
 ####
 ####
 _update; 
-p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
-_apt_installer; fi; 
+_apt_installer; 
 _download; 
 _install_conf; 
 _login_gh; 
