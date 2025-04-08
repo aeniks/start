@@ -1,0 +1,9 @@
+Package: termimage
+Version: 1.2.1
+Maintainer: @termux
+Installed-Size: 2462 kB
+Homepage: https://github.com/nabijaczleweli/termimage
+Download-Size: 744 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Terminal image viewer
+

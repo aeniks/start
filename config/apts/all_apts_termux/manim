@@ -1,0 +1,11 @@
+Package: manim
+Version: 0.19.0-1
+Maintainer: Nguyen Khanh @nguynkhn
+Installed-Size: 6406 kB
+Depends: ffmpeg, libcairo, pango, xorgproto, python-numpy, python-pillow, pycairo, python-scipy, python-skia-pathops
+Recommends: texlive-installer
+Homepage: https://manim.community
+Download-Size: 974 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A community-maintained Python framework for creating mathematical animations
+

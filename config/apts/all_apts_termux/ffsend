@@ -1,0 +1,10 @@
+Package: ffsend
+Version: 0.2.77
+Maintainer: @termux
+Installed-Size: 7533 kB
+Depends: openssl
+Homepage: https://gitlab.com/timvisee/ffsend
+Download-Size: 1988 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A fully featured Firefox Send client
+

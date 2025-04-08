@@ -1,0 +1,12 @@
+Package: make
+Version: 4.4.1
+Maintainer: @termux
+Installed-Size: 958 kB
+Conflicts: make-guile
+Breaks: make-dev
+Replaces: make-dev
+Homepage: https://www.gnu.org/software/make/
+Download-Size: 239 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tool to control the generation of non-source files from source files
+

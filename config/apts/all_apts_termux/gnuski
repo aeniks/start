@@ -1,0 +1,10 @@
+Package: gnuski
+Version: 0.3-6
+Maintainer: Henrik Grimler @Grimler91
+Installed-Size: 53.2 kB
+Depends: ncurses
+Homepage: https://sourceforge.net/projects/gnuski
+Download-Size: 4040 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Open source clone of Skifree, the old Windows game
+

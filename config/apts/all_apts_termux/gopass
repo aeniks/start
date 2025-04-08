@@ -1,0 +1,11 @@
+Package: gopass
+Version: 1.15.15
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 24.4 MB
+Depends: git, gnupg
+Suggests: termux-api, openssh
+Homepage: https://github.com/gopasspw/gopass
+Download-Size: 7299 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The slightly more awesome standard unix password manager for teams
+

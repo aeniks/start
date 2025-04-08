@@ -1,0 +1,9 @@
+Package: tur-repo
+Version: 1.0.1
+Maintainer: @termux-user-repository
+Installed-Size: 61.4 kB
+Homepage: https://github.com/termux-user-repository/tur
+Download-Size: 2884 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A single and trusted place for all unofficial/less popular termux packages
+

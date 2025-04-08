@@ -1,0 +1,10 @@
+Package: mailsync
+Version: 5.2.7-1
+Maintainer: @termux
+Installed-Size: 262 kB
+Depends: libc++, libc-client
+Homepage: http://mailsync.sourceforge.net/
+Download-Size: 64.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A way of synchronizing a collection of mailboxes
+

@@ -1,0 +1,10 @@
+Package: progress
+Version: 0.17
+Maintainer: @termux
+Installed-Size: 90.1 kB
+Depends: libandroid-wordexp, ncurses
+Homepage: https://github.com/Xfennec/progress
+Download-Size: 11.1 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Linux tool to show progress for cp, mv, dd and more
+

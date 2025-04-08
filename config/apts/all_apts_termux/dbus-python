@@ -1,0 +1,10 @@
+Package: dbus-python
+Version: 1.4.0
+Maintainer: @termux
+Installed-Size: 664 kB
+Depends: dbus, glib, python
+Homepage: https://dbus.freedesktop.org/doc/dbus-python/
+Download-Size: 103 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Python bindings for D-Bus
+

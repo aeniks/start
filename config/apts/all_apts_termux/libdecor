@@ -1,0 +1,10 @@
+Package: libdecor
+Version: 0.2.2
+Maintainer: @termux
+Installed-Size: 229 kB
+Depends: dbus, glib, gtk3, libcairo, libwayland, libxkbcommon, pango
+Homepage: https://gitlab.freedesktop.org/libdecor/libdecor
+Download-Size: 33.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Client-side decorations library for Wayland clients
+

@@ -1,0 +1,10 @@
+Package: micro
+Version: 2.0.14-1
+Maintainer: @termux
+Installed-Size: 13.2 MB
+Homepage: https://micro-editor.github.io/
+Download-Size: 3444 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Modern and intuitive terminal-based text editor
+

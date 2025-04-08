@@ -1,0 +1,10 @@
+Package: crypto-monitor
+Version: 2021.02.22-3
+Maintainer: @termux
+Installed-Size: 176 kB
+Depends: libc++, libcurl, ncurses-ui-libs, openssl
+Homepage: https://github.com/edghyhdz/crypto_monitor
+Download-Size: 46.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Real-time crypto currency monitor
+

@@ -1,0 +1,10 @@
+Package: libxau
+Version: 1.0.12
+Maintainer: @termux
+Installed-Size: 131 kB
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 9120 B
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: X11 authorisation library
+

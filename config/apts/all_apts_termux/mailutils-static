@@ -1,0 +1,10 @@
+Package: mailutils-static
+Version: 3.19
+Maintainer: @termux
+Installed-Size: 10.1 MB
+Depends: mailutils (= 3.19)
+Homepage: https://mailutils.org/
+Download-Size: 1642 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for mailutils
+

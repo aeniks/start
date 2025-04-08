@@ -1,0 +1,10 @@
+Package: libarchive-static
+Version: 3.7.9
+Maintainer: @termux
+Installed-Size: 2048 kB
+Depends: libarchive (= 3.7.9)
+Homepage: https://www.libarchive.org/
+Download-Size: 363 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libarchive
+

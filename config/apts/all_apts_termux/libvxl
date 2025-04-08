@@ -1,0 +1,10 @@
+Package: libvxl
+Version: 3.5.0-2
+Maintainer: @termux
+Installed-Size: 30.0 MB
+Depends: dcmtk, libc++, libgeotiff, libjpeg-turbo, libpng, libtiff, zlib
+Homepage: https://vxl.github.io
+Download-Size: 4615 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A multi-platform collection of C++ software libraries for Computer Vision and Image Understanding
+

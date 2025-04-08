@@ -1,0 +1,10 @@
+Package: openh264
+Version: 2.6.0
+Maintainer: @termux
+Installed-Size: 1024 kB
+Depends: libc++
+Homepage: https://www.openh264.org/
+Download-Size: 310 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Codec library supporting H.264 encoding and decoding
+

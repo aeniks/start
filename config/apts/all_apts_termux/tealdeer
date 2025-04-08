@@ -1,0 +1,9 @@
+Package: tealdeer
+Version: 1.7.2
+Maintainer: @termux
+Installed-Size: 3330 kB
+Homepage: https://dbrgn.github.io/tealdeer/
+Download-Size: 1253 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A very fast implementation of tldr in Rust
+

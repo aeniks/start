@@ -1,0 +1,12 @@
+Package: qemu-common
+Version: 1:8.2.6-5
+Maintainer: @termux
+Installed-Size: 252 MB
+Depends: glib, libbz2, libcap-ng, libcurl, libgmp, libgnutls, libnettle, libnfs, libpixman, libssh, zlib, zstd
+Breaks: qemu-system-x86-64 (<< 1:8.0.0), qemu-system-x86-64-headless (<< 1:8.0.0)
+Replaces: qemu-system-x86-64 (<< 1:8.0.0), qemu-system-x86-64-headless (<< 1:8.0.0)
+Homepage: https://www.qemu.org
+Download-Size: 18.5 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A set common files used by the QEMU emulators
+

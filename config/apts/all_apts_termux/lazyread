@@ -1,0 +1,10 @@
+Package: lazyread
+Version: 2.0-1
+Maintainer: @termux
+Installed-Size: 69.6 kB
+Depends: coreutils, lesspipe, ncurses
+Homepage: http://lazyread.sourceforge.net/
+Download-Size: 9272 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An auto-scroller, pager, and e-book reader all in one
+

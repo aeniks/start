@@ -1,0 +1,10 @@
+Package: xxhash
+Version: 0.8.3
+Maintainer: @termux
+Installed-Size: 418 kB
+Homepage: https://cyan4973.github.io/xxHash/
+Download-Size: 76.6 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Extremely fast non-cryptographic hash algorithm
+

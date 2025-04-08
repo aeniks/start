@@ -1,0 +1,11 @@
+Package: cabal-install
+Version: 3.8.1.0
+Maintainer: Aditya Alok <alok@termux.dev>
+Installed-Size: 60.3 MB
+Depends: libffi
+Suggests: ghc
+Homepage: https://www.haskell.org/cabal/
+Download-Size: 7019 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The command-line interface for Haskell-Cabal and Hackage
+

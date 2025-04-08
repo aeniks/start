@@ -1,0 +1,11 @@
+Package: libzimg
+Version: 3.0.5
+Maintainer: @termux
+Installed-Size: 578 kB
+Depends: libc++
+Homepage: https://github.com/sekrit-twc/zimg
+Download-Size: 135 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Scaling, colorspace conversion, and dithering library
+

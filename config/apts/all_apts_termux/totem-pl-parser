@@ -1,0 +1,10 @@
+Package: totem-pl-parser
+Version: 3.26.6
+Maintainer: @termux
+Installed-Size: 393 kB
+Depends: glib, libarchive, libgcrypt, libxml2
+Homepage: https://gitlab.gnome.org/GNOME/totem-pl-parser
+Download-Size: 62.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Simple GObject-based library to parse and save a host of playlist formats
+

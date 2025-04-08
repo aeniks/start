@@ -1,0 +1,10 @@
+Package: botan3
+Version: 3.7.1-2
+Maintainer: @termux
+Installed-Size: 10.5 MB
+Depends: libbz2, libc++, liblzma, libsqlite, zlib
+Homepage: https://botan.randombit.net/
+Download-Size: 2170 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Crypto and TLS for Modern C++
+

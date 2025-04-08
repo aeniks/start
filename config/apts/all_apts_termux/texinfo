@@ -1,0 +1,12 @@
+Package: texinfo
+Version: 7.2-1
+Maintainer: @termux
+Installed-Size: 10.4 MB
+Depends: gawk, libiconv, ncurses, perl
+Recommends: update-info-dir
+Homepage: https://www.gnu.org/software/texinfo/
+Download-Size: 1082 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Documentation system for on-line information and printed output
+

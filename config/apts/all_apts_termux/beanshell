@@ -1,0 +1,10 @@
+Package: beanshell
+Version: 2.1.1-1
+Maintainer: @termux
+Installed-Size: 233 kB
+Depends: dash, termux-tools
+Homepage: https://github.com/beanshell/beanshell
+Download-Size: 185 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Small, free, embeddable, source level Java interpreter with object based scripting language features written in Java
+

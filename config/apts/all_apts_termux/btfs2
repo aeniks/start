@@ -1,0 +1,12 @@
+Package: btfs2
+Version: 3.3.0
+Maintainer: @termux
+Installed-Size: 105 MB
+Depends: libc++
+Conflicts: btfs
+Replaces: btfs
+Homepage: https://www.bittorrent.com/btfs/
+Download-Size: 26.5 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Decentralized file system integrating with TRON network and Bittorrent network
+

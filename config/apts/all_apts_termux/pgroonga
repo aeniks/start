@@ -1,0 +1,10 @@
+Package: pgroonga
+Version: 4.0.1
+Maintainer: @termux
+Installed-Size: 2470 kB
+Depends: groonga, libmsgpack, xxhash
+Homepage: https://github.com/pgroonga/pgroonga
+Download-Size: 149 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A PostgreSQL extension to use Groonga as index
+

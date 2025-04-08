@@ -1,0 +1,9 @@
+Package: shiori
+Version: 1.7.4
+Maintainer: Krishna Kanhaiya @kcubeterm
+Installed-Size: 41.3 MB
+Homepage: https://github.com/go-shiori/shiori
+Download-Size: 13.6 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Simple bookmark manager built with Go
+

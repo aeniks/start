@@ -1,0 +1,9 @@
+Package: 6tunnel
+Version: 0.13
+Maintainer: @termux
+Installed-Size: 73.7 kB
+Homepage: https://github.com/wojtekka/6tunnel
+Download-Size: 9408 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Allows you to use services provided by IPv6 hosts with IPv4-only applications and vice-versa
+

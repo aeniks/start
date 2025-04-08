@@ -1,0 +1,11 @@
+Package: perl
+Version: 5.38.2-3
+Maintainer: @termux
+Installed-Size: 69.4 MB
+Depends: libandroid-utimes
+Homepage: https://www.perl.org/
+Download-Size: 14.2 MB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Capable, feature-rich programming language
+

@@ -1,0 +1,10 @@
+Package: aview
+Version: 1.3.0rc1-5
+Maintainer: @termux
+Installed-Size: 98.3 kB
+Depends: aalib (>> 1.4rc5-8)
+Homepage: http://aa-project.sourceforge.net/aview/
+Download-Size: 14.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: High quality ascii-art image browser and animation player
+

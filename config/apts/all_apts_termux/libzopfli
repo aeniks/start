@@ -1,0 +1,12 @@
+Package: libzopfli
+Version: 1.0.3-3
+Maintainer: @termux
+Installed-Size: 356 kB
+Depends: libc++
+Breaks: libzopfli-dev
+Replaces: libzopfli-dev
+Homepage: https://github.com/google/zopfli
+Download-Size: 111 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: New zlib compatible compressor library
+

@@ -1,0 +1,12 @@
+Package: libiconv
+Version: 1.18
+Maintainer: @termux
+Installed-Size: 1245 kB
+Breaks: libandroid-support (<= 24), libiconv-dev, libandroid-support-dev
+Replaces: libandroid-support (<= 24), libiconv-dev, libandroid-support-dev
+Homepage: https://www.gnu.org/software/libiconv/
+Download-Size: 562 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An implementation of iconv()
+

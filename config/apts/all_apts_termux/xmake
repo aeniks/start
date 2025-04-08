@@ -1,0 +1,10 @@
+Package: xmake
+Version: 2.9.9
+Maintainer: Ruki Wang @waruqi
+Installed-Size: 15.0 MB
+Depends: ncurses
+Homepage: https://xmake.io/
+Download-Size: 958 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A cross-platform build utility based on Lua
+

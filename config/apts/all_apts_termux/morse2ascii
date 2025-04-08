@@ -1,0 +1,9 @@
+Package: morse2ascii
+Version: 0.2.1
+Maintainer: @termux
+Installed-Size: 180 kB
+Homepage: https://packages.debian.org/sid/morse2ascii
+Download-Size: 30.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A tool to decode the morse codes from a PCM WAV file as well as from text and RAW PCM files
+

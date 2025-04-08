@@ -1,0 +1,12 @@
+Package: libsoxr
+Version: 0.1.3-7
+Maintainer: @termux
+Installed-Size: 1110 kB
+Breaks: libsoxr-dev
+Replaces: libsoxr-dev
+Homepage: https://sourceforge.net/projects/soxr/
+Download-Size: 283 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: High quality, one-dimensional sample-rate conversion library
+

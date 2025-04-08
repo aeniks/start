@@ -1,0 +1,13 @@
+Package: freetype
+Version: 2.13.3
+Maintainer: @termux
+Installed-Size: 1737 kB
+Depends: brotli, libbz2, libpng, zlib
+Breaks: freetype-dev
+Replaces: freetype-dev
+Homepage: https://www.freetype.org
+Download-Size: 410 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Software font engine capable of producing high-quality output
+

@@ -1,0 +1,9 @@
+Package: gdu
+Version: 5.30.1
+Maintainer: @termux
+Installed-Size: 15.5 MB
+Homepage: https://github.com/dundee/gdu
+Download-Size: 3835 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Fast disk usage analyzer with console interface written in Go
+

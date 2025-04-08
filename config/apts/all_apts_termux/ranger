@@ -1,0 +1,10 @@
+Package: ranger
+Version: 1.9.4
+Maintainer: @termux
+Installed-Size: 2703 kB
+Depends: python, file
+Homepage: https://ranger.github.io/
+Download-Size: 450 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: File manager with VI key bindings
+

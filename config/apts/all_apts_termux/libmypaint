@@ -1,0 +1,10 @@
+Package: libmypaint
+Version: 1.6.1-1
+Maintainer: @termux
+Installed-Size: 426 kB
+Depends: glib, json-c
+Homepage: https://github.com/mypaint/libmypaint
+Download-Size: 59.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: MyPaint brush engine library
+

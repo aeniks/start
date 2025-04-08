@@ -1,0 +1,11 @@
+Package: unicorn
+Version: 2.1.3
+Maintainer: @termux
+Installed-Size: 19.7 MB
+Breaks: unicorn-dev
+Replaces: unicorn-dev
+Homepage: https://www.unicorn-engine.org/
+Download-Size: 2524 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Unicorn is a lightweight multi-platform, multi-architecture CPU emulator framework
+

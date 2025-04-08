@@ -1,0 +1,11 @@
+Package: libwren
+Version: 0.4.0-2
+Maintainer: @termux
+Installed-Size: 512 kB
+Breaks: wren-dev, wren (<< 0.3.0)
+Replaces: wren-dev, wren (<< 0.3.0)
+Homepage: https://wren.io/
+Download-Size: 78.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Small, fast, class-based concurrent scripting language libraries
+

@@ -1,0 +1,10 @@
+Package: fftw-static
+Version: 3.3.10-3
+Maintainer: @termux
+Installed-Size: 6836 kB
+Depends: fftw (= 3.3.10-3)
+Homepage: http://www.fftw.org/
+Download-Size: 936 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for fftw
+

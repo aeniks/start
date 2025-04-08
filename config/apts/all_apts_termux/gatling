@@ -1,0 +1,10 @@
+Package: gatling
+Version: 0.16-1
+Maintainer: @termux
+Installed-Size: 422 kB
+Depends: libcrypt, libiconv, openssl, zlib
+Homepage: https://www.fefe.de/gatling/
+Download-Size: 106 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A high performance http, ftp and smb server
+

@@ -1,0 +1,10 @@
+Package: libtvision
+Version: 2023.01.29
+Maintainer: @termux
+Installed-Size: 1532 kB
+Depends: libc++, ncurses
+Homepage: https://github.com/magiblot/tvision
+Download-Size: 286 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A modern port of Turbo Vision 2.0 with Unicode support
+

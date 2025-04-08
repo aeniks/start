@@ -1,0 +1,10 @@
+Package: libzim
+Version: 9.2.3-2
+Maintainer: @termux
+Installed-Size: 999 kB
+Depends: libc++, libicu, liblzma, libxapian, zstd
+Homepage: https://openzim.org
+Download-Size: 231 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The ZIM library is the reference implementation for the ZIM file format.
+

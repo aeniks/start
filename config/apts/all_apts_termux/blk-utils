@@ -1,0 +1,12 @@
+Package: blk-utils
+Version: 2.40.2-3
+Maintainer: @termux
+Installed-Size: 913 kB
+Depends: libblkid, libmount, libsmartcols, libuuid
+Breaks: util-linux (<< 2.38.1-1)
+Replaces: util-linux (<< 2.38.1-1)
+Homepage: https://en.wikipedia.org/wiki/Util-linux
+Download-Size: 176 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Utilities for handling block device attributes
+

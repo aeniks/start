@@ -1,0 +1,10 @@
+Package: libbcprov-java
+Version: 1.80
+Maintainer: @termux
+Installed-Size: 6132 kB
+Depends: openjdk-17
+Homepage: https://www.bouncycastle.org/java.html
+Download-Size: 5169 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A lightweight cryptography API for Java
+

@@ -1,0 +1,10 @@
+Package: mercury
+Version: 22.01.8
+Maintainer: @termux
+Installed-Size: 130 MB
+Depends: libandroid-sysv-semaphore-static
+Homepage: https://www.mercurylang.org/
+Download-Size: 9994 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A logic/functional programming language
+

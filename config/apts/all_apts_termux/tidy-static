@@ -1,0 +1,10 @@
+Package: tidy-static
+Version: 5.9.14-next-0
+Maintainer: @termux
+Installed-Size: 1372 kB
+Depends: tidy (= 5.9.14-next-0)
+Homepage: http://www.html-tidy.org/
+Download-Size: 214 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for tidy
+

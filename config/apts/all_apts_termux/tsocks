@@ -1,0 +1,9 @@
+Package: tsocks
+Version: 1.8beta5-4
+Maintainer: Oliver Schmidhauser @Neo-Oli
+Installed-Size: 119 kB
+Homepage: http://tsocks.sf.net
+Download-Size: 19.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: transparent network access through a SOCKS 4 or 5 proxy
+

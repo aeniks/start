@@ -1,0 +1,9 @@
+Package: sun
+Version: 1.0.0-3
+Maintainer: @termux
+Installed-Size: 2265 kB
+Homepage: https://stand-up-notes.org
+Download-Size: 650 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A very simple note taking cli app
+

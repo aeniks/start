@@ -1,0 +1,10 @@
+Package: cryptopp-static
+Version: 8.9.0
+Maintainer: @termux
+Installed-Size: 52.2 MB
+Depends: cryptopp (= 8.9.0)
+Homepage: https://www.cryptopp.com/
+Download-Size: 5731 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for cryptopp
+

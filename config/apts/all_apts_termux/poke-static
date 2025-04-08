@@ -1,0 +1,10 @@
+Package: poke-static
+Version: 4.3
+Maintainer: @termux
+Installed-Size: 1720 kB
+Depends: poke (= 4.3)
+Homepage: http://www.jemarch.net/poke.html
+Download-Size: 317 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for poke
+

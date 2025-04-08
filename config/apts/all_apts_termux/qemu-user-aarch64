@@ -1,0 +1,10 @@
+Package: qemu-user-aarch64
+Version: 1:8.2.6-5
+Maintainer: @termux
+Installed-Size: 3805 kB
+Depends: glib, libandroid-shmem, libgnutls, libpixman
+Homepage: https://www.qemu.org
+Download-Size: 839 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: QEMU Linux user mode emulator
+

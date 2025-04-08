@@ -1,0 +1,10 @@
+Package: libgmp-static
+Version: 6.3.0-1
+Maintainer: @termux
+Installed-Size: 1315 kB
+Depends: libgmp (= 6.3.0-1)
+Homepage: https://gmplib.org/
+Download-Size: 227 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libgmp
+

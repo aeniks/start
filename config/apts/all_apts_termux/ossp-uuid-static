@@ -1,0 +1,10 @@
+Package: ossp-uuid-static
+Version: 1.6.2-3
+Maintainer: @termux
+Installed-Size: 98.3 kB
+Depends: ossp-uuid (= 1.6.2-3)
+Homepage: http://www.ossp.org/pkg/lib/uuid/
+Download-Size: 18.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for ossp-uuid
+

@@ -1,0 +1,11 @@
+Package: libsasl
+Version: 2.1.28-1
+Maintainer: @termux
+Installed-Size: 578 kB
+Breaks: libsasl-dev
+Replaces: libsasl-dev
+Homepage: https://www.cyrusimap.org/sasl/
+Download-Size: 85.4 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Cyrus SASL - authentication abstraction library
+

@@ -1,0 +1,10 @@
+Package: python-msgpack
+Version: 1.1.0-1
+Maintainer: @termux
+Installed-Size: 344 kB
+Depends: libc++, python
+Homepage: https://github.com/msgpack/msgpack-python
+Download-Size: 69.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: MessagePack serializer implementation for Python
+

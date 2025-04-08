@@ -1,0 +1,12 @@
+Package: libnftnl
+Version: 1.2.8
+Maintainer: @termux
+Installed-Size: 324 kB
+Depends: libmnl
+Breaks: libnftnl-dev
+Replaces: libnftnl-dev
+Homepage: https://www.netfilter.org/projects/libnftnl/
+Download-Size: 55.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Netfilter library providing interface to the nf_tables subsystem
+

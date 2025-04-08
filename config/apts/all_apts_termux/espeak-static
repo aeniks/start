@@ -1,0 +1,10 @@
+Package: espeak-static
+Version: 1.52.0
+Maintainer: @termux
+Installed-Size: 930 kB
+Depends: espeak (= 1.52.0)
+Homepage: https://github.com/espeak-ng/espeak-ng
+Download-Size: 206 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for espeak
+

@@ -1,0 +1,9 @@
+Package: salty-chat
+Version: 0.0.22-4
+Maintainer: @termux
+Installed-Size: 38.4 MB
+Homepage: https://salty.im/
+Download-Size: 9156 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A secure, easy, self-hosted messaging
+

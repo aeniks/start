@@ -1,0 +1,10 @@
+Package: nethack
+Version: 3.6.7
+Maintainer: @termux
+Installed-Size: 4239 kB
+Depends: gzip, ncurses
+Homepage: http://www.nethack.org/
+Download-Size: 1362 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Dungeon crawl game
+

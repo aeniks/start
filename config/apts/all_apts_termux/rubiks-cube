@@ -1,0 +1,10 @@
+Package: rubiks-cube
+Version: 1.2
+Maintainer: @termux
+Installed-Size: 90.1 kB
+Depends: ncurses
+Homepage: https://github.com/been-jamming/rubiks_cube
+Download-Size: 18.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A rubik's cube that runs in your terminal
+

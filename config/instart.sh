@@ -99,10 +99,13 @@ p2 " $c2 "; p1 "Download config files? "; _yno download;
 if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; start="${start/\/\///}"; export start; 
-_move $start $tmp; _backup $start; _newcolor; 
-git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader \
+_backup $start; _newcolor; 
+_move $start $tmp; 
+git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader; 
 
-cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; 
+cd $start; 
+git config set remote.origin.url git@github.com:aeniks/start.git; 
+gh config set git_protocol ssh 2>/dev/null; 
 fi; 
 # 
 # mv $start/.git/config $start/.git/config_old 2>/dev/null; printf %b '\
@@ -121,11 +124,11 @@ if [[ $_yno_in_conf == true ]]; then \
 # $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
 mkdir $HOME/.config 2>/dev/null; cd $HOME/.config; _newcolor; echo; 
 ####
-conf=(rclone lf micro tmux htop gh); 
+conf=(newsboat bat rclone lf micro tmux htop); 
 for q in ${conf[*]}; do 
 mkdir -p $HOME/.config/$q 2>/dev/null; 
 _backup $HOME/.config/$q/* 2>/dev/null; _newcolor; 
-_link $start/config/$q/* $HOME/.config/; sleep .2; 
+ln -s $start/config/$q/* $HOME/.config/$q/; sleep .2; 
 printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
 done; echo; cd; 
 #### 
@@ -138,7 +141,10 @@ _move "$HOME/.inputrc" $tmp/;  	_newcolor;
 _move "$HOME/.tmux.conf $HOME/.tmux.conf.local" $tmp/; 	_newcolor; 
 _link $start/config/inputrc $HOME/.inputrc;  	_newcolor; 
 _move "$HOME/.tmux_bash.sh" $tmp/;  	_newcolor; 
-_link "$start/config/tmux/tmux_bash.sh" $HOME/.tmux_bash.sh;  	_newcolor; 
+_link "$start/config/tmux/tmux_bash.sh" $HOME/.tmux_bash.sh;  
+_backup $HOME/.termux/termux.properties; 
+ln -s $start/config/termux.properties $HOME/.termux/; 
+	_newcolor; 
 ####
 # sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
 mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\

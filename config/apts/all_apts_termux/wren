@@ -1,0 +1,10 @@
+Package: wren
+Version: 0.4.0-1
+Maintainer: @termux
+Installed-Size: 279 kB
+Depends: libuv
+Homepage: https://wren.io/
+Download-Size: 61.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Small, fast, class-based concurrent scripting language interpreter
+

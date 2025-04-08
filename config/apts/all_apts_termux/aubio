@@ -1,0 +1,10 @@
+Package: aubio
+Version: 0.4.9-4
+Maintainer: @termux
+Installed-Size: 696 kB
+Depends: ffmpeg, libsamplerate, libsndfile
+Homepage: https://aubio.org/
+Download-Size: 108 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A library to label music and sounds
+

@@ -1,0 +1,10 @@
+Package: libliquid-dsp-static
+Version: 1.7.0
+Maintainer: @termux
+Installed-Size: 1683 kB
+Depends: libliquid-dsp (= 1.7.0)
+Homepage: https://liquidsdr.org/
+Download-Size: 286 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libliquid-dsp
+

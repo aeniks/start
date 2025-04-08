@@ -1,0 +1,11 @@
+Package: liblua52
+Version: 5.2.4-8
+Maintainer: @termux
+Installed-Size: 295 kB
+Breaks: liblua52-dev
+Replaces: liblua52-dev
+Homepage: https://www.lua.org
+Download-Size: 74.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Shared library for the Lua interpreter (v5.2.x)
+

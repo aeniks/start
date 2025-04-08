@@ -1,0 +1,10 @@
+Package: xsltproc
+Version: 1.1.43
+Maintainer: @termux
+Installed-Size: 69.6 kB
+Depends: libxslt (= 1.1.43)
+Homepage: http://xmlsoft.org/libxslt/
+Download-Size: 12.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: XSLT command line processor
+

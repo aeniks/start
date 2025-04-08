@@ -1,0 +1,10 @@
+Package: snake
+Version: 2022.11.07
+Maintainer: Tipz Team @TipzTeam
+Installed-Size: 90.1 kB
+Depends: libc++
+Homepage: https://github.com/gogakoreli/snake
+Download-Size: 15.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Eat as much as you want while avoiding walls
+

@@ -1,0 +1,10 @@
+Package: greed
+Version: 4.3
+Maintainer: @termux
+Installed-Size: 73.7 kB
+Depends: ncurses
+Homepage: http://www.catb.org/~esr/greed/
+Download-Size: 8608 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Game where you try to eat as much as possible of the board before munching yourself into a corner
+

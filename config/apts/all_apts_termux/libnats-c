@@ -1,0 +1,10 @@
+Package: libnats-c
+Version: 3.10.1
+Maintainer: @termux
+Installed-Size: 954 kB
+Depends: libprotobuf-c, openssl
+Homepage: https://nats-io.github.io/nats.c/
+Download-Size: 220 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A C client for the NATS messaging system
+

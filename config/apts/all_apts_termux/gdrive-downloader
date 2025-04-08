@@ -1,0 +1,10 @@
+Package: gdrive-downloader
+Version: 1:1.1
+Maintainer: @termux
+Installed-Size: 127 kB
+Depends: bash, curl
+Homepage: https://github.com/Akianonymus/gdrive-downloader
+Download-Size: 18.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Download a gdrive folder or file easily, shell ftw
+

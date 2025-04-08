@@ -1,0 +1,9 @@
+Package: cpufetch
+Version: 1.06
+Maintainer: @termux
+Installed-Size: 233 kB
+Homepage: https://github.com/Dr-Noob/cpufetch
+Download-Size: 41.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Simple yet fancy CPU architecture fetching tool
+

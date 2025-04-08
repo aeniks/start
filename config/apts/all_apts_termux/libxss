@@ -1,0 +1,10 @@
+Package: libxss
+Version: 1.2.4
+Maintainer: @termux
+Installed-Size: 147 kB
+Depends: libx11, libxau, libxcb, libxdmcp, libxext
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 11.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: X11 Screen Saver extension library
+

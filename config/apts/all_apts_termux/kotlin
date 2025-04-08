@@ -1,0 +1,10 @@
+Package: kotlin
+Version: 2.1.20
+Maintainer: @termux
+Installed-Size: 95.4 MB
+Depends: openjdk-17
+Homepage: https://kotlinlang.org/
+Download-Size: 84.2 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The Kotlin Programming Language
+

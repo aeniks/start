@@ -1,0 +1,10 @@
+Package: libgtop
+Version: 2.41.3
+Maintainer: @termux
+Installed-Size: 713 kB
+Depends: glib, libandroid-shmem, libxau
+Homepage: https://gitlab.gnome.org/GNOME/libgtop
+Download-Size: 74.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library for collecting system monitoring data
+

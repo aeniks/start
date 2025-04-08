@@ -1,0 +1,13 @@
+Package: qemu-system-x86-64-headless
+Version: 1:8.2.6-5
+Maintainer: @termux
+Installed-Size: 21.0 MB
+Provides: qemu-system-x86_64-headless
+Depends: alsa-lib, dtc, glib, jack2, libbz2, libcurl, libdw, libgmp, libgnutls, libiconv, libjpeg-turbo, liblzo, libnettle, libnfs, libpixman, libpng, libslirp, libspice-server, libssh, libusb, libusbredir, ncurses, pulseaudio, qemu-common, resolv-conf, zlib, zstd
+Conflicts: qemu-system-x86_64-headless
+Replaces: qemu-system-x86_64-headless
+Homepage: https://www.qemu.org
+Download-Size: 2385 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A generic and open source machine emulator and virtualizer (headless)
+

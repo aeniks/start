@@ -1,0 +1,11 @@
+Package: rubberband
+Version: 4.0.0
+Maintainer: @termux
+Installed-Size: 1659 kB
+Depends: fftw, libc++, libsamplerate, libsndfile
+Homepage: https://breakfastquay.com/rubberband/
+Download-Size: 208 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An audio time-stretching and pitch-shifting library and utility program
+

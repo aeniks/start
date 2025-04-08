@@ -1,0 +1,12 @@
+Package: swift-sdk-aarch64
+Version: 6.1
+Maintainer: @finagolfin
+Installed-Size: 209 MB
+Depends: swift-runtime-aarch64
+Breaks: swift (<< 5.8)
+Replaces: swift (<< 5.8)
+Homepage: https://swift.org/
+Download-Size: 34.8 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Swift SDK for Android AArch64
+

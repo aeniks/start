@@ -1,0 +1,10 @@
+Package: alembic
+Version: 1.8.8
+Maintainer: @termux
+Installed-Size: 3830 kB
+Depends: imath, libc++
+Homepage: https://alembic.io
+Download-Size: 589 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A framework for sharing scene data that includes a C++ lib, a file format and client plugin
+

@@ -1,0 +1,10 @@
+Package: z3
+Version: 4.14.1
+Maintainer: @termux
+Installed-Size: 48.4 MB
+Depends: libc++
+Homepage: https://github.com/Z3Prover/z3
+Download-Size: 11.7 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Z3 is a theorem prover from Microsoft Research
+

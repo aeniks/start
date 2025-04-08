@@ -1,0 +1,9 @@
+Package: nasm
+Version: 2.16.03
+Maintainer: @termux
+Installed-Size: 3351 kB
+Homepage: https://nasm.us
+Download-Size: 303 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A cross-platform x86 assembler with an Intel-like syntax
+

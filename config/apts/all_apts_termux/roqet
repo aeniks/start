@@ -1,0 +1,10 @@
+Package: roqet
+Version: 0.9.33-2
+Maintainer: @termux
+Installed-Size: 86.0 kB
+Depends: librasqal (= 0.9.33-2)
+Homepage: https://librdf.org/rasqal/
+Download-Size: 14.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Standalone command line RDF query utility program
+

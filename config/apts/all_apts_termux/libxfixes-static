@@ -1,0 +1,10 @@
+Package: libxfixes-static
+Version: 6.0.1
+Maintainer: @termux
+Installed-Size: 61.4 kB
+Depends: libxfixes (= 6.0.1)
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 7660 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libxfixes
+

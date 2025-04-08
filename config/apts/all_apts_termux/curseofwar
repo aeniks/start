@@ -1,0 +1,10 @@
+Package: curseofwar
+Version: 1.3.0-4
+Maintainer: @termux
+Installed-Size: 115 kB
+Depends: libc++, ncurses
+Homepage: http://a-nikolaev.github.io/curseofwar/
+Download-Size: 27.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Fast-paced action strategy game focusing on high-level strategic planning
+

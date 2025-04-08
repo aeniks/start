@@ -1,0 +1,10 @@
+Package: tree-sitter-query-static
+Version: 0.4.0-1
+Maintainer: @termux
+Installed-Size: 65.5 kB
+Depends: tree-sitter-query (= 0.4.0-1)
+Homepage: https://github.com/tree-sitter-grammars
+Download-Size: 6800 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for tree-sitter-query
+

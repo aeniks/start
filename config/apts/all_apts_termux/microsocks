@@ -1,0 +1,9 @@
+Package: microsocks
+Version: 1:1.0.5
+Maintainer: @termux
+Installed-Size: 61.4 kB
+Homepage: https://github.com/rofl0r/microsocks
+Download-Size: 6896 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: tiny, portable SOCKS5 server with very moderate resource usage
+

@@ -1,0 +1,10 @@
+Package: recoll
+Version: 1.43.0
+Maintainer: @termux
+Installed-Size: 4825 kB
+Depends: aspell, file, libc++, libiconv, libxapian, libxml2, libxslt, zlib
+Homepage: https://www.recoll.org/
+Download-Size: 1185 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Full-text search for your desktop
+

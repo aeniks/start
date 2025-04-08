@@ -1,0 +1,10 @@
+Package: pcscd
+Version: 2.0.0-1
+Maintainer: @termux
+Installed-Size: 164 kB
+Depends: libusb, libpcsclite (= 2.0.0-1)
+Homepage: https://pcsclite.apdu.fr/
+Download-Size: 44.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Middleware to access a smart card using SCard API (PC/SC). (daemon side)
+

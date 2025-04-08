@@ -1,0 +1,9 @@
+Package: rnr
+Version: 0.5.0
+Maintainer: @flosnvjx
+Installed-Size: 3568 kB
+Homepage: https://github.com/ismaelgv/rnr
+Download-Size: 958 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Batch rename files and directories using regular expression (rust)
+

@@ -1,0 +1,13 @@
+Package: libgnutls
+Version: 3.8.9
+Maintainer: @termux
+Installed-Size: 2466 kB
+Depends: libc++, libgmp, libnettle, ca-certificates, libidn2, libunbound, libunistring, zlib
+Breaks: libgnutls-dev
+Replaces: libgnutls-dev
+Homepage: https://www.gnutls.org/
+Download-Size: 736 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Secure communications library implementing the SSL, TLS and DTLS protocols and technologies around them
+

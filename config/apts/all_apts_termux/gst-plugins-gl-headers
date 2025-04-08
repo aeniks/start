@@ -1,0 +1,11 @@
+Package: gst-plugins-gl-headers
+Version: 1.26.0
+Maintainer: @termux
+Installed-Size: 77.8 kB
+Depends: gst-plugins-base (= 1.26.0)
+Conflicts: mesa
+Homepage: https://gstreamer.freedesktop.org/
+Download-Size: 8216 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: OpenGL headers for GStreamer plugins
+

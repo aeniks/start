@@ -1,0 +1,11 @@
+Package: lazygit
+Version: 0.48.0
+Maintainer: Krishna kanhaiya @kcubeterm
+Installed-Size: 22.1 MB
+Recommends: git
+Suggests: diff-so-fancy
+Homepage: https://github.com/jesseduffield/lazygit
+Download-Size: 4902 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Simple terminal UI for git commands
+

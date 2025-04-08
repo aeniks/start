@@ -1,0 +1,11 @@
+Package: binutils
+Version: 2.44-3
+Maintainer: @termux
+Installed-Size: 36.9 kB
+Depends: binutils-bin
+Conflicts: binutils-is-llvm
+Homepage: https://www.gnu.org/software/binutils/
+Download-Size: 1124 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: GNU Binutils (metapackage)
+

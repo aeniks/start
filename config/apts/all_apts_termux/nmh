@@ -1,0 +1,10 @@
+Package: nmh
+Version: 1.8-1
+Maintainer: @termux
+Installed-Size: 7135 kB
+Depends: gdbm, libcurl, libiconv, libsasl, ncurses, openssl, readline
+Homepage: http://www.nongnu.org/nmh/
+Download-Size: 1059 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Powerful electronic mail handling system
+

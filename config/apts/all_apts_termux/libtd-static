@@ -1,0 +1,10 @@
+Package: libtd-static
+Version: 1.8.0
+Maintainer: @termux
+Installed-Size: 75.4 MB
+Depends: libtd (= 1.8.0)
+Homepage: https://core.telegram.org/tdlib/
+Download-Size: 6916 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libtd
+

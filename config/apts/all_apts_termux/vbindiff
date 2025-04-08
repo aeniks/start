@@ -1,0 +1,10 @@
+Package: vbindiff
+Version: 3.0-beta5-0
+Maintainer: @termux
+Installed-Size: 131 kB
+Depends: libc++, ncurses, ncurses-ui-libs
+Homepage: https://www.cjmweb.net/vbindiff/
+Download-Size: 31.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Visual binary diff
+

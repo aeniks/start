@@ -1,0 +1,10 @@
+Package: libraqm
+Version: 0.10.2
+Maintainer: @termux
+Installed-Size: 90.1 kB
+Depends: freetype, harfbuzz, fribidi
+Homepage: https://github.com/HOST-Oman/libraqm
+Download-Size: 11.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Raqm is a small library that encapsulates the logic for complex text layout and provides a convenient API
+

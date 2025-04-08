@@ -1,0 +1,12 @@
+Package: findutils
+Version: 4.10.0
+Essential: yes
+Maintainer: @termux
+Installed-Size: 905 kB
+Depends: libandroid-support
+Homepage: https://www.gnu.org/software/findutils/
+Download-Size: 252 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Utilities to find files meeting specified criteria and perform various actions on the files which are found
+

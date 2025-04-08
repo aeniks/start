@@ -1,0 +1,11 @@
+Package: libluajit
+Version: 1:2.1.1731601260
+Maintainer: @termux
+Installed-Size: 606 kB
+Breaks: libluajit-dev
+Replaces: libluajit-dev
+Homepage: https://luajit.org/
+Download-Size: 216 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Just-In-Time Compiler for Lua
+

@@ -1,0 +1,9 @@
+Package: markdown-flashcards
+Version: 2.0.0-2
+Maintainer: @termux
+Installed-Size: 2253 kB
+Homepage: https://github.com/bttger/markdown-flashcards
+Download-Size: 637 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Small CLI app to learn with flashcards and spaced repetition
+

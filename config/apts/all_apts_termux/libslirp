@@ -1,0 +1,10 @@
+Package: libslirp
+Version: 4.8.0-1
+Maintainer: @termux
+Installed-Size: 225 kB
+Depends: glib
+Homepage: https://gitlab.freedesktop.org/slirp/libslirp
+Download-Size: 56.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A general purpose TCP-IP emulator
+

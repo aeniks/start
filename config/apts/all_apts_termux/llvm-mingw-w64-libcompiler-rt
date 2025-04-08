@@ -1,0 +1,9 @@
+Package: llvm-mingw-w64-libcompiler-rt
+Version: 20241030
+Maintainer: @licy183
+Installed-Size: 25.8 MB
+Homepage: https://www.llvm.org/
+Download-Size: 2928 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Compiler runtime libraries for LLVM-MinGW
+

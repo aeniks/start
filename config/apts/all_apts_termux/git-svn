@@ -1,0 +1,10 @@
+Package: git-svn
+Version: 2.49.0
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 328 kB
+Depends: subversion-perl, git (= 2.49.0)
+Homepage: https://git-scm.com/
+Download-Size: 75.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Convert between Git and Subversion repositories
+

@@ -1,0 +1,10 @@
+Package: mplayer
+Version: 1.5-7
+Maintainer: @termux
+Installed-Size: 4526 kB
+Depends: ffmpeg, fontconfig, freetype, fribidi, liba52, libass, libbluray, libdvdnav, libdvdread, libiconv, libjpeg-turbo, liblzo, libmad, libmp3lame, libogg, libpng, libtheora, libtwolame, libvorbis, libx11, libx264, libxext, libxss, libxv, mpg123, ncurses, openal-soft, pulseaudio, xvidcore, zlib
+Homepage: https://mplayerhq.hu/
+Download-Size: 845 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The Movie Player
+

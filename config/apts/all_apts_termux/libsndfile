@@ -1,0 +1,13 @@
+Package: libsndfile
+Version: 1.2.2-1
+Maintainer: @termux
+Installed-Size: 741 kB
+Depends: libflac, libmp3lame, libogg, libopus, libvorbis
+Breaks: libsndfile-dev
+Replaces: libsndfile-dev
+Homepage: http://www.mega-nerd.com/libsndfile
+Download-Size: 217 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library for reading/writing audio files
+

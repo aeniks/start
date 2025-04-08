@@ -1,0 +1,12 @@
+Package: radare2
+Version: 5.9.8
+Maintainer: @termux
+Installed-Size: 42.9 MB
+Depends: libuv
+Breaks: radare2-dev
+Replaces: radare2-dev
+Homepage: https://rada.re
+Download-Size: 7540 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Advanced Hexadecimal Editor
+

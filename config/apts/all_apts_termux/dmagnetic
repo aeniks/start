@@ -1,0 +1,9 @@
+Package: dmagnetic
+Version: 0.37
+Maintainer: @termux
+Installed-Size: 201 kB
+Homepage: https://dettus.net/dMagnetic
+Download-Size: 61.1 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Interpreter for classic text adventure games and interactive fiction
+

@@ -1,0 +1,11 @@
+Package: aria2
+Version: 1.37.0
+Maintainer: @termux
+Installed-Size: 2781 kB
+Depends: libc++, c-ares, libgnutls, libxml2, zlib
+Homepage: https://aria2.github.io
+Download-Size: 687 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Download utility supporting HTTP/HTTPS, FTP, BitTorrent and Metalink
+

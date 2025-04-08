@@ -1,0 +1,9 @@
+Package: libice
+Version: 1.1.2
+Maintainer: @termux
+Installed-Size: 446 kB
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 68.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: X11 Inter-Client Exchange library
+

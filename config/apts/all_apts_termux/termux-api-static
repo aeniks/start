@@ -1,0 +1,10 @@
+Package: termux-api-static
+Version: 0.59.1
+Maintainer: @termux
+Installed-Size: 45.1 kB
+Depends: termux-api (= 0.59.1)
+Homepage: https://wiki.termux.com/wiki/Termux:API
+Download-Size: 5156 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for termux-api
+

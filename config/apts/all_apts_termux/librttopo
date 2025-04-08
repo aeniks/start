@@ -1,0 +1,10 @@
+Package: librttopo
+Version: 1.1.0-2
+Maintainer: @termux
+Installed-Size: 594 kB
+Depends: libgeos, proj
+Homepage: https://git.osgeo.org/gitea/rttopo/librttopo
+Download-Size: 157 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The RT Topology Library exposes an API to create and manage standard topologies
+

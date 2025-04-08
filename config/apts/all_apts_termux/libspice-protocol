@@ -1,0 +1,9 @@
+Package: libspice-protocol
+Version: 0.14.4
+Maintainer: @termux
+Installed-Size: 184 kB
+Homepage: https://www.spice-space.org/
+Download-Size: 18.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: SPICE protocol headers
+

@@ -1,0 +1,10 @@
+Package: multitail
+Version: 7.1.5
+Maintainer: @termux
+Installed-Size: 451 kB
+Depends: libandroid-glob, ncurses, ncurses-ui-libs
+Homepage: http://www.vanheusden.com/multitail/
+Download-Size: 123 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tool to monitor logfiles and command output in multiple windows in a terminal, colorize, filter and merge
+

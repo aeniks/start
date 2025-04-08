@@ -1,0 +1,11 @@
+Package: neofetch
+Version: 7.1.0-1
+Maintainer: @termux
+Installed-Size: 406 kB
+Depends: bash
+Homepage: https://github.com/dylanaraps/neofetch
+Download-Size: 80.2 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Simple system information script
+

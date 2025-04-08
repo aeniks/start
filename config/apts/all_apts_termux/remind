@@ -1,0 +1,10 @@
+Package: remind
+Version: 1:05.03.05
+Maintainer: @termux
+Installed-Size: 2998 kB
+Depends: libandroid-glob
+Homepage: https://dianne.skoll.ca/projects/remind/
+Download-Size: 275 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Sophisticated calendar and alarm program
+

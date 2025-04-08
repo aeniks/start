@@ -1,0 +1,12 @@
+Package: libcap
+Version: 2.69
+Maintainer: @termux
+Installed-Size: 553 kB
+Depends: attr
+Breaks: libcap-dev
+Replaces: libcap-dev
+Homepage: https://sites.google.com/site/fullycapable/
+Download-Size: 73.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: POSIX 1003.1e capabilities
+

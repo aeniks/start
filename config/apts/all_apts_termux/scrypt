@@ -1,0 +1,10 @@
+Package: scrypt
+Version: 1.3.3
+Maintainer: @termux
+Installed-Size: 106 kB
+Depends: openssl
+Homepage: https://www.tarsnap.com/scrypt.html
+Download-Size: 24.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: scrypt KDF library and file encryption tool
+

@@ -1,0 +1,10 @@
+Package: c-toxcore-static
+Version: 0.2.20-p20250105-0
+Maintainer: @termux
+Installed-Size: 1282 kB
+Depends: c-toxcore (= 0.2.20-p20250105-0)
+Homepage: https://tox.chat
+Download-Size: 236 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for c-toxcore
+

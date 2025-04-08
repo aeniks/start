@@ -1,0 +1,10 @@
+Package: libisl-static
+Version: 0.26
+Maintainer: @termux
+Installed-Size: 3301 kB
+Depends: libisl (= 0.26)
+Homepage: https://libisl.sourceforge.io/
+Download-Size: 584 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libisl
+

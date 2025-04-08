@@ -1,0 +1,9 @@
+Package: simuwaerm
+Version: 0.02
+Maintainer: @termux
+Installed-Size: 512 kB
+Homepage: https://github.com/file-acomplaint/simuwaerm
+Download-Size: 173 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A simple heat transfer simulator in pure Rust
+

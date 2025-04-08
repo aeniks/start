@@ -1,0 +1,10 @@
+Package: dotnet-templates-9.0
+Version: 9.0.3-2
+Maintainer: @truboxl
+Installed-Size: 10.2 MB
+Depends: dotnet-host
+Homepage: https://dotnet.microsoft.com/en-us/
+Download-Size: 2720 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: .NET 9.0 Templates
+

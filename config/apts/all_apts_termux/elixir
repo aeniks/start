@@ -1,0 +1,11 @@
+Package: elixir
+Version: 1.18.3
+Maintainer: @termux
+Installed-Size: 15.0 MB
+Depends: dash, erlang
+Suggests: clang, make
+Homepage: https://elixir-lang.org/
+Download-Size: 6354 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Elixir is a dynamic, functional language designed for building scalable and maintainable applications
+

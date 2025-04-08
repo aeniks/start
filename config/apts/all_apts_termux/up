@@ -1,0 +1,9 @@
+Package: up
+Version: 0.4-3
+Maintainer: @termux
+Installed-Size: 2732 kB
+Homepage: https://github.com/akavel/up
+Download-Size: 750 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Helps interactively and incrementally explore textual data in Linux
+

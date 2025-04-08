@@ -1,0 +1,10 @@
+Package: edbrowse
+Version: 3.8.11
+Maintainer: @termux
+Installed-Size: 2707 kB
+Depends: libandroid-glob, libcurl, openssl, pcre2, readline, unixodbc
+Homepage: https://edbrowse.org/
+Download-Size: 818 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Line based editor, browser, and mail client
+

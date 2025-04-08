@@ -1,0 +1,13 @@
+Package: libzmq
+Version: 4.3.5
+Maintainer: @termux
+Installed-Size: 1053 kB
+Depends: libc++, libsodium
+Breaks: libzmq-dev
+Replaces: libzmq-dev
+Homepage: https://zeromq.org/
+Download-Size: 321 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Fast messaging system built on sockets. C and C++ bindings. aka 0MQ, ZMQ.
+

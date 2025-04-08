@@ -1,0 +1,12 @@
+Package: serf
+Version: 1.3.10-1
+Maintainer: @termux
+Installed-Size: 238 kB
+Depends: apr, apr-util, openssl, zlib
+Breaks: serf-dev
+Replaces: serf-dev
+Homepage: https://serf.apache.org/
+Download-Size: 47.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: High performance C-based HTTP client library
+

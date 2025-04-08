@@ -1,0 +1,13 @@
+Package: mesa
+Version: 25.0.3-1
+Maintainer: @termux
+Installed-Size: 16.7 MB
+Depends: libandroid-shmem, libc++, libdrm, libglvnd, libllvm (<< 21), libwayland, libx11, libxext, libxfixes, libxshmfence, libxxf86vm, ncurses, vulkan-loader, zlib, zstd
+Suggests: mesa-dev
+Conflicts: libmesa, ndk-sysroot (<= 25b)
+Replaces: libmesa
+Homepage: https://www.mesa3d.org
+Download-Size: 3388 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An open-source implementation of the OpenGL specification
+

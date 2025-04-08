@@ -1,0 +1,10 @@
+Package: units
+Version: 2.24
+Maintainer: @termux
+Installed-Size: 1057 kB
+Depends: readline, libandroid-support
+Homepage: https://www.gnu.org/software/units/
+Download-Size: 274 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Converts between different systems of units
+

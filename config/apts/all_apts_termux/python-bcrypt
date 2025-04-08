@@ -1,0 +1,10 @@
+Package: python-bcrypt
+Version: 4.3.0
+Maintainer: @termux
+Installed-Size: 594 kB
+Depends: python
+Homepage: https://github.com/pyca/bcrypt
+Download-Size: 186 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Acceptable password hashing for your software and your servers
+

@@ -1,0 +1,11 @@
+Package: libandroid-selinux
+Version: 14.0.0.11
+Maintainer: @termux
+Installed-Size: 315 kB
+Depends: pcre2
+Homepage: https://selinuxproject.org
+Download-Size: 59.7 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Android fork of libselinux, an SELinux userland library
+

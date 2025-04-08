@@ -1,0 +1,12 @@
+Package: pass
+Version: 1.7.4-5
+Maintainer: @termux
+Installed-Size: 131 kB
+Depends: bash, coreutils, gnupg (>= 2.2.9-1), tree
+Recommends: git
+Suggests: pass-otp
+Homepage: https://www.passwordstore.org
+Download-Size: 17.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Lightweight directory-based password manager
+

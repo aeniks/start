@@ -1,0 +1,10 @@
+Package: megatools
+Version: 1.11.1.20230212
+Maintainer: @termux
+Installed-Size: 250 kB
+Depends: glib, libandroid-support, libcurl, openssl
+Homepage: https://megatools.megous.com/
+Download-Size: 69.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Open-source command line tools and C library (libmega) for accessing Mega.co.nz cloud storage
+

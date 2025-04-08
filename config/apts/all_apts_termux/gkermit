@@ -1,0 +1,10 @@
+Package: gkermit
+Version: 2.01
+Maintainer: @termux
+Installed-Size: 156 kB
+Depends: libandroid-support
+Homepage: http://www.columbia.edu/kermit/gkermit.html
+Download-Size: 38.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Simple, Portable, Free File Transfer Software for UNIX
+

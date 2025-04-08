@@ -1,0 +1,15 @@
+Package: cronie
+Version: 1.7.2-2
+Maintainer: @termux
+Installed-Size: 295 kB
+Depends: dash
+Recommends: nano
+Suggests: termux-services
+Conflicts: busybox (<< 1.31.1-11)
+Replaces: anacron
+Homepage: https://github.com/cronie-crond/cronie/
+Download-Size: 57.8 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Daemon that runs specified programs at scheduled times and related tools
+

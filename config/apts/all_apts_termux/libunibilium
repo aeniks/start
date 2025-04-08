@@ -1,0 +1,11 @@
+Package: libunibilium
+Version: 2.1.2
+Maintainer: @termux
+Installed-Size: 168 kB
+Breaks: libunibilium-dev
+Replaces: libunibilium-dev
+Homepage: https://github.com/neovim/unibilium
+Download-Size: 21.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Terminfo parsing library
+

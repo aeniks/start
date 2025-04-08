@@ -1,0 +1,10 @@
+Package: plutolang
+Version: 0.10.4
+Maintainer: Komo @mbekkomo
+Installed-Size: 1942 kB
+Depends: readline, libpluto (= 0.10.4)
+Homepage: https://plutolang.github.io/
+Download-Size: 583 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A superset of Lua 5.4 with a focus on general-purpose programming.
+

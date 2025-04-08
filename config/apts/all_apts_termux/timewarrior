@@ -1,0 +1,10 @@
+Package: timewarrior
+Version: 1.7.1
+Maintainer: @termux
+Installed-Size: 983 kB
+Depends: libandroid-glob, libc++
+Homepage: https://timewarrior.net/
+Download-Size: 267 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Command-line time tracker
+

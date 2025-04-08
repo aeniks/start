@@ -1,0 +1,10 @@
+Package: libxmlrpc-static
+Version: 1.59.03
+Maintainer: @termux
+Installed-Size: 7815 kB
+Depends: libxmlrpc (= 1.59.03)
+Homepage: https://xmlrpc-c.sourceforge.io/
+Download-Size: 1122 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libxmlrpc
+

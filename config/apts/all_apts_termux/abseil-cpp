@@ -1,0 +1,12 @@
+Package: abseil-cpp
+Version: 20250127.1
+Maintainer: @termux
+Installed-Size: 8925 kB
+Depends: libc++
+Conflicts: libgrpc (<< 1.52.0-1)
+Homepage: https://abseil.io/
+Download-Size: 1108 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Abseil C++ Common Libraries
+

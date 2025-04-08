@@ -1,0 +1,14 @@
+Package: dpkg
+Version: 1.22.6-1
+Essential: yes
+Maintainer: @termux
+Installed-Size: 1372 kB
+Depends: bzip2, coreutils, diffutils, gzip, less, libbz2, liblzma, libmd, tar, xz-utils, zlib, zstd
+Breaks: dpkg-dev
+Replaces: dpkg-dev
+Homepage: https://packages.debian.org/dpkg
+Download-Size: 309 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Debian package management system
+

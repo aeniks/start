@@ -1,0 +1,10 @@
+Package: forgejo
+Version: 10.0.3
+Maintainer: @termux
+Installed-Size: 120 MB
+Depends: dash, git
+Homepage: https://forgejo.org/
+Download-Size: 32.2 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Forgejo is a self-hosted lightweight software forge.
+

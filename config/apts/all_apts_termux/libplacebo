@@ -1,0 +1,10 @@
+Package: libplacebo
+Version: 6.338.2-1
+Maintainer: @termux
+Installed-Size: 1499 kB
+Depends: python
+Homepage: http://libplacebo.org/
+Download-Size: 399 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Reusable library for GPU-accelerated video/image rendering
+

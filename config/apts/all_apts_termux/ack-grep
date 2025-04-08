@@ -1,0 +1,10 @@
+Package: ack-grep
+Version: 3.8.1
+Maintainer: @termux
+Installed-Size: 213 kB
+Depends: perl
+Homepage: https://beyondgrep.com/
+Download-Size: 42.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tool like grep optimized for programmers
+

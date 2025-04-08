@@ -1,0 +1,10 @@
+Package: peaclock
+Version: 0.4.3-7
+Maintainer: @termux
+Installed-Size: 569 kB
+Depends: libc++, libicu
+Homepage: https://github.com/octobanana/peaclock
+Download-Size: 168 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A responsive and customizable clock, timer, and stopwatch for the terminal.
+

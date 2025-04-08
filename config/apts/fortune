@@ -1,0 +1,10 @@
+Package: fortune
+Version: 1.2-1
+Maintainer: Fredrik Fornwall @fornwall
+Installed-Size: 2658 kB
+Homepage: https://www.fefe.de/fortune/
+Download-Size: 818 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Revealer of fortunes
+

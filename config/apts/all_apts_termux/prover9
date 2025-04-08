@@ -1,0 +1,9 @@
+Package: prover9
+Version: 2009-11A-1
+Maintainer: @termux
+Installed-Size: 10.3 MB
+Homepage: https://www.cs.unm.edu/~mccune/prover9/
+Download-Size: 912 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An automated theorem prover for first-order and equational logic
+

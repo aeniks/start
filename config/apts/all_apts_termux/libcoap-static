@@ -1,0 +1,10 @@
+Package: libcoap-static
+Version: 4.3.5-rc3-0
+Maintainer: @termux
+Installed-Size: 766 kB
+Depends: libcoap (= 4.3.5-rc3-0)
+Homepage: https://libcoap.net/
+Download-Size: 159 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libcoap
+

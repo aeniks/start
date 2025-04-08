@@ -1,0 +1,10 @@
+Package: jbig2enc
+Version: 2023.01.08-2
+Maintainer: @termux
+Installed-Size: 246 kB
+Depends: giflib, leptonica, libc++, libjpeg-turbo, libpng, libtiff, libwebp, python, zlib
+Homepage: https://github.com/agl/jbig2enc
+Download-Size: 49.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An encoder for JBIG2
+

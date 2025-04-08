@@ -1,0 +1,9 @@
+Package: gbt
+Version: 2.0.0-6
+Maintainer: @termux
+Installed-Size: 2720 kB
+Homepage: https://github.com/jtyr/gbt
+Download-Size: 679 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Highly configurable prompt builder for Bash and ZSH written in Go
+

@@ -1,0 +1,10 @@
+Package: hash-slinger
+Version: 3.3-1
+Maintainer: @termux
+Installed-Size: 127 kB
+Depends: ca-certificates, gnupg, openssh, python, pyunbound, resolv-conf, swig, python-pip
+Homepage: https://github.com/letoams/hash-slinger
+Download-Size: 22.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Various tools to generate special DNS records
+

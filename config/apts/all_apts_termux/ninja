@@ -1,0 +1,10 @@
+Package: ninja
+Version: 1.12.1
+Maintainer: @termux
+Installed-Size: 295 kB
+Depends: libandroid-spawn, libc++
+Homepage: https://ninja-build.org
+Download-Size: 77.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A small build system with a focus on speed
+

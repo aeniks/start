@@ -1,0 +1,10 @@
+Package: zipios
+Version: 2.3.2
+Maintainer: @termux
+Installed-Size: 561 kB
+Depends: libc++, zlib
+Homepage: https://zipios.sourceforge.io/
+Download-Size: 84.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A small C++ library for reading and writing zip files
+

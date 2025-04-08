@@ -1,0 +1,10 @@
+Package: ninvaders
+Version: 0.1.2-2
+Maintainer: @termux
+Installed-Size: 81.9 kB
+Depends: ncurses
+Homepage: http://ninvaders.sourceforge.net
+Download-Size: 13.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Space Invaders clone based on ncurses for ASCII output
+

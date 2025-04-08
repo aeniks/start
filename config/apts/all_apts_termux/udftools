@@ -1,0 +1,10 @@
+Package: udftools
+Version: 2.3
+Maintainer: @termux
+Installed-Size: 442 kB
+Depends: readline
+Homepage: https://github.com/pali/udftools
+Download-Size: 107 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Linux tools for UDF filesystems and DVD/CD-R(W) drives
+

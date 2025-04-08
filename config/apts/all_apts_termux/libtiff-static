@@ -1,0 +1,10 @@
+Package: libtiff-static
+Version: 4.7.0
+Maintainer: @termux
+Installed-Size: 889 kB
+Depends: libtiff (= 4.7.0)
+Homepage: http://www.simplesystems.org/libtiff/
+Download-Size: 170 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libtiff
+

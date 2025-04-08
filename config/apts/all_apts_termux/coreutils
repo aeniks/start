@@ -1,0 +1,14 @@
+Package: coreutils
+Version: 9.6-1
+Essential: yes
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 2753 kB
+Depends: libandroid-selinux, libandroid-support, libgmp, libiconv
+Breaks: chroot, busybox (<< 1.30.1-4)
+Replaces: chroot, busybox (<< 1.30.1-4)
+Homepage: https://www.gnu.org/software/coreutils/
+Download-Size: 780 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Basic file, shell and text manipulation utilities from the GNU project
+

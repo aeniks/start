@@ -1,0 +1,10 @@
+Package: traceroute
+Version: 2.1.6
+Maintainer: @termux
+Installed-Size: 123 kB
+Conflicts: tracepath (<< 20221126-1)
+Homepage: https://traceroute.sourceforge.net/
+Download-Size: 32.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A new modern implementation of traceroute(8) utility for Linux systems
+

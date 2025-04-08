@@ -1,0 +1,12 @@
+Package: gdal
+Version: 3.10.3
+Maintainer: @termux
+Installed-Size: 31.8 MB
+Depends: giflib, json-c, libc++, libcurl, libexpat, libfreexl, libgeos, libiconv, libjpeg-turbo, libjxl, liblzma, libpng, libspatialite, libsqlite, libwebp, libxml2, netcdf-c (>= 4.9.3), openjpeg, openssl, proj, postgresql, zlib, zstd
+Breaks: gdal-dev
+Replaces: gdal-dev
+Homepage: https://gdal.org
+Download-Size: 7477 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A translator library for raster and vector geospatial data formats
+

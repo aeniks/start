@@ -1,0 +1,9 @@
+Package: gifski
+Version: 1.33.0
+Maintainer: @termux
+Installed-Size: 1356 kB
+Homepage: https://gif.ski/
+Download-Size: 497 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: GIF encoder based on libimagequant
+

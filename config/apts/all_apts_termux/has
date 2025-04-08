@@ -1,0 +1,10 @@
+Package: has
+Version: 1.5.0-1
+Maintainer: @termux
+Installed-Size: 61.4 kB
+Depends: bash, ncurses-utils
+Homepage: https://github.com/kdabir/has
+Download-Size: 5360 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: has checks presence of various command line tools and their versions on the path
+

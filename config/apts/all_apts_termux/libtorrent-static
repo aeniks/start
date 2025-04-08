@@ -1,0 +1,10 @@
+Package: libtorrent-static
+Version: 0.15.2
+Maintainer: Krishna Kanhaiya @kcubeterm
+Installed-Size: 46.2 MB
+Depends: libtorrent (= 0.15.2)
+Homepage: https://github.com/rakshasa/rtorrent/wiki
+Download-Size: 5193 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libtorrent
+

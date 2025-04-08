@@ -1,0 +1,10 @@
+Package: task-spooler
+Version: 1:1.0.3
+Maintainer: @termux
+Installed-Size: 115 kB
+Conflicts: moreutils
+Homepage: https://vicerveza.homeunix.net/~viric/soft/ts/
+Download-Size: 25.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Task spooler is a Unix batch system where the tasks spooled run one after the other
+

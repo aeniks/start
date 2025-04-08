@@ -1,0 +1,10 @@
+Package: librtmidi
+Version: 5.0.0-2
+Maintainer: @termux
+Installed-Size: 197 kB
+Depends: libc++
+Homepage: https://www.music.mcgill.ca/~gary/rtmidi/
+Download-Size: 33.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A set of C++ classes that provides a common API for realtime MIDI input/output
+

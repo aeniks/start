@@ -1,0 +1,14 @@
+Package: util-linux
+Version: 2.40.2-3
+Essential: yes
+Maintainer: @termux
+Installed-Size: 4170 kB
+Depends: libcap-ng, libsmartcols, ncurses, zlib, libandroid-glob
+Breaks: util-linux-dev
+Replaces: util-linux-dev
+Homepage: https://en.wikipedia.org/wiki/Util-linux
+Download-Size: 705 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Miscellaneous system utilities
+

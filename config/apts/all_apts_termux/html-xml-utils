@@ -1,0 +1,10 @@
+Package: html-xml-utils
+Version: 8.6
+Maintainer: @termux
+Installed-Size: 4362 kB
+Depends: libcurl, libiconv, libidn2
+Homepage: https://www.w3.org/Tools/HTML-XML-utils/
+Download-Size: 282 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A number of simple utilities for manipulating HTML and XML files
+

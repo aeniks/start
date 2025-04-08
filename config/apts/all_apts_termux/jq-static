@@ -1,0 +1,10 @@
+Package: jq-static
+Version: 1.7.1
+Maintainer: @termux
+Installed-Size: 623 kB
+Depends: jq (= 1.7.1)
+Homepage: https://stedolan.github.io/jq/
+Download-Size: 136 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for jq
+

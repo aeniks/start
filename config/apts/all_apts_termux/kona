@@ -1,0 +1,9 @@
+Package: kona
+Version: 20211225
+Maintainer: @termux
+Installed-Size: 254 kB
+Homepage: https://github.com/kevinlawler/kona
+Download-Size: 81.4 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Open-source implementation of the APL-like K programming language
+

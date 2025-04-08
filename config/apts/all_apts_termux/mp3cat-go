@@ -1,0 +1,10 @@
+Package: mp3cat-go
+Version: 4.2.2-3
+Maintainer: @termux
+Installed-Size: 1667 kB
+Conflicts: mp3cat
+Homepage: https://www.dmulholl.com/dev/mp3cat.html
+Download-Size: 484 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A command line utility for joining MP3 files.
+

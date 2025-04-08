@@ -1,0 +1,9 @@
+Package: eja
+Version: 15.4.5
+Maintainer: @termux
+Installed-Size: 504 kB
+Homepage: https://github.com/eja/eja
+Download-Size: 120 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: eja micro web server
+

@@ -1,0 +1,10 @@
+Package: trzsz-go
+Version: 1.1.8
+Maintainer: @termux
+Installed-Size: 15.4 MB
+Recommends: trzsz-ssh
+Homepage: https://trzsz.github.io/
+Download-Size: 2571 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A simple file transfer tools, similar to lrzsz ( rz / sz )
+

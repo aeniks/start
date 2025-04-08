@@ -1,0 +1,10 @@
+Package: libgcrypt-static
+Version: 1.11.0
+Maintainer: @termux
+Installed-Size: 1810 kB
+Depends: libgcrypt (= 1.11.0)
+Homepage: https://www.gnu.org/software/libgcrypt/
+Download-Size: 454 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libgcrypt
+

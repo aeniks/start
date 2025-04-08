@@ -1,0 +1,10 @@
+Package: potrace
+Version: 1.16-1
+Maintainer: @termux
+Installed-Size: 242 kB
+Depends: zlib
+Homepage: http://potrace.sourceforge.net
+Download-Size: 72.4 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tool for transforming a bitmap into a smooth, scalable image
+

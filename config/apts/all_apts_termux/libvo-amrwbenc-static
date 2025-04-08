@@ -1,0 +1,10 @@
+Package: libvo-amrwbenc-static
+Version: 0.1.3
+Maintainer: @termux
+Installed-Size: 209 kB
+Depends: libvo-amrwbenc (= 0.1.3)
+Homepage: https://sourceforge.net/projects/opencore-amr
+Download-Size: 59.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libvo-amrwbenc
+

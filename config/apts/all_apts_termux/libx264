@@ -1,0 +1,12 @@
+Package: libx264
+Version: 1:0.164.3191
+Maintainer: @termux
+Installed-Size: 1290 kB
+Breaks: libx264-dev
+Replaces: libx264-dev
+Homepage: https://www.videolan.org/developers/x264.html
+Download-Size: 396 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library for encoding video streams into the H.264/MPEG-4 AVC format
+

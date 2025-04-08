@@ -1,0 +1,11 @@
+Package: libxft
+Version: 2.3.8
+Maintainer: @termux
+Installed-Size: 504 kB
+Depends: fontconfig, freetype, libx11, libxrender
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 47.9 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: FreeType-based font drawing library for X
+

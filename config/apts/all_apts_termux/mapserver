@@ -1,0 +1,12 @@
+Package: mapserver
+Version: 8.2.2-1
+Maintainer: @termux
+Installed-Size: 7913 kB
+Depends: freetype, gdal, libc++, libcairo, libcurl, libgeos, libiconv, libjpeg-turbo, libpng, libprotobuf-c, libxml2, proj
+Breaks: mapserver-dev
+Replaces: mapserver-dev
+Homepage: https://mapserver.org/
+Download-Size: 1502 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: MapServer is CGI-based platform for publishing spatial data and interactive mapping applications to the web
+

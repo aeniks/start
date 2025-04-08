@@ -1,0 +1,10 @@
+Package: socat
+Version: 1.8.0.3
+Maintainer: @termux
+Installed-Size: 709 kB
+Depends: openssl, readline
+Homepage: http://www.dest-unreach.org/socat/
+Download-Size: 191 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Relay for bidirectional data transfer between two independent data channels
+

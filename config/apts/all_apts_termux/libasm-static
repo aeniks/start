@@ -1,0 +1,10 @@
+Package: libasm-static
+Version: 0.192
+Maintainer: @termux
+Installed-Size: 106 kB
+Depends: libasm, libelf (= 0.192)
+Homepage: https://sourceware.org/elfutils/
+Download-Size: 13.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static library to assemble and disassemble instructions
+

@@ -1,0 +1,10 @@
+Package: bison-static
+Version: 3.8.2-3
+Maintainer: @termux
+Installed-Size: 32.8 kB
+Depends: bison (= 3.8.2-3)
+Homepage: https://www.gnu.org/software/bison/
+Download-Size: 1528 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for bison
+

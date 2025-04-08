@@ -1,0 +1,11 @@
+Package: utf8proc
+Version: 2.10.0
+Maintainer: @termux
+Installed-Size: 451 kB
+Breaks: utf8proc-dev
+Replaces: utf8proc-dev
+Homepage: https://github.com/JuliaLang/utf8proc
+Download-Size: 58.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library for processing UTF-8 Unicode data
+

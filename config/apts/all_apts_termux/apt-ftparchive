@@ -1,0 +1,10 @@
+Package: apt-ftparchive
+Version: 2.8.1-1
+Maintainer: @termux
+Installed-Size: 315 kB
+Depends: libdb, apt (= 2.8.1-1)
+Homepage: https://packages.debian.org/apt
+Download-Size: 94.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: apt-ftparchive is the command line tool that generates the index files that APT uses to access a distribution source
+

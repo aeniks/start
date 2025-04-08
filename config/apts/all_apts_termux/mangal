@@ -1,0 +1,9 @@
+Package: mangal
+Version: 4.0.6-2
+Maintainer: @termux
+Installed-Size: 26.9 MB
+Homepage: https://github.com/metafates/mangal
+Download-Size: 7487 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Cli manga downloader
+

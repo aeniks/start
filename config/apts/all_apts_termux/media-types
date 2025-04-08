@@ -1,0 +1,13 @@
+Package: media-types
+Version: 13.0.0
+Maintainer: @termux
+Installed-Size: 123 kB
+Provides: mime-support
+Conflicts: mutt (<< 1.8.3-1)
+Breaks: mime-support
+Replaces: mime-support
+Homepage: https://pagure.io/mailcap
+Download-Size: 19.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: List of standard media types and their usual file extension
+

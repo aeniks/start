@@ -1,0 +1,9 @@
+Package: libopenblas
+Version: 0.3.29
+Maintainer: @termux
+Installed-Size: 11.9 MB
+Homepage: https://www.openblas.net
+Download-Size: 2529 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An optimized BLAS library based on GotoBLAS2 1.13 BSD
+

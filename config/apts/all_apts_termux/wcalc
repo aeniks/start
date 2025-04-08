@@ -1,0 +1,10 @@
+Package: wcalc
+Version: 2.5-5
+Maintainer: @termux
+Installed-Size: 406 kB
+Depends: flex, libmpfr, libgmp, readline
+Homepage: http://w-calc.sourceforge.net
+Download-Size: 95.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Capable calculator
+

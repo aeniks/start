@@ -1,0 +1,11 @@
+Package: libcompiler-rt
+Version: 20.1.2
+Maintainer: @finagolfin
+Installed-Size: 36.9 MB
+Depends: libc++
+Conflicts: ndk-multilib (<< 23b-6)
+Homepage: https://clang.llvm.org/
+Download-Size: 2799 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Compiler runtime libraries for clang
+

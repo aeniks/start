@@ -1,0 +1,10 @@
+Package: yarn
+Version: 1.22.22
+Maintainer: @termux
+Installed-Size: 5431 kB
+Depends: nodejs | nodejs-lts
+Homepage: https://classic.yarnpkg.com/lang/en/
+Download-Size: 896 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Fast, reliable, and secure dependency management
+

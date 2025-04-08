@@ -1,0 +1,10 @@
+Package: minizinc
+Version: 2.9.2
+Maintainer: @termux
+Installed-Size: 12.6 MB
+Depends: libc++, zlib, gecode
+Homepage: https://github.com/MiniZinc/libminizinc
+Download-Size: 1680 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A medium-level constraint modelling language
+

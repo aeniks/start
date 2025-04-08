@@ -1,0 +1,12 @@
+Package: tesseract
+Version: 5.5.0-2
+Maintainer: @termux
+Installed-Size: 29.1 MB
+Depends: fontconfig, glib, harfbuzz, leptonica, libandroid-glob, libandroid-posix-semaphore, libarchive, libc++, libcairo, libcurl, libicu, pango
+Breaks: tesseract-dev
+Replaces: tesseract-dev
+Homepage: https://github.com/tesseract-ocr/tesseract
+Download-Size: 9704 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tesseract is probably the most accurate open source OCR engine available
+

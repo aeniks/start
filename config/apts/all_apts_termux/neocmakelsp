@@ -1,0 +1,9 @@
+Package: neocmakelsp
+Version: 0.8.21
+Maintainer: @termux
+Installed-Size: 7176 kB
+Homepage: https://neocmakelsp.github.io/
+Download-Size: 1773 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: a cmake lsp based on tower-lsp and treesitter
+

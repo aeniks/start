@@ -1,0 +1,9 @@
+Package: dufs
+Version: 0.43.0-1
+Maintainer: @termux
+Installed-Size: 3793 kB
+Homepage: https://github.com/sigoden/dufs
+Download-Size: 1412 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A file server that supports static serving, uploading, searching, accessing control, webdav...
+

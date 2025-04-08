@@ -1,0 +1,10 @@
+Package: libzmq-static
+Version: 4.3.5
+Maintainer: @termux
+Installed-Size: 3486 kB
+Depends: libzmq (= 4.3.5)
+Homepage: https://zeromq.org/
+Download-Size: 372 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libzmq
+

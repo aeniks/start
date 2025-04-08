@@ -1,0 +1,10 @@
+Package: librime
+Version: 1.13.1-2
+Maintainer: @termux
+Installed-Size: 2974 kB
+Depends: boost, google-glog, leveldb, libc++, libopencc, libyaml-cpp, marisa
+Homepage: https://rime.im/
+Download-Size: 636 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A modular, extensible input method engine in cross-platform C++ code
+

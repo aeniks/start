@@ -1,0 +1,10 @@
+Package: notcurses
+Version: 3.0.13
+Maintainer: @termux
+Installed-Size: 1466 kB
+Depends: ffmpeg, libandroid-spawn, libc++, libunistring, ncurses, zlib
+Homepage: https://notcurses.com/
+Download-Size: 315 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: blingful TUIs and character graphics
+

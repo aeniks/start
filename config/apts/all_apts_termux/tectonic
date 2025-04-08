@@ -1,0 +1,10 @@
+Package: tectonic
+Version: 0.15.0-4
+Maintainer: @termux
+Installed-Size: 15.8 MB
+Depends: fontconfig, freetype, libc++, libgraphite, libicu, libpng, openssl, zlib
+Homepage: https://tectonic-typesetting.github.io/
+Download-Size: 3525 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A modernized, complete, self-contained TeX/LaTeX engine
+

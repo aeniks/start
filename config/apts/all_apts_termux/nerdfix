@@ -1,0 +1,9 @@
+Package: nerdfix
+Version: 0.4.2
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 4022 kB
+Homepage: https://github.com/loichyan/nerdfix
+Download-Size: 980 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: nerdfix helps you to find/fix obsolete Nerd Font icons in your project.
+

@@ -1,0 +1,9 @@
+Package: gum
+Version: 0.16.0
+Maintainer: @termux
+Installed-Size: 14.1 MB
+Homepage: https://github.com/charmbracelet/gum
+Download-Size: 2984 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A tool for creating minimal interactive TUIs for shell scripts
+

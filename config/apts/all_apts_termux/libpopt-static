@@ -1,0 +1,10 @@
+Package: libpopt-static
+Version: 1.19-2
+Maintainer: @termux
+Installed-Size: 90.1 kB
+Depends: libpopt (= 1.19-2)
+Homepage: https://www.linuxfromscratch.org/blfs/view/svn/general/popt.html
+Download-Size: 18.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libpopt
+

@@ -1,0 +1,10 @@
+Package: luv
+Version: 1.50.0-1-0
+Maintainer: @termux
+Installed-Size: 287 kB
+Depends: libluajit, libuv
+Homepage: https://github.com/luvit/luv
+Download-Size: 48.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Bare libuv bindings for lua
+

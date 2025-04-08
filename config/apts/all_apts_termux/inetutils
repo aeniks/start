@@ -1,0 +1,12 @@
+Package: inetutils
+Version: 2.6
+Maintainer: @termux
+Installed-Size: 1069 kB
+Depends: readline
+Suggests: whois
+Homepage: https://www.gnu.org/software/inetutils/
+Download-Size: 224 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Collection of common network programs
+

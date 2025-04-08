@@ -1,0 +1,10 @@
+Package: suite3270
+Version: 4.1ga11-1
+Maintainer: @termux
+Installed-Size: 3842 kB
+Depends: less, libexpat, libiconv, ncurses
+Homepage: http://x3270.bgp.nu/
+Download-Size: 571 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A family of IBM 3270 terminal emulators and related tools
+

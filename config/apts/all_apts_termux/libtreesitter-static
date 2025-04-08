@@ -1,0 +1,10 @@
+Package: libtreesitter-static
+Version: 0.22.6-1
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 254 kB
+Depends: libtreesitter (= 0.22.6-1)
+Homepage: https://github.com/tree-sitter/tree-sitter
+Download-Size: 63.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libtreesitter
+

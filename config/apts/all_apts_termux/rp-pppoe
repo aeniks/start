@@ -1,0 +1,9 @@
+Package: rp-pppoe
+Version: 4.0
+Maintainer: @termux
+Installed-Size: 283 kB
+Homepage: https://dianne.skoll.ca/projects/rp-pppoe/
+Download-Size: 66.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A PPP-over-Ethernet redirector for pppd
+

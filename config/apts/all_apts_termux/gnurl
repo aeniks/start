@@ -1,0 +1,10 @@
+Package: gnurl
+Version: 7.72.0
+Maintainer: Termux members @termux
+Installed-Size: 2712 kB
+Depends: libgnutls, libnghttp2
+Homepage: https://gnunet.org/en/gnurl.html
+Download-Size: 865 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Fork of libcurl, which is mostly for GNUnet
+

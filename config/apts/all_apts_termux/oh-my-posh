@@ -1,0 +1,9 @@
+Package: oh-my-posh
+Version: 25.13.0
+Maintainer: @termux
+Installed-Size: 19.6 MB
+Homepage: https://ohmyposh.dev
+Download-Size: 4616 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A prompt theme engine for any shell.
+

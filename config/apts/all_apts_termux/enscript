@@ -1,0 +1,10 @@
+Package: enscript
+Version: 1.6.6-12
+Maintainer: @termux
+Installed-Size: 2007 kB
+Depends: cups, perl
+Homepage: https://www.gnu.org/software/enscript/
+Download-Size: 273 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Enscript converts ASCII text files to PostScript, HTML, RTF, ANSI and overstrikes
+

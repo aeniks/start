@@ -1,0 +1,10 @@
+Package: python-onnxruntime
+Version: 1.21.0
+Maintainer: @termux
+Installed-Size: 27.4 MB
+Depends: abseil-cpp, libc++, protobuf, libre2, python
+Homepage: https://onnxruntime.ai/
+Download-Size: 5180 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Cross-platform, high performance ML inferencing and training accelerator
+

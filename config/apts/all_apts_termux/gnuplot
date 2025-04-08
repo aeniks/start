@@ -1,0 +1,12 @@
+Package: gnuplot
+Version: 6.0.2
+Maintainer: @termux
+Installed-Size: 2863 kB
+Depends: glib, libandroid-support, libcairo, libgd, libiconv, libx11, pango, readline
+Breaks: gnuplot-x
+Replaces: gnuplot-x
+Homepage: http://gnuplot.info/
+Download-Size: 853 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Command-line driven graphing utility
+

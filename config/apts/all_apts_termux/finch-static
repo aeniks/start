@@ -1,0 +1,10 @@
+Package: finch-static
+Version: 2.14.14
+Maintainer: @termux
+Installed-Size: 16.4 MB
+Depends: finch (= 2.14.14)
+Homepage: https://pidgin.im/
+Download-Size: 2648 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for finch
+

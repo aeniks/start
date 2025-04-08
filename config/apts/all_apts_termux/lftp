@@ -1,0 +1,10 @@
+Package: lftp
+Version: 4.9.2-6
+Maintainer: @termux
+Installed-Size: 1520 kB
+Depends: libandroid-support, libc++, libexpat, libiconv, openssl, readline, libidn2, zlib
+Homepage: https://lftp.tech/
+Download-Size: 495 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: FTP/HTTP client and file transfer program
+

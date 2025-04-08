@@ -1,0 +1,9 @@
+Package: sse2neon
+Version: 1.8.0
+Maintainer: @termux
+Installed-Size: 455 kB
+Homepage: https://github.com/DLTcollab/sse2neon
+Download-Size: 47.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A C/C++ header file that converts Intel SSE intrinsics to Arm/Aarch64 NEON intrinsics
+

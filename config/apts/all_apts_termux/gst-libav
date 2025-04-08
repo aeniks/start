@@ -1,0 +1,10 @@
+Package: gst-libav
+Version: 1.26.0
+Maintainer: @termux
+Installed-Size: 274 kB
+Depends: ffmpeg, glib, gst-plugins-base, gstreamer
+Homepage: https://gstreamer.freedesktop.org/modules/gst-libav.html
+Download-Size: 76.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: GStreamer Libav plug-in contains one plugin with a set of elements using the Libav library code
+

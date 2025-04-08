@@ -1,0 +1,10 @@
+Package: zzuf-static
+Version: 2022.05.29
+Maintainer: @termux
+Installed-Size: 393 kB
+Depends: zzuf (= 2022.05.29)
+Homepage: http://caca.zoy.org/wiki/zzuf
+Download-Size: 62.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for zzuf
+

@@ -1,0 +1,10 @@
+Package: glulxe
+Version: 0.6.1
+Maintainer: @termux
+Installed-Size: 336 kB
+Depends: ncurses
+Homepage: https://www.eblong.com/zarf/glulx/
+Download-Size: 81.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Interpreter for the Glulx portable VM for interactive fiction (IF) games
+

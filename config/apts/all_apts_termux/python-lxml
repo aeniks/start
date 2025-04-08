@@ -1,0 +1,10 @@
+Package: python-lxml
+Version: 5.3.2
+Maintainer: @termux
+Installed-Size: 4268 kB
+Depends: libxml2, libxslt, python, python-pip
+Homepage: https://github.com/lxml/lxml
+Download-Size: 916 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Python binding for the libxml2 and libxslt libraries
+

@@ -1,0 +1,10 @@
+Package: vulkan-tools
+Version: 1.4.312
+Maintainer: @termux
+Installed-Size: 2228 kB
+Depends: libc++, libwayland, libx11, libxcb, vulkan-loader
+Homepage: https://github.com/KhronosGroup/Vulkan-Tools
+Download-Size: 370 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Vulkan Tools and Utilities
+

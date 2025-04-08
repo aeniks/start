@@ -1,0 +1,10 @@
+Package: predict
+Version: 2.3.1-1
+Maintainer: @termux
+Installed-Size: 1749 kB
+Depends: ncurses, ncurses-ui-libs, play-audio, wget
+Homepage: https://www.qsl.net/kd2bd/predict.html
+Download-Size: 1247 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A Satellite Tracking/Orbital Prediction Program
+

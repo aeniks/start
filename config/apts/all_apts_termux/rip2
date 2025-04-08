@@ -1,0 +1,11 @@
+Package: rip2
+Version: 0.9.3
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 1425 kB
+Breaks: rip
+Replaces: rip
+Homepage: https://github.com/MilesCranmer/rip2
+Download-Size: 430 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A safe and ergonomic alternative to rm
+

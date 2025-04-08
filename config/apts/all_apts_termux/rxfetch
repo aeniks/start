@@ -1,0 +1,12 @@
+Package: rxfetch
+Version: 2023.01.07
+Maintainer: @PeroSar
+Installed-Size: 53.2 kB
+Depends: bash
+Conflicts: rxfetch-termux
+Replaces: rxfetch-termux
+Homepage: https://github.com/Mangeshrex/rxfetch
+Download-Size: 3916 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A custom system info fetching tool
+

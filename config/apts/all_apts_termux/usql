@@ -1,0 +1,9 @@
+Package: usql
+Version: 0.19.21
+Maintainer: @flipee
+Installed-Size: 162 MB
+Homepage: https://github.com/xo/usql
+Download-Size: 26.0 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A universal command-line interface for SQL databases
+

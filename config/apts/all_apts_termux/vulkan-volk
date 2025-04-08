@@ -1,0 +1,9 @@
+Package: vulkan-volk
+Version: 1.4.304
+Maintainer: @termux
+Installed-Size: 840 kB
+Homepage: https://github.com/zeux/volk
+Download-Size: 57.4 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Meta loader for Vulkan API
+

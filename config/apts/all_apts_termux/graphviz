@@ -1,0 +1,12 @@
+Package: graphviz
+Version: 12.2.1
+Maintainer: @termux
+Installed-Size: 10.7 MB
+Depends: fontconfig, freetype, gdk-pixbuf, glib, harfbuzz, libandroid-glob, libc++, libcairo, libexpat, libgd, libgts, libltdl, librsvg, libwebp, pango, zlib
+Breaks: graphviz-dev
+Replaces: graphviz-dev
+Homepage: https://www.graphviz.org/
+Download-Size: 2984 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Rich set of graph drawing tools
+

@@ -1,0 +1,12 @@
+Package: espeak
+Version: 1.52.0
+Maintainer: @termux
+Installed-Size: 27.2 MB
+Depends: libc++, pcaudiolib
+Breaks: espeak-dev
+Replaces: espeak-dev
+Homepage: https://github.com/espeak-ng/espeak-ng
+Download-Size: 8846 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Compact software speech synthesizer
+

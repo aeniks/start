@@ -1,0 +1,12 @@
+Package: pypy3
+Version: 7.3.15-4
+Maintainer: @licy183
+Installed-Size: 76.6 MB
+Depends: gdbm, libandroid-posix-semaphore, libandroid-support, libbz2, libcrypt, libexpat, libffi, liblzma, libsqlite, ncurses, ncurses-ui-libs, openssl, zlib
+Recommends: clang, make, pkg-config
+Suggests: pypy3-tkinter
+Homepage: https://pypy.org
+Download-Size: 13.9 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A fast, compliant alternative implementation of Python 3
+

@@ -1,0 +1,12 @@
+Package: octave
+Version: 9.4.0-1
+Maintainer: @termux
+Installed-Size: 62.2 MB
+Depends: libandroid-complex-math, arpack-ng, clang, bzip2, fftw, fontconfig, freetype, glpk, graphicsmagick, libcurl, libhdf5, libiconv, libopenblas, libsndfile, make, openssl, pcre2, portaudio, qhull, qrupdate-ng, rapidjson, readline, suitesparse, sundials, zlib
+Recommends: gnuplot, less
+Conflicts: octave-x
+Homepage: https://octave.org
+Download-Size: 12.9 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: GNU Octave is a high-level language, primarily intended for numerical computations. (only CLI)
+

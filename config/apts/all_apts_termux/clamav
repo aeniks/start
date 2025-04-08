@@ -1,0 +1,12 @@
+Package: clamav
+Version: 1.4.2
+Maintainer: @termux
+Installed-Size: 21.1 MB
+Depends: json-c, libandroid-support, libbz2, libc++, libcurl, libiconv, libxml2, ncurses, openssl, pcre2, zlib
+Breaks: clamav-dev
+Replaces: clamav-dev
+Homepage: https://www.clamav.net/
+Download-Size: 3410 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Anti-virus toolkit for Unix
+

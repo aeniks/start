@@ -1,0 +1,10 @@
+Package: libxdmcp
+Version: 1.1.5
+Maintainer: @termux
+Installed-Size: 201 kB
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 24.4 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: X11 Display Manager Control Protocol library
+

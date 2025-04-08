@@ -1,0 +1,9 @@
+Package: taplo
+Version: 0.9.3
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 10.7 MB
+Homepage: https://taplo.tamasfe.dev/
+Download-Size: 2966 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A TOML LSP and toolkit
+

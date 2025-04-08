@@ -1,0 +1,12 @@
+Package: libarchive
+Version: 3.7.9
+Maintainer: @termux
+Installed-Size: 1044 kB
+Depends: libbz2, libiconv, liblzma, libxml2, openssl, zlib
+Breaks: libarchive-dev
+Replaces: libarchive-dev
+Homepage: https://www.libarchive.org/
+Download-Size: 387 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Multi-format archive and compression library
+

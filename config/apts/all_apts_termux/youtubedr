@@ -1,0 +1,9 @@
+Package: youtubedr
+Version: 2.10.3
+Maintainer: Krishna kanhaiya @kcubeterm
+Installed-Size: 17.2 MB
+Homepage: https://github.com/kkdai/youtube
+Download-Size: 4016 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Download youtube video in Golang
+

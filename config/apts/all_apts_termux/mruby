@@ -1,0 +1,10 @@
+Package: mruby
+Version: 3.3.0
+Maintainer: @termux
+Installed-Size: 4567 kB
+Depends: libandroid-complex-math, readline
+Homepage: https://mruby.org/
+Download-Size: 505 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Lightweight implementation of the Ruby language
+

@@ -1,0 +1,10 @@
+Package: aalib
+Version: 1.4rc5-12
+Maintainer: @termux
+Installed-Size: 631 kB
+Depends: ncurses
+Homepage: https://sourceforge.net/projects/aa-project/
+Download-Size: 111 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A portable ASCII art graphic library
+

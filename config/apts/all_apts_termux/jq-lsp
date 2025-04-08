@@ -1,0 +1,9 @@
+Package: jq-lsp
+Version: 0.1.11
+Maintainer: @termux
+Installed-Size: 4305 kB
+Homepage: https://github.com/wader/jq-lsp
+Download-Size: 1097 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: jq language server
+

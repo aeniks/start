@@ -1,0 +1,12 @@
+Package: seafile-client
+Version: 9.0.13
+Maintainer: @termux
+Installed-Size: 729 kB
+Depends: argon2, glib, libcurl, libevent, libjansson, libsearpc, libsqlite, libuuid, libwebsockets, openssl, python, zlib
+Breaks: seafile-client-dev, ccnet
+Replaces: seafile-client-dev, ccnet
+Homepage: https://seafile.com
+Download-Size: 168 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Seafile is a file syncing and sharing software with file encryption and group sharing
+

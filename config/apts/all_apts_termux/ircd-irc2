@@ -1,0 +1,10 @@
+Package: ircd-irc2
+Version: 2.11.2p3-1
+Maintainer: @termux
+Installed-Size: 483 kB
+Depends: libcrypt, resolv-conf
+Homepage: http://www.irc.org/
+Download-Size: 147 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An Internet Relay Chat (IRC) daemon
+

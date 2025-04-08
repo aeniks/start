@@ -1,0 +1,10 @@
+Package: mdbook-linkcheck
+Version: 0.7.7-1
+Maintainer: @termux
+Installed-Size: 8794 kB
+Depends: openssl
+Homepage: https://michael-f-bryan.github.io/mdbook-linkcheck/
+Download-Size: 2690 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A backend for mdbook which will check your links for you
+

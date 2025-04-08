@@ -1,0 +1,10 @@
+Package: libxss-static
+Version: 1.2.4
+Maintainer: @termux
+Installed-Size: 45.1 kB
+Depends: libxss (= 1.2.4)
+Homepage: https://xorg.freedesktop.org/
+Download-Size: 4340 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libxss
+

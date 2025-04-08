@@ -1,0 +1,10 @@
+Package: libstrophe
+Version: 0.14.0
+Maintainer: @termux
+Installed-Size: 274 kB
+Depends: openssl, libexpat, c-ares
+Homepage: https://strophe.im/libstrophe
+Download-Size: 69.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: libstrophe is a minimal XMPP library written in C
+

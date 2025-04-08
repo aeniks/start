@@ -1,0 +1,9 @@
+Package: catimg
+Version: 2.7.0
+Maintainer: @termux
+Installed-Size: 139 kB
+Homepage: https://posva.net/shell/retro/bash/2013/05/27/catimg
+Download-Size: 37.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Renders images in the terminal
+

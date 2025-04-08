@@ -1,0 +1,15 @@
+Package: libcurl
+Version: 8.13.0
+Essential: yes
+Maintainer: @termux
+Installed-Size: 3375 kB
+Depends: libnghttp2, libnghttp3, libssh2, openssl (>= 1:3.2.1-1), zlib
+Conflicts: apt (<< 1.4.8-8)
+Breaks: libcurl-dev
+Replaces: libcurl-dev
+Homepage: https://curl.se/
+Download-Size: 955 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Easy-to-use client-side URL transfer library
+

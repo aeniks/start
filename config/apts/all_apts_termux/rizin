@@ -1,0 +1,11 @@
+Package: rizin
+Version: 0.7.4-1
+Maintainer: @termux
+Installed-Size: 25.8 MB
+Depends: capstone, file, libandroid-execinfo, liblz4, liblzma, libzip, openssl, tree-sitter, xxhash, zlib, zstd
+Suggests: python, apk-tools, apktool, apksigner
+Homepage: https://rizin.re
+Download-Size: 4952 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: UNIX-like reverse engineering framework and command-line toolset.
+

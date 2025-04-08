@@ -1,0 +1,10 @@
+Package: libblosc-static
+Version: 1.21.6
+Maintainer: @termux
+Installed-Size: 94.2 kB
+Depends: libblosc (= 1.21.6)
+Homepage: https://www.blosc.org
+Download-Size: 20.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libblosc
+

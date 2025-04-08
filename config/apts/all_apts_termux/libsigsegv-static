@@ -1,0 +1,10 @@
+Package: libsigsegv-static
+Version: 2.14
+Maintainer: @termux
+Installed-Size: 45.1 kB
+Depends: libsigsegv (= 2.14)
+Homepage: https://www.gnu.org/software/libsigsegv/
+Download-Size: 4764 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libsigsegv
+

@@ -1,0 +1,12 @@
+Package: libopencore-amr
+Version: 0.1.6
+Maintainer: William Goodspeed @goodspeed34
+Installed-Size: 299 kB
+Breaks: libopencore-amr-dev
+Replaces: libopencore-amr-dev
+Homepage: https://sourceforge.net/projects/opencore-amr
+Download-Size: 111 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Open source implementation of the Adaptive Multi Rate (AMR) speech codec
+

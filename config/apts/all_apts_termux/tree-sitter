@@ -1,0 +1,11 @@
+Package: tree-sitter
+Version: 0.25.3
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 8049 kB
+Breaks: libtreesitter
+Replaces: libtreesitter
+Homepage: https://github.com/tree-sitter/tree-sitter
+Download-Size: 2008 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An incremental parsing system for programming tools
+

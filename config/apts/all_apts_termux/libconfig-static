@@ -1,0 +1,10 @@
+Package: libconfig-static
+Version: 1.7.3-3
+Maintainer: @termux
+Installed-Size: 1163 kB
+Depends: libconfig (= 1.7.3-3)
+Homepage: https://github.com/hyperrealm/libconfig
+Download-Size: 65.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libconfig
+

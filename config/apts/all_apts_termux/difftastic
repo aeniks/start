@@ -1,0 +1,11 @@
+Package: difftastic
+Version: 0.63.0
+Maintainer: @termux
+Installed-Size: 90.1 MB
+Depends: libc++
+Recommends: file
+Homepage: https://github.com/Wilfred/difftastic
+Download-Size: 5657 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: difft: A structural diff that understands syntax
+

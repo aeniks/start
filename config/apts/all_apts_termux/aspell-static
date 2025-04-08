@@ -1,0 +1,10 @@
+Package: aspell-static
+Version: 0.60.8.1
+Maintainer: @termux
+Installed-Size: 3101 kB
+Depends: aspell (= 0.60.8.1)
+Homepage: http://aspell.net
+Download-Size: 327 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for aspell
+

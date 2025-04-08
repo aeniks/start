@@ -1,0 +1,10 @@
+Package: oorexx-static
+Version: 4.2.0-3
+Maintainer: @termux
+Installed-Size: 8892 kB
+Depends: oorexx (= 4.2.0-3)
+Homepage: https://www.oorexx.org/
+Download-Size: 673 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for oorexx
+

@@ -1,0 +1,10 @@
+Package: libmuparser
+Version: 2.3.5
+Maintainer: @termux
+Installed-Size: 1487 kB
+Depends: libc++
+Homepage: https://beltoforion.de/en/muparser
+Download-Size: 352 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An extensible high performance math expression parser library written in C++
+

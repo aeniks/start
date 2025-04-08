@@ -1,0 +1,10 @@
+Package: libmariadbcpp
+Version: 1.1.2
+Maintainer: @termux
+Installed-Size: 2392 kB
+Depends: libc++, openssl, zlib
+Homepage: https://mariadb.com/docs/clients/mariadb-connectors/connector-cpp/
+Download-Size: 535 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Enables C++ applications to establish client connections to MariaDB Enterprise over TLS
+

@@ -1,0 +1,9 @@
+Package: pv
+Version: 1.9.31
+Maintainer: @termux
+Installed-Size: 725 kB
+Homepage: https://www.ivarch.com/programs/pv.shtml
+Download-Size: 239 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Terminal-based tool for monitoring the progress of data through a pipeline
+

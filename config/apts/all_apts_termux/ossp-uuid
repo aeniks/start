@@ -1,0 +1,11 @@
+Package: ossp-uuid
+Version: 1.6.2-3
+Maintainer: @termux
+Installed-Size: 143 kB
+Breaks: ossp-uuid-dev
+Replaces: ossp-uuid-dev
+Homepage: http://www.ossp.org/pkg/lib/uuid/
+Download-Size: 24.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: ISO-C:1999 uuid generator supporting DCE 1.1, ISO/IEC 11578:1996 and RFC 4122.
+

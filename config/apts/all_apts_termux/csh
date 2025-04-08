@@ -1,0 +1,10 @@
+Package: csh
+Version: 20110502-1
+Maintainer: @termux
+Installed-Size: 217 kB
+Depends: libandroid-glob, libbsd
+Homepage: https://packages.debian.org/sid/csh
+Download-Size: 79.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: C Shell with process control from 3BSD
+

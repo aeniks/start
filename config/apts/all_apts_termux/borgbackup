@@ -1,0 +1,10 @@
+Package: borgbackup
+Version: 1.4.0-2
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 5108 kB
+Depends: libacl, liblz4, openssl, python, xxhash, zstd
+Homepage: https://www.borgbackup.org/
+Download-Size: 1073 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Deduplicating and compressing backup program
+

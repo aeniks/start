@@ -1,0 +1,12 @@
+Package: libffi
+Version: 3.4.7
+Maintainer: @termux
+Installed-Size: 233 kB
+Breaks: libffi-dev
+Replaces: libffi-dev
+Homepage: https://sourceware.org/libffi/
+Download-Size: 30.6 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library providing a portable, high level programming interface to various calling conventions
+

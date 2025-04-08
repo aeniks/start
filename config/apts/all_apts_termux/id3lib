@@ -1,0 +1,10 @@
+Package: id3lib
+Version: 3.8.3-3
+Maintainer: @termux
+Installed-Size: 610 kB
+Depends: libc++, libiconv, zlib
+Homepage: http://id3lib.sourceforge.net/
+Download-Size: 103 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A software library for manipulating ID3v1/v1.1 and ID3v2 tags
+

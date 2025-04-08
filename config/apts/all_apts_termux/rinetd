@@ -1,0 +1,9 @@
+Package: rinetd
+Version: 1:0.73-1
+Maintainer: @termux
+Installed-Size: 90.1 kB
+Homepage: https://github.com/samhocevar/rinetd
+Download-Size: 14.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A user-mode TCP port redirection server
+

@@ -1,0 +1,9 @@
+Package: ncdu2
+Version: 2.8
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 803 kB
+Homepage: https://dev.yorhel.nl/ncdu
+Download-Size: 297 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Disk usage analyzer
+

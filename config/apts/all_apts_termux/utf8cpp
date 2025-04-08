@@ -1,0 +1,9 @@
+Package: utf8cpp
+Version: 4.0.6
+Maintainer: @termux
+Installed-Size: 143 kB
+Homepage: https://github.com/nemtrif/utfcpp
+Download-Size: 10.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: UTF8-CPP: UTF-8 with C++ in a Portable Way
+

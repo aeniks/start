@@ -1,0 +1,10 @@
+Package: d8
+Version: 33.0.1
+Maintainer: @termux
+Installed-Size: 8245 kB
+Depends: openjdk-17
+Homepage: https://developer.android.com/studio/command-line/d8
+Download-Size: 7399 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: DEX bytecode compiler from Android SDK
+

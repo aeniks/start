@@ -1,0 +1,10 @@
+Package: lsof-static
+Version: 4.99.4
+Maintainer: @termux
+Installed-Size: 274 kB
+Depends: lsof (= 4.99.4)
+Homepage: https://github.com/lsof-org/lsof
+Download-Size: 55.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for lsof
+

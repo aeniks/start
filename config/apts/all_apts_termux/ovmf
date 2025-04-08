@@ -1,0 +1,9 @@
+Package: ovmf
+Version: 20231122-16.fc40-0
+Maintainer: @termux
+Installed-Size: 624 MB
+Homepage: https://www.tianocore.org/
+Download-Size: 39.1 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Open Virtual Machine Firmware
+

@@ -1,0 +1,9 @@
+Package: peco
+Version: 0.5.11-2
+Maintainer: @termux
+Installed-Size: 3244 kB
+Homepage: https://github.com/peco/peco
+Download-Size: 895 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Simplistic interactive filtering tool
+

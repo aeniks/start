@@ -1,0 +1,14 @@
+Package: htop
+Version: 3.4.0
+Maintainer: @termux
+Installed-Size: 401 kB
+Depends: libandroid-support, ncurses
+Conflicts: htop-legacy
+Breaks: htop-legacy
+Replaces: htop-legacy
+Homepage: https://htop.dev/
+Download-Size: 111 kB
+APT-Manual-Installed: yes
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Interactive process viewer for Linux
+

@@ -1,0 +1,12 @@
+Package: qalc
+Version: 5.5.2
+Maintainer: @termux
+Installed-Size: 7770 kB
+Depends: libc++, libcurl, libgmp, libiconv, libmpfr, libxml2, readline
+Breaks: qalc-dev
+Replaces: qalc-dev
+Homepage: https://qalculate.github.io/
+Download-Size: 1735 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Powerful and easy to use command line calculator
+

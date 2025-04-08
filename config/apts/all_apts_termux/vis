@@ -1,0 +1,10 @@
+Package: vis
+Version: 0.9-3
+Maintainer: @termux
+Installed-Size: 1737 kB
+Depends: liblua54, libunibilium, libtermkey, lua-lpeg, ncurses
+Homepage: https://www.brain-dump.org/projects/vis/
+Download-Size: 303 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Modern, legacy free, simple yet efficient vim-like editor
+

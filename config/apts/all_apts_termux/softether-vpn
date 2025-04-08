@@ -1,0 +1,10 @@
+Package: softether-vpn
+Version: 5.02.5180-4
+Maintainer: @termux
+Installed-Size: 23.7 MB
+Depends: libiconv, libsodium, ncurses, openssl, readline, resolv-conf, zlib
+Homepage: https://www.softether.org/
+Download-Size: 3418 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An open-source cross-platform multi-protocol VPN program
+

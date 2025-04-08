@@ -1,0 +1,10 @@
+Package: rsnapshot
+Version: 1.5.1
+Maintainer: @termux
+Installed-Size: 328 kB
+Depends: coreutils, openssh, perl, rsync
+Homepage: https://www.rsnapshot.org/
+Download-Size: 68.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A remote filesystem snapshot utility
+

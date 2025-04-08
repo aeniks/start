@@ -1,0 +1,11 @@
+Package: ncspot
+Version: 1.2.2
+Maintainer: @termux
+Installed-Size: 13.6 MB
+Depends: dbus, pulseaudio
+Conflicts: ncspot-mpris
+Homepage: https://github.com/hrkfdn/ncspot
+Download-Size: 4049 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: An ncurses Spotify client written in Rust
+

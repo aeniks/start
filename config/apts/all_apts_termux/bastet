@@ -1,0 +1,10 @@
+Package: bastet
+Version: 0.43.2-11
+Maintainer: @termux
+Installed-Size: 430 kB
+Depends: libc++, ncurses
+Homepage: http://fph.altervista.org/prog/bastet.html
+Download-Size: 100 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tetris clone with 'bastard' block-choosing AI
+

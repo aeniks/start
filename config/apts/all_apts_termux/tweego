@@ -1,0 +1,9 @@
+Package: tweego
+Version: 2.1.1-4
+Maintainer: @termux
+Installed-Size: 3154 kB
+Homepage: https://bitbucket.org/tmedwards/tweego
+Download-Size: 901 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A free command line compiler for Twine/Twee story formats
+

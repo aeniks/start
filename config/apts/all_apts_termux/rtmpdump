@@ -1,0 +1,12 @@
+Package: rtmpdump
+Version: 2.6
+Maintainer: @termux
+Installed-Size: 340 kB
+Depends: openssl, zlib
+Breaks: rtmpdump-dev
+Replaces: rtmpdump-dev
+Homepage: https://rtmpdump.mplayerhq.hu/
+Download-Size: 86.3 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Small dumper for media content streamed over the RTMP protocol
+

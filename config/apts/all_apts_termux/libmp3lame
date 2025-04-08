@@ -1,0 +1,12 @@
+Package: libmp3lame
+Version: 3.100-6
+Maintainer: @termux
+Installed-Size: 356 kB
+Breaks: libmp3lame-dev
+Replaces: libmp3lame-dev
+Homepage: https://lame.sourceforge.io/
+Download-Size: 115 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: High quality MPEG Audio Layer III (MP3) encoder
+

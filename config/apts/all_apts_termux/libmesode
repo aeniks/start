@@ -1,0 +1,12 @@
+Package: libmesode
+Version: 0.10.1-4
+Maintainer: Oliver Schmidhauser @Neo-Oli
+Installed-Size: 160 kB
+Depends: openssl, libexpat
+Breaks: libmesode-dev
+Replaces: libmesode-dev
+Homepage: https://github.com/boothj5/libmesode
+Download-Size: 38.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Minimal XMPP library written for use with Profanity XMPP client
+

@@ -1,0 +1,11 @@
+Package: mediainfo
+Version: 25.03
+Maintainer: @termux
+Installed-Size: 139 kB
+Depends: libandroid-support, libc++, libmediainfo, libzen
+Homepage: https://mediaarea.net/en/MediaInfo
+Download-Size: 28.3 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Command-line utility for reading information from media files
+

@@ -1,0 +1,10 @@
+Package: libforestdb
+Version: 1.2
+Maintainer: @termux
+Installed-Size: 426 kB
+Depends: libsnappy
+Homepage: https://github.com/couchbase/forestdb
+Download-Size: 126 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A key-value storage engine
+

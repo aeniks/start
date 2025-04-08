@@ -1,0 +1,10 @@
+Package: aspell-es
+Version: 2:1.11-2-0
+Maintainer: @termux
+Installed-Size: 1540 kB
+Depends: aspell
+Homepage: http://aspell.net/
+Download-Size: 453 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Spanish dictionary for aspell
+

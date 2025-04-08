@@ -1,0 +1,10 @@
+Package: alpine
+Version: 2.26
+Maintainer: @termux
+Installed-Size: 9302 kB
+Depends: coreutils, libcrypt, ncurses, openssl, openssl-tool
+Homepage: http://alpine.x10host.com/
+Download-Size: 1751 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Fast, easy to use email client
+

@@ -1,0 +1,10 @@
+Package: samba
+Version: 4.16.11-4
+Maintainer: @termux
+Installed-Size: 28.1 MB
+Depends: krb5, libandroid-execinfo, libandroid-spawn, libbsd, libcap, libcrypt, libgnutls, libiconv, libicu, libpopt, libtalloc, libtasn1, libtirpc, ncurses, openssl, readline, tdb-tools, zlib
+Homepage: https://www.samba.org/
+Download-Size: 6222 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: SMB/CIFS fileserver
+

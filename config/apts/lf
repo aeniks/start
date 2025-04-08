@@ -1,0 +1,10 @@
+Package: lf
+Version: 34
+Maintainer: @termux
+Installed-Size: 6124 kB
+Homepage: https://github.com/gokcehan/lf
+Download-Size: 1605 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Terminal file manager
+

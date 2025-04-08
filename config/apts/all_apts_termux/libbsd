@@ -1,0 +1,12 @@
+Package: libbsd
+Version: 0.11.7-1
+Maintainer: @termux
+Installed-Size: 1356 kB
+Depends: libmd
+Breaks: libbsd-dev
+Replaces: libbsd-dev
+Homepage: https://libbsd.freedesktop.org
+Download-Size: 151 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: utility functions from BSD systems
+

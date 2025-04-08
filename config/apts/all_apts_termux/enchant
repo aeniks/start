@@ -1,0 +1,10 @@
+Package: enchant
+Version: 2.8.2-1
+Maintainer: @termux
+Installed-Size: 299 kB
+Depends: aspell, glib, hunspell, libc++
+Homepage: https://rrthomas.github.io/enchant/
+Download-Size: 55.4 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Wraps a number of different spelling libraries and programs with a consistent interface
+

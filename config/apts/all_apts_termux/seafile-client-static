@@ -1,0 +1,10 @@
+Package: seafile-client-static
+Version: 9.0.13
+Maintainer: @termux
+Installed-Size: 143 kB
+Depends: seafile-client (= 9.0.13)
+Homepage: https://seafile.com
+Download-Size: 16.5 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for seafile-client
+

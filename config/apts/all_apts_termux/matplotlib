@@ -1,0 +1,10 @@
+Package: matplotlib
+Version: 3.10.1
+Maintainer: @termux
+Installed-Size: 31.0 MB
+Depends: freetype, libc++, patchelf, ninja, python, python-contourpy, python-numpy, python-pillow, python-pip
+Homepage: https://matplotlib.org/
+Download-Size: 7037 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A comprehensive library for creating static, animated, and interactive visualizations in Python
+

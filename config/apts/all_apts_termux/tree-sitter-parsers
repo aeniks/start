@@ -1,0 +1,10 @@
+Package: tree-sitter-parsers
+Version: 0.0.2
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 4096 B
+Depends: tree-sitter-c, tree-sitter-lua, tree-sitter-markdown, tree-sitter-query, tree-sitter-vimdoc, tree-sitter-vim
+Homepage: https://github.com/termux/termux-packages
+Download-Size: 748 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A metapackage that provides commonly used treesitter parsers
+

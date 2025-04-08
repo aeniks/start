@@ -1,0 +1,10 @@
+Package: gluelang
+Version: 0.2.0-1
+Maintainer: @termux
+Installed-Size: 184 kB
+Depends: libc++
+Homepage: https://ryuichiueda.github.io/GlueLang/
+Download-Size: 43.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A programming language that has a strong nature to be a glue of commands
+

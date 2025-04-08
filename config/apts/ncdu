@@ -1,0 +1,11 @@
+Package: ncdu
+Version: 1.22
+Maintainer: Joshua Kahn @TomJo2000
+Installed-Size: 139 kB
+Depends: libandroid-support, ncurses
+Homepage: https://dev.yorhel.nl/ncdu
+Download-Size: 36.9 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Disk usage analyzer
+

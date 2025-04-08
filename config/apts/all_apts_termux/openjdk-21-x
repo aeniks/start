@@ -1,0 +1,10 @@
+Package: openjdk-21-x
+Version: 21.0.6
+Maintainer: @termux
+Installed-Size: 15.0 MB
+Depends: freetype, giflib, libandroid-shmem, libjpeg-turbo, libpng, libx11, libxext, libxi, libxrender, libxtst, openjdk-21 (= 21.0.6)
+Homepage: https://openjdk.java.net
+Download-Size: 12.5 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Portion of openjdk-21 requiring X11 functionality
+

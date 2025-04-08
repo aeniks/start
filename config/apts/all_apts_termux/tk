@@ -1,0 +1,10 @@
+Package: tk
+Version: 8.6.14
+Maintainer: @termux
+Installed-Size: 5710 kB
+Depends: fontconfig, libx11, libxft, libxss, tcl
+Homepage: https://tcl.sourceforge.net/
+Download-Size: 1757 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A windowing toolkit for use with tcl
+

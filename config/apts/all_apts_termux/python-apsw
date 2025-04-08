@@ -1,0 +1,10 @@
+Package: python-apsw
+Version: 3.49.1.0
+Maintainer: @termux
+Installed-Size: 4121 kB
+Depends: libsqlite, python
+Homepage: https://github.com/rogerbinns/apsw/
+Download-Size: 1017 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Another Python SQLite Wrapper
+

@@ -1,0 +1,10 @@
+Package: apr-static
+Version: 1.7.5
+Maintainer: @termux
+Installed-Size: 434 kB
+Depends: apr (= 1.7.5)
+Homepage: https://apr.apache.org/
+Download-Size: 83.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for apr
+

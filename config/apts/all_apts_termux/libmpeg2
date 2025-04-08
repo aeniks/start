@@ -1,0 +1,9 @@
+Package: libmpeg2
+Version: 0.5.1
+Maintainer: @termux
+Installed-Size: 295 kB
+Homepage: https://libmpeg2.sourceforge.io/
+Download-Size: 64.0 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: MPEG-2 decoder libraries
+

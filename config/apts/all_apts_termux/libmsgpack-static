@@ -1,0 +1,10 @@
+Package: libmsgpack-static
+Version: 6.1.0
+Maintainer: @termux
+Installed-Size: 65.5 kB
+Depends: libmsgpack (= 6.1.0)
+Homepage: https://github.com/msgpack/msgpack-c/
+Download-Size: 10.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libmsgpack
+

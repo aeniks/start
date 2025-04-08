@@ -1,0 +1,10 @@
+Package: libcairomm-1.16
+Version: 1.18.0
+Maintainer: @termux
+Installed-Size: 627 kB
+Depends: libc++, libcairo, libsigc++-3.0
+Homepage: https://www.cairographics.org/cairomm/
+Download-Size: 96.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Provides a C++ interface to cairo
+

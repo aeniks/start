@@ -1,0 +1,9 @@
+Package: libiniparser
+Version: 4.2.6
+Maintainer: @termux
+Installed-Size: 143 kB
+Homepage: https://github.com/ndevilla/iniparser
+Download-Size: 14.6 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Offers parsing of ini files from the C level
+

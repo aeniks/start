@@ -1,0 +1,10 @@
+Package: php-zephir-parser
+Version: 1.7.0
+Maintainer: ian4hu <hu2008yinxiang@163.com>
+Installed-Size: 274 kB
+Depends: php
+Homepage: https://github.com/phalcon/php-zephir-parser
+Download-Size: 44.1 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The Zephir Parser delivered as a C extension for the PHP language
+

@@ -1,0 +1,10 @@
+Package: libxslt-static
+Version: 1.1.39
+Maintainer: @termux
+Installed-Size: 614 kB
+Depends: libxslt (= 1.1.39)
+Homepage: http://xmlsoft.org/libxslt/
+Download-Size: 124 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libxslt
+

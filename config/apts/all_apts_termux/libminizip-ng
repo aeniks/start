@@ -1,0 +1,10 @@
+Package: libminizip-ng
+Version: 4.0.9
+Maintainer: @termux
+Installed-Size: 315 kB
+Depends: libbz2, libiconv, liblzma, openssl, zlib
+Homepage: https://github.com/zlib-ng/minizip-ng
+Download-Size: 51.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A zip manipulation library written in C
+

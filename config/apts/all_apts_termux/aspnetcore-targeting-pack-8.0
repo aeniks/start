@@ -1,0 +1,10 @@
+Package: aspnetcore-targeting-pack-8.0
+Version: 8.0.14-2
+Maintainer: @truboxl
+Installed-Size: 16.0 MB
+Depends: dotnet-host
+Homepage: https://dotnet.microsoft.com/en-us/
+Download-Size: 1737 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: ASP.NET Core 8.0 Targeting Pack
+

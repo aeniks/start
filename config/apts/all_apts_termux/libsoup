@@ -1,0 +1,13 @@
+Package: libsoup
+Version: 2.74.3-3
+Maintainer: @termux
+Installed-Size: 2675 kB
+Depends: brotli, glib, libpsl, libsqlite, libxml2, zlib
+Recommends: glib-networking
+Breaks: libsoup-dev
+Replaces: libsoup-dev
+Homepage: https://wiki.gnome.org/action/show/Projects/libsoup
+Download-Size: 345 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: HTTP client and server library
+

@@ -1,0 +1,11 @@
+Package: suitesparse
+Version: 7.9.0
+Maintainer: @termux
+Installed-Size: 57.2 MB
+Depends: libandroid-complex-math, libgmp, libmpfr, libopenblas
+Breaks: sundials (<< 7.1.1-2), octave (<< 8.4.0-6), octave-x (<< 8.4.0-5)
+Homepage: https://github.com/DrTimothyAldenDavis/SuiteSparse
+Download-Size: 7330 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A Suite of Sparse matrix packages.
+

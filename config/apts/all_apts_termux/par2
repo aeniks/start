@@ -1,0 +1,10 @@
+Package: par2
+Version: 0.8.1-4
+Maintainer: Oliver Schmidhauser @Neo-Oli
+Installed-Size: 975 kB
+Depends: libc++
+Homepage: https://github.com/Parchive/par2cmdline
+Download-Size: 273 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: par2cmdline is a PAR 2.0 compatible file verification and repair tool
+

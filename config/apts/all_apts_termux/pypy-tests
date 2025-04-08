@@ -1,0 +1,10 @@
+Package: pypy-tests
+Version: 7.3.19-1
+Maintainer: @licy183
+Installed-Size: 17.4 MB
+Depends: pypy (= 7.3.19-1)
+Homepage: https://pypy.org
+Download-Size: 2185 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Test files for PyPy
+

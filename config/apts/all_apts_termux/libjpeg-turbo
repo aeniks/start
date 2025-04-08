@@ -1,0 +1,12 @@
+Package: libjpeg-turbo
+Version: 3.1.0
+Maintainer: @termux
+Installed-Size: 2105 kB
+Breaks: libjpeg-turbo-dev
+Replaces: libjpeg-turbo-dev
+Homepage: https://libjpeg-turbo.virtualgl.org
+Download-Size: 381 kB
+APT-Manual-Installed: no
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library for reading and writing JPEG image files
+

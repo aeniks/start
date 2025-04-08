@@ -1,0 +1,9 @@
+Package: zola
+Version: 0.20.0
+Maintainer: @termux
+Installed-Size: 37.2 MB
+Homepage: https://github.com/getzola/zola
+Download-Size: 7464 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A fast static site generator in a single binary with everything built-in.
+

@@ -1,0 +1,10 @@
+Package: rcs
+Version: 5.10.1
+Maintainer: @termux
+Installed-Size: 684 kB
+Depends: diffutils
+Homepage: https://www.gnu.org/s/rcs
+Download-Size: 164 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The GNU Revision Control System
+

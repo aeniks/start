@@ -1,0 +1,11 @@
+Package: gh
+Version: 2.69.0
+Maintainer: Krishna kanhaiya @kcubeterm
+Installed-Size: 48.5 MB
+Recommends: openssh
+Homepage: https://cli.github.com/
+Download-Size: 8918 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: GitHub’s official command line tool
+

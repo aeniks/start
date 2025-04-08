@@ -1,0 +1,10 @@
+Package: ghc
+Version: 9.2.5-1
+Maintainer: Aditya Alok <alok@termux.org>
+Installed-Size: 456 MB
+Depends: binutils-is-llvm | binutils, llvm, clang, ghc-libs (= 9.2.5-1)
+Homepage: https://www.haskell.org/ghc/
+Download-Size: 50.2 MB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The Glasgow Haskell Compiler
+

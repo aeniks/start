@@ -1,0 +1,10 @@
+Package: openmpi-static
+Version: 4.1.5
+Maintainer: Henrik Grimler @Grimler91
+Installed-Size: 12.1 MB
+Depends: openmpi (= 4.1.5)
+Homepage: https://www.open-mpi.org
+Download-Size: 1910 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for openmpi
+

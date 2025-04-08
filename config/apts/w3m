@@ -1,0 +1,13 @@
+Package: w3m
+Version: 0.5.3.20230121-1
+Maintainer: @termux
+Installed-Size: 2130 kB
+Depends: libgc, ncurses, openssl, zlib
+Recommends: libsixel
+Suggests: perl
+Homepage: https://w3m.sourceforge.net/
+Download-Size: 691 kB
+APT-Manual-Installed: yes
+APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
+Description: Text based Web browser and pager
+

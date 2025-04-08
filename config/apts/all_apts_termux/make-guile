@@ -1,0 +1,14 @@
+Package: make-guile
+Version: 4.4.1
+Maintainer: @termux
+Installed-Size: 963 kB
+Provides: make
+Depends: guile
+Conflicts: make
+Breaks: make-dev
+Replaces: make-dev
+Homepage: https://www.gnu.org/software/make/
+Download-Size: 240 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Tool to control the generation of non-source files from source files
+

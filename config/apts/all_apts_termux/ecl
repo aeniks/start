@@ -1,0 +1,10 @@
+Package: ecl
+Version: 24.5.10
+Maintainer: @termux
+Installed-Size: 12.4 MB
+Depends: libandroid-support, libgmp, libgc, libffi
+Homepage: https://common-lisp.net/project/ecl/
+Download-Size: 2119 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: ECL (Embeddable Common Lisp) is an interpreter of the Common Lisp language
+

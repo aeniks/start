@@ -1,0 +1,10 @@
+Package: teckit-static
+Version: 2.5.12
+Maintainer: Henrik Grimler @Grimler91
+Installed-Size: 4751 kB
+Depends: teckit (= 2.5.12)
+Homepage: https://scripts.sil.org/teckitdownloads
+Download-Size: 315 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for teckit
+

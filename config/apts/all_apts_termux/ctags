@@ -1,0 +1,10 @@
+Package: ctags
+Version: 2:6.1.0-1
+Maintainer: @termux
+Installed-Size: 3518 kB
+Depends: libiconv, libjansson, libxml2, libyaml
+Homepage: https://ctags.io/
+Download-Size: 686 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Universal ctags: Source code index builder
+

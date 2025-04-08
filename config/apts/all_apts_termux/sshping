@@ -1,0 +1,10 @@
+Package: sshping
+Version: 0.1.4-2
+Maintainer: @termux
+Installed-Size: 127 kB
+Depends: libc++, libssh
+Homepage: https://github.com/spook/sshping
+Download-Size: 28.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: measure character-echo latency and bandwidth for an interactive ssh session
+

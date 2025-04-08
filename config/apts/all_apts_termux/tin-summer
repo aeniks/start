@@ -1,0 +1,9 @@
+Package: tin-summer
+Version: 1.21.14
+Maintainer: @termux
+Installed-Size: 1974 kB
+Homepage: https://github.com/vmchale/tin-summer
+Download-Size: 554 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Find build artifacts that are taking up disk space
+

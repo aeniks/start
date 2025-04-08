@@ -1,0 +1,10 @@
+Package: libcap-ng-static
+Version: 2:0.8.5
+Maintainer: @termux
+Installed-Size: 69.6 kB
+Depends: libcap-ng (= 2:0.8.5)
+Homepage: https://people.redhat.com/sgrubb/libcap-ng/
+Download-Size: 8888 B
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libcap-ng
+

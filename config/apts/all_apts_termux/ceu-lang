@@ -1,0 +1,10 @@
+Package: ceu-lang
+Version: 2019.07.17-2
+Maintainer: @termux
+Installed-Size: 471 kB
+Depends: lua53, lua53-lpeg, liblua53
+Homepage: https://github.com/ceu-lang/ceu
+Download-Size: 75.9 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: The Structured Synchronous Reactive Programming Language Céu
+

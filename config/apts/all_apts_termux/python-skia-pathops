@@ -1,0 +1,10 @@
+Package: python-skia-pathops
+Version: 0.8.0-1
+Maintainer: Nguyen Khanh @nguynkhn
+Installed-Size: 3383 kB
+Depends: libc++, python
+Homepage: https://github.com/fonttools/skia-pathops
+Download-Size: 1016 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Python bindings for the Skia library's Path Ops
+

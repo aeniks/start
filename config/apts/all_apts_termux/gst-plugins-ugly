@@ -1,0 +1,10 @@
+Package: gst-plugins-ugly
+Version: 1.26.0
+Maintainer: @termux
+Installed-Size: 283 kB
+Depends: glib, gst-plugins-base
+Homepage: https://gstreamer.freedesktop.org/
+Download-Size: 76.1 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: GStreamer Ugly Plug-ins
+

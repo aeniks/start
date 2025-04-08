@@ -1,0 +1,12 @@
+Package: libtermkey
+Version: 0.22-3
+Maintainer: @termux
+Installed-Size: 102 kB
+Depends: libunibilium
+Breaks: libtermkey-dev
+Replaces: libtermkey-dev
+Homepage: http://www.leonerd.org.uk/code/libtermkey/
+Download-Size: 16.2 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Library for processing of keyboard entry for terminal-based programs
+

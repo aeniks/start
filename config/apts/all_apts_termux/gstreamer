@@ -1,0 +1,12 @@
+Package: gstreamer
+Version: 1.26.0
+Maintainer: @termux
+Installed-Size: 9392 kB
+Depends: glib
+Breaks: gstreamer-dev
+Replaces: gstreamer-dev
+Homepage: https://gstreamer.freedesktop.org/
+Download-Size: 1306 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Open source multimedia framework
+

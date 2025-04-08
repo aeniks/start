@@ -1,0 +1,10 @@
+Package: pypy3-tests
+Version: 7.3.15-4
+Maintainer: @licy183
+Installed-Size: 27.0 MB
+Depends: pypy3 (= 7.3.15-4)
+Homepage: https://pypy.org
+Download-Size: 3180 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Test files for PyPy 3
+

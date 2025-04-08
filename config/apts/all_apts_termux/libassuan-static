@@ -1,0 +1,10 @@
+Package: libassuan-static
+Version: 3.0.1-2
+Maintainer: @termux
+Installed-Size: 184 kB
+Depends: libassuan (= 3.0.1-2)
+Homepage: https://www.gnupg.org/related_software/libassuan/
+Download-Size: 33.7 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: Static libraries for libassuan
+

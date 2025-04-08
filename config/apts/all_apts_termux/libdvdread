@@ -1,0 +1,9 @@
+Package: libdvdread
+Version: 6.1.3
+Maintainer: @termux
+Installed-Size: 381 kB
+Homepage: https://code.videolan.org/videolan/libdvdread
+Download-Size: 86.8 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: A library that allows easy use of sophisticated DVD navigation features
+

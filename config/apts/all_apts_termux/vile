@@ -1,0 +1,10 @@
+Package: vile
+Version: 9.8z
+Maintainer: @termux
+Installed-Size: 5403 kB
+Depends: ncurses
+Homepage: https://invisible-island.net/vile/
+Download-Size: 884 kB
+APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
+Description: VI Like Emacs - vi work-alike
+
