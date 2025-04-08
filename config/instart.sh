@@ -6,35 +6,48 @@ mkdir $HOME/tmp 2>/dev/null; mkdir $HOME/logs 2>/dev/null;
 mkdir $HOME/gh 2>/dev/null; tmp=$HOME/tmp; 
 
 _loader() { 
-unset kill; printf %b "\e[A\e[?25l\e[54G${re}"; 
+unset kill; printf %b "\e[A\e[?25l\e[46G${re}"; 
 # printf "    [   [${dim}a${re}] to abort"; 
 pid="$!"; spin='-\|/'; i=0; while kill -0 $pid &>/dev/null; 
 do i=$(( (i+1) %4 )); 
-printf "${re} \e[56G[${dim}${spin:$i:1} \b${re}]"; 
+printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] "; 
 read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
 # tail -c21 $tmp/in.log; printf %b "\e[u"; 
-done; printf %b "\b\b${dim}done!${re}]\r\n"; sleep .02; 
+done; 
 }; 
 
-$sudo apt install -y bat iproute2 nmap lf git \
-gh fzf wget micro bash-completion \
-ssh openssh-server &>$tmp/in.log & disown; _loader; 
-
-local IFS=$'\n ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
-cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
-height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
-yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
-enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
+# $sudo apt install -y bat iproute2 nmap lf git \
+# gh fzf wget micro bash-completion \
+# ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
+gh git \
 file openssl openssh-server \
 rsync rclone w3m w3m-img googler exiftool \
 mediainfo figlet lolcat lynx fortune-mod links2 \
 toilet iproute2 net-tools nmap fastfetch \
 neofetch fzf fortune fortune-mod fortunes \
 ccze lf bat batcat btop htop ncdu termux-api \
-bash-completion lsd tmux git gh nodejs cronie \
+bash-completion lsd tmux git gh cronie \
 nmap texinfo aha micro fortunes gnupg termux-tools \
-wget wget2 curl aria2 gh git rclone rsync iw timg); 
+wget wget2 curl aria2 gh git rclone rsync iw timg\
+); 
+
+
+_apt_installer() { 
+printf %b "\e7"; 
+for ap in ${apts_basic[*]}; do 
+$sudo apt install -y $ap &>/dev/null & disown; _loader; 
+printf %b "\e[K installed $ap\e8"; 
+done; 
+# printf %b "\ndone\n";  
+printf %b "\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\r\n"; sleep .02; 
+}; 
+local IFS=$'\n\t ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
+cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
+height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
+yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
+enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
+########
 ####
 apts_extra=(ffmpeg mpv);
 ####
@@ -50,12 +63,13 @@ mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time="$(date +%y%m%d%H%m%S; )"
 mv -fbS "$time" $1 $tmp/ 2>/dev/null; 
 }; 
 _yno() { 
-_ok() { printf %b "\e[48G      \e[8D  "; 
+_ok() { 
+printf %b "\e[40G    \e[8D  "; 
 p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; }; 
 p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
 p2() { printf %b "$@"; }; 
 yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' 
-[[ "$1" ]]&& ny=${1}; printf %b "\e[40G$yno "; 
+[[ "$1" ]]&& ny=${1}; printf %b "\e[40G\b\b\b\b\b\b\b\b\b$yno "; 
 printf -v _yno_${1} "false"; read -sn1 ny; 
 [[ -z $ny || $ny = y ]] && printf -v _yno_${1} "true"; _ok; 
 # printf %b "\n_yno_$1 = $_yno_${1} \n"; 
@@ -69,12 +83,7 @@ echo; sleep .04; echo; sleep .04;
 ####
 #### Update system? 
 _update() {
-p2 " $c2 "; p1 "Update system? "; _yno update; 
-# p2 "\e[1m$enter "; 
-# read -rsn1 "ny"; [ $ny ]&& printf %b "$green OK$re\n" && return 0; 
-# printf %b "\e[60G      \e[8D  "; p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; 
-# hash sudo 2>/dev/null||sudo="sudo"; hash sudo 2>/dev/null||alias sudo=' '2>/dev/null; 
-if [[ $_yno_update == true ]]; then \
+p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then \
 $sudo apt update &>/dev/null & disown; _loader; 
 $sudo apt upgrade -y &>/dev/null && 
 hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; fi; 
@@ -104,7 +113,7 @@ fi;
 }; 
 _install_conf() {
 p2 " $c2 "; p1 "Install config? "; _yno in_conf
-if [[ $_yno_in_con == true ]]; then \
+if [[ $_yno_in_conf == true ]]; then \
 # $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 # $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
 mkdir $HOME/.config 2>/dev/null; cd $HOME/.config; _newcolor; echo; 
@@ -143,11 +152,11 @@ fi;
 #### Authenticates github
 _login_gh() {
 p2 " $c2 "; p1 "Login to github? "; _yno gh; 
-if [[ $_yno_update == true ]]; then \
+if [[ $_yno_gh == true ]]; then \
 $sudo apt install -y gpg git gh &>/dev/null; 
 ####
 ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
-[ -e != $start/config/gpg/gh_aeniks.gpg ] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
+# [[ -e != $start/config/gpg/gh_aeniks.gpg ]] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
 ####
 gpg --pinentry-mode loopback -o "gh.txt" -d "$gh_aeniks"; 
 gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt; sleep .2;
@@ -197,6 +206,10 @@ printf %b "\n \e[96m--\e[0m DONE\n";
 }; 
 ####
 ####
+p2 " $c2 "; p1 "Install? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
+_apt_installer; 
+fi; 
+
 _update; 
 _download; 
 _install_conf; 

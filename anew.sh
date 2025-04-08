@@ -13,7 +13,7 @@ fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
-[ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s" 2>/dev/null & disown; 
+[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
@@ -28,7 +28,8 @@ nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'
 [ -z $USER ]&& export USER="$(id -nu)"; 
 [ -z $start ]&& export start="$HOME/start"; 
 ######
-[ $(echo $HOME|grep -w "termux") ]&& alias sudo='command' && sudo=sudo; 
+if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
+else sudo=sudo; fi; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' \
