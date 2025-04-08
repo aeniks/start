@@ -20,7 +20,7 @@ done;
 # gh fzf wget micro bash-completion \
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
-gh git \
+gh git termux-api \
 file openssl openssh-server \
 rsync rclone w3m w3m-img googler exiftool \
 mediainfo figlet lolcat lynx fortune-mod links2 \
@@ -40,7 +40,7 @@ $sudo apt install -y $ap &>/dev/null & disown; _loader;
 printf %b "\e[K installed $ap\e8"; 
 done; 
 # printf %b "\ndone\n";  
-printf %b "\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\r\n"; sleep .02; 
+printf %b "\e[A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
 }; 
 local IFS=$'\n\t ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
