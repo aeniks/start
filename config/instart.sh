@@ -100,7 +100,7 @@ if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; start="${start/\/\///}"; export start; 
 _backup $start; _newcolor; 
-_move $start $tmp; 
+_backup $start; 
 git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader; 
 
 cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; gh config set git_protocol ssh 2>/dev/null; 
@@ -137,7 +137,7 @@ cat $HOME/.bashrc|grep -e "anew.sh" &>/dev/null||\
 printf %b "\n. $start/anew.sh;"&>/dev/null >> $HOME/.bashrc 2>/dev/null; 
 touch $HOME/.config/tmux_state 2>/dev/null; chmod 775 $HOME/.config/tmux_state; echo; 
 ####
-_backup $HOME/.inputrc; ;  	_newcolor; 
+_backup $HOME/.inputrc;   	_newcolor; 
 _backup $HOME/.tmux.conf $HOME/.tmux.conf.local; 	_newcolor; 
 _link $start/config/inputrc $HOME/.inputrc;  	_newcolor; 
 _link $start/config/figlet/figz.sh $HOME/;  	_newcolor; 
