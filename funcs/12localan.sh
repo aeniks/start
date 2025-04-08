@@ -1,8 +1,10 @@
-## discover lan w ping & ssh 
+#!/bin/bash
 12localan() { 
+## discover lan w ping & ssh 
 #ipt=$(mktemp; ); 
 mkdir -p $HOME/logs/iplocal/ 2>/dev/null; rm $HOME/logs/iplocal/* 2>/dev/null;  
-printf %b "\e[?25l\n $c2 checking:\t\t [q]uit\n\n\n\n\e[4A\n\n"; 
+printf %b "\e[?25l\n $c2 checking ips ... \t\t [q]uit\n\n\n\n\e[4A\n\n"; 
+# ip -4 n
 for i in {0..255}; do printf %b "\e[K"; 
 ping -c 1 ${iploc%.*}.${i} &>/dev/null && \
 printf %b "\n\n$i\e[A" && 

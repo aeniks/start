@@ -1,0 +1,2 @@
+#!/bin/env bash 
+w3m -dump  https://www.merriam-webster.com/word-of-the-day|head -n66|grep ":" -m1 -A22|tr -s "\n\t" "\n." |sed -e /play/d -e /Prev\ Next/d -e /What\ It\ Means/d -e "/Context.*/d"|sed -e "s/\: /printf -v da\ '\n/g" -e 1a"';\n\nprintf -v w '" -e "2a';\n\nprintf -v meaning '" -e 4c"'; \n\nprintf -v def '" -e "/\/\//i\'\; \\ \\ \n"|head -n-4 > $HOME/logs/mmww$(date +%Y_%B_%d_%S).log; 
