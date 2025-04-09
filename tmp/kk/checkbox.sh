@@ -1,30 +1,78 @@
 #!/usr/bin/env bash
-## Creates interactive checkboxes (menu) for the terminal
 #===============================================================================
-readonly SELECTED="\033[2K[$(printf "\e[0m@")]"
-readonly UNSELECTED="\033[2K[ ]"
+#NAME
+#  checkbox.sh
+#
+#DESCRIPTION
+#  Creates interactive checkboxes (menu) for the terminal
+#  For more info look the README.md on <https://github.com/pedro-hs/checkbox.sh>
+#  Features:
+#    - Select only a option or multiple options
+#    - Select or unselect multiple options easily
+#    - Select all or unselect all
+#    - Pagination
+#    - Optional Vim keybinds
+#    - Start with options selected
+#    - Show selected options counter for multiple options
+#    - Show custom message
+#    - Show current option index and options amount
+#    - Copy current option value to clipboard
+#    - Help tab when press h or wrongly call the script
+#
+#SOURCE
+#  <https://github.com/pedro-hs/checkbox.sh>
+#
+#INSPIRED BY
+#  <https://gist.github.com/blurayne/f63c5a8521c0eeab8e9afd8baa45c65e>
+#  <https://www.bughunter2k.de/blog/cursor-controlled-selectmenu-in-bash>
+#
+#===============================================================================
+# CONTANTS
+#===============================================================================
+SELECTED="$re["$cyan"x"$re"]"
+UNSELECTED="[ ]"
+WHITE="\033[2K\033[37m"
+BLUE="\033[2K\033[34m"
+RED="\033[2K\033[31m"
+GREEN="\033[2K\033[32m"
+INTERFACE_SIZE=6
+DEFAULT_OPTIONS="$(ls -fA1)"
 
-readonly WHITE="\033[2K\033[37m"
-readonly BLUE="\033[2K\033[34m"
-readonly RED="\033[2K\033[31m"
-readonly GREEN="\033[2K\033[32m"
-
-readonly INTERFACE_SIZE=6
-
-
-# readonly SELECTED="\e[J\e[0m[\e[95m@\e[0m]\e[2;96m\e[2K"
-# readonly UNSELECTED="\e[J\e[J\e[35m[ ]\e[0;1m\e[2K"
-# readonly WHITE="\e[J\e[J\e[37m"
-# readonly BLUE="\e[2K\e[96m"
-# readonly RED="\e[2K\e[31m"
-# readonly GREEN="\e[2K\e[32m"
-# readonly INTERFACE_SIZE=14
-readonly DEFAULT_OPTIONS=($(command ls))
-# readonly DEFAULT_OPTIONS=("Option 1" "Option 2" "Option 3" "Option 4" "Option 5" "Option 6" #"Option 7" "Option 8" "Option 9" "Option 10" "Option 11" "Option 12" "Option 13" "Option 14" #"Option 15" "Option 16" "Option 17" "Option 18" "Option 19" "Option 20" "Option 21" "Option 22" #"Option 23" "Option 24" "Option 25" "Option 26" "Option 27" "Option 28" "Option 29" "Option 30")
 #===============================================================================
 # VARIABLES
 #===============================================================================
-cursor=0; options_length=0; terminal_width=0; start_page=0; end_page=0; has_multiple_options=false; will_return_index=false; unselect_mode_on=false; select_mode_on=false; copy_in_message=false; invalid_parameter=false; options=("${DEFAULT_OPTIONS[@]}"); selected_options=(); content=""; message=""; separator=""; options_input=""; color=$WHITE; checkbox_output=(); #===============================================================================
+cursor=0
+options_length=0
+terminal_width=0
+start_page=0
+end_page=0
+has_multiple_options=true
+will_return_index=false
+unselect_mode_on=false
+select_mode_on=false
+copy_in_message=false
+invalid_parameter=false
+options=("${DEFAULT_OPTIONS[@]}")
+selected_options=()
+content="ssss"
+message="
+
+ [SPACE]        : Select current option
+ [ENTER]        : Close and return selected options
+ [ESC]          : Exit
+ [UP ARROW]     : Move cursor to option above
+ [DOWN ARROW]   : Move cursor to option below
+ [n]            : Unselect all options
+ [a]            : Select all options
+ [q]            : Quit
+
+"
+separator="aa"
+options_input=""
+color=
+checkbox_output=()
+
+#===============================================================================
 # UTILS
 #===============================================================================
 array_without_value() {
@@ -43,6 +91,7 @@ array_without_value() {
 value_in_array() {
     local element="$1" && shift
     local elements="$@"
+
     for elements; do
         [[ $elements == $element ]] && return 0
     done
@@ -52,12 +101,14 @@ value_in_array() {
 
 help_page_opt() {
     local output="(press q to quit)\n"
-    output+="# Avaiable options:\n\n\t--multiple:\n\t\tSelected multiple options\n\t\tExample:\n\t\t\t$ ./checkbox.sh --multiple\n\t--index:\n\t\tReturn index instead of value\n\t\tExample:\n\t\t\t$ ./checkbox.sh --index\n\t--message:\n\t\tCustom message\n\t\tExample:\n\t\t\t$ ./checkbox.sh --message=\"this message will be shown in the header\"\n\t--options:\n\t\tMenu options\n\t\tExample:\n\t\t\t$ ./checkbox.sh --options=\"checkbox 1\n\t\t\tcheckbox 2\n\t\t\tcheckbox 3\n\t\t\tcheckbox 4\n\t\t\tcheckbox 5\""
+    output+="# Avaiable options:\n\n\t--multiple:\n\t\tSelected multiple options\n\t\tExample:\n\t\t\t$ 
+    ./checkbox.sh --multiple\n\t--index:\n\t\tReturn index instead of value\n\t\tExample:\n\t\t\t$ 
+    ./checkbox.sh --index\n\t--message:\n\t\tCustom message\n\t\tExample:\n\t\t\t$ 
+    ./checkbox.sh --message=\"this message will be shown in the header\"\n\t--options:\n\t\tMenu options\n\t\tExample:\n\t\t\t$ 
+    ./checkbox.sh --options=\"checkbox 1\n\t\t\tcheckbox 2\n\t\t\tcheckbox 3\n\t\t\tcheckbox 4\n\t\t\tcheckbox 5\""
     output+="\n(press q to quit)"
-
     reset_screen
-    printf "\e[2J\e[?25l%b\n" "$output"
-
+    printf "\033[2J\033[?25l%b\n" "$output"
     while true; do
         local key=$( get_pressed_key )
         case $key in
@@ -67,12 +118,17 @@ help_page_opt() {
 }
 
 help_page_keys() {
-local output="(press q to quit)\n"; output+="# Keybinds\n\n\t[ENTER] or o: Close and return selected options\n\t[SPACE] or x: Select current option\n\t[ESC] or q: Exit\n\t[UP ARROW]      or k: Move cursor to option above\n\t[DOWN ARROW] or j: Move cursor to option below\n\t[HOME]    or g: Move cursor to first option\n\t[END] or G: Move cursor to last option\n\t[PAGE UP] or u: Move cursor 5 options above\n\t[PAGE DOWN] or d: Move cursor 5 options below\n\tc or y: Copy current option\n\tr : Refresh renderization\n\th : Help page"
-if $has_multiple_options; then output+="\n\tA  : Unselect all options\n\ta                   : Select all options\n\t[INSERT]        or v: On/Off select options during navigation (select mode)\n\t[BACKSPACE]     or V: On/Off unselect options during navigation (unselect mode)"
-    fi; 
+    local output="(press q to quit)\n"
+    output+="# Keybinds\n\n\t[ENTER]         or o: Close and return selected options\n\t[SPACE]         or x: Select current option\n\t[ESC]           or q: Exit\n\t[UP ARROW]      or k: Move cursor to option above\n\t[DOWN ARROW]    or j: Move cursor to option below\n\t[HOME]          or g: Move cursor to first option\n\t[END]           or G: Move cursor to last option\n\t[PAGE UP]       or u: Move cursor 5 options above\n\t[PAGE DOWN]     or d: Move cursor 5 options below\n\tc               or y: Copy current option\n\tr                   : Refresh renderization\n\th                   : Help page"
+
+    if $has_multiple_options; then
+        output+="\n\tA                   : Unselect all options\n\ta                   : Select all options\n\t[INSERT]        or v: On/Off select options during navigation (select mode)\n\t[BACKSPACE]     or V: On/Off unselect options during navigation (unselect mode)"
+    fi
+
     output+="\n(press q to quit)"
+
     reset_screen
-    printf "\e[2J\e[?25l%b\n" "$output"
+    printf "\033[2J\033[?25l%b\n" "$output"
 
     while true; do
         local key=$( get_pressed_key )
@@ -101,12 +157,10 @@ handle_options() {
 
 handle_option() {
     local index="$1" option="$2"
-
     if value_in_array "$index" "${selected_options[@]}"; then
-        content+="\e[95m$color    $SELECTED $option\n"
-
+        content+="$color    $SELECTED $option\n$re"
     else
-        content+="$color\e[91m    $UNSELECTED $option\n"
+        content+="$color    $UNSELECTED $option\n"
     fi
 }
 
@@ -118,7 +172,7 @@ set_line_color() {
         color=$RED
 
     else
-        color=$BLUE
+        color=$cyan
     fi
 }
 
@@ -158,7 +212,7 @@ set_options() {
 }
 
 validate_terminal_size() {
-    if [[ $term_height -lt 8 ]]; then
+    if [[ $terminal_width -lt 8 ]]; then
         reset_screen
         printf "Resize the terminal to least 8 lines and press r to refresh. The current terminal has $terminal_width lines"
     fi
@@ -168,11 +222,11 @@ get_footer() {
     local footer="$(( $cursor + 1 ))/$options_length"
 
     if $has_multiple_options; then
-        footer+=" \e[0m | \e[2m ${#selected_options[@]} selected"
+        footer+="  |  ${#selected_options[@]} selected"
     fi
 
     if $copy_in_message; then
-        footer+=" \e[0m | \e[2m current line copied"
+        footer+="  |  current line copied"
         copy_in_message=false
     fi
 
@@ -180,14 +234,14 @@ get_footer() {
 }
 
 get_output() {
-term_height=$(stty size|cut -f1 -d" ")
-    # term_height=$( tput lines )
+    terminal_width=$( tput lines )
     handle_options
     local footer="$( get_footer )"
-	local output="  $message\n"
+
+    local output="  $message\n"
     output+="$WHITE$separator\n"
     output+="$content"
-    output+="\e[1K$WHITE$separator\n"
+    output+="$WHITE$separator\n"
     output+="  $footer\n"
 
     echo "$output"
@@ -252,7 +306,7 @@ page_up() {
     [[ $cursor -le 0 ]] \
         && cursor=0
 
-    end_page=$(( $start_page + $term_height - $INTERFACE_SIZE ))
+    end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
 }
 
 page_down() {
@@ -267,7 +321,7 @@ page_down() {
     [[ $cursor -ge $options_length ]] \
         && cursor=$(( $options_length - 1 ))
 
-    start_page=$(( $end_page + $INTERFACE_SIZE - $term_height ))
+    start_page=$(( $end_page + $INTERFACE_SIZE - $terminal_width ))
 }
 
 up() {
@@ -278,7 +332,7 @@ up() {
         && start_page=$(( $cursor - 1 ))
 
     [[ $cursor -gt 0 ]] \
-        && end_page=$(( $start_page + $term_height - $INTERFACE_SIZE ))
+        && end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
 
     select_many_options
 }
@@ -291,7 +345,7 @@ down() {
         && end_page=$(( $cursor + 1 ))
 
     [[ $cursor -lt $(( $options_length - 1 )) ]] \
-        && start_page=$(( $end_page + $INTERFACE_SIZE - $term_height ))
+        && start_page=$(( $end_page + $INTERFACE_SIZE - $terminal_width ))
 
     select_many_options
 }
@@ -299,13 +353,13 @@ down() {
 home() {
     cursor=0
     start_page=0
-    end_page=$(( $start_page + $term_height - $INTERFACE_SIZE ))
+    end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
 }
 
 end() {
     cursor=$(( $options_length - 1 ))
     end_page=$(( $options_length - 1 ))
-    start_page=$(( $end_page + $INTERFACE_SIZE - $term_height ))
+    start_page=$(( $end_page + $INTERFACE_SIZE - $terminal_width ))
 }
 
 select_option() {
@@ -339,54 +393,29 @@ copy() {
 }
 
 refresh() {
-term_height=$(stty size|cut -f1 -d" ")
-    # term_height=$( tput lines )
+    terminal_width=$( tput lines )
     start_page=$(( $cursor - 1 ))
-    end_page=$(( $start_page + $term_height - $INTERFACE_SIZE ))
+    end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
 }
 
 #===============================================================================
 # CORE FUNCTIONS
 #===============================================================================
 render() {
-# \033[2J\033[?25l\e[1J
-    printf "\e[2K\e[?25l\e[1H"
-    printf "$(get_output)"
-    
+    printf "\033[1;%dH"
+    printf "\033[2J\033[?25l%b\n" "$(get_output)"
 }
 
 reset_screen() {
-   # printf "\n$term_height\n"
-   printf "\e[J\e[?25h"
-   # "${selected_options[*]}"
-   # printf "\e[1;%dH"
+    printf "\033[2J\033[?25h\033[1;%dH"
 }
 
-# get_pressed_key() {
-# while read -rsn1 key; do 
-# [ "$key" = A ]&&printf "    ^   up"&& break; 
-# [ "$key" = B ]&&printf "    v   down"&& break; 
-# [ "$key" = C ]&&printf "    >   right"&& break; 
-# [ "$key" = D ]&&printf "    <   left"&& break; 
-# done; printf %b "$key"; 
-# # printf %b "\e[?25h\n"; 
-# }; 
-
-
 get_pressed_key() {
-
-# while read -rsn1 key; do 
-# [ "$key" = A ]&& break; 
-# [ "$key" = B ]&& break; 
-# [ "$key" = C ]&& break; 
-# [ "$key" = D ]&& break; 
-# done; printf %b "$key"; 
-
     IFS= read -sn1 key 2>/dev/null >&2
 
-    read -sn1 -t 0.01 k1
-    read -sn1 -t 0.01 k2
-    read -sn1 -t 0.01 k3
+    read -sn1 -t 0.0001 k1
+    read -sn1 -t 0.0001 k2
+    read -sn1 -t 0.0001 k3
     key+="$k1$k2$k3"
 
     case $key in
@@ -413,22 +442,24 @@ get_opt() {
 
         case $opt in
             --index) will_return_index=true;;
-            -m) has_multiple_options=true;;
+            --multiple) has_multiple_options=true;;
             --message=*) message="${opt#*=}";;
-            -o=*) options_input="$opt";;
+            --options=*) options_input="$opt";;
             *) help_page_opt && invalid_parameter=true;;
         esac
     done
 }
 
 constructor() {
-set_options
-options_length=${#options[@]}
-term_height=$(stty size|cut -f1 -d" ")
-start_page=0
-end_page=$(( $start_page + $term_height - $INTERFACE_SIZE ))
-[[ ${#message} -gt 40 ]] && message_length=$(( ${#message} + 10 )) || message_length=50
-separator=$( perl -E "say '-' x $message_length" )
+    set_options
+    options_length=${#options[@]}
+    terminal_width=$( tput lines )
+    start_page=0
+    end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
+    [[ ${#message} -gt 40 ]] \
+        && message_length=$(( ${#message} + 10 )) \
+        || message_length=50
+    separator=$( perl -E "say '-' x $message_length" )
 }
 
 #===============================================================================
@@ -441,13 +472,12 @@ main() {
         reset_screen
         return
     fi
-
     constructor
     render
-
     while true; do
         validate_terminal_size
-        local key=$(get_pressed_key)
+        local key=$( get_pressed_key )
+
         case $key in
             _up|k) up;;
             _down|j) down;;
@@ -463,7 +493,7 @@ main() {
             c|y) copy;;
             r) refresh;;
             a) select_all;;
-            A) unselect_all;;
+            n) unselect_all;;
             h) help_page_keys;;
         esac
 

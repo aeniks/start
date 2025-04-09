@@ -29,13 +29,12 @@
 #===============================================================================
 # CONTANTS
 #===============================================================================
-readonly SELECTED="[x]"
+readonly SELECTED="[\e[95mx\e[0m]"
 readonly UNSELECTED="[ ]"
-
-readonly WHITE="\033[2K\033[37m"
-readonly BLUE="\033[2K\033[34m"
-readonly RED="\033[2K\033[31m"
-readonly GREEN="\033[2K\033[32m"
+readonly WHITE="\033[2K\033[97m"
+readonly BLUE="\033[2K\033[96m"
+readonly RED="\033[2K\033[91m"
+readonly GREEN="\033[2K\033[92m"
 
 readonly INTERFACE_SIZE=6
 readonly DEFAULT_OPTIONS=("Option 1" "Option 2" "Option 3" "Option 4" "Option 5" "Option 6" "Option 7" "Option 8" "Option 9" "Option 10" "Option 11" "Option 12" "Option 13" "Option 14" "Option 15" "Option 16" "Option 17" "Option 18" "Option 19" "Option 20" "Option 21" "Option 22" "Option 23" "Option 24" "Option 25" "Option 26" "Option 27" "Option 28" "Option 29" "Option 30")
