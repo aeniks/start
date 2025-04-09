@@ -2,7 +2,7 @@
 apa() { 
 local IFS=$'\n\t '; 
 unset ny sudo; 
-hash sudo 2>/dev/null && sudo=sudo; 
+hash sudo 2>/dev/null && sudo=sudo; [ $PREFIX ]&& unset sudo; 
 bw=18,top; [[ $COLUMNS > 22 ]]&& bw="70%,right";
 pwd="${PWD}"; printf %b "\n.... to update run [apass] ....\n"|bat -pflc --theme Dracula; 
 cd $HOME/logs/apts &>/dev/null; aapp=($(ls|fzf -i -m --color preview-bg:0 --bind "q:abort" --preview "tac {}|tail -c+2|bat -ppflzig" --preview-window "wrap,${bw},noborder" --border none --cycle --ansi --inline-info))||(printf %b "\n\n"&& cd $pwd &>/dev/null&& return 1;)||return 1; cd $pwd &>/dev/null&& 
