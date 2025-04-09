@@ -1,1 +1,3 @@
-/data/data/com.termux/files/home/gh/start/config/lf/lf_m
+#!/data/data/com.termux/files/usr/bin/bash
+set icons false
+set ratios 2:1; 
