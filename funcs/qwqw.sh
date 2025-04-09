@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## display 
 qwqw() { 
-local IFS=$'\n\t '; ff=($(cat ./figz.sh|shuf)); h=55; fn=1; 
+local IFS=$'\n\t '; ff=($(cat $HOME/figz.sh|shuf)); h=55; fn=1; 
 printf %b "\e[$((LINES - 2));$((COLUMNS / 4))H\e7"; 
 while read -n1 -s k; do case $k in 
  A) [[ $fn < 99 ]]&& n="\e[38;5;$((h++))m"; printf %b "\e8\e[K$n 	${ff[$h]} " ;; 
