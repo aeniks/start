@@ -31,5 +31,5 @@ PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re'$(_bat) \
 ['$re$cyan'\u'$re']'$re' \
 ['$re$pink'\h'$re']'$re' \
 ['$re$cyan'\t'$re']'$re' \
-['$re$yellow'\w'$re'][[ $? ]]||reset -i;\e[?25h\e[0m\n'; }; 
+['$re$yellow'\w'$re']\e[?25h\e[0m$(reset -I 2>/dev/null)\n'; };
 
