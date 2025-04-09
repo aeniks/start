@@ -10,11 +10,10 @@ then if [ -f /usr/share/bash-completion/bash_completion ];
 then . /usr/share/bash-completion/bash_completion; 
 elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
 fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
-[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" tmp="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
+[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" tmp="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
 [ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
-
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
 # -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
@@ -32,7 +31,7 @@ if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command';
 else sudo=sudo; fi; 
 export TERM="xterm-256color"; 
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' \
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' 
 GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36' PAGER='less'; 
 [ $PREFIX ]&& model=($(getprop ro.product.model; 
 getprop ro.build.version.min_supported_target_sdk; 
@@ -128,7 +127,7 @@ printf %b "$yellow$MACHTYPE$re | $cyan$cpu $dots"
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re $dots"; 
 printf %b "\e[1;37;45m ${model[*]} $dots";  
-[ -e "$HOME/logs/mmww.log" ] && . $HOME/logs/mmww.log && \
+[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 printf %b "$w >$yellow $meaning$re >$dim $def"|bat -ppflzsh --theme Dracula && printf %b "$dots"; 
 printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;) $dots";  
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM $dots"; 

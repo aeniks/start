@@ -24,12 +24,12 @@ printf -v "bat" "\e[${bc}m$bc";
 # printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re" > $HOME/logs/bp.log; 
 printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re"; 
 }; 
-
+export IFS=$'\n\t '; 
 _ps1() { 
 PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re'$(_bat) \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] \
 ['$re$cyan'\u'$re']'$re' \
 ['$re$pink'\h'$re']'$re' \
 ['$re$cyan'\t'$re']'$re' \
-['$re$yellow'\w'$re']\e[?25h\e[0m\n'; }; 
+['$re$yellow'\w'$re'][[ $? ]]||reset -i;\e[?25h\e[0m\n'; }; 
 
