@@ -10,7 +10,7 @@ then if [ -f /usr/share/bash-completion/bash_completion ];
 then . /usr/share/bash-completion/bash_completion; 
 elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
 fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
-[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
+[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" tmp="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null;
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
 [ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
@@ -102,6 +102,8 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 . $HOME/.tmux_bash.sh 2>/dev/null; 
 . $start/alias.sh; 
 ####
+alias mmww='. $HOME/logs/mmww.log && \
+printf %b "$w >$yellow $meaning$re >$dim $def"|bat -ppflzsh --theme Dracula'; 
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 # [ -e $HOME/logs/gcalagenda.sh ] && \
 # printf %b "$(batcat ~/logs/gcalagenda.sh \
