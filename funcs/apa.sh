@@ -1,6 +1,6 @@
 
 apa() { 
-local IFS=$'\n\t '; 
+local IFS=$'\n '; 
 unset ny sudo; 
 hash sudo 2>/dev/null && sudo=sudo; [ $PREFIX ]&& unset sudo; 
 bw=18,top; [[ $COLUMNS > 22 ]]&& bw="70%,right";

@@ -119,9 +119,6 @@ printf %b "$w >$yellow $meaning$re >$dim $def"|\
 bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
 
 inbash() { 
-####
-# $(sleep 12; . $start/crons/apt.sh)& disown; 
-# . $start/funcs/getcal.sh; 
 dots="${re}\n··········${re}\n"; 
 printf %b "\e[0;2m\e[48m$(date -R) $dots"; 
 printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null) $dots"; 
@@ -165,7 +162,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 ####
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -z "$TMUX" ]|| tmux list-panes|grep -e "1:" &>/dev/null||inbash; 
+[ -z "$TMUX" ]|| tmux list-panes|grep -e "2:" &>/dev/null||inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####

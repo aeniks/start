@@ -1,8 +1,7 @@
 #!/bin/bash
 ## aaaaaa
 #<<<<<<< HEAD
-alias less='less -R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
-
+# alias less='less -R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
 alias sd='cd /sdcard';
 alias ss='cd $start; '; 
 alias mm='$EDITOR '
@@ -19,8 +18,8 @@ alias no='printf "\e[?25h\e[0m"; tmux set mouse on 2>/dev/null; reset -I 2>/dev/
 alias r='ranger --choosedir=$HOME/logs/path; cd $(cat $HOME/logs/path)'; 
 alias l='cd $(lf -config $HOME/.config/lf/lfrc -last-dir-path $HOME/logs/ll.log); cd $(cat $HOME/logs/ll.log); '
 
-alias kat='batcat -pfld|less';
-alias kk='batcat -ppflzig $(tmux set-option mouse off; )|less; tmux set-option mouse on; '; 
+alias kat='bat -pfld|less';
+alias kk='bat -ppflzig $(tmux set-option mouse off; )|less; tmux set-option mouse on; '; 
 
 alias kaka='less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] "; ';
 

@@ -13,6 +13,9 @@ _bat() {
 if [ -e "/sys/class/power_supply/BAT0/status" ]; \
 then printf -v "batstat" "/sys/class/power_supply/BAT0/status"; \
 printf -v "batcap" "/sys/class/power_supply/BAT0/capacity"; 
+elif [ -e "/sys/class/power_supply/battery/status" ]; \
+then printf -v "batstat" "/sys/class/power_supply/battery/status"; \
+printf -v "batcap" "/sys/class/power_supply/battery/capacity"; 
 else printf -v "batstat" "$HOME/logs/battery.log"; 
 printf -v "batcap" "$HOME/logs/bp.log"; fi; 
 printf -v "bs" "\e[0;2m"; 
@@ -24,12 +27,12 @@ printf -v "bat" "\e[${bc}m$bc";
 # printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re" > $HOME/logs/bp.log; 
 printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re"; 
 }; 
-export IFS=$'\n\t '; 
+export IFS=$'\n '; 
 _ps1() { 
 PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re'$(_bat) \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] \
 ['$re$cyan'\u'$re']'$re' \
 ['$re$pink'\h'$re']'$re' \
 ['$re$cyan'\t'$re']'$re' \
-['$re$yellow'\w'$re']\e[?25h\e[0m$(reset -I 2>/dev/null)\n'; };
+['$re$yellow'\w'$re']\e[?25h\e[0m\n'; };
 
