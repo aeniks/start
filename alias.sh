@@ -7,7 +7,7 @@ alias sd='cd /sdcard';
 alias ss='cd $start; '; 
 alias mm='$EDITOR '
 alias qq='cd ..; ll';
-
+alias rr='sudo -s';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'; 
 alias ipme='wget icanhazip.com -qLO-'; 
 alias quotes='fortune $s|tr -s "\t" " "'
@@ -17,7 +17,8 @@ alias gpg='gpg --pinentry loopback';
 alias ipme4='curl icanhazip.com -s4'; 
 alias no='printf "\e[?25h\e[0m"; tmux set mouse on 2>/dev/null; reset -I 2>/dev/null;'
 alias r='ranger --choosedir=$HOME/logs/path; cd $(cat $HOME/logs/path)'; 
-alias l='cd $(lf -config $HOME/.config/lf/lfrc -print-last-dir); '
+alias l='cd $(lf -config $HOME/.config/lf/lfrc -last-dir-path $HOME/logs/ll.log); cd $(cat $HOME/logs/ll.log); '
+
 alias kat='batcat -pfld|less';
 alias kk='batcat -ppflzig $(tmux set-option mouse off; )|less; tmux set-option mouse on; '; 
 

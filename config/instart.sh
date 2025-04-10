@@ -4,8 +4,16 @@ instart() {
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null || alias sudo=' '; 
 mkdir $HOME/tmp 2>/dev/null; mkdir $HOME/logs 2>/dev/null; 
 mkdir $HOME/gh 2>/dev/null; mkdir $HOME/.config 2>/dev/null; 
-tmp=$HOME/tmp; 
-
+export tmp=$HOME/tmp; 
+#####
+#####
+local IFS=$'\n\t ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
+cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
+height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
+yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
+enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
+####
+####
 _loader() { 
 unset kill; 
 printf %b "\e[A\e[?25l\e[46G${re}"; 
@@ -19,43 +27,42 @@ done;
 printf "${re} \e[46G [${dim}done \b${re}] "; 
 printf %b "\n"; 
 }; 
-
+####
 # $sudo apt install -y bat iproute2 nmap lf git \
 # gh fzf wget micro bash-completion \
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
-gh git termux-api \
-file openssl openssh-server \
-rsync rclone w3m w3m-img googler exiftool \
-mediainfo figlet lolcat lynx fortune-mod links2 \
-toilet iproute2 net-tools nmap fastfetch \
-neofetch fzf fortune fortune-mod fortunes \
-ccze lf bat batcat btop htop ncdu termux-api \
-bash-completion lsd tmux git gh cronie \
-nmap texinfo aha micro fortunes gnupg termux-tools \
-wget wget2 curl aria2 gh git rclone rsync iw timg\
+gh git rsync file openssl openssh-server \
+micro gnupg fzf mediainfo lf bat batcat \
+bash-completion lsd tmux cron texinfo \
+fortunes fortune fortune-mod \
 ); 
-
-
-local IFS=$'\n\t ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
-cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
-height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
-yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
-enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
-########
+apts_sec=(\
+btop htop ncdu figlet lynx iproute2 net-tools nmap \
+links2 fastfetch neofetch wget wget2 curl aria2 iw timg rclone \
+); 
+apt_termux=(\
+termux-tools termux-api termux-api cronie \
+); 
+apts_more=(\
+toilet rclone w3m w3m-img googler exiftool aha \
+); 
 ####
 apts_extra=(ffmpeg mpv);
+########
+####
 ####
 ####
 unalias p1 p2 2>/dev/null; 
 p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
 p2() { printf %b "$@"; }; 
-_newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
+# _move() { mv -S "$EPOCHSECONDS" $@ &>/dev/null; }; 
 _link() { ln -s $@ 2>/dev/null; }; 
-_move() { mv -S "$EPOCHSECONDS" $@ &>/dev/null; }; 
-_backup() { 
-mkdir "$HOME/tmp" 2>/dev/null; tmp="${HOME}/tmp"; time=$(date +%y%m%d%H%m%S); 
-mv -fbS "$time" $@ $tmp/ 2>/dev/null; 
+########
+_newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
+########
+_backup() { mkdir $HOME/tmp 2>/dev/null; tmp=$HOME/tmp; time=$(date +%y%m%d%H%m%S); 
+mv -fb --suffix="$time" $@ -t $tmp 2>/dev/null; 
 }; 
 _yno() { 
 printf %b ""; 
@@ -80,30 +87,32 @@ echo; sleep .04; echo; sleep .04;
 #### Update system? 
 _update() {
 p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then \
-$sudo apt update &>/dev/null & disown; _loader; 
-$sudo apt upgrade -y &>/dev/null && 
-hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; fi; 
+$sudo apt update &>/dev/null & disown; _loader; sleep 1; 
+$sudo apt upgrade -y &>/dev/null & disown; _loader; 
+hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; 
+printf %b "done"; fi; 
 }; 
 #### Download config files? 
 _apt_installer() { 
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
 printf %b "\e7"; for ap in ${apts_basic[*]}; do 
-$sudo apt install -y $ap --assume-yes &>/dev/null && \
+printf %b "\e8"; $sudo apt install -y $ap --assume-yes 2>/dev/null && \
 printf %b "\e[2K\b\b\b\b installed $ap\e8"; done; 
-printf %b "\e[A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
+printf %b "\e[2A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
 fi; 
 }; 
+
 _download() {
 p2 " $c2 "; p1 "Download config files? "; _yno download; 
-#### where tp?
 if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
-start="${hstart}/start"; sleep .2; start="${start/\/\///}"; export start; 
+start="${hstart}/start"; sleep .2; export start="${start/\/\///}"; 
 _backup $start; _newcolor; 
-_backup $start; 
 git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader; 
-
-cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; gh config set git_protocol ssh 2>/dev/null; 
+####
+####
+#cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; 
+#gh config set git_protocol ssh 2>/dev/null; cd -; 
 fi; 
 # 
 # mv $start/.git/config $start/.git/config_old 2>/dev/null; printf %b '\
@@ -120,37 +129,50 @@ p2 " $c2 "; p1 "Install config? "; _yno in_conf
 if [[ $_yno_in_conf == true ]]; then \
 # $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 # $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
-mkdir $HOME/.config 2>/dev/null; cd $HOME/.config; _newcolor; echo; 
+mkdir $HOME/.config 2>/dev/null;  _newcolor; 
 ####
-cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; gh config set git_protocol ssh 2>/dev/null; 
-
-conf=(newsboat bat rclone lf micro tmux htop); 
-for q in ${conf[*]}; do 
-mkdir -p $HOME/.config/$q 2>/dev/null; 
-_backup $HOME/.config/$q/*; _newcolor; 
-ln -s $start/config/$q/* $HOME/.config/$q/; sleep .2; 
-printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
-done; echo; cd; 
 #### 
 _newcolor; printf %b "\e[0m\t\t"; 
 cat $HOME/.bashrc|grep -e "anew.sh" &>/dev/null||\
 printf %b "\n. $start/anew.sh;"&>/dev/null >> $HOME/.bashrc 2>/dev/null; 
 touch $HOME/.config/tmux_state 2>/dev/null; chmod 775 $HOME/.config/tmux_state; echo; 
 ####
-_backup $HOME/.inputrc;   	_newcolor; 
-_backup $HOME/.tmux.conf $HOME/.tmux.conf.local; 	_newcolor; 
-_link $start/config/inputrc $HOME/.inputrc;  	_newcolor; 
-_link $start/config/figlet/figz.sh $HOME/;  	_newcolor; 
-_backup $HOME/.tmux_bash.sh;  	_newcolor; 
-_link $start/config/tmux/tmux_bash.sh $HOME/.tmux_bash.sh;  
-_backup $HOME/.termux/termux.properties; 
-ln -s $start/config/termux/termux.properties $HOME/.termux/ 2>/dev/null; _newcolor; 
+_backup $HOME/.inputrc; _newcolor; 
+_link $start/config/inputrc $HOME/.inputrc; _newcolor; 
+##########
+_backup $HOME/.tmux.conf $HOME/.tmux.conf.local; _newcolor; 
+
+_link $start/config/tmux/tmux.conf $HOME/.tmux.conf; _newcolor; 
+_link $start/config/figlet/figz.sh $HOME/; _newcolor; 
+########
+_backup $HOME/.tmux_bash.sh; _newcolor; 
+_link $start/config/tmux/tmux_bash.sh $HOME/.tmux_bash.sh; _newcolor; 
+#########
+_backup $HOME/.termux/termux.properties; _newcolor; 
+_link $start/config/termux/termux.properties $HOME/.termux/; _newcolor; 
+######
+_backup $HOME/.config/micro/settings; _newcolor; 
+_backup $HOME/.config/micro/bindings; _newcolor; 
+ln -s $start/config/micro/settings $start/config/micro/bindings -t $HOME/.config/micro/; _newcolor; 
+######
+conf=(newsboat bat lf tmux htop); 
+for q in ${conf[*]}; do 
+mkdir -p $HOME/.config/$q 2>/dev/null; 
+_backup $HOME/.config/$q/*; _newcolor; 
+ln -s $start/config/$q/* -t $HOME/.config/$q/; sleep .2; 
+printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
+done; echo; cd; 
 ####
 # sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
+sudo apt install -y bat 2>/dev/null; sudo apt install -y batcat 2>/dev/null; 
+ln -s /bin/batcat /bin/bat 2>/dev/null; ln -s /bin/bat /bin/batcat 2>/dev/null; 
+####
+sudo apt install -y figlet 2>/dev/null; 
+######## 
 mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\
 $sudo mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null; 
-cp $HOME/start/config/figlet/fonts/* $PREFIX/usr/share/figlet/ 2>/dev/null||\
-$sudo cp $HOME/start/config/figlet/fonts/* $PREFIX/share/figlet/ 2>/dev/null; 
+cp $HOME/start/config/figlet/fonts/* -t $PREFIX/usr/share/figlet/ 2>/dev/null||\
+$sudo cp $HOME/start/config/figlet/fonts/* -t $PREFIX/share/figlet/ 2>/dev/null; 
 $sudo chmod 775 $PREFIX/share/figlet -R 2>/dev/null; 
 ####
 mkdir -m 775 -p $HOME/.local/bin 2>/dev/null; 
@@ -159,13 +181,19 @@ export PATH=${PATH}:~/.local/bin;
 cat $HOME/.bashrc|grep "~/.local/bin" || \
 echo 'export PATH=${PATH}:~/.local/bin; ' >> $HOME/.bashrc; 
 fi; 
+
+touch $/HOME/logs/bp.log $/HOME/logs/aptup.log 2>/dev/null; 
+mkdir $HOME/logs/apts -m 775 2>/dev/null; 
+mkdir $HOME/crons -m 775 2>/dev/null; 
+ln -s $start/crons/* -t $HOME/crons/ 2>/dev/null; 
+
 }; 
 ####
 #### Authenticates github
 _login_gh() {
 p2 " $c2 "; p1 "Login to github? "; _yno gh; 
 if [[ $_yno_gh == true ]]; then \
-$sudo apt install -y gpg git gh &>/dev/null; 
+$sudo apt install -y gpg gnupg git gh &>/dev/null; 
 ####
 ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
 # [[ -e != $start/config/gpg/gh_aeniks.gpg ]] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
@@ -178,7 +206,9 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
+ssh-keygen; 
 gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
+cd $start; git config set remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; gh config set git_protocol ssh 2>/dev/null; cd -; 
 ssh -T git@github.com; 
 fi; 
 _link $PREFIX/var/spool/cron $HOME/ 2>/dev/null; 
