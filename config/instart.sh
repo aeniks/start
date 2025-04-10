@@ -169,6 +169,7 @@ ln -s /bin/batcat /bin/bat 2>/dev/null; ln -s /bin/bat /bin/batcat 2>/dev/null;
 ####
 sudo apt install -y figlet 2>/dev/null; 
 ######## 
+. $start/config/figlet/install_fonts.sh 2>/dev/null; 
 mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\
 $sudo mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null; 
 cp $HOME/start/config/figlet/fonts/* -t $PREFIX/usr/share/figlet/ 2>/dev/null||\
