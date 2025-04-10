@@ -88,7 +88,7 @@ map j :tajm
 map o dial 
 # map <enter>c !chafa $f 
 map b $batcat -pf $f
-map b $batcat --paging always --decorations never $f 
+# map b $batcat --paging always --decorations never $f 
 map l :lenk
 # map <enter> pger
 map - maps
