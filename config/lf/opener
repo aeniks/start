@@ -32,19 +32,19 @@ cmd open ${{
 	(text/html)
 		case "${f##*.}" in
 		(xls) dem localc $f ;;
-		(*) "${EDITOR:-nvim}" $fx
+		(*) "${EDITOR}" $fx
 		esac
 	;;
 	(text/troff)
 		case "${f##*.}" in
 		([0-9] | [01]p | [23]*) man $fx ;;
-		(*) "${EDITOR:-nvim}" $fx
+		(*) "${EDITOR}" $fx
 		esac
 	;;
 	( text/* | application/json | application/javascript | \
 	application/pgp-encrypted | inode/x-empty | application/octet-stream | \
 	application/x-gettext-translation )
-		"${EDITOR:-nvim}" $fx
+		"${EDITOR}" $fx
 	;;
 	(image/x-*)
 		dem "${IMAGE_EDITOR:-gimp}" $fx
@@ -54,7 +54,7 @@ cmd open ${{
 		("/dev/tty"*) # En tty imágenes pueden ser mostradas con mpv
 			"${MPV:-mpv}" --keep-open $fx
 		;;
-		(*) dem "${IMAGE_VIEWER:-vimiv}" $fx
+		(*) dem "${IMAGE_VIEWER}" $fx
 		esac
 	;;
 	(audio/*)

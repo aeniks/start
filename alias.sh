@@ -5,7 +5,7 @@
 alias sd='cd /sdcard';
 alias ss='cd $start; '; 
 alias mm='$EDITOR '
-alias qq='cd ..; ll';
+alias qq='cd .. ; ll ';
 alias rr='sudo -s';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'; 
 alias ipme='wget icanhazip.com -qLO-'; 
@@ -16,16 +16,10 @@ alias gpg='gpg --pinentry loopback';
 alias ipme4='curl icanhazip.com -s4'; 
 alias no='printf "\e[?25h\e[0m"; tmux set mouse on 2>/dev/null; reset -I 2>/dev/null;'
 alias r='ranger --choosedir=$HOME/logs/path; cd $(cat $HOME/logs/path)'; 
-alias l='cd $(lf -config $HOME/.config/lf/lfrc -last-dir-path $HOME/logs/ll.log); cd $(cat $HOME/logs/ll.log); '
-
-alias kat='bat -pfld|less';
+alias l='lf -config $HOME/.config/lf/lfrc -last-dir-path $HOME/logs/ll.log; cd $(cat $HOME/logs/ll.log); '; 
+alias kat='bat -pfld|less'; 
 alias kk='bat -ppflzig $(tmux set-option mouse off; )|less; tmux set-option mouse on; '; 
-
-alias kaka='less --use-color --file-size --incsearc --chop-long-lines -F -rR --prompt="[/]search [n]ext-match [N]prev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte  %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t [%T] "; ';
-
 alias iiii='$EDITOR $HOME/.inputrc; echo gg; exec bash; '
-
-
 alias speed='speedtest --bytes --no-upload 2>/dev/null||speedtest-go --unit=decimal-bits \
 --no-upload||speedtest-cli 2>/dev/null; '
 ########

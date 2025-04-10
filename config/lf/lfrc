@@ -88,7 +88,7 @@ map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
 map o dial 
 # map <enter>c !chafa $f 
-map b $batcat --paging always -ld --decorations never $f 
+map b !batcat --paging always -ld --decorations never $f 
 map l :lenk
 # map <enter> pger
 map - maps

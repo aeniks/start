@@ -45,8 +45,8 @@
 image() {
 ww=$(($2-4))
 # timg "$1"; 
-mediainfo "$1"|tr -s "\t " " "
 chafa  -s ${ww}x$3 "$1" 2>/dev/null|| chafa  -s ${ww}x$3 "$6" 2>/dev/null|| jp2a $1 --width=${ww} --color-depth=8 --fill; 
+mediainfo "$1"|tr -s "\t\n " " \n "|batcat -pfl zig; 
 } 
 # exifprobe -c -L "$1"|batcat -pPfl go;
 # printf "$1"; 
@@ -79,7 +79,7 @@ mime_preview() {
 	case "$mime_type","$ran_guard" in
 		(image/svg,0)
 		image "$1" "$2" "$3" "$4" "$5" "$1"
-		mediainfo "$1"|tr -s "\t " " "|tac|batcat -pfl d; 
+		# mediainfo "$1"|tr -s "\t " " "|tac|batcat -pfl d; 
 		
 	;;
 	(image/svg+xml,0 | image/svg)
@@ -89,7 +89,7 @@ mime_preview() {
 		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/*,0)
-	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " "|tac|batcat -pfl d; 
+	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " "; #tac|batcat -pfl d; 
 	;;
 	(image/svg,0)
 	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " ";
