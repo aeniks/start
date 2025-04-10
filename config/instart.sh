@@ -109,6 +109,7 @@ p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A";
 start="${hstart}/start"; sleep .2; export start="${start/\/\///}"; 
 _backup $start; _newcolor; 
 git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader; 
+cd $start; git config remote.origin.url git@github.com:aeniks/start.git; 
 ####
 ####
 #cd $start; git config set remote.origin.url git@github.com:aeniks/start.git; 
@@ -209,11 +210,10 @@ git config --global init.defaultBranch main;
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
 ssh-keygen; 
 gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
-cd $start; git config set remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; gh config set git_protocol ssh 2>/dev/null; cd -; 
-ssh -T git@github.com; 
-fi; 
+cd $start; git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; 
+cd -; 
+ssh -T git@github.com; fi; 
 _link $PREFIX/var/spool/cron $HOME/ 2>/dev/null; 
-
 }; 
 ####
 #### Install apps?
