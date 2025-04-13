@@ -405,8 +405,12 @@ set previewer "~/.config/lf/previewer"
 #set previewer "~/.config/lf/previewer"
 #set previewer "$PREFIX/etc/lf/previewer" 
 set incsearch true
+set incsearch on 
 set incfilter false
+set incfilter on 
+set lf_user_${USER}
 set globsearch false
+set globsearch on 
 set ratios 1:1 
 #2:2:6 # 2:3:7:7
 #set truncatechar "..."
@@ -437,9 +441,11 @@ set cursorparentfmt "\033[44m"
 set cursorpreviewfmt "\033[4m" 
 set cursoractivefmt "\033[2;107m" 
 set drawbox false
-set mouse
+set drawbox off
+set mouse on 
 set icons true 
-set shell bash
+set icons off 
+set shell bash 
 set info size:time
 set sortby time
 set reverse 
