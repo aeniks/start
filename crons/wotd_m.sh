@@ -16,6 +16,6 @@ cut -f1 -d" "|tr -d "\n"; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh;
 cut -f2- -d" "|tr -d "\n"; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
 ####
 (printf %b 'printf -v "w_m" "'; cat $wotmp|sed -n 47,50p|\
-tr -d "\n"; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
+tr -s "\n" " "; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
 ####
 cat $HOME/logs/wotd_m.sh > $HOME/logs/wotd/wotd_m_${time}.sh; 
