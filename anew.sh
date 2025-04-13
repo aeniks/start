@@ -5,16 +5,21 @@ case $- in
 *i*) ;;
 *) return;;
 esac
-if [ -z "${PREFIX}" ]; then if ! shopt -oq posix; 
+if [ -z "${PREFIX}" ]; then 
+if ! shopt -oq posix; 
 then if [ -f /usr/share/bash-completion/bash_completion ]; 
 then . /usr/share/bash-completion/bash_completion; 
 elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
-fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
+fi; fi; fi; 
+[ $PREFIX ]&& [ -r $PREFIX/share/bash-completion/bash_completion ]&& \
+. $PREFIX/share/bash-completion/bash_completion; 	
+shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth; 
+## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp";
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
-[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
+#[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
 # -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
@@ -68,14 +73,15 @@ ip4=$(timeout 1 curl https://icanhazip.com -s4 -L);
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #$
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
-##
 [ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
+[ -z "$iploc" ]&& iploc=$(ifconfig|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" ";); 
 ##
 # [ -z "$iploc" ]&& iploc="$(ip -4 -brief a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
 #$
 [ $PREFIX ]&& ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
 ##
 [ -z "$ipgate" ]&&ipgate="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")"; 
+
 ##
 #[ -z "$iploc" ]&& iploc=($(ip -4 -brief a show scope global up|tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
 ######
@@ -115,9 +121,9 @@ iploc=($(cat $HOME/logs/iploc.log));
 cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $HOME/logs/aptup.log)); 
 ##########
 ##########
-alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
-printf %b "$w >$yellow $meaning$re >$dim $def"|\
-bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
+# alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
+# printf %b "$w >$yellow $meaning$re >$dim $def"|\
+# bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
 alias dots='printf %b "$re\n··········${re}\n"'; 
 
 inbash() { 
