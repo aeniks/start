@@ -73,8 +73,8 @@ ip4=$(timeout 1 curl https://icanhazip.com -s4 -L);
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #$
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
-[ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1;); 
-[ -z "$iploc" ]&& iploc=$(ifconfig|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" ";); 
+[ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1 2>/dev/null); 
+[ -z "$iploc" ]&& iploc=$(ifconfig|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" " 2>/dev/null); 
 ##
 # [ -z "$iploc" ]&& iploc="$(ip -4 -brief a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
 #$
@@ -169,7 +169,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 ####
 [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -z "$TMUX" ]|| tmux list-panes|grep -e "2:" &>/dev/null||inbash; 
+[ -z "$TMUX" ]|| tmux list-panes|grep -e "1:" &>/dev/null||inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####

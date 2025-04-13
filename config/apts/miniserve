@@ -1,0 +1,9 @@
+Package: miniserve
+Version: 0.29.0
+Maintainer: @termux
+Installed-Size: 7664 kB
+Homepage: https://github.com/svenstaro/miniserve
+Download-Size: 2367 kB
+APT-Sources: https://mirror.sunred.org/termux/termux-main stable/main x86_64 Packages
+Description: Tool to serve files and dirs over HTTP
+
