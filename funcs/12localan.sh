@@ -29,7 +29,7 @@ $HOME/logs/iplocal/$i; done;
 printf %b "\e[?25h"; 
 ## selection menu 
 lomenu() { 
-local IFS=$'\n' ops=($2); [ "$2" ]||local ops=($(command ls -1 $HOME/logs/iplocal)); 
+local IFS=$'\n\t ' ops=($2); [ "$2" ]||local ops=($(command ls -1 $HOME/logs/iplocal)); 
 # local desc=()
 local prompt="$1" index="0" cur="0" count="${#ops[@]}" logs=$HOME/logs/iplocal;
 printf "\e[?25l    --$prompt--\n"; ## print prompt
