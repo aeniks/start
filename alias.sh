@@ -31,8 +31,8 @@ NVM_DIR="$HOME/.nvm";
 #######
 alias dfree='printf %b "\e[0;2m$(df -h|head -n1|\
 tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; \
-df="/"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
-tr -s " " "\t"|grep -v "100%"|\grep -v "tmpfs"|\
+df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
+tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|\
 grep -v "efivars"|grep -v "boot"|grep -v loop|\
 grep -e "$df"|batcat --theme=Dracula -ppflc++';
 ########
