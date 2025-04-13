@@ -7,7 +7,7 @@ WHITE="\e[0m\e[2K\e[97m"
 BLUE="\e[0m\e[2K\e[7m"
 RED="\e[2K\e[91m"
 GREEN="\e[2K\e[92m"
-INTERFACE_SIZE=16
+INTERFACE_SIZE=8
 DEFAULT_OPTIONS=($(ls))
 #" VARIABLES
 cursor=0
@@ -112,10 +112,10 @@ handle_option() {
     local index="$1" option="$2"
 
     if value_in_array "$index" "${selected_options[@]}"; then
-        content+="$color    $SELECTED $option\n"
+        content+="$color$ SELECTED $option\n"
 
     else
-        content+="$color    $UNSELECTED $option\n"
+        content+="$color $UNSELECTED $option\n"
     fi
 }
 
