@@ -40,14 +40,16 @@ read -srn1 key; ## wait for user to key in arrows or ENTER
 if [[ $key == A ]]; then (( cur-- )); (( cur < 0 ))&& (( cur = 0 )); elif [[ $key = B ]]; then (( cur++ )); (( cur >= count ))&& (( cur = count - 1 )); 
 elif [[ $key == "" ]]; then break; elif [[ $key == "q" ]]; \
 then printf %b "\n\n\e[?25h"; return 0; break; fi; # enter
-printf %b "\e[${count}A"; done; # go up to the beginning to re-render
+printf %b "\e[K\e[${count}A"; done; # go up to the beginning to re-render
 printf -v sel "${ops[$cur]}"; 
 printf %b "\e[?25h\n\n\n\n\e[2A  user: "; 
 read -re "u"; [ -z $u ]&& u=$UID; 
 printf %b "\e[?25h  connecting to: \e[7m ${u}@${sel} -p $(cat $logs/$o) \e[0m\n\n"; 
-echo; ssh -p $(cat $logs/$sel) $sel -l $u; 
-
+echo; 
+sshlatest=( -p $(cat $logs/$sel) $sel -l $u ); 
+sleep .5; 
+ssh ${sshlatest[*]} 
+ 
 }; 
 lomenu " open lan ip:s "
-
 }; 
