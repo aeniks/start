@@ -10,7 +10,8 @@ then if [ -f /usr/share/bash-completion/bash_completion ];
 then . /usr/share/bash-completion/bash_completion; 
 elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
 fi; fi; fi; shopt -s histappend; ## append to history, don't overwrite it
-[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp" tmp="$HOME/tmp" && mkdir $TMPDIR 2>/dev/null
+[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp";
+export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
 [ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
@@ -85,8 +86,8 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
-[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
-[ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
+[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr ' .' '_')";
+[ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr ' .' '_')"; 
 ####
 ####
 #if [ -e "${PREFIX}/bin/figlet" ]; then ff=$(figlist|shuf -n1); printf "\n\n$ff\n\n"; 
@@ -117,23 +118,24 @@ cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $H
 alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 printf %b "$w >$yellow $meaning$re >$dim $def"|\
 bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
+alias dots='printf %b "$re\n··········${re}\n"'; 
 
 inbash() { 
-dots="${re}\n··········${re}\n"; 
-printf %b "\e[0;2m\e[48m$(date -R) $dots"; 
-printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null) $dots"; 
-printf %b "$(dfree) $dots"; 
+printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
+printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null)"; dots; 
+printf %b "$(dfree)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
-printf %b "$(getcal 2>/dev/null; ) $dots"
-printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu $dots"
+printf %b "$(getcal 2>/dev/null; )"; 
+dots;
+printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
-printf %b "$red${aptup[0]}$re upgrades available$re $dots"; 
-printf %b "\e[1;37;45m ${model[*]} $dots"; mw 
-printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;) $dots";  
-printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM $dots"; 
+printf %b "$red${aptup[0]}$re upgrades available$re";  dots; 
+printf %b "\e[1;37;45m ${model[*]}"; dots; wotd_m; 
+printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
+printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 
 [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
-printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6 $dots"; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs) $dots"; 
+printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6"; dots; 
+printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)"; dots; 
 }; 
 
 for i in $start/funcs/*.sh; do . $i; done; 
