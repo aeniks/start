@@ -129,12 +129,11 @@ printf %b "$(getcal 2>/dev/null; )";
 dots;
 printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
-printf %b "$red${aptup[0]}$re upgrades available$re";  dots; 
-printf %b "\e[1;37;45m ${model[*]}"; dots; wotd_m; 
-printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
+printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
+printf %b "\e[1;37;45m ${model[*]}"; dots; wotd_m && dots; 
+# printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 
-[ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
-printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6"; dots; 
+printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6"; [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re"; dots; 
 printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)"; dots; 
 }; 
 

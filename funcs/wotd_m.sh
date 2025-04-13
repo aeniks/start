@@ -1,1 +1,1 @@
-wotd_m() { time=$(date +%y_%m_%d); [ -e $HOME/logs/wotd/wotd_m_${time}.sh ] || . $start/crons/wotd_m.sh; . $HOME/logs/wotd_m.sh; printf %b "$yellow$w_w$pink >$cyan $w_p$pink >$blue $w_t$pink >$re$dim \n\b\b$w_m \n"; };
+wotd_m() { time=$(date +%y_%m_%d); [ -e $HOME/logs/wotd/wotd_m_${time}.sh ] || . $start/crons/wotd_m.sh; . $HOME/logs/wotd_m.sh; printf %b "$yellow$w_w$pink >$cyan $w_p$pink >$blue $w_t$pink >$re$dim \n\b\b$w_m"; };
