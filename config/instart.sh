@@ -2,6 +2,7 @@
 ## install config-files 
 instart() { 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null || alias sudo=' '; 
+[ $PREFIX ]&& unset sudo; [[ $UID -eq 0 ]]&& unset sudo; 
 mkdir $HOME/tmp 2>/dev/null; mkdir $HOME/logs 2>/dev/null; 
 mkdir $HOME/gh 2>/dev/null; mkdir $HOME/.config 2>/dev/null; 
 export tmp=$HOME/tmp; 
@@ -32,10 +33,11 @@ printf %b "\n";
 # gh fzf wget micro bash-completion \
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
-gh git rsync file openssl openssh-server \
+gh git rsync file openssl openssh-sftp-server \
 micro gnupg fzf mediainfo lf bat batcat \
-bash-completion lsd tmux cron texinfo \
-fortunes fortune fortune-mod \
+bash-completion lsd tmux cron texinfo iproute2 \
+fortunes fortune fortune-mod figlet w3m nmap net-tools \
+openssh termux-tools termux-api termux-api cronie mpv \
 ); 
 apts_sec=(\
 btop htop ncdu figlet lynx iproute2 net-tools nmap \
@@ -89,16 +91,15 @@ _update() {
 p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then \
 $sudo apt update &>/dev/null & disown; _loader; sleep 1; 
 $sudo apt upgrade -y &>/dev/null & disown; _loader; 
-hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; 
-printf %b "done"; fi; 
+hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; fi; 
 }; 
 #### Download config files? 
 _apt_installer() { 
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
-printf %b "\e7"; for ap in ${apts_basic[*]}; do 
-printf %b "\e8"; $sudo apt install -y $ap --assume-yes 2>/dev/null && \
-printf %b "\e[2K\b\b\b\b installed $ap\e8"; done; 
-printf %b "\e[2A\e[46G\e8\b\b\b\b\b\b\b\b  [${dim}done!${re}]\n"; sleep .02; 
+printf %b "\e7"; for ap in ${apts_basic[*]}; do  _newcolor; 
+printf %b "\n"; $sudo apt install -y $ap --assume-yes 2>/dev/null && \
+printf %b "\e[2K\b\b\b\b installed";  _newcolor; printf %b " $ap\e8\e[J"; done; 
+printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; sleep .2; 
 fi; 
 }; 
 
