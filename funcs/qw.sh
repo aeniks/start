@@ -7,7 +7,7 @@ unset msg1; [[ $1 ]] && msg1="$@"
 IFS=$'\n\t'; 
 
 bb=($(cat $start/config/bat/batl.sh)); b=${#bb[*]}; d=$((RANDOM%${b})); 
-ff=($(cat $HOME/logs/figz.sh)); t=${#ff[*]}; h=$((RANDOM%${t})); 
+ff=($(cat $start/config/figlet/figz.sh)); t=${#ff[*]}; h=$((RANDOM%${t})); 
 
 printf %b "\e[K"; for i in $(seq $LINES); do sleep .01; echo; done; 
 printf %b "\e[2A\e7\e[K$n${ff[$h]}\[2A\e[1J\e[2H"; 
