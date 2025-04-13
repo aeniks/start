@@ -11,7 +11,7 @@ lynx -dump https://www.dictionary.com/e/word-of-the-day|grep -m 1 -e "Learn More
 wotd=($(sed -e s/Show.*//g -e s/\.\ .// -e /*/d $wotd_file)); 
 ####
 printf %b "${wotd[*]}" > $wotd_form; 
-tail -n4 $wotd_form|grep -v ']'|tr -s "\n" " "|column --output-separator '  >  ' --table --table-columns-limit 3 --output-width 88 >  $wotd_file; cat $wotd_file; fi; 
+tail -n4 $wotd_form|grep -v ']'|tr -s "\n" " "|column --output-separator ' > ' --table --table-columns-limit 3 --output-width 88 >  $wotd_file; cat $wotd_file; fi; 
 # |bat -ppf --language bash --theme Dracula 
 
 }; 
