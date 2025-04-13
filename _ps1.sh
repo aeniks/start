@@ -16,6 +16,9 @@ printf -v "batcap" "/sys/class/power_supply/BAT0/capacity";
 elif [ -e "/sys/class/power_supply/battery/status" ]; \
 then printf -v "batstat" "/sys/class/power_supply/battery/status"; \
 printf -v "batcap" "/sys/class/power_supply/battery/capacity"; 
+elif [ -e "/sys/class/power_supply/BAT1/status" ]; \
+then printf -v "batstat" "/sys/class/power_supply/BAT1/status"; \
+printf -v "batcap" "/sys/class/power_supply/BAT1/capacity"; 
 else printf -v "batstat" "$HOME/logs/battery.log"; 
 printf -v "batcap" "$HOME/logs/bp.log"; fi; 
 printf -v "bs" "\e[0;2m"; 
