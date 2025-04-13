@@ -34,10 +34,12 @@ local IFS=$'\n' ops=($2); [ "$2" ]||local ops=($(command ls -1 $HOME/logs/iploca
 local prompt="$1" index="0" cur="0" count="${#ops[@]}" logs=$HOME/logs/iplocal;
 printf "\e[?25l    --$prompt--\n"; ## print prompt
 while true; do local index="0"; for o in "${ops[@]}"; ## print option
-do if [ "$index" = "$cur" ]; then echo -e " > \e[7m ${o}:$(cat $logs/$o) \e[0m"; ## mark & highlight the current option
-else echo -e "    ${o}$(cat $logs/$o) "; fi; (( index++ )); done; ## list all options (option list is zero-based)
+do if [ "$index" = "$cur" ]; 
+then printf %b " > \e[7m ${o}:$(cat $logs/$o) \e[0m\n"; ## mark & highlight the current option
+else printf %b "    ${o}:$(cat $logs/$o) \e[0m\n"; fi; (( index++ )); done; ## list all options (option list is zero-based)
 read -srn1 key; ## wait for user to key in arrows or ENTER
-if [[ $key == A ]]; then (( cur-- )); (( cur < 0 ))&& (( cur = 0 )); elif [[ $key = B ]]; then (( cur++ )); (( cur >= count ))&& (( cur = count - 1 )); 
+if [[ $key == A ]]; then printf %b "\e[K"; (( cur-- )); (( cur < 0 ))&& (( cur = 0 )); printf %b "\e[K"; 
+elif [[ $key = B ]]; then printf %b "\e[K"; (( cur++ )); (( cur >= count ))&& (( cur = count - 1 )); printf %b "\e[K"; 
 elif [[ $key == "" ]]; then break; elif [[ $key == "q" ]]; \
 then printf %b "\n\n\e[?25h"; return 0; break; fi; # enter
 printf %b "\e[K\e[${count}A"; done; # go up to the beginning to re-render
@@ -47,6 +49,7 @@ read -re "u"; [ -z $u ]&& u=$UID;
 printf %b "\e[?25h  connecting to: \e[7m ${u}@${sel} -p $(cat $logs/$o) \e[0m\n\n"; 
 echo; 
 sshlatest=( -p $(cat $logs/$sel) $sel -l $u ); 
+printf %b "ssh ${sshlatest[*]}" > $logs/$sel
 sleep .5; 
 ssh ${sshlatest[*]} 
  
