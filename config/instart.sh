@@ -89,9 +89,10 @@ echo; sleep .04; echo; sleep .04;
 #### Update system? 
 _update() {
 p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then \
-$sudo apt update &>/dev/null & disown; _loader; sleep 1; 
-$sudo apt upgrade -y &>/dev/null & disown; _loader; 
-hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro &>/dev/null; fi; 
+_newcolor; printf %b "\e7"; _newcolor; $sudo apt update 2>/dev/null;  _newcolor; 
+printf %b "\e8\e[J"; $sudo apt upgrade -y 2>/dev/null; _newcolor;  printf %b "\e8\e[J"; 
+hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro 2>/dev/null; _newcolor; printf %b "\e8\e[J"; 
+printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; fi; 
 }; 
 #### Download config files? 
 _apt_installer() { 
