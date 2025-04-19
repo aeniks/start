@@ -10,10 +10,10 @@ command w3m -cols 800 -dump https://www.merriam-webster.com/word-of-the-day > $w
 cut -f1 -d" "|tr -d "\n"; printf %b '";'; echo; ) > $HOME/logs/wotd_m.sh; 
 ####
 (printf %b 'printf -v "w_t" "'; cat $wotmp|sed -n 42p|\
-cut -f1 -d" "|tr -d "\n"; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
+cut -f1 -d" "|tr -d "\n "; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
 ####
-(printf %b 'printf -v "w_p" "['; cat $wotmp|sed -n 42p|\
-cut -f2- -d" "|tr -d "\n"; printf %b ']";'; echo; ) >> $HOME/logs/wotd_m.sh; 
+(printf %b 'printf -v "w_p" "'; cat $wotmp|sed -n 42p|\
+cut -f2- -d" "|tr -d "\n "; printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
 ####
 (printf %b "printf -v "'w_m'" %b "; printf %q "$(sed -n 48p $wotmp)"; ) >> $HOME/logs/wotd_m.sh; 
 
