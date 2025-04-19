@@ -1,6 +1,7 @@
 apan() { 
 local IFS=$'\n '; unset sudo; [ -z $PREFIX ] && sudo=sudo; 
-[ -d $HOME/logs/apts ] && [[ $(wc -l $HOME/logs/apa.log 2>/dev/null) < 22 ]] && \
+# [ -d $HOME/logs/apts ] && [[ $(wc -l $HOME/logs/apa.log 2>/dev/null) < 22 ]] 
+[ -e $HOME/logs/apa.log ] || \
 ($sudo apt update 2>/dev/null && $sudo apt list 2>/dev/null|cut -f1 -d"/" > $HOME/logs/apa.log); 
 apap=($(cat $HOME/logs/apa.log|\
 fzf -m -i --bind q:abort --inline-info --cycle --preview \
