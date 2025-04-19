@@ -1,3 +1,5 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/bin/sh
 set icons false
 set ratios 2:1 
+set mouse true
+set drawbox false

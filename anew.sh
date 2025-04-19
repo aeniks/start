@@ -117,8 +117,9 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 # column|head -n4 2>/dev/null; ) \n$dots"; 
 ##
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
-iploc=($(cat $HOME/logs/iploc.log)); 
-cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; aptup=($(cat $HOME/logs/aptup.log)); 
+iploc=($(cat $HOME/logs/iploc.log 2>/dev/null;)); 
+cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")"; 
+aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;)); 
 ##########
 ##########
 # alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \

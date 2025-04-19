@@ -8,24 +8,28 @@ alias mm='$EDITOR '
 alias qq='cd .. ; ll ';
 alias rr='sudo -s';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'; 
-alias ipme='wget icanhazip.com -qLO-'; 
+alias ipme='wget https://icanhazip.com -qLO-'; 
 alias quotes='fortune $s|tr -s "\t" " "'
-alias reloadbash='clear; exec bash; '; 
+alias reloadbash='clear; exec bash '; 
 alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)) '; 
 alias gpg='gpg --pinentry loopback';
-alias ipme4='curl icanhazip.com -s4'; 
+alias ff='[ -e $PREFIX/bin/fastfetch ] && fastfetch || neofetch'
+alias ipme4='curl https://icanhazip.com -s4'; 
 alias no='printf "\e[?25h\e[0m"; tmux set mouse on 2>/dev/null; reset -I 2>/dev/null;'
 alias r='ranger --choosedir=$HOME/logs/path; cd $(cat $HOME/logs/path)'; 
 alias l='lf -config $HOME/.config/lf/lfrc -last-dir-path $HOME/logs/ll.log; cd $(cat $HOME/logs/ll.log); '; 
 alias kat='bat -pfld|less'; 
-alias kk='bat -ppflzig $(tmux set-option mouse off; )|less; tmux set-option mouse on; '; 
+alias kk='bat -pflzig'; 
+# alias kk='bat -ppflzig $(tmux set-option mouse off; )|less; tmux set-option mouse on; '; 
 alias iiii='$EDITOR $HOME/.inputrc; echo gg; exec bash; '
-alias speed='speedtest --bytes --no-upload 2>/dev/null||speedtest-go --unit=decimal-bits \
---no-upload||speedtest-cli 2>/dev/null; '
+alias speed='speedtest --bytes --no-upload 2>/dev/null || speedtest-go --unit=decimal-bits \
+--no-upload || speedtest-cli 2>/dev/null; '
 ########
-alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
+alias 12install_nvm='. $start/config/nvm.sh'
+alias 12nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
-alias nvm_init2='[ -s "$NVM_DIR/nvm.sh" ]&& . "$NVM_DIR/nvm.sh";
+
+alias 12nvm_init2='[ -s "$NVM_DIR/nvm.sh" ]&& . "$NVM_DIR/nvm.sh";
 [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
 NVM_DIR="$HOME/.nvm"; 
 #######
