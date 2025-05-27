@@ -33,11 +33,11 @@ printf %b "\n";
 # gh fzf wget micro bash-completion \
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
-gh git rsync file openssl openssh-sftp-server \
-micro gnupg fzf mediainfo lf bat batcat \
-bash-completion lsd tmux cron texinfo iproute2 \
+gh git rsync file openssl openssh-sftp-server openssh \
+micro gnupg fzf mediainfo lf bat batcat runsv htop  \
+bash-completion lsd tmux cron texinfo iproute2 mandoc \
 fortunes fortune fortune-mod figlet w3m nmap net-tools \
-openssh termux-tools termux-api termux-api cronie mpv \
+termux-tools termux-api termux-api cronie mpvb curl \
 ); 
 apts_sec=(\
 btop htop ncdu figlet lynx iproute2 net-tools nmap \
@@ -193,9 +193,14 @@ $sudo chmod 775 $PREFIX/share/figlet -R 2>/dev/null;
 ####
 mkdir -m 775 -p $HOME/.local/bin 2>/dev/null; 
 $sudo cp $start/config/ssss.sh $HOME/.local/bin/ssss 2>/dev/null; 
-export PATH=${PATH}:~/.local/bin; 
-cat $HOME/.bashrc|grep "~/.local/bin" || \
-echo 'export PATH=${PATH}:~/.local/bin; ' >> $HOME/.bashrc; 
+export PATH=${PATH}:~/.local/bin:$PREFIX/usr/games; 
+
+# cat $HOME/.bashrc|grep 
+printf %b "$PATH" > $PREFIX/.config/path;
+cat ~/.bashrc | grep -e "PATH" || printf %b '\n export $(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
+chmod 775 $PREFIX/.config/path; 
+cat $HOME/.config/path|grep "~/.local/bin" || \
+printf %b "${PATH}:~/.local/bin" >> $HOME/.config/path; 
 fi; 
 ####
 ## crons
@@ -217,7 +222,7 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-ssh-keygen -N "" -f ${USER}_$HOSTNAME_ll; 
+ssh-keygen -N "" -f ll_${USER}_${HOSTNAME}_ll; 
 gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git;  2>/dev/null; 
 cd -; 
@@ -230,7 +235,7 @@ _install_apps() {
 p2 " $c2 "; p1 "Install apps? "; _yno in_apps
 if [[ $_yno_in_apps == true ]]; then \
 p2 " $c2 "; p1 "updating system ..."; echo; echo; _newcolor; 
-$sudo apt update;  _newcolor; $sudo apt upgrade -y; _newcolor; echo; 
+$sudo apt update; _newcolor; $sudo apt upgrade -y; _newcolor; echo; 
 ####
 [ -e $HOME/logs/apa.log ] || $sudo apt list > $HOME/logs/apa_1.log; 
 tail -n+1 $HOME/logs/apa_1.log|cut -f1 -d"/" > $HOME/logs/apa.log; 
