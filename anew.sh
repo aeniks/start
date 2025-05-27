@@ -170,8 +170,9 @@ for i in $start/funcs/*.sh; do . $i; done;
 # [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& #tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
-[ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -z "$TMUX" ]|| tmux list-panes|grep -e "1:" &>/dev/null||inbash; 
+# [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
+[ -z "$TMUX" ]&& tmux; 
+[ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
