@@ -34,7 +34,7 @@ printf %b "\n";
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
 gh git rsync file openssl openssh-sftp-server openssh \
-micro gnupg fzf mediainfo lf bat batcat runsv htop  \
+micro gnupg fzf mediainfo lf bat batcat runsv htop wget \
 bash-completion lsd tmux cron texinfo iproute2 mandoc \
 fortunes fortune fortune-mod figlet w3m nmap net-tools \
 termux-tools termux-api termux-api cronie mpvb curl \
