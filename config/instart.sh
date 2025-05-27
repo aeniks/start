@@ -88,13 +88,13 @@ echo; sleep .04; echo; sleep .04;
 ####
 #### Update system? 
 _update() {
-p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then \
-_newcolor; printf %b "\e7"; _newcolor; $sudo apt update 2>/dev/null;  _newcolor; 
+p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then _newcolor; printf %b "\e7"; _newcolor; $sudo apt update 2>/dev/null;  _newcolor; 
 printf %b "\e8\e[J"; $sudo apt upgrade -y 2>/dev/null; _newcolor;  printf %b "\e8\e[J"; 
-hash fzf git gh lf gnupg micro 2>/dev/null||$sudo apt install -y fzf git gh lf gnupg micro 2>/dev/null; _newcolor; printf %b "\e8\e[J"; 
+hash fzf git gh lf gnupg curl micro 2>/dev/null||$sudo apt install -y curl fzf git gh lf gnupg micro 2>/dev/null; _newcolor; printf %b "\e8\e[J"; 
 printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; fi; 
 }; 
-#### Download config files? 
+####
+#### Install apps? 
 _apt_installer() { 
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
 printf %b "\e7"; for ap in ${apts_basic[*]}; do  _newcolor; 
@@ -103,7 +103,8 @@ printf %b "\e[2K\b\b\b\b installed";  _newcolor; printf %b " $ap\e8\e[J"; done;
 printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; sleep .2; 
 fi; 
 }; 
-
+####
+#### Download config files? 
 _download() {
 p2 " $c2 "; p1 "Download config files? "; _yno download; 
 if [[ $_yno_download == true ]]; then \
@@ -127,16 +128,21 @@ fi;
 # 
 ####
 }; 
-_install_conf() {
+_install_conf() { 
+
+mkdir $HOME/logs/apts -m 775 2>/dev/null; touch $HOME/logs/bp.log $HOME/logs/aptup.log 2>/dev/null; 
+mkdir $HOME/crons -m 775 2>/dev/null; 
+ln -s $start/crons/* -t $HOME/crons/ 2>/dev/null; 
+$sudo rm $PREFIX/etc/motd -fr 2>/dev/null; ## remove motd 
 p2 " $c2 "; p1 "Install config? "; _yno in_conf
 if [[ $_yno_in_conf == true ]]; then \
 # $sudo mv $PREFIX/etc/lf $tmp/ 2>/dev/null; _newcolor; 
 # $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
-mkdir $HOME/.config 2>/dev/null;  _newcolor; 
+mkdir $HOME/.config 2>/dev/null; _newcolor; 
 ####
 #### 
 _newcolor; printf %b "\e[0m\t\t"; 
-cat $HOME/.bashrc|grep -e "anew.sh" &>/dev/null||\
+touch $HOME/.bashrc; cat $HOME/.bashrc|grep -e "anew.sh" &>/dev/null||\
 printf %b "\n. $start/anew.sh;"&>/dev/null >> $HOME/.bashrc 2>/dev/null; 
 touch $HOME/.config/tmux_state 2>/dev/null; chmod 775 $HOME/.config/tmux_state; echo; 
 ####
@@ -144,7 +150,6 @@ _backup $HOME/.inputrc; _newcolor;
 _link $start/config/inputrc $HOME/.inputrc; _newcolor; 
 ##########
 _backup $HOME/.tmux.conf $HOME/.tmux.conf.local; _newcolor; 
-
 _link $start/config/tmux/tmux.conf $HOME/.tmux.conf; _newcolor; 
 _link $start/config/figlet/figz.sh $HOME/; _newcolor; 
 ########
@@ -154,23 +159,30 @@ _link $start/config/tmux/tmux_bash.sh $HOME/.tmux_bash.sh; _newcolor;
 _backup $HOME/.termux/termux.properties; _newcolor; 
 _link $start/config/termux/termux.properties $HOME/.termux/; _newcolor; 
 ######
-_backup $HOME/.config/micro/settings; _newcolor; 
-_backup $HOME/.config/micro/bindings; _newcolor; 
-ln -s $start/config/micro/settings $start/config/micro/bindings -t $HOME/.config/micro/; _newcolor; 
+_backup $HOME/.config/micro/settings.json; _newcolor; 
+_backup $HOME/.config/micro/bindings.json; _newcolor; 
+ln -s $start/config/micro/settings.json $start/config/micro/bindings.json -t $HOME/.config/micro/; _newcolor; 
 ######
+###### batcat config 
+if [ -n $PREFIX ]; then apt install bat -y 2>/dev/null; 
+ln --symbolic $PREFIX/bin/bat $PREFIX/bin/batcat; else $sudo apt install bat -y 2>/dev/null; 
+$sudo ln --symbolic $PREFIX/bin/batcat $PREFIX/bin/bat 2>/dev/null; fi; _newcolor; 
+######
+###### github & ssh - config files 
+$sudo apt install -y openssh gh git 2>/dev/null; 
+[ -z $HOME/.ssh/*.pub ] && ssh-keygen -N "" -f $HOME/.ssh/id_ed25519; gh ssh-key add $HOME/.ssh/*.pub; printf %b "\e[96m\u990 \e[0m"; ssh -T git@github.com; printf %b "\n"; 
+###### link config files to home 
 conf=(newsboat bat lf tmux htop); 
 for q in ${conf[*]}; do 
 mkdir -p $HOME/.config/$q 2>/dev/null; 
 _backup $HOME/.config/$q/*; _newcolor; 
 ln -s $start/config/$q/* -t $HOME/.config/$q/; sleep .2; 
 printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
-done; echo; cd; 
+done; echo; cd; _newcolor; 
+printf %b "$PATH" > $HOME/.config/path.sh; chmod 775 $HOME/.config/path.sh; _newcolor; 
+printf %b "\n -- added "$PATH" to $HOME/.config/path.sh \n\n "; _newcolor; 
 ####
-# sleep .2; printf %b "\n $c2\e[2m [\e[0mDONE\e[2m]\e[0m!\n"; sleep .2;  	_newcolor; 
-sudo apt install -y bat 2>/dev/null; sudo apt install -y batcat 2>/dev/null; 
-ln -s /bin/batcat /bin/bat 2>/dev/null; ln -s /bin/bat /bin/batcat 2>/dev/null; 
-####
-sudo apt install -y figlet 2>/dev/null; 
+$sudo apt install -y figlet 2>/dev/null; 
 ######## 
 . $start/config/figlet/install_fonts.sh 2>/dev/null; 
 mkdir -p -m 775 $PREFIX/share/figlet 2>/dev/null||\
@@ -185,22 +197,17 @@ export PATH=${PATH}:~/.local/bin;
 cat $HOME/.bashrc|grep "~/.local/bin" || \
 echo 'export PATH=${PATH}:~/.local/bin; ' >> $HOME/.bashrc; 
 fi; 
-
-touch $/HOME/logs/bp.log $/HOME/logs/aptup.log 2>/dev/null; 
-mkdir $HOME/logs/apts -m 775 2>/dev/null; 
-mkdir $HOME/crons -m 775 2>/dev/null; 
-ln -s $start/crons/* -t $HOME/crons/ 2>/dev/null; 
-
+####
+## crons
 }; 
 ####
 #### Authenticates github
 _login_gh() {
 p2 " $c2 "; p1 "Login to github? "; _yno gh; 
 if [[ $_yno_gh == true ]]; then \
-$sudo apt install -y gpg gnupg git gh &>/dev/null; 
+$sudo apt install -y ssh gpg gnupg git gh &>/dev/null; 
 ####
-ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
-# [[ -e != $start/config/gpg/gh_aeniks.gpg ]] && printf %b "\nwhere is key?: \n" && read -ei "$gh_aeniks" "gh_aeniks"
+ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)";  gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
 ####
 gpg --pinentry-mode loopback -o "gh.txt" -d "$gh_aeniks"; 
 gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt; sleep .2;
@@ -210,9 +217,9 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-ssh-keygen; 
+ssh-keygen -N "" -f ${USER}_$HOSTNAME_ll; 
 gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
-cd $start; git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; 
+cd $start; git config remote.origin.url git@github.com:aeniks/start.git;  2>/dev/null; 
 cd -; 
 ssh -T git@github.com; fi; 
 _link $PREFIX/var/spool/cron $HOME/ 2>/dev/null; 

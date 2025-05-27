@@ -15,8 +15,9 @@ fi; fi; fi;
 . $PREFIX/share/bash-completion/bash_completion; 	
 shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth; 
 ## append to history, don't overwrite it
-[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp";
-export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null
+[ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp"; 
+[ -e $HOME/.config/path.sh ]&& export PATH=$(cat $HOME/.config/path.sh); 
+export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
 #[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
@@ -73,8 +74,8 @@ ip4=$(timeout 1 curl https://icanhazip.com -s4 -L);
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #$
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
-[ -z "$iploc" ]&& iploc=$(ip -4 -brief a|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1 2>/dev/null); 
-[ -z "$iploc" ]&& iploc=$(ifconfig|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" " 2>/dev/null); 
+[ -z "$iploc" ]&& iploc=$(ip -4 -brief a 2>/dev/null|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1 2>/dev/null); 
+[ -z "$iploc" ]&& iploc=$(ifconfig 2>/dev/null|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" " 2>/dev/null); 
 ##
 # [ -z "$iploc" ]&& iploc="$(ip -4 -brief a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
 #$
@@ -92,8 +93,7 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
-[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr ' .' '_')";
-[ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr ' .' '_')"; 
+[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr ' .' '_')"; [ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr ' .' '_')"; 
 ####
 ####
 #if [ -e "${PREFIX}/bin/figlet" ]; then ff=$(figlist|shuf -n1); printf "\n\n$ff\n\n"; 
@@ -133,11 +133,12 @@ printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null)"; dots;
 printf %b "$(dfree)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; )"; 
-dots;
+dots; 
 printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
-printf %b "\e[1;37;45m ${model[*]}"; dots; wotd_m && dots; 
+printf %b " \e[48;5;$((${#model[*]} * 2 + 4))m\e[6m $cyan[$pink ${model[*]} $cyan] "; dots; 
+wotd_m && dots; 
 # printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6"; [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re"; dots; 

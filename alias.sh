@@ -1,6 +1,8 @@
 #!/bin/bash
 ## aaaaaa
 #<<<<<<< HEAD
+alias 12path='$EDITOR $HOME/.config/path.sh; '; 
+alias path_change='$EDITOR $HOME/.config/path.sh; '; 
 alias less='less -R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
 alias sd='cd /sdcard';
 alias ss='cd $start; '; 
