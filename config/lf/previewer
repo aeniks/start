@@ -41,12 +41,16 @@
 # 		exiftool -j "$6" | jq -C
 # 	fi
 # }
+audio() {
+mediainfo "$1"|tr -s "\t\n " " \n "|batcat -pfl zig; 
+
+}
 
 image() {
 ww=$(($2-4))
 # timg "$1"; 
 chafa  -s ${ww}x$3 "$1" 2>/dev/null|| chafa  -s ${ww}x$3 "$6" 2>/dev/null|| jp2a $1 --width=${ww} --color-depth=8 --fill; 
-mediainfo "$1"|tr -s "\t\n " " \n "|batcat -pfl zig; 
+mediainfo "$1"|tr -s "\t\n " " \n "|grep -e ":"|batcat -pfl zig; 
 } 
 # exifprobe -c -L "$1"|batcat -pPfl go;
 # printf "$1"; 
@@ -89,19 +93,25 @@ mime_preview() {
 		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/*,0)
-	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " "; #tac|batcat -pfl d; 
+	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " "|grep -e ":";  #tac|batcat -pfl d; 
 	;;
 	(image/svg,0)
 	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " ";
 	;;
 	(image/jpg,0)
-	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " ";
+	image "$1" "$2" "$3" "$4" "$5" "$1"; 
+	mediainfo "$1"|tr -s "\t " " "|grep -e ":";
 	;;
 	(image/png,0)
-	image "$1" "$2" "$3" "$4" "$5" "$1"	; mediainfo "$1"|tr -s "\t " " "; 
+	image "$1" "$2" "$3" "$4" "$5" "$1"	; 
+	mediainfo "$1"|tr -s "\t " " "; 
 	;;
 	(text/html,0)
 		batcat "$1" -Ppf --language HTML
+	;;
+	(audio/*,0)
+	mediainfo "$1"|tr -s "\t " " "|grep -e ":"|batcat -pfl zig; 
+	
 	;;
 	(text/troff,0)
 		case "${1##*.}" in
@@ -109,8 +119,8 @@ mime_preview() {
 			man ./ "$1" | col -b
 		;;
 		(*)
-		mediainfo "$1"|tr -s "\t " " "|bat -pflzig; batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"\
-		||exiftool -S|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
+		mediainfo "$1"|tr -s "\t " " "|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"\
+		||batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
 		esac
 	;;
 	(text/*,0 | */xml,0 | application/javascript,0 | application/x-subrip,0 )
@@ -134,8 +144,8 @@ zipinfo -t "$1"|batcat -pPfl c;
 	;;
 	(application/zip,0 | application/x-7z-compressed,0 )
 tar -
-	(audio/*,0)
-	mediainfo "$1"|tr -s "\t " " "; exiftool -S "$1"|batcat -ppfl d
+	(*)
+	batcat -ppfb"$1"|tr -s "\t " " "; 
 	;;
 	(*.mod,0)
 batcat $f -fppl d
@@ -154,6 +164,9 @@ batcat $f -fppl d
 			|| ffmpegthumbnailer -i "$1" -o "$CACHE" -m
 		##image "$CACHE" "$2" "$3" "$4" "$5" "$1"
 chafa ${CACHE} --view-size $(($2-4))x$3 --scale max --polite=on; 
+	mediainfo "$1"|tr -s "\t " " "|grep -e ":"|batcat -ppflzig
+
+# mediainfo "$1"; 
 exiftool -S $1|tac|batcat -pfl d; 
 	;;
 	(*/pdf,0 | */postscript,0)  # .pdf, .ps
@@ -212,8 +225,7 @@ exiftool -S $1|tac|batcat -pfl d;
 			printf "OpenPGP \033[1;31mencrypted\033[m file,\ntry using gpg to decrypt it\n\n"
 		;;
 		(*) 
-	mediainfo $1 |batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go\
-		||exiftool "$1"|batcat -p --wrap character --terminal-width "$(($2-4))" -l go
+	mediainfo $1$f|batcat -pplc||batcat "$f" -pp
 		esac
 	;;
 	(application/vnd.sqlite3,0)
