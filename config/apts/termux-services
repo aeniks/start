@@ -1,0 +1,11 @@
+Package: termux-services
+Version: 0.13-1
+Maintainer: Henrik Grimler @Grimler91
+Installed-Size: 86.0 kB
+Depends: coreutils, dpkg, runit
+Homepage: https://github.com/termux/termux-services/
+Download-Size: 1976 B
+APT-Manual-Installed: yes
+APT-Sources: https://mirror.accum.se/mirror/termux.dev/termux-main stable/main x86_64 Packages
+Description: Service daemon for Termux
+
