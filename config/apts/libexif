@@ -1,0 +1,12 @@
+Package: libexif
+Version: 0.6.25
+Maintainer: @termux
+Installed-Size: 598 kB
+Breaks: libexif-dev
+Replaces: libexif-dev
+Homepage: https://libexif.github.io/
+Download-Size: 104 kB
+APT-Manual-Installed: no
+APT-Sources: https://mirror.accum.se/mirror/termux.dev/termux-main stable/main x86_64 Packages
+Description: Library for reading and writing EXIF image metadata
+

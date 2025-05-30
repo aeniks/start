@@ -1,0 +1,10 @@
+Package: rdfind
+Version: 1.7.0
+Maintainer: @termux
+Installed-Size: 156 kB
+Depends: libc++, libnettle
+Homepage: https://github.com/pauldreik/rdfind
+Download-Size: 40.5 kB
+APT-Sources: https://mirror.accum.se/mirror/termux.dev/termux-main stable/main x86_64 Packages
+Description: A tool for finding duplicate files
+
