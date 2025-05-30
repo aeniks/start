@@ -16,9 +16,14 @@ echo; ) >> $HOME/logs/wotd_m.sh;
 cat $wotmp|sed -n 42p|cut -f2- -d" "|tr -d "\n "; 
 printf %b '";'; echo; ) >> $HOME/logs/wotd_m.sh; 
 ( printf %b "printf -v "'w_m'" %b "; 
+
 printf %q "$(sed -n 48p $wotmp)"; ) >> $HOME/logs/wotd_m.sh; 
+
 cd $HOME/logs/wotd; 
-wo="wotd_$(date +%Y_%m_%d)_$w_w"; wotd_m &>/dev/null; printf %b "$(figlet -f Roman $w_w|bat --theme Nord -ppfljava)\n$(printf %b "$w_m"|fold -sw 44|bat --theme Nord -ppflzig)\n\e[2m\n [\e[0m$(printf %b "$w_p"|bat -ppflr)\e[2m] > \e[96m$w_t    \e[2m\n\n\n\n"|\
+wo="wotd_$(date +%Y_%m_%d)_$w_w"; wotd_m &>/dev/null; 
+
+
+printf %b "$(figlet -f Roman $w_w|bat --theme Nord -ppfljava)\n$(printf %b "$w_m"|fold -sw 44|bat --theme Nord -ppflzig)\n\e[2m\n [\e[0m$(printf %b "$w_p"|bat -ppflr)\e[2m] > \e[96m$w_t    \e[2m\n\n\n\n"|\
 aha -t "word of the day - $w_w" -b -y "margin:0;width:100%;overflow-x:hidden;
 font-family:monospace;font-size:
 clamp(2vmin,2.4vmin,.182em);
