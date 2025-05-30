@@ -35,7 +35,8 @@ alias 12nvm_init2='[ -s "$NVM_DIR/nvm.sh" ]&& . "$NVM_DIR/nvm.sh";
 [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
 NVM_DIR="$HOME/.nvm"; 
 #######
-alias dfree='printf %b "\e[0;2m$(df -h|head -n1|\
+
+alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|\
 tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; \
 df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
 tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|\

@@ -122,27 +122,36 @@ cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")";
 aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;)); 
 ##########
 ##########
+dfree() { df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=1|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage'|bat -ppflc++ --theme 1337; }; 
 # alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 # printf %b "$w >$yellow $meaning$re >$dim $def"|\
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
 alias dots='printf %b "$re\n··········${re}\n"'; 
-
 inbash() { 
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
 printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null)"; dots; 
-printf %b "$(dfree)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; )"; 
 dots; 
 printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
-printf %b " \e[48;5;$((${#model[*]} * 2 + 4))m\e[6m $cyan[$pink ${model[*]} $cyan] "; dots; 
+printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
+
 wotd_m && dots; 
 # printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 
-printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6"; [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re"; dots; 
-printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)"; dots; 
+printf %b "$cyan$ip4$re | $blue$iploc$re"; 
+[ -n "${SSH_CONNECTION}" ]&& \
+printf %b "$re | $red${sshc}$re"; dots; 
+####
+dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|\
+grep -v "tmpfs"|grep -v "passthrough"|\
+grep -E 'sdcard/default|storage|Size'|\
+column --table --table-columns-limit 5 --output-separator ' | '|\
+bat -ppfljs --theme zenburn;)"; }; 
+dfree; dots; 
+# df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
 }; 
 for i in $start/funcs/*.sh; do . $i; done; 
 ####
