@@ -144,7 +144,6 @@ printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re |
 printf %b "$cyan$ip4$re | $blue$iploc$re | $red$iploc6"; [ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re"; dots; 
 printf %b "$dim$(date -R)$re | $re$dim$(uptime -p|batcat -ppfljs)"; dots; 
 }; 
-
 for i in $start/funcs/*.sh; do . $i; done; 
 ####
 ####
@@ -165,14 +164,14 @@ for i in $start/funcs/*.sh; do . $i; done;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 ####
 [ -e "$HOME/.config/tmux_state" ]||touch "$HOME/.config/tmux_state"; 
-
-
 # [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& #tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -z "$TMUX" ]&& tmux; 
-[ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||inbash; 
+[ -z "$TMUX" ]||tmux list-panes|\
+grep -e "1:" &>/dev/null||\
+[ -z "$SSH_CONNECTION" ]&& inbash; 
 [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
