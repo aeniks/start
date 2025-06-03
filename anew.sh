@@ -150,9 +150,18 @@ grep -v "tmpfs"|grep -v "passthrough"|\
 grep -E 'sdcard/default|storage|Size'|\
 column --table --table-columns-limit 5 --output-separator ' | '|\
 bat -ppfljs --theme zenburn;)"; }; 
-dfree; dots; 
+alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|\
+tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; \
+df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
+tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|\
+grep -v "none"|grep -v "run"|\
+grep -v "efivars"|grep -v "boot"|grep -v loop|\
+grep -e "$df"|batcat --theme=Dracula -ppflc++'; 
+[ $PREFIX ]&&dfree ||dfree2; dots; 
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
 }; 
+
+
 for i in $start/funcs/*.sh; do . $i; done; 
 ####
 ####
