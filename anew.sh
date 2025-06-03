@@ -137,7 +137,6 @@ printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu";
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
 printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
-
 wotd_m && dots; 
 # printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 
@@ -151,7 +150,7 @@ grep -E 'sdcard/default|storage|Size'|\
 column --table --table-columns-limit 5 --output-separator ' | '|\
 bat -ppfljs --theme zenburn;)"; }; 
 alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|\
-tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; \
+tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m"; \
 df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
 tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|\
 grep -v "none"|grep -v "run"|\
