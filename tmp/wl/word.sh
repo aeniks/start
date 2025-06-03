@@ -7,10 +7,8 @@ wo=($(lynx -nolist -preparsed -minimal -width 400 -dump https://merriam-webster.
 wom=($(command lynx -dump -width 600 "https://merriam-webster.com/thesaurus/${dd}"|sed -n 77p; )); 
 ####
 (figlet -f Roman "$dd"; printf %b "\n${wo[0]} > ${wo[1]}\n\n${wom[*]}"; )|\
-aha -t "word of the day - $word" -b -y "margin:0; width:100%; overflow-x:hidden; font-family:monospace; font-size:clamp(2vmin,2.4vmin,.182em); text-align:center; padding-top:
-clamp(6vh,22vh,8em); margin-top:calc(12vh - 9ch); background:rgb($((RANDOM%88 + 8)),$((RANDOM%88 + 8)),$((RANDOM%88 + 8)));" > $wort.html;
-####
-sed -i '6i<meta name="viewport" content="width=device-width,initial-scale=1" />' $wort.html; }; 
+aha -t "word of the day - $word" -b -y "margin:0; width:100vw; display:flex; overflow-x:hidden; font-family:monospace; font-size:clamp(2vmin,2.4vmin,.182em); text-align:center; padding-top:
+clamp(6vh,22vh,8em); margin-top:calc(12vh - 9ch); background:rgb($((RANDOM%88 + 8)),$((RANDOM%88 + 8)),$((RANDOM%88 + 8)));" |sed -i '6i<meta name="viewport" content="width=device-width,initial-scale=1" /> '; }; 
 ####
 
 
@@ -33,9 +31,7 @@ aha -t "word of the day - $word" -b -y "margin:0;width:100%;overflow-x:hidden;
 font-family:monospace;font-size:
 clamp(2vmin,2.4vmin,.182em);
 text-align:center;padding-top:
-clamp(6vh,22vh,8em);margin-top:calc(12vh - 9ch);background:rgb($((RANDOM%88 + 8)),$((RANDOM%88 + 8)),$((RANDOM%88 + 8)));" > $wort.html;
-####
-sed -i '6i<meta name="viewport" content="width=device-width,initial-scale=1" />' $wort.html; 
+clamp(6vh,22vh,8em);margin-top:calc(12vh - 9ch);background:rgb($((RANDOM%88 + 8)),$((RANDOM%88 + 8)),$((RANDOM%88 + 8)));" |sed -i '6i<meta name="viewport" content="width=device-width,initial-scale=1" />' 
 ####
 
 }; 
