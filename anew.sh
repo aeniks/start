@@ -144,15 +144,12 @@ printf %b "$cyan$ip4$re | $blue$iploc$re";
 [ -n "${SSH_CONNECTION}" ]&& \
 printf %b "$re | $red${sshc}$re"; dots; 
 ####
-dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|\
-grep -v "tmpfs"|grep -v "passthrough"|\
-grep -E 'sdcard/default|storage|Size'|\
-column --table --table-columns-limit 5 --output-separator ' | '|\
-bat -ppfljs --theme zenburn;)"; }; 
+dfree() { [ "$PREFIX" ]&& disks="sdcard/default|storage|Size"; printf %b "$(df -h | cut -f2- -d" " | tr -s " " " " | grep -v "tmpfs" | grep -v "passthrough" | grep -E "sdcard/default|storage|Size" | column --table --table-columns-limit 5 --output-separator ' | ' | bat -ppfljs --theme DarkNeon)"; }
+dfree; 
+# dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme zenburn;)"; }; 
 
 # alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m"; df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|grep -v "none"|grep -v "run"|grep -v "efivars"|grep -v "boot"|grep -v loop|grep -e "$df"|batcat --theme=Dracula -ppflc++'; 
-[ "$PREFIX" ] && dfree; 
-[ -z "$PREFIX" ] && dfree2; 
+# [ "$PREFIX" ] && dfree; [ -z "$PREFIX" ] && dfree2; 
 dots; 
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
 timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
