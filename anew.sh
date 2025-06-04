@@ -144,7 +144,9 @@ printf %b "$cyan$ip4$re | $blue$iploc$re";
 [ -n "${SSH_CONNECTION}" ]&& \
 printf %b "$re | $red${sshc}$re"; dots; 
 ####
-dfree() { [ "$PREFIX" ]&& disks="sdcard/default|storage|Size"; printf %b "$(df -h| grep -v "tmpfs" | grep -v "passthrough"  | cut -f2- -d" " | tr -s " " " " | grep -E "$disks" | column --table --table-columns-limit 5 --output-separator ' | ' | bat -ppfljs --theme DarkNeon)"; }
+dfree() { [ "$PREFIX" ]&& disks="sdcard/default|storage|Size" && cut='-f2- -d" "'||cut='-c1-'; 
+printf %b "$(df -h| grep -v "tmpfs" | grep -v "passthrough" | cut $cut | tr -s " " " " | grep -E "$disks" | \
+column --table --table-columns-limit 5 --output-separator ' | ' | bat -ppfljs --theme DarkNeon)"; }
 dfree; 
 # dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme zenburn;)"; }; 
 
