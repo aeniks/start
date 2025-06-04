@@ -36,13 +36,7 @@ alias 12nvm_init2='[ -s "$NVM_DIR/nvm.sh" ]&& . "$NVM_DIR/nvm.sh";
 NVM_DIR="$HOME/.nvm"; 
 #######
 
-alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|\
-tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; \
-df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
-tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|\
-grep -v "none"|grep -v "run"|\
-grep -v "efivars"|grep -v "boot"|grep -v loop|\
-grep -e "$df"|batcat --theme=Dracula -ppflc++';
+# alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m\n"; df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|grep -v "none"|grep -v "run"|grep -v "efivars"|grep -v "boot"|grep -v loop|grep -e "$df"|batcat --theme=Dracula -ppflc++';
 ########
 alias 12info='cd $start/info; qmenu && bat -pf $sel; cd -; '
 alias 12info_tput='batcat -pf "$start/info/tput.nfo"; ';

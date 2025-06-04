@@ -46,11 +46,11 @@ mediainfo "$1"|tr -s "\t\n " " \n "|batcat -pfl zig;
 
 }
 
-image() {
+image() { 
 ww=$(($2-4))
-# timg "$1"; 
-chafa  -s ${ww}x$3 "$1" 2>/dev/null|| chafa  -s ${ww}x$3 "$6" 2>/dev/null|| jp2a $1 --width=${ww} --color-depth=8 --fill; 
-mediainfo "$1"|tr -s "\t\n " " \n "|grep -e ":"|batcat -pfl zig; 
+termimage -s $(($2-4))x$3 "$1"||chafa  -s ${ww}x$3 "$1" 2>/dev/null|| chafa  -s ${ww}x$3 "$6" 2>/dev/null|| jp2a $1 --width=${ww} --color-depth=8 --fill; 
+mediainfo "$1"|tr -s "\t " " "|grep -e ":"|batcat -ppflzig; 
+
 } 
 # exifprobe -c -L "$1"|batcat -pPfl go;
 # printf "$1"; 
@@ -93,10 +93,11 @@ mime_preview() {
 		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/*,0)
-	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " "|grep -e ":";  #tac|batcat -pfl d; 
+	image "$1" "$2" "$3" "$4" "$5" "$1"; 
+	# mediainfo "$1"|tr -s "\t " " "|grep -e ":";  #tac|batcat -pfl d; 
 	;;
 	(image/svg,0)
-	image "$1" "$2" "$3" "$4" "$5" "$1"; mediainfo "$1"|tr -s "\t " " ";
+	image "$1" "$2" "$3" "$4" "$5" "$1"; head $1|batcat -ppf;  mediainfo "$1"|tr -s "\t " " ";
 	;;
 	(image/jpg,0)
 	image "$1" "$2" "$3" "$4" "$5" "$1"; 
@@ -104,13 +105,15 @@ mime_preview() {
 	;;
 	(image/png,0)
 	image "$1" "$2" "$3" "$4" "$5" "$1"	; 
-	mediainfo "$1"|tr -s "\t " " "; 
+			printf "$1 .. $f";
+# mediainfo "$1"|tr -s "\t " " "; 
 	;;
 	(text/html,0)
-		batcat "$1" -Ppf --language HTML
+	links "$1" -dump; 
+	batcat "$1" -Ppf --language HTML; 
 	;;
 	(audio/*,0)
-	mediainfo "$1"|tr -s "\t " " "|grep -e ":"|batcat -pfl zig; 
+	mediainfo "$1"|tr -s "\t " " "|grep -e ":"|batcat -ppflzig; 
 	
 	;;
 	(text/troff,0)
@@ -145,7 +148,7 @@ zipinfo -t "$1"|batcat -pPfl c;
 	(application/zip,0 | application/x-7z-compressed,0 )
 tar -
 	(*)
-	batcat -ppfb"$1"|tr -s "\t " " "; 
+	batcat -ppf "$1"|tr -s "\t " " "; 
 	;;
 	(*.mod,0)
 batcat $f -fppl d

@@ -2,6 +2,7 @@
 ## lf config
 #[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&&PREFIX="/data/data/com.termux/files/usr"; 
 # set previewer $PREFIX/etc/lf/previewer
+# IFS=$""; 
 set globfilter true
 set globsearch true
 map f :search
@@ -85,7 +86,7 @@ map m :push %mkdir<space>
 map oD :depl
 map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
-map o dial 
+map o :push !<space>$f<left><left><left>
 # map <enter>c !chafa $f 
 map b $batcat -pf $f
 # map b $batcat --paging always --decorations never $f 
@@ -174,7 +175,7 @@ cmds_lf=(
 "mediainfo"
 ); 
 printf "\e[0m\n"; 
-IFS="$(printf %b "\n")"; 
+# IFS="$(printf %b "\n")"; 
 c=0; a=2; for i in ${cmds_lf[@]}; do printf " $re $((c++)) [\e[38;5;$((a++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; 
 printf %b "    $re["$dim"o"$re"]other\n\n\n\n\n\n\e[4A"; 
 read -n1 -srep " " "x"; 
@@ -223,8 +224,9 @@ fi;
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
 # exiftool $f|batcat --paging always -pl c++; read; 
-set shellopts '-e'
-set ifs ""
+set shellopts '-eu'
+set ifs "
+"
 set scrolloff 20
 set cursorpreviewfmt "\033[7;2m"
 ## cmds

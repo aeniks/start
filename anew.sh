@@ -122,14 +122,14 @@ cpu="$(lscpu |grep "Model name"|tr -s "\t" " "|cut -f3- -d" ")";
 aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;)); 
 ##########
 ##########
-dfree() { df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=1|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage'|bat -ppflc++ --theme 1337; }; 
+# dfree() { df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=1|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage'|bat -ppflc++ --theme 1337; }; 
 # alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 # printf %b "$w >$yellow $meaning$re >$dim $def"|\
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
 alias dots='printf %b "$re\n··········${re}\n"'; 
 inbash() { 
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
-printf %b "$re$pink$(cat $HOME/logs/ff.log 2>/dev/null)"; dots; 
+printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflc --theme Nord)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; )"; 
 dots; 
@@ -149,15 +149,13 @@ grep -v "tmpfs"|grep -v "passthrough"|\
 grep -E 'sdcard/default|storage|Size'|\
 column --table --table-columns-limit 5 --output-separator ' | '|\
 bat -ppfljs --theme zenburn;)"; }; 
-alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|\
-tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m"; \
-df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|\
-tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|\
-grep -v "none"|grep -v "run"|\
-grep -v "efivars"|grep -v "boot"|grep -v loop|\
-grep -e "$df"|batcat --theme=Dracula -ppflc++'; 
-[ $PREFIX ]&&dfree ||dfree2; dots; 
+
+# alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m"; df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|grep -v "none"|grep -v "run"|grep -v "efivars"|grep -v "boot"|grep -v loop|grep -e "$df"|batcat --theme=Dracula -ppflc++'; 
+[ "$PREFIX" ] && dfree; 
+[ -z "$PREFIX" ] && dfree2; 
+dots; 
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
+timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
 }; 
 
 
@@ -185,11 +183,10 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -z "$TMUX" ]&& tmux; 
-[ -z "$TMUX" ]||tmux list-panes|\
-grep -e "1:" &>/dev/null||\
-[ -z "$SSH_CONNECTION" ]&& inbash; 
-[ -n "$SSH_CONNECTION" ]&& inbash; 
+[ -z "$TMUX" ]&& tmux;
+[ -n "$TMUX" ]&& inbash; 
+# [ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||[ -z "$SSH_CONNECTION" ]&& inbash; 
+# [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
 ####
