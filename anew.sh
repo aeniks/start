@@ -129,7 +129,7 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 alias dots='printf %b "$re\n··········${re}\n"'; 
 inbash() { 
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
-printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflc --theme Nord)"; dots; 
+printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; )"; 
 dots; 
@@ -144,7 +144,7 @@ printf %b "$cyan$ip4$re | $blue$iploc$re";
 [ -n "${SSH_CONNECTION}" ]&& \
 printf %b "$re | $red${sshc}$re"; dots; 
 ####
-dfree() { [ "$PREFIX" ]&& disks="sdcard/default|storage|Size"; printf %b "$(df -h | cut -f2- -d" " | tr -s " " " " | grep -v "tmpfs" | grep -v "passthrough" | grep -E "sdcard/default|storage|Size" | column --table --table-columns-limit 5 --output-separator ' | ' | bat -ppfljs --theme DarkNeon)"; }
+dfree() { [ "$PREFIX" ]&& disks="sdcard/default|storage|Size"; printf %b "$(df -h| grep -v "tmpfs" | grep -v "passthrough"  | cut -f2- -d" " | tr -s " " " " | grep -E "$disks" | column --table --table-columns-limit 5 --output-separator ' | ' | bat -ppfljs --theme DarkNeon)"; }
 dfree; 
 # dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme zenburn;)"; }; 
 
