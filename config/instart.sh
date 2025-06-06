@@ -224,7 +224,7 @@ export PATH=${PATH}:~/.local/bin:$PREFIX/usr/games;
 
 # cat $HOME/.bashrc|grep 
 printf %b "$PATH" > $PREFIX/.config/path;
-cat ~/.bashrc | grep -e '$HOME/.config/path' || printf %b '\n export $(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
+cat ~/.bashrc | grep -e '$HOME/.config/path' || printf %b '\n export PATH=$(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
 chmod 775 $PREFIX/.config/path; 
 cat $HOME/.config/path|grep "~/.local/bin" || \
 printf %b "${PATH}:~/.local/bin" >> $HOME/.config/path; 
