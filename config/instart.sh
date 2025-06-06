@@ -220,14 +220,14 @@ $sudo chmod 775 $PREFIX/share/figlet -R 2>/dev/null;
 ####
 mkdir -m 775 -p $HOME/.local/bin 2>/dev/null; 
 $sudo cp $start/config/ssss.sh $HOME/.local/bin/ssss 2>/dev/null; 
-export PATH=${PATH}:~/.local/bin:$PREFIX/usr/games; 
+# export PATH=${PATH}:~/.local/bin:$PREFIX/usr/games; 
 
 # cat $HOME/.bashrc|grep 
-printf %b "$PATH" > $PREFIX/.config/path;
-cat ~/.bashrc | grep -e '$HOME/.config/path' || printf %b '\n export PATH=$(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
-chmod 775 $PREFIX/.config/path; 
-cat $HOME/.config/path|grep "~/.local/bin" || \
-printf %b "${PATH}:~/.local/bin" >> $HOME/.config/path; 
+# printf %b "$PATH" > $PREFIX/.config/path;
+# cat ~/.bashrc | grep -e '$HOME/.config/path' || printf %b '\n export PATH=$(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
+# chmod 775 $PREFIX/.config/path; 
+# cat $HOME/.config/path|grep "~/.local/bin" || \
+# printf %b "${PATH}:~/.local/bin" >> $HOME/.config/path; 
 fi; 
 ####
 ## crons
@@ -249,8 +249,9 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-ssh-keygen -N "" -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
-gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
+ssh-keygen -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
+gh config set git_protocol ssh; 
+gh ssh-key add $HOME/.ssh/*.pub; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; 
 cd -; 
 ssh -T git@github.com; fi; 
