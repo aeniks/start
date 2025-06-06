@@ -15,11 +15,13 @@ yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
 enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
 ####
 ####
+unalias _loader 2>/dev/null; 
 _loader() { 
 unset kill; 
 printf %b "\e[A\e[K\e[?25l\e[46G${re}"; 
 # printf "    [   [${dim}a${re}] to abort"; 
-pid="$!"; spin='-\|/'; i=0; while kill -0 $pid &>/dev/null; 
+pid="$!"; spin='-\|/'; i=0; 
+while kill -0 "$pid" 2>/dev/null; 
 do i=$(( (i+1) %4 )); 
 printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] "; 
 read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
