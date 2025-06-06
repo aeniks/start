@@ -65,6 +65,7 @@ bat -ppflc --theme=1337;
 sudo apt update &>/dev/null|tail -n1 > $HOME/logs/aptup.log && \
 printf %b "\n -- done\n\n"; '; 
 alias uu='uuuu'; 
+alias path='$EDITOR ~/.config/path.sh'; 
 alias ff='fastfetch -l small --logo-position top --logo-padding-right 1';
 
 

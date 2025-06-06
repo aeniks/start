@@ -40,7 +40,9 @@ export TERM="xterm-256color";
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' 
 GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36' PAGER='less'; 
-[ $PREFIX ]&& model=($(getprop ro.product.model; 
+[ $PREFIX ]&& model=($(getprop ro.product.manufacturer; 
+getprop ro.product.marketname; 
+getprop ro.product.model; 
 getprop ro.build.version.min_supported_target_sdk; 
 getprop ro.build.version.sdk ro.product.abilist; 
 getprop ro.product.name; getprop ro.soc.manufacturer; 
@@ -194,5 +196,7 @@ else ipp=' \e[0;2m[\e[0;38m_\e[0;2m]\e[0m '; fi;
 ####
 ####
 # _ps1() { PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re$ipp$re'['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] ['$re$cyan'\u'$re'] '$re$(cat $HOME/logs/bat.sh 2>/dev/null)' ['$re$yellow'\w'$re']\e[25h\e[0m\n'; }; 
-crond &>/dev/null; sshd &>/dev/null; 
+# crond &>/dev/null; sshd &>/dev/null; 
 . $start/_ps1.sh; _ps1; 
+bc=0; 
+. $start/crons/bat.sh & disown; 

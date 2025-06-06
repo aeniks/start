@@ -31,11 +31,16 @@ printf -v "bat" "\e[${bc}m$bc";
 [ $bc ]&& printf %b " ${bs}[$re\e[38;5;${bc:0:1}m${bat}${bs}]$re"; 
 }; 
 # export IFS=$'\n '; 
+[[ "$HOSTNAME" == "localhost" ]] && \
+unset HOSTNAME || HOSTNAME=['$re$pink'$HOSTNAME'$re']'$re' \
+# export HOSTNAME="${mod:0:12}"; 
+# ['$re$pink'$HOSTNAME'$re']'$re' \
 _ps1() { 
-PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re'$(_bat) \
-['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] \
+PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re'] \
+['$re$cyan'\t'$re']'$re'\
+'$re'$(_bat) \
+['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:12}'$re'] \
 ['$re$cyan'\u'$re']'$re' \
-['$re$pink'\h'$re']'$re' \
-['$re$cyan'\t'$re']'$re' \
+$HOSTNAME\
 ['$re$yellow'\w'$re']\e[?25h\e[0m\n'; };
 
