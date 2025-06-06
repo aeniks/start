@@ -35,12 +35,17 @@ printf -v "bat" "\e[${bc}m$bc";
 unset HOSTNAME || HOSTNAME=['$re$pink'$HOSTNAME'$re']'$re' \
 # export HOSTNAME="${mod:0:12}"; 
 # ['$re$pink'$HOSTNAME'$re']'$re' \
+_dtime() { 
+hh=$(date +%H;); mm=$(date +%M;); ss=$(date +%S); 
+printf %b "\e[38;5;1$((hh + 22))m$hh$re:\e[38;5;1$((mm + 22))m$mm$re:\e[38;5;1$((ss + 22))m$ss"; 
+}; 
 _ps1() { 
 PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re'] \
-['$re$cyan'\t'$re']'$re'\
+['$re'$(_dtime)'$re']'$re'\
 '$re'$(_bat) \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:12}'$re'] \
 ['$re$cyan'\u'$re']'$re' \
 $HOSTNAME\
 ['$re$yellow'\w'$re']\e[?25h\e[0m\n'; };
+
 
