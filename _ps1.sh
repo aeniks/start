@@ -32,7 +32,7 @@ printf -v "bat" "\e[${bc}m$bc";
 }; 
 # export IFS=$'\n '; 
 [[ "$HOSTNAME" == "localhost" ]] && \
-unset HOSTNAME || HOSTNAME="[$re$pink$HOSTNAME$re]$re" \
+unset HOSTNAME || HOSTNAME='[$re$pink$HOSTNAME$re]$re' \
 # export HOSTNAME="${mod:0:12}"; 
 # ['$re$pink'$HOSTNAME'$re']'$re' \
 _dtime() { 
