@@ -17,16 +17,17 @@ enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null";
 ####
 _loader() { 
 unset kill; 
-printf %b "\e[A\e[?25l\e[46G${re}"; 
+printf %b "\e[A\e[K\e[?25l\e[46G${re}"; 
 # printf "    [   [${dim}a${re}] to abort"; 
-pid="$!"; spin='-\|/'; i=0; while kill -0 $pid 2>/dev/null; 
+pid="$!"; spin='-\|/'; i=0; while kill -0 $pid &>/dev/null; 
 do i=$(( (i+1) %4 )); 
 printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] "; 
 read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
 # tail -c21 $tmp/in.log; printf %b "\e[u"; 
 done; 
 printf %b "\n"; 
-printf "${re}\e[0J \e[46G [${dim}done \b${re}] "; 
+printf %b "${re}\e[0J \e[46G [${dim}done \b${re}]\e[0J "; 
+printf %b "\e[0J"; 
 }; 
 ####
 # $sudo apt install -y bat iproute2 nmap lf git \
@@ -134,7 +135,7 @@ if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; export start="${start/\/\///}"; 
 _backup $start; _newcolor; 
-_loader git clone https://github.com/aeniks/start.git $start 2>/dev/null; 
+_loader git clone https://github.com/aeniks/start.git $start; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git; 
 ####
 ####
