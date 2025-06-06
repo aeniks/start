@@ -37,7 +37,7 @@ unset HOSTNAME || HOSTNAME="[\e[96m$HOSTNAME\e[0m]";
 # ['$re$pink'$HOSTNAME'$re']'$re' \
 _dtime() { 
 hh=1$(date +%H;); mm=1$(date +%M;); ss=1$(date +%S); 
-printf %b "\e[38;5;$((hh + 22))m$hh$re:\e[38;5;$((mm + 22))m$mm$re:\e[38;5;$((ss + 22))m$ss"; 
+printf %b "\e[38;5;$((hh + 22))m${hh:1:2}$re:\e[38;5;$((mm + 22))m${mm:1:2}$re:\e[38;5;$((ss + 22))m${ss:1:2}"; 
 }; 
 _ps1() { 
 PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re'] \
