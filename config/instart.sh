@@ -119,7 +119,7 @@ _apt_installer() {
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
 printf %b "\e7\n\e[0K"; for ap in ${apts_basic[*]}; do  _newcolor; 
 # printf %b "\n"; 
-_loader $sudo apt install -y $ap --assume-yes 2>/dev/null && \
+$sudo apt install -y $ap --assume-yes 2>/dev/null & _loader && \
 _newcolor && printf %b "\e[4G\e[0m    installed" && \
 _newcolor && printf %b " $ap\e[0K"; 
 # printf %b " $ap\e8\e[J"; 
@@ -135,7 +135,7 @@ if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; export start="${start/\/\///}"; 
 _backup $start; _newcolor; 
-_loader git clone https://github.com/aeniks/start.git $start; 
+git clone https://github.com/aeniks/start.git $start & _loader; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git; 
 ####
 ####
