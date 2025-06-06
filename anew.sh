@@ -153,7 +153,7 @@ dfree;
 # [ "$PREFIX" ] && dfree; [ -z "$PREFIX" ] && dfree2; 
 dots; 
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
-timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
+#timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
 }; 
 
 
@@ -182,7 +182,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -z "$TMUX" ]&& tmux;
-[ -n "$TMUX" ]&& inbash; 
+[ -n "$TMUX" ]&& inbash && . $start/config/tmux/tmuxbg.sh
 # [ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||[ -z "$SSH_CONNECTION" ]&& inbash; 
 # [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
