@@ -25,8 +25,8 @@ printf "${re} \e[46G [${dim}${spin:$i:1} \b${re}] ";
 read -t 0.1 -s -n1 kill; [ $kill ]&& kill $pid; 
 # tail -c21 $tmp/in.log; printf %b "\e[u"; 
 done; 
-printf "${re} \e[46G [${dim}done \b${re}] "; 
 printf %b "\n"; 
+printf "${re}\e[0J \e[46G [${dim}done \b${re}] "; 
 }; 
 ####
 # $sudo apt install -y bat iproute2 nmap lf git \
@@ -119,7 +119,7 @@ p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; the
 printf %b "\e7\n\e[0K"; for ap in ${apts_basic[*]}; do  _newcolor; 
 # printf %b "\n"; 
 _loader $sudo apt install -y $ap --assume-yes 2>/dev/null && \
-_newcolor && printf %b "\b\b\b\b\e[0m    installed" && \
+_newcolor && printf %b "\e[4G\e[0m    installed" && \
 _newcolor && printf %b " $ap\e[0K"; 
 # printf %b " $ap\e8\e[J"; 
 done; 
@@ -134,7 +134,7 @@ if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; export start="${start/\/\///}"; 
 _backup $start; _newcolor; 
-git clone https://github.com/aeniks/start.git $start 2>/dev/null & _loader; 
+_loader git clone https://github.com/aeniks/start.git $start 2>/dev/null; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git; 
 ####
 ####
