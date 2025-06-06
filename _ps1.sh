@@ -16,8 +16,6 @@ printf -v "batcap" "/sys/class/power_supply/BAT0/capacity";
 elif [ -e "/sys/class/power_supply/battery/status" ]; \
 then printf -v "batstat" "/sys/class/power_supply/battery/status"; \
 printf -v "batcap" "/sys/class/power_supply/battery/capacity"; 
-elif [ -e "/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj" ]; \
-then printf -v "batcap" "/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj"; \
 elif [ -e "/sys/class/power_supply/BAT1/status" ]; \
 then printf -v "batstat" "/sys/class/power_supply/BAT1/status"; \
 printf -v "batcap" "/sys/class/power_supply/BAT1/capacity"; 
