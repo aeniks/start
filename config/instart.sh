@@ -35,8 +35,8 @@ printf %b "\n";
 apts_basic=(\
 gh git rsync file openssl openssh-sftp-server openssh \
 micro gnupg fzf mediainfo lf bat batcat runsv htop wget \
-bash-completion lsd tmux cron texinfo iproute2 mandoc \
-fortunes fortune fortune-mod figlet w3m nmap net-tools \
+bash-completion lsd tmux cron texinfo iproute2 mandoc nala ffmpegthumbnailer ffmpeg-thumbnailer\
+fortunes fortune fortune-mod figlet w3m nmap net-tools btop \
 termux-tools termux-api termux-api cronie mpvb curl \
 ); 
 apts_sec=(\
@@ -98,7 +98,7 @@ printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; fi;
 _apt_installer() { 
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
 printf %b "\e7"; for ap in ${apts_basic[*]}; do  _newcolor; 
-printf %b "\n"; $sudo apt install -y $ap --assume-yes 2>/dev/null && \
+printf %b "\n"; _loader $sudo apt install -y $ap --assume-yes 2>/dev/null && \
 printf %b "\e[2K\b\b\b\b installed";  _newcolor; printf %b " $ap\e8\e[J"; done; 
 printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; sleep .2; 
 fi; 
@@ -129,8 +129,8 @@ fi;
 ####
 }; 
 _install_conf() { 
-
-mkdir $HOME/logs/apts -m 775 2>/dev/null; touch $HOME/logs/bp.log $HOME/logs/aptup.log 2>/dev/null; 
+mkdir $HOME/logs/apts -m 775 2>/dev/null; 
+touch $HOME/logs/bp.log $HOME/logs/aptup.log 2>/dev/null; 
 mkdir $HOME/crons -m 775 2>/dev/null; 
 ln -s $start/crons/* -t $HOME/crons/ 2>/dev/null; 
 $sudo rm $PREFIX/etc/motd -fr 2>/dev/null; ## remove motd 
@@ -140,6 +140,7 @@ if [[ $_yno_in_conf == true ]]; then \
 # $sudo ln $start/config/lf $PREFIX/etc/ -s  2>/dev/null; _newcolor; 
 mkdir $HOME/.config 2>/dev/null; _newcolor; 
 $sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null; 
+$sudo ln -s $PREFIX/usr/bin/bat $PREFIX/usr/bin/batcat 2>/dev/null; 
 ####
 #### 
 _newcolor; printf %b "\e[0m\t\t"; 
@@ -166,12 +167,14 @@ ln -s $start/config/micro/settings.json $start/config/micro/bindings.json -t $HO
 ######
 ###### batcat config 
 if [ -n $PREFIX ]; then apt install bat -y 2>/dev/null; 
-ln --symbolic $PREFIX/bin/bat $PREFIX/bin/batcat; else $sudo apt install bat -y 2>/dev/null; 
+ln --symbolic $PREFIX/bin/bat $PREFIX/bin/batcat; else $sudo apt install batcat -y 2>/dev/null; 
 $sudo ln --symbolic $PREFIX/bin/batcat $PREFIX/bin/bat 2>/dev/null; fi; _newcolor; 
+$sudo ln -s $PREFIX/usr/games/fortune $PREFIX/usr/bin/ 2>/dev/null; 
+$sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null; 
 ######
 ###### github & ssh - config files 
 $sudo apt install -y openssh gh git 2>/dev/null; 
-[ -z $HOME/.ssh/*.pub ] && ssh-keygen -N "" -f $HOME/.ssh/id_ed25519; gh ssh-key add $HOME/.ssh/*.pub; printf %b "\e[96m\u990 \e[0m"; ssh -T git@github.com; printf %b "\n"; 
+[ -e $HOME/.ssh/*.pub ] && ssh-keygen -N "" -f $HOME/.ssh/id_ed25519; gh ssh-key add $HOME/.ssh/*.pub; printf %b "\e[96m\u990 \e[0m"; ssh -T git@github.com; printf %b "\n"; 
 ###### link config files to home 
 conf=(newsboat bat lf tmux htop); 
 for q in ${conf[*]}; do 
@@ -198,7 +201,7 @@ export PATH=${PATH}:~/.local/bin:$PREFIX/usr/games;
 
 # cat $HOME/.bashrc|grep 
 printf %b "$PATH" > $PREFIX/.config/path;
-cat ~/.bashrc | grep -e "PATH" || printf %b '\n export $(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
+cat ~/.bashrc | grep -e '$HOME/.config/path' || printf %b '\n export $(cat ${HOME/.config/path}) \n' >> ~/.bashrc; 
 chmod 775 $PREFIX/.config/path; 
 cat $HOME/.config/path|grep "~/.local/bin" || \
 printf %b "${PATH}:~/.local/bin" >> $HOME/.config/path; 
@@ -211,7 +214,7 @@ fi;
 _login_gh() {
 p2 " $c2 "; p1 "Login to github? "; _yno gh; 
 if [[ $_yno_gh == true ]]; then \
-$sudo apt install -y ssh gpg gnupg git gh &>/dev/null; 
+$sudo apt install -y ssh gpg gnupg git gh 2>/dev/null; 
 ####
 ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)";  gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
 ####
@@ -223,7 +226,7 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-ssh-keygen -N "" -f ll_${USER}_${HOSTNAME}_ll; 
+ssh-keygen -N "" -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
 gh config set git_protocol ssh; gh ssh-key add $HOME/.ssh/*.pub; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git;  2>/dev/null; 
 cd -; 
