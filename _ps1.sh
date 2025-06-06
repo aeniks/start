@@ -32,7 +32,7 @@ printf -v "bat" "\e[${bc}m$bc";
 }; 
 # export IFS=$'\n '; 
 [[ "$HOSTNAME" == "localhost" ]] && \
-unset HOSTNAME || printf -v "_host" "[\e[95m$_host\e[0m]"; 
+unset HOSTNAME || printf -v "_host" "[\e[95m$HOSTNAME\e[0m] "; 
 # export HOSTNAME="${mod:0:12}"; 
 # ['$re$pink'$HOSTNAME'$re']'$re' \
 _dtime() { 
@@ -45,7 +45,7 @@ PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re'] \
 '$re'$(_bat) \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:12}'$re'] \
 ['$re$cyan'\u'$re']'$re' \
-$_host \
+$_host\
 ['$re$yellow'\w'$re']\e[?25h\e[0m\n'; };
 
 
