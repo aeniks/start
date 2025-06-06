@@ -74,17 +74,23 @@ p2 "\e[0;1m [\e[0;92m"; p1 "OK"; p2 "\e[0;1m]  \e[0m\n"; };
 p1() { p2=" ${@}"; for i in $(seq ${#p2}); do sleep .04; printf %b "${p2:${i}:1}"; done; }; ## rolling text 
 p2() { printf %b "$@"; }; 
 yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' 
-[[ "$1" ]]&& ny=${1}; printf %b "\e[40G\b\b\b\b\b\b\b\b$yno "; 
+[[ "$1" ]]&& ny=${1}; printf %b "\e[?25h\e[40G\b\b\b\b\b\b\b\b$yno "; 
 printf -v _yno_${1} "false"; read -rsn1 ny; 
-[[ -z $ny || $ny = y ]] && printf -v _yno_${1} "true"; _ok; 
+[[ -z $ny || $ny = y ]] && printf -v _yno_${1} "true"; 
+[[ $ny = q ]] && printf %b "\e[?25h\n" && _quit && return 0; _ok; 
+[[ $ny = q ]] && printf %b "\e[?25h\n" && _quit && return 0; 
 # printf %b "\n_yno_$1 = $_yno_${1} \n"; 
 }; 
 
 # printf %b "$green OK$re\n" && \
 ####
-for i in $(seq $((height / 2))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
-for i in $(seq $((height / 2 + 2))); do printf %b "\e[K\e[A\e[2K"; sleep .04; done; 
-echo; sleep .04; echo; sleep .04; 
+for i in $(seq $((height - 4))); do printf %b "\e[38;5;$((RANDOM%16 + 111))m$i\n"; sleep .04; done; ## scroll page 
+for i in $(seq $((height - 6))); do printf %b "\e[K\e[A\e[2K"; sleep .02; done; 
+printf %b "\e[?25l"; 
+# printf %b "\n\n\e[2A"
+for i in {1..12}; do printf %b "\e[s\e[38;5;$((RANDOM%229))m\e[s\e[98;5;$((RANDOM%22))m\e[4m"; figlet -o -f sub-zero "hello"; sleep .1; printf %b "\e[u"; done; 
+printf %b "\e[?25h"; 
+for i in {1..7}; do echo; sleep .1; done; 
 ####
 #### Update system? 
 _update() {
@@ -97,9 +103,13 @@ printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; fi;
 #### Install apps? 
 _apt_installer() { 
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
-printf %b "\e7"; for ap in ${apts_basic[*]}; do  _newcolor; 
-printf %b "\n"; _loader $sudo apt install -y $ap --assume-yes 2>/dev/null && \
-printf %b "\e[2K\b\b\b\b installed";  _newcolor; printf %b " $ap\e8\e[J"; done; 
+printf %b "\e7\n\e[0K"; for ap in ${apts_basic[*]}; do  _newcolor; 
+# printf %b "\n"; 
+_loader $sudo apt install -y $ap --assume-yes 2>/dev/null && \
+_newcolor && printf %b "\b\b\b\b\e[0m    installed" && \
+_newcolor && printf %b " $ap\e[0K"; 
+# printf %b " $ap\e8\e[J"; 
+done; 
 printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}] \n"; sleep .2; 
 fi; 
 }; 
@@ -270,12 +280,14 @@ printf %b "\n \e[96m--\e[0m DONE\n"
 }; 
 ####
 ####
-_update; 
-_apt_installer; 
-_download; 
-_install_conf; 
-_login_gh; 
-_install_apps; 
+_quit() { printf %b "\n\n"; return 0; }; 
+_update; [[ $ny = q ]] && _quit && return 0; 
+_apt_installer; [[ $ny = q ]] && _quit && return 0; 
+_download; [[ $ny = q ]] && _quit && return 0; 
+_install_conf; [[ $ny = q ]] && _quit && return 0; 
+_login_gh; [[ $ny = q ]] && _quit && return 0; 
+_install_apps; [[ $ny = q ]] && _quit && return 0; 
 cd; echo; sleep 1; exec bash; 
 }; 
-instart
+
+instart 

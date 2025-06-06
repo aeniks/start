@@ -74,3 +74,5 @@ alias ff='fastfetch -l small --logo-position top --logo-padding-right 1';
 
 # alias l='cd $(lf -config $HOME/.config/lf/lfrc -print-last-dir); grep -e "/" \
 # "$HOME/.local/share/lf/files" 2>/dev/null'; 
+
+alias hellllo='printf %b "\n\n\n\n\n\n\e[6A\e[?25l"; for i in {1..28}; do printf %b "\e[s\e[38;5;$((RANDOM%229))m \e[s\e[98;5;$((RANDOM%22))m\n"; figlet -o -f sub-zero "hello"; sleep .12; printf %b "\e[u"; done; printf %b "\e[?25h"; printf %b "\n\n" '; 
