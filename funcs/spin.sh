@@ -13,11 +13,13 @@ unset qq;
 # http://stackoverflow.com/questions/20165057/executing-bash-loop-while-command-is-running
 
 # (for i in {1..42}; do printf %b "\e[38;5;${i}m kk $i $((RANDOM)) "; sleep .2; done )
-$@ &> .st.txt & disown 2>/dev/null;           ## & : continue running script
-pid=$!                          ## PID of last command
+pkill -9 $1 2>/dev/null; 
+nohup nice -20 $@ &> .st.txt & 2>/dev/null;           ## & : continue running script
+pid=$!    
+disown -a $pid;                       ## PID of last command
 printf %b "\e[A\e[K\e[A\e[9G \e[0J\e[0m\e[2m[\e[0m\e[s \e[2m]\e[0m\e[K \n\n\e[?25l"; 
 # If this script is killed, kill 'speedtest':
-trap "kill $pid &>/dev/null" EXIT
+trap "disown -h $pid; kill $pid &>/dev/null" EXIT
 # While 'speedtest' is running:
 printf %b "\e[0m"; 
 while kill -0 $pid &>/dev/null; do
