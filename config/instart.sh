@@ -121,7 +121,7 @@ _apt_installer() {
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
 printf %b "\e7\n\e[0K"; for ap in ${apts_basic[*]}; do  _newcolor; 
 # printf %b "\n"; 
-$sudo apt install -y $ap --assume-yes 2>/dev/null & _loader && \
+$sudo nohup apt install -y $ap --assume-yes &>/dev/null && \
 _newcolor && printf %b "\e[4G\e[0m    installed" && \
 _newcolor && printf %b " $ap\e[0K"; 
 # printf %b " $ap\e8\e[J"; 
@@ -137,7 +137,7 @@ if [[ $_yno_download == true ]]; then \
 p2 " $c2 "; p1 "Where to? "; read -ei "$HOME/" "hstart"; printf %b "\e[A"; 
 start="${hstart}/start"; sleep .2; export start="${start/\/\///}"; 
 _backup $start; _newcolor; 
-git clone https://github.com/aeniks/start.git $start & _loader; 
+git clone https://github.com/aeniks/start.git $start &>/dev/null; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git; 
 ####
 ####
@@ -199,8 +199,12 @@ $sudo ln -s $PREFIX/usr/games/fortune $PREFIX/usr/bin/ 2>/dev/null;
 $sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null; 
 ######
 ###### github & ssh - config files 
-$sudo apt install -y openssh gh git 2>/dev/null; 
-[ -e $HOME/.ssh/*.pub ] && ssh-keygen -N "" -f $HOME/.ssh/id_ed25519; gh ssh-key add $HOME/.ssh/*.pub; printf %b "\e[96m\u990 \e[0m"; ssh -T git@github.com; printf %b "\n"; 
+shgh=(ssh openssl openssh-server gh git); 
+for sigh in ${shgh[*]}; do printf %b "\b\b\b\b$sigh"; 
+$sudo nohup apt install -y ${sigh} &>/dev/null; done; 
+[ -e $HOME/.ssh/*.pub ] || ssh-keygen -N "" -f ~/.ssh/id_ed25519; 
+gh ssh-key add ~/.ssh/id_ed25519.pub; 
+printf %b "\e[96m\u990 \e[0m"; ssh -T git@github.com; printf %b "\n"; 
 ###### link config files to home 
 conf=(newsboat bat lf tmux htop); 
 for q in ${conf[*]}; do 
@@ -240,9 +244,12 @@ fi;
 _login_gh() {
 p2 " $c2 "; p1 "Login to github? "; _yno gh; 
 if [[ $_yno_gh == true ]]; then \
-$sudo apt install -y ssh gpg gnupg git gh 2>/dev/null; 
+shgh=(gnupg gpg ssh openssl openssh-server gh git); 
+for sigh in ${shgh[*]}; do printf %b "\b\b\b\b$sigh"; 
+$sudo nohup apt install -y ${sigh} &>/dev/null; done; 
 ####
-ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)";  gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
+ghuser="$(id -nu)"; ghmail="$(id -nu)@$(hostname)"; 
+gh_aeniks="$start/config/gpg/gh_aeniks.gpg"; 
 ####
 gpg --pinentry-mode loopback -o "gh.txt" -d "$gh_aeniks"; 
 gh auth login --with-token < "gh.txt"; printf "$c2 "; rm gh.txt; sleep .2;
@@ -252,9 +259,9 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-ssh-keygen -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
+ssh-keygen -N "" -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
 gh config set git_protocol ssh; 
-gh ssh-key add $HOME/.ssh/*.pub; 
+gh ssh-key add ~/.ssh/*.pub; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; 
 cd -; 
 ssh -T git@github.com; fi; 
