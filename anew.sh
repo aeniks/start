@@ -184,7 +184,8 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -z "$TMUX" ]&& tmux;
-[ -n "$TMUX" ]&& inbash && . $start/config/tmux/tmuxbg.sh
+[ -n "$TMUX" ]&& inbash && tmuxbg; 
+# . $start/config/tmux/tmuxbg.sh
 # [ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||[ -z "$SSH_CONNECTION" ]&& inbash; 
 # [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
