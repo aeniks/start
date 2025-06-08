@@ -63,7 +63,7 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku \
 #dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; dahh="$(date +%H)"; damm="$(date +%M)";
 ####
 #alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|batcat -ppflgo --theme Nord|grep -v "Not"'; 
-export FIGLET_FONTDIR="${PREFIX}/share/figlet"; 
+#export FIGLET_FONTDIR="${PREFIX}/share/figlet"; 
 fortshort() { sleep 4; seq 12 > $HOME/logs/ff.log; 
 while [ "$(cat $HOME/logs/ff.log|wc --lines)" -gt "2" ]; 
 do fortune > $HOME/logs/ff.log; done; }; 
