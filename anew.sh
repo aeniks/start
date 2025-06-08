@@ -60,6 +60,7 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku \
 #dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; dahh="$(date +%H)"; damm="$(date +%M)";
 ####
 #alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|batcat -ppflgo --theme Nord|grep -v "Not"'; 
+export FIGLET_FONTDIR="${PREFIX}/share/figlet"; 
 fortshort() { sleep 4; seq 12 > $HOME/logs/ff.log; 
 while [ "$(cat $HOME/logs/ff.log|wc --lines)" -gt "2" ]; 
 do fortune > $HOME/logs/ff.log; done; }; 
@@ -95,7 +96,7 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 #iploc6="$(ip -oneline -6 a show scope global|cut -f7 -d" "|head -c-4)"; 
 ####
 ####
-[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr ' .' '_')"; [ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr ' .' '_')"; 
+# [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr ' .' '_')"; [ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr ' .' '_')"; 
 ####
 ####
 #if [ -e "${PREFIX}/bin/figlet" ]; then ff=$(figlist|shuf -n1); printf "\n\n$ff\n\n"; 
