@@ -16,7 +16,8 @@ fi; fi; fi;
 shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth; 
 ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp"; 
-[ -e $HOME/.config/path.sh ]&& export PATH=$(cat $HOME/.config/path.sh); 
+[ -e $HOME/.config/path.sh ]&& \
+export PATH=$(cat $HOME/.config/path.sh); 
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
@@ -40,7 +41,8 @@ export TERM="xterm-256color";
 [ -z "${EDITOR}" ]&& export EDITOR='micro';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' 
 GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36' PAGER='less'; 
-[ $PREFIX ]&& model=($(getprop ro.product.manufacturer; 
+[ $PREFIX ]&& \
+model=($(getprop ro.product.manufacturer; 
 getprop ro.product.marketname; 
 getprop ro.product.model; 
 getprop ro.build.version.min_supported_target_sdk; 
@@ -48,8 +50,9 @@ getprop ro.build.version.sdk ro.product.abilist;
 getprop ro.product.name; getprop ro.soc.manufacturer; 
 getprop ro.soc.model; getprop gsm.sim.operator.alpha;))&& \
 model=($(printf %b "${model[*]}"|uniq -u; )); 
-[ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
-[ -z "${PREFIX}" ]&& [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
+# [ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
+[ -z "$PREFIX" ]&& \
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku \
 /sys/devices/virtual/dmi/id/board_vendor \
 /sys/devices/virtual/dmi/id/sys_vendor \
@@ -131,6 +134,7 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
 alias dots='printf %b "$re\n··········${re}\n"'; 
 inbash() { 
+printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
 printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
@@ -139,7 +143,6 @@ dots;
 printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
-printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
 wotd_m && dots; 
 # printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
 printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 

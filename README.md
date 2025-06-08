@@ -1,2 +1,2 @@
 
-    bash <(curl -L git.new/aeniks)
+    bash <(curl -sL aeniks.github.io)
