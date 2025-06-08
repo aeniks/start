@@ -1,4 +1,4 @@
-
+#!/bin/bash 
 wordd() { dd=${EPOCHSECONDS}; wc="$(lynx "http://www.thefreedictionary.com/_/WoD/rss.aspx" -dump -width 800 -force_empty_hrefless_a|tr "<>/" "\n"|grep -e "Definition"|cut -f2 -d" " --complement | tee ~/logs/words/dd$dd.log | wc -l; )"; 
 for i in $(seq $wc;); 
 do ww=($(sed -n ${i}p ~/logs/words/dd$dd.log)); 
@@ -12,8 +12,4 @@ clamp(6vh,22vh,8em);margin-top:calc(12vh - 9ch);background:rgb($((RANDOM%88 + 8)
 done; 
 }; 
 
-wordfig() { 
-[[ $1 ]]&& ww=($@); 
-figlet -w $COLUMNS -f Roman -o "$ww"|bat -ppfljava --theme DarkNeon; printf %b "\e[2A${ww[1]}\n"|bat -ppfll --theme DarkNeon ; printf %b "\n${ww[*]:2}\n"|tr "\n" " "|bat -ppf --language d --theme Visual\ Studio\ Dark+ ; printf %b "\n"; 
-}; 
-
+wordd; 
