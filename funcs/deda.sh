@@ -1,0 +1,1 @@
+deda() { ff=($(fdupes ./ -r|grep -v ".nomedia"|fzf --preview 'termimage -s 22x22 {}; mediainfo {}|tr -s " " " "|bat -ppflr' --bind "q:abort" -i -m ; )); printf %b "\n -- rm -- ${ff[*]} ?"; read -s -e -n1 -p ' [Y/n] ' "ny"; [ -z "$ny" ]&& rm -f ${ff[*]}; printf %b "\ngg\n"; }; 
