@@ -15,14 +15,7 @@ margin-top:calc(12vh - 9ch);}</style></head>
 <body><pre>" > ~/logs/words/${ww}.html; 
 (figlet -w 400 -o -f Roman "$ww"|bat -ppfljava --theme DarkNeon; printf %b "\e[6A" ; printf %b "${ww[*]:2}\n"|tr "\n" " "|bat -ppf --language d --theme Visual\ Studio\ Dark+ ; printf %b "\n\n${ww[1]}\n"|bat -ppfll --theme DarkNeon)|tee ~/logs/words/w_${ww}_f.log | aha -x -n -t "word of the day - $ww" >> ~/logs/words/${ww}.html; 
 printf %b "</pre></body></html>" >> ~/logs/words/${ww}.html; 
-
 mv -f ~/logs/words/w_${ww}_f.log ~/logs/words/w_${ww}.log -t ~/tmp; done; 
 mv -f ~/logs/words/dd$dd.log -t ~/tmp; 
 }; 
-
-
-
-# wordd > ~/logs/words/w_${ww}.html; 
-#wordd; 
-# sed -i '6i<meta name="viewport" content="width=device-width, initial-scale=1.0" />' ~/logs/words/w_${ww}.html
-# style='color:white; background-color:black;margin:0;width:100%;overflow-x:hidden;margin-top:calc(12vh - 9ch);font-family:monospace;font-size:clamp(2vmin,2.4vmin,.182em);text-align:center;padding-top:clamp(6vh,22vh,8em);background:rgb($((RANDOM%88 + 8)),$((RANDOM%88 + 8)),$((RANDOM%88 + 8))); 
+wordd; 
