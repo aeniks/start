@@ -5,7 +5,7 @@
 mkdir -p $HOME/logs/iplocal/ 2>/dev/null; rm $HOME/logs/iplocal/* 2>/dev/null;  
 printf %b "\e[?25l\n $c2 checking ips ... \t\t [q]uit\n\n\n\n\e[4A\n\n"; 
 # ip -4 n
-for i in {0..255}; do printf %b "\e[K"; 
+for i in {0..66}; do printf %b "\e[K"; 
 ping -c 1 ${iploc%.*}.${i} &>/dev/null && \
 printf %b "\n\n$i\e[A" && 
 touch $HOME/logs/iplocal/${iploc%.*}.$i & disown; 

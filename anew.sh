@@ -138,8 +138,7 @@ printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
 printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; dots; 
 [ -e $HOME/logs/calendar.json ] && \
-printf %b "$(getcal 2>/dev/null; )"; 
-dots; 
+printf %b "$(getcal 2>/dev/null; )" && dots; 
 printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
