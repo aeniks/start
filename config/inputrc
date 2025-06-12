@@ -52,9 +52,9 @@ C-q: insert-comment
 "\eb": copy-region-as-kill
 "\e[1;2D": copy-backward-word
 "\e[p": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
-"\e[5~": '\e6~\ hh\n'
-"\e[1;2A": '\e6~\ hh\n'
 "\e[6~": kill-whole-line
+"\e[5~": '\e[6~\ hh\n'
+"\e[1;2A": '\e[6~\ hh\n'
 
 
 # C-3: insert-comment
