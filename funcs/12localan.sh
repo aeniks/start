@@ -49,8 +49,9 @@ read -re "u"; [ -z $u ]&& u=$UID;
 printf %b "\e[?25h  connecting to: \e[7m ${u}@${sel} -p $(cat $logs/$o) \e[0m\n\n"; 
 echo; 
 sshlatest=( -p $(cat $logs/$sel) $sel -l $u ); 
-printf %b "ssh ${sshlatest[*]}"|tr -s "\n" " " > $logs/$sel
+printf %b "ssh ${sshlatest[*]}"|tr -s "\n" " " | tee -a ~/.bash_history > $logs/$sel
 sleep .5; 
+# printf %b "ssh ${sshlatest[*]}" >> ~/.bash_history; 
 ssh ${sshlatest[*]} 
  
 }; 

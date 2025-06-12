@@ -38,7 +38,8 @@ nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
 else sudo=sudo; fi; 
 export TERM="xterm-256color"; 
-[ -z "${EDITOR}" ]&& export EDITOR='micro';
+# [ -z "${EDITOR}" ]&& 
+export EDITOR='micro';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' 
 GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36' PAGER='less'; 
 [ $PREFIX ]&& \
