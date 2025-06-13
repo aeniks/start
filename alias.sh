@@ -68,10 +68,10 @@ alias uu='uuuu';
 alias uu='$sudo reboot'; 
 alias open='termux-open'; 
 alias path='$EDITOR ~/.config/path.sh'; 
-alias ff='fastfetch -l small --logo-position top --logo-padding-right 1';
-alias 12paint='printf %b "\n  ";pa=($(pastel list|sed -n $((RANDOM%139))p)); pastel paint $pa $pa; ph=$(pastel format hex $pa;); phs=$(pastel format hsl $pa;); pac=$(pastel complement $pa;); pan=$(pastel format ansi-8bit $pa;); printf %b "  $phs \n";printf %q "  $pan"|tr -d "\\\\"; printf %b "\n$pan"; figlet -tWXc -f 3d kaka; printf %b "\n"'; 
+alias ff='fastfetch -l small --logo-position top --logo-padding-right 1||neofetch';
 
-
+alias 12paint='pa=($(pastel list|sed -n $((RANDOM%139))p)); pan=$(pastel format ansi-8bit $pa;); printf %b "\n$pan\n"; figlet -tWXc -f 3d $pa; printf %b "\n  "; ph=$(pastel format hex $pa;); phs=$(pastel format hsl $pa;); pac=$(pastel complement $pa;); 
+printf %b "\e[0m\n  $pa \n  $phs \n  $ph \n";printf %q "  $pan"|tr -d "\\\\";printf %b "\n\n"'
 # alias 12install_cloudpanel.io='echo; (echo; curl -sL https://cloudpanel.io/docs/v2/getting-started/other|html2text|grep -e "curl -sS" -A3 -m1; echo; )|tee $HOME/cloudpanel_installer.sh; chmod 775 $HOME/cloudpanel_installer.sh; printf %b "\n\n\n\n\e[2A"; read -e -n1 -sp "continue? [Y/n] " "ny"; [ $ny ]||. $HOME/cloudpanel_installer.sh; echo "gg"; '; 
 
 
