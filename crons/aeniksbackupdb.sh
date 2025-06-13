@@ -1,1 +1,1 @@
-ssh aa@192.168.0.14 "cd ~/bb; sudo -u aeniks -i wp db export --path=/home/aeniks/htdocs/www /home/aeniks/bb/ae$EPOCHSECONDS.sql" && rsync aa@192.168.0.14:/home/aeniks/bb ./ -avP; 
+ssh aa@192.168.0.14 "mariadb-dump -u aaaa --password="oioioioi" aeae > /home/aa/bb/aeae$(date +%y%m%d%H%M%S).sql" && rsync aa@192.168.0.14:./bb ~/ -a; 
