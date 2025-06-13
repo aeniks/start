@@ -1,5 +1,6 @@
 # ripgrep->fzf->vim [QUERY]
-fzff() (
+unalias ff; 
+ff() (
   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
             micro {1} +{2}    
