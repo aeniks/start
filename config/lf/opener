@@ -54,7 +54,12 @@ cmd open ${{
 		("/dev/tty"*) # En tty imágenes pueden ser mostradas con mpv
 			"${MPV:-mpv}" --keep-open $fx
 		;;
-		(*) dem "${IMAGE_VIEWER}" $fx
+		(*) 
+		printf %b "\e[s"; termimage $fx; printf %b "\e[H"; (mediainfo $fx||exiftool $fx)|tail -n+4|cut -c 28-|uniq -u|rg -v PNG|rg -v Portable|tr -s " " " "|sed -e s/\:\ /\\t\\t\\t\\t/g|tr "\n" "\n"|bat -ppfld; printf %b "\e[u\e[A$(realpath $fx)"; read -sen1; 
+
+		
+		# termimage $fx; printf %b "\e[H"; (exiftool $fx||mediainfo $fx)|cut -f2- -d":"|rg -v PNG|rg -v Portable|sed -e s/\:\ /\\t\\t\\t\\t/g|tr -s "\n" "\n"|bat -ppfld; read -sen1; 
+		# mediainfo $f; "${IMAGE_VIEWER:-termimage}" $fx; read -n1; 
 		esac
 	;;
 	(audio/*)
@@ -137,8 +142,8 @@ cmd openwith ${{
 	)"
 
 	menu_select() {
-	test -n "$TMUX"&& mt='-tmux -h'
-		nl -nln | fzf$mt --with-nth 2.. | cut -d' ' -f1
+	test -n "$TMUX"&& mt="-tmux -h"; 
+		nl -nln | fzf-tmux --with-nth 2.. | cut -d' ' -f1
 	}
 
 	# TODO: hacer que se puedan abrir con múltiples a la vez (fzf +m)
@@ -162,14 +167,15 @@ cmd openwith ${{
 
 	(image/svg+xml | image/png | image/jpeg | image/gif )
 		app=$(menu_select <<-\EOF
-		vimiv
+		micro
 		gimp
+		tmux-open
 		mpv
 		krita
 		inkscape
 		chafa
 		jp2a
-		media-info
+		mediainfo
 		EOF
 		)
 		case "$app" in
