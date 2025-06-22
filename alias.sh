@@ -58,14 +58,14 @@ alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push -v|ba
 alias pp='push'
 alias pull='git pull'
 alias pppp='git pull|batcat -ppflzig'; 
-alias uuuu='sudo apt update 2>/dev/null| \
-bat -ppflzig --theme=Nord; sudo apt upgrade -y 2>/dev/null| \
+alias uuuu='$sudo apt update 2>/dev/null| \
+bat -ppflzig --theme=Nord; $sudo apt upgrade -y 2>/dev/null| \
 bat -ppfld --theme=1337; sudo apt autoremove -y 2>/dev/null | \
 bat -ppflc --theme=1337; 
 sudo apt update &>/dev/null|tail -n1 > $HOME/logs/aptup.log && \
-printf %b "\n -- done\n\n" '; 
+printf %b "\n -- done\n\n"'; 
 alias uu='uuuu'; 
-alias uu='$sudo reboot'; 
+alias rb='$sudo reboot'; 
 alias open='termux-open'; 
 alias path='$EDITOR ~/.config/path.sh'; 
 alias ff='fastfetch -l small --logo-position top --logo-padding-right 1||neofetch';
