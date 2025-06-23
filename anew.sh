@@ -207,6 +207,6 @@ else ipp=' \e[0;2m[\e[0;38m_\e[0;2m]\e[0m '; fi;
 # crond &>/dev/null; sshd &>/dev/null; 
 . $start/_ps1.sh; _ps1; 
 bc=0; 
-pastel list |sed -n $((RANDOM%139))p|pastel color 
+# pastel list |sed -n $((RANDOM%139))p|pastel color 
 crond 2>/dev/null; 
 sshd 2>/dev/null; 

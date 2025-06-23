@@ -4,7 +4,7 @@
 
 ####
 ####
-apts() { 
+12apts() { 
 ####
 unalias p_ 2>/dev/null; p_() { sleep .2; printf %b "."; }; 
 ####
@@ -25,6 +25,7 @@ read -rsn1 "ny"; [ $ny ]&& echo && echo && return 0;
 echo; 
 #printf %b " \e[96m--\e[0m Updating "; p_; p_; p_; p_;  
 ## LOADING_ANIMATIONS
+
 loader() {
 BLA_metro=( 0.1 \
 '       ' \
@@ -87,16 +88,23 @@ BLA::stop_loading_animation
 ####
 loader $sudo apt update; 
 # &>/dev/null; 
+[ $tmp ]||tmp=$HOME
+tmep="${EPOCHSECONDS}";
 tput civis 2>/dev/null; 
 printf %b "\n\n\e[4A"; printf %b " \e[96m--\e[0m Updating: "; 
+$sudo apt update &>$tmp/$tmep.log; 
+$sudo apt upgrade -y &>$tmp/$tmep.log; 
+apts_basic=($(command ls --color=none -1 $HOME/start/config/apts)); 
 for i in ${apts_basic[*]}; do 
-printf %b ".\e7"; $sudo apt show $i 2>/dev/null > $HOME/logs/apts_basic/_$i; 
+
+printf %b ".\e7"; loader $sudo apt install -y $i 2>/dev/null >$tmp/$tmep.log; 
 printf %b "\e[18G\e[38;5;$((RANDOM%66 + 98))m\e[0K $i \e[0m\e8"; 
-cat $HOME/logs/apts_basic/_$i 2>/dev/null|grep -e "Description" -A 12 > $HOME/logs/apts_basic/$i;  
-cat $HOME/logs/apts_basic/_$i 2>/dev/null|grep -e "Installed-Size" >> $HOME/logs/apts_basic/$i;  
 #[ $(wc -l $HOME/logs/apts_basic/$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
 done; 
 tput cnorm 2>/dev/null; 
-rm $HOME/logs/apts_basic/_* 2>/dev/null; 
 printf %b "\e[K\n\e[K \e[96m--\e[0m DONE\n\n"; 
 }; 
+
+
+# $sudo apt show $i 2>/dev/null > $HOME/logs/apts_basic/_$i; $sudo apt show $i 2>/dev/null > $HOME/logs/apts_basic/_$i; cat $HOME/logs/apts_basic/_$i 2>/dev/null|grep -e "Description" -A 12 > $HOME/logs/apts_basic/$i; cat $HOME/logs/apts_basic/_$i 2>/dev/null|grep -e "Installed-Size" >> $HOME/logs/apts_basic/$i; rm $HOME/logs/apts_basic/_* 2>/dev/null; 
+
