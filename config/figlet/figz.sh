@@ -576,3 +576,5 @@ z-pilot_
 zig_zag_
 zone7___
 colossal
+banner3-D
+char3___
