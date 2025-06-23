@@ -81,14 +81,17 @@ ip4=$(timeout 1 curl https://icanhazip.com -s4 -L);
 [ "${#ip4}" -gt 22 ]&& ip4="nope"; 
 #$
 [ $PREFIX ]&& iploc=$(getprop vendor.arc.net.ipv4.host_address; ); 
-[ -z "$iploc" ]&& iploc=$(ip -4 -brief a 2>/dev/null|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1 2>/dev/null); 
-[ -z "$iploc" ]&& iploc=$(ifconfig 2>/dev/null|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" " 2>/dev/null); 
+[ -z "$iploc" ]&& \
+iploc="$($sudo ifconfig 2>/dev/null|grep -e '4163' -A1|tr -s ' ' '\n'|sed -n 6p)"; 
+[ -z "$iploc" ]&& iploc=$(ip -4 --brief a 2>/dev/null|grep -v "lo"|sed -e s/[\/]/\\n/g|fmt -w1|grep "UP" -A1|sed -n 2p); 
+# iploc=$($sudo ifconfig 2>/dev/null|grep -e "4163" -m1 -A1|tail -n1|cut -f10 -d" " 2>/dev/null); 
+# ip -4 -brief a 2>/dev/null|grep -e UP|tr -s " " "\n"|cut -f1 -d"/"|tail -n1 2>/dev/null
 ##
 # [ -z "$iploc" ]&& iploc="$(ip -4 -brief a show scope global up|grep -v lo|tr -s " /" " "|cut -f3 -d" ")"; 
 #$
 [ $PREFIX ]&& ipgate="$(getprop "vendor.arc.net.ipv4.host_gateway"; )"; 
 ##
-[ -z "$ipgate" ]&&ipgate="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")"; 
+[ -z "$ipgate" ]&& ipgate="$(ip r 2>/dev/null|tail -n1|cut -f1 -d"/")"; 
 
 ##
 #[ -z "$iploc" ]&& iploc=($(ip -4 -brief a show scope global up|tr -s "/" " "|grep "UP"|cut -f3 -d" ")); 
