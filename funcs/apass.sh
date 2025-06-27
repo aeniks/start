@@ -1,9 +1,10 @@
 #!/bin/bash
 unalias apass 2>/dev/null; 
 apass() { 
-apa="$HOME/logs/apa.log"; [ -z $PREFIX ]&& sudo=sudo; 
+apa="$HOME/logs/apa.log"; [ -z $PREFIX ] && sudo=sudo; 
+
 mkdir -p $HOME/logs/apts 2>/dev/null; c2="\e[96m--\e[0m"
-[ -e "$apa" ]||apt list 2>/dev/null|tail -n+2|cut -f1 -d"/"|tee "$apa"; 
+[ $(wc -l $apa) < 22 ]|| $sudo apt list 2>/dev/null|tail -n+2|cut -f1 -d"/"|grep -v "static"|tee "$apa"; 
 declare -a apas; local IFS=$'\n '; 
 printf %b "\n\n\n\n\n\n\e[5A $c2 Update apt list? \e[0;2m[\e[0mY\e[2m/\e[0mn\e[2m]\e[0m "; read -sn1 "oo"; if [ -z $oo ]; then 
 printf %b "\n\e[A\e[28G\e[92mOK\e[0m\n $c2 Updating... "; 
