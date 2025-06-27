@@ -2,7 +2,7 @@
 ## install config-files 
 instart() { 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null || alias sudo=' '; 
-[ $PREFIX ]&& unset sudo; [[ $UID -eq 0 ]]&& unset sudo; 
+[ $PREFIX ] && unset sudo; [ $UID = 0 ] && unset sudo; 
 mkdir $HOME/tmp 2>/dev/null; mkdir $HOME/logs 2>/dev/null; 
 mkdir $HOME/gh 2>/dev/null; mkdir $HOME/.config 2>/dev/null; 
 export tmp=$HOME/tmp; 
@@ -36,8 +36,8 @@ printf %b "\e[0J";
 # gh fzf wget micro bash-completion \
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
-gh git rsync file openssl openssh-sftp-server openssh \
-micro gnupg fzf mediainfo lf bat batcat runsv htop wget \
+gh git rsync file openssl openssh-sftp-server openssh bsdmainutils \
+micro gnupg fzf mediainfo lf bat batcat runsv ncdu2 htop wget \
 bash-completion lsd tmux cron texinfo iproute2 mandoc nala ffmpegthumbnailer ffmpeg-thumbnailer\
 fortunes fortune fortune-mod figlet w3m nmap net-tools btop \
 termux-tools termux-api termux-api cronie mpvb curl \
@@ -67,7 +67,7 @@ _link() { ln -s $@ 2>/dev/null; };
 _newcolor() { printf %b "\e[38;5;$((uu++))m"; sleep .02; }; 
 ########
 _backup() { mkdir $HOME/tmp 2>/dev/null; tmp=$HOME/tmp; time=$(date +%y%m%d%H%m%S); 
-mv -fb --suffix="$time" $@ -t $tmp 2>/dev/null; 
+mv -fb --suffix="$time" $@ -t $tmp &>/dev/null; 
 }; 
 _yno() { 
 printf %b ""; 
@@ -155,7 +155,7 @@ fi;
 ####
 }; 
 _install_conf() { 
-mkdir $HOME/logs/apts -m 775 2>/dev/null; 
+mkdir -p $HOME/logs/apts -m 775 2>/dev/null; 
 touch $HOME/logs/bp.log $HOME/logs/aptup.log 2>/dev/null; 
 mkdir $HOME/crons -m 775 2>/dev/null; 
 ln -s $start/crons/* -t $HOME/crons/ 2>/dev/null; 
@@ -199,12 +199,6 @@ $sudo ln -s $PREFIX/usr/games/fortune $PREFIX/usr/bin/ 2>/dev/null;
 $sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null; 
 ######
 ###### github & ssh - config files 
-shgh=(ssh openssl openssh-server gh git); 
-for sigh in ${shgh[*]}; do printf %b "\b\b\b\b$sigh"; 
-$sudo nohup apt install -y ${sigh} &>/dev/null; done; 
-[ -e $HOME/.ssh/*.pub ] || ssh-keygen -N "" -f ~/.ssh/id_ed25519; 
-gh ssh-key add ~/.ssh/id_ed25519.pub; 
-printf %b "\e[96m\u990 \e[0m"; ssh -T git@github.com; printf %b "\n"; 
 ###### link config files to home 
 conf=(newsboat bat lf tmux htop); 
 for q in ${conf[*]}; do 
@@ -213,7 +207,8 @@ _backup $HOME/.config/$q/*; _newcolor;
 ln -s $start/config/$q/* -t $HOME/.config/$q/; sleep .2; 
 printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
 done; echo; cd; _newcolor; 
-printf %b "$PATH" > $HOME/.config/path.sh; chmod 775 $HOME/.config/path.sh; _newcolor; 
+printf %b "${PATH}:${HOME}/.local/bin" > $HOME/.config/path.sh; chmod 775 $HOME/.config/path.sh; _newcolor; 
+
 printf %b "\n -- added "$PATH" to $HOME/.config/path.sh \n\n "; _newcolor; 
 ####
 $sudo apt install -y figlet 2>/dev/null; 
@@ -259,9 +254,18 @@ git config --global user.name $ghuser;
 git config --global user.email $ghmail; 
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
-ssh-keygen -N "" -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
+shgh=(ssh openssl openssh-server gh git); 
+$sudo chmod 775 $HOME/.ssh -R; 
+for sigh in ${shgh[*]}; do printf %b "\b\b\b\b$sigh"; 
+$sudo nohup apt install -y ${sigh} &>/dev/null; done; 
+[ -e $HOME/.ssh/id_ed25519.pub ] || ssh-keygen -N "" -f $HOME/.ssh/; 
 gh config set git_protocol ssh; 
-gh ssh-key add ~/.ssh/*.pub; 
+gh ssh-key add $HOME/.ssh/id_ed25519.pub; 
+printf %b "\e[96m\u990 \e[0m"; 
+ssh -T git@github.com; printf %b "\n"; 
+####
+# ssh-keygen -N "" -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
+# gh ssh-key add ~/.ssh/*.pub; 
 cd $start; git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; 
 cd -; 
 ssh -T git@github.com; fi; 
@@ -282,7 +286,7 @@ apts_install=($(for i in ${apts_basic[*]}; do hash $i 2>/dev/null || \
 grep $HOME/logs/apa.log -x -e "$i"; done; )); 
 ####
 for i in ${apts_install[*]}; do 
-hash $i 2>/dev/null && printf %b "\n$reSkipping $cyan $i$re already installed$green"; 
+hash $i 2>/dev/null && printf %b "\n$reSkipping $cyan $i$re already installed$green\n"; 
 printf %b "\e[38;5;$((uu++))m\n"; 
 hash $i 2>/dev/null || (printf %b "\nInstalling $i \e[0;1m"; p1 " ..."; 
 printf %b "\n\e[0;2m"; )&& \
@@ -302,6 +306,7 @@ cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i;
 done; rm $HOME/logs/apts_basic/_*; 
 printf %b "\n \e[96m--\e[0m DONE\n"
 }; 
+apts 
 ####
 ####
 _quit() { printf %b ""; return 0; }; 
