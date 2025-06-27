@@ -88,7 +88,7 @@ map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
 map o :push !<space>$f<left><left><left>
 # map <enter>c !chafa $f 
-map b $batcat -pf $f
+map b $glow -p $f||batcat -pf $f
 # map b $batcat --paging always --decorations never $f 
 map l :lenk
 # map <enter> pger
@@ -103,7 +103,7 @@ map t tag-toggle
 map <c-s> sese
 map F :ffzz 
 map D :set dironly! 
-map R :rs
+map R !read -ep ' ' -i '192.168.0.' 'ipa' && read -ep ' port: ' -i '8022' 'pp' && read -ep ' user: ' -i 'aa' 'uu' && read -ep 'folder: ' -i './' ipf; echo; rsync -avPe "ssh -p $pp" $fx $uu@$ipa:$ipf; echo
 map <space> :toggle; down
 map <enter> :open $f 
 # map f :push F<backspace><right><backspace><right><backspace>**<left>
