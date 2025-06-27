@@ -16,7 +16,7 @@ alias quotes='fortune $s|tr -s "\t" " "'
 alias reloadbash='clear; exec bash '; 
 alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)) '; 
 alias gpg='gpg --pinentry loopback';
-alias ff='[ -e $PREFIX/bin/fastfetch ] && fastfetch || neofetch'
+# alias ff='[ -e $PREFIX/bin/fastfetch ] && fastfetch || neofetch'
 alias ipme4='curl https://icanhazip.com -s4'; 
 alias no='printf "\e[?25h\e[0m"; tmux set mouse on 2>/dev/null; reset -I 2>/dev/null;'
 alias r='ranger --choosedir=$HOME/logs/path; cd $(cat $HOME/logs/path)'; 
@@ -69,7 +69,7 @@ alias uu='uuuu';
 alias rb='$sudo reboot'; 
 alias open='termux-open'; 
 alias path='$EDITOR ~/.config/path.sh'; 
-alias ff='fastfetch -l small --logo-position top --logo-padding-right 1||neofetch';
+# alias ff='fastfetch -l small --logo-position top --logo-padding-right 1||neofetch';
 
 alias 12paint='pa=($(pastel list|sed -n $((RANDOM%139))p)); pan=$(pastel format ansi-8bit $pa;); printf %b "\n$pan\n"; figlet -tWXc -f 3d $pa; printf %b "\n  "; ph=$(pastel format hex $pa;); phs=$(pastel format hsl $pa;); pac=$(pastel complement $pa;); 
 printf %b "\e[0m\n  $pa \n  $phs \n  $ph \n";printf %q "  $pan"|tr -d "\\\\";printf %b "\n\n"'
