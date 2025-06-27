@@ -1,6 +1,8 @@
 # ripgrep->fzf->vim [QUERY]
-unalias ff; 
-ff() (
+# unalias ff; 
+ff() ( 
+hash rg 2>/dev/null||$sudo apt install ripgrep; 
+hash bat 2>/dev/null||$sudo apt install bat; 
   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
             micro {1} +{2}    
@@ -9,13 +11,16 @@ ff() (
             micro {+f}  
             # Build quickfix list for the selected items.
           fi'
-  fzf --disabled --ansi --multi \
-      --bind "start:$RELOAD" --bind "change:$RELOAD" \
-      --bind "enter:become:$OPENER" \
+  fzf -i --cycle --disabled --ansi --multi \
+      --bind "change:$RELOAD" \
       --bind "ctrl-o:execute:$OPENER" \
+      --bind "q:abort" \
       --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
       --delimiter : \
-      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-      --preview-window '~4,+{2}+4/3,<80(up)' \
-      --query "$*"
+      --preview 'bat -p --color=always --highlight-line {2} {1}' \
+      --preview-window '<44(9),<80(up,5,wrap)' \
+      # --query "$*"
 )
+      # --bind "enter:become:$OPENER" \
+
+      # --bind "start:$RELOAD" 
