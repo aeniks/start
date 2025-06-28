@@ -1,0 +1,2 @@
+ttout() { 
+ttout="tt_${w_w}_${EPOCHSECONDS:(-4)}"; printf %b "<markup>\n\n\n\n\n\n\n\n\n<tt>\n<span size="'"66444"'" fgcolor="'"black"'">\n$w_w\n</span>\n<span size="'"22444"'" fgcolor="'"darkslategray"'">\n<b>[${w_p}]</b> - <b>(${w_t})</b>\n</span>\n<span size="'"22444"'" fgcolor="'"black"'">$(printf %b "${w_m}"|fmt -w 69; for i in {4..80}; do printf %b " "; done;)\n\n\n\n</span>\n\n\n\n\n\n\n\n\n</tt></markup>\n" > ${ttout}.xml; magick -background lightgray -gravity center pango:@${ttout}.xml ${ttout}.jpg; open ${ttout}.jpg; }; 
