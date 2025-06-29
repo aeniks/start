@@ -14,6 +14,7 @@ alias ll='lsd -l --extensionsort --group-directories-first -tr';
 alias ipme='wget https://icanhazip.com -qLO-'; 
 alias quotes='fortune $s|tr -s "\t" " "'
 alias reloadbash='clear; exec bash '; 
+alias sd2='cd /storage/B371-E27C'; 
 alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)) '; 
 alias gpg='gpg --pinentry loopback';
 # alias ff='[ -e $PREFIX/bin/fastfetch ] && fastfetch || neofetch'
