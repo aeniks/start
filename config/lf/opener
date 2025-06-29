@@ -9,8 +9,10 @@
 # en más características de los ficheros y/o específicamente para lf
 # Tipos MIME IANA oficiales: https://www.iana.org/assignments/media-types/media-types.xhtml
 
-cmd open ${{
-
+cmd open ${{ 
+#get exiftool
+set +u +e; hash exiftool 2>/dev/null && xe=xe||read -n1 -ep ' -- install exiftool? Y/n ' 'xe'; if [ -z $xe ]; then hash sudo 2>/dev/null && sudo=sudo||sudo="command"; $sudo apt install -y exiftool 2>/dev/null; $sudo apt install -y libexif 2>/dev/null; fi; 
+######
 	# Demonizador de comandos, en orden de preferencia
 	dem() {
 		{ setsid -f "$@" >/dev/null 2>&1& } \
@@ -127,8 +129,11 @@ cmd open ${{
 
  # Bug: In my AwesomeWM some JPGs or webm don't show the window until is tiled
 
-cmd openwith ${{
 
+
+cmd openwith ${{ 
+set +u +e; hash exiftool 2>/dev/null && xe=xe||read -n1 -ep ' -- install exiftool? Y/n ' 'xe'; if [ -z $xe ]; then hash sudo 2>/dev/null && sudo=sudo||sudo="command"; $sudo apt install -y exiftool 2>/dev/null; $sudo apt install -y libexif 2>/dev/null; fi; 
+####
 	dem() {
 		{ setsid -f "$@" >/dev/null 2>&1& } \
 			|| ({ nohup "$@" >/dev/null 2>&1& } &) \

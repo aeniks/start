@@ -3,6 +3,9 @@
 #[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&&PREFIX="/data/data/com.termux/files/usr"; 
 # set previewer $PREFIX/etc/lf/previewer
 # IFS=$""; 
+set shellopts '+eu'
+set drawbox false
+set icons false
 set globfilter true
 set globsearch true
 map f :search
@@ -71,12 +74,13 @@ map 1 !true
 map x $$f
 map X !$f
 cmap o 
+map o
 map O $mimeopen --ask $f
 map oj !jp2a --color-depth=8 --fill $f
 map oc !chafa $f
 map ok !cacaview $f
 map ox !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
-map oo open $f
+map oo openwith $f
 map or !read -rep " " -i "$fx" "x"; read -rep "to: " -i "aa@ants.ftp.sh:~/" "t"; rsync -avP "$x" "$t" ;
 map op $mimeopen --ask $f
 map h :cd ~
@@ -86,9 +90,9 @@ map m :push %mkdir<space>
 map oD :depl
 map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
-map o :push !<space>$f<left><left><left>
+# map o :push !<space>$f<left><left><left>
 # map <enter>c !chafa $f 
-map b $glow -p $f||batcat -pf $f
+map b $batcat -pf $f
 # map b $batcat --paging always --decorations never $f 
 map l :lenk
 # map <enter> pger
@@ -232,7 +236,6 @@ fi;
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
 # exiftool $f|batcat --paging always -pl c++; read; 
-set shellopts '-eu'
 set ifs "
 "
 set scrolloff 20
