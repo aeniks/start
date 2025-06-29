@@ -47,7 +47,8 @@ ap=($(command ls -1 $HOME/start/config/apts));
 
 12aptest() { tap=($(command ls $HOME/start/config/apts)); unset tapin tapno tapnoav; 
 for i in ${tap[*]}; do hash $i 2>/dev/null || tapno+=($i); done; 
-for i in ${tapno[*]}; do $sudo apt show $i &>/dev/null && tapnoav+=($i); done; printf %b "${#tapnoav[*]} install 12ap "; }; 
+for i in ${tapno[*]}; do $sudo apt show $i &>/dev/null && tapnoav+=($i); done; printf %b "${#tapnoav[*]} install 12apti "; }; 
+alias 12apti='$sudo apt install -y ${tapnoav[*]};'; 
 ##
 12ap() { ap=($(command ls $HOME/start/config/apts)); unset apin apno apnoav; for i in ${ap[*]}; do hash $i 2>/dev/null && apin+=($i) || apno+=($i); done; printf %b "\n${apin[*]}\n\n${apno[*]}\n\n"; printf %b "  -- available apts --\n"; for i in ${apno[*]}; do $sudo show $i &>/dev/null; printf %b "\n $i"; apnoav+=($i); done; 
 printf %b "\n\n\n\n\n\n\e[4A -- Install? [Y/n] "; read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; }; 
