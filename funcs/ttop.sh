@@ -1,0 +1,2 @@
+
+ttop() { printf %b "\n -- keys: [q]uit \n\e[s\n\n"; for i in {1..88}; do transmission-remote -n aa:aa -l |tail -n+2|tr -s " " " "|head -n-1|pr --omit-header --page-width=$((COLUMNS - 8)) | column --table --table-columns-limit 10 --table-truncate 0-22 --output-separator " | " --columns $((COLUMNS)) --table-header-repeat --table-order 2,10,9,3,4,5,6 --table-hide 6,7,8,1; printf %b "\n\e[u"; read -sn1 mm; [ $mm = q ] && return 1; done; printf %b "\nkk\n"; }; ttop
