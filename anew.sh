@@ -36,10 +36,8 @@ nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'
 [ -z $start ]&& export start="$HOME/start"; 
 ####
 export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk'; 
-
-[ $PREFIX ] && termux-api-start 2>/dev/null && termux-wake-lock 2>/dev/null & disown; 
-
-ap=($(command ls -1 $HOME/start/config/apts)); 
+[ $PREFIX ] && ( termux-api-start &>/dev/null; termux-wake-lock &>/dev/null; ) & disown; 
+# ap=($(command ls -1 $HOME/start/config/apts)); 
 #apu() { unset apu; declare -a apu; for i in ${ap[*]}; do hash $i 2>/dev/null || apu+=($i); done; (( ${#apu[*]} > 4 )) && printf %b "\e[95m${#apu[*]}\e[0m apts can be installed with command$dim [${re}${cyan}apti${re}${dim}]$re "; }; 
 #12ap () { ap=($(command ls $HOME/start/config/apts)); unset apin apno apnoav; for i in ${ap[*]}; do hash $i 2>/dev/null && apin+=($i) || apno+=($i); done; printf %b "\n${apin[*]}\n\n${apno[*]}\n\n"; printf %b "  -- available apts --\n";for i in ${apno[*]}; do $sudo show $i &>/dev/null; printf %b "\n $i"; apnoav+=($i); done; printf %b "\n\n\n\n\n\n\e[4A -- Install? [Y/n] "; read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; };
 ####
@@ -49,15 +47,17 @@ ap=($(command ls -1 $HOME/start/config/apts));
 
 #apti() { unset apti apuu; apuu=($(command ls -1 $HOME/start/config/apts)); for aa in ${apuu[*]}; do hash $aa 2>/dev/null||apti+=($aa); done; for aa in ${apti[*]}; do $sudo apt list $aa 2>/dev/null|sed -n 2p|grep -e '[installed]' &>/dev/null && printf %b "$aa  \e[22G  installed\n"|| $sudo apt install -y $aa 2>/dev/null; done; }; 
 
-12aptest() { 
-unset tap tapin tapno tapnoav; 
-tap=($(command ls $HOME/start/config/apts)); 
-for i in ${tap[*]}; do hash $i 2>/dev/null || tapno+=($i); done; 
-for i in ${tapno[*]}; do $sudo apt show $i &>/dev/null && tapnoav+=($i); done; printf %b "${#tapnoav[*]} install 12apti "; }; 
-alias 12apti='$sudo apt install -y ${tapnoav[*]};'; 
+# 12aptest() { 
+# unset tap tapin tapno tapnoav; 
+# tap=($(command ls $HOME/start/config/apts)); 
+# for i in ${tap[*]}; do hash $i 2>/dev/null || tapno+=($i); done; 
+# for i in ${tapno[*]}; do $sudo apt show $i &>/dev/null && tapnoav+=($i); done; printf %b "${#tapnoav[*]} install 12apti "; }; 
+# alias 12apti='$sudo apt install -y ${tapnoav[*]};'; 
 ##
-12ap() { ap=($(command ls $HOME/start/config/apts)); unset apin apno apnoav; for i in ${ap[*]}; do hash $i 2>/dev/null && apin+=($i) || apno+=($i); done; printf %b "\n${apin[*]}\n\n${apno[*]}\n\n"; printf %b "  -- available apts --\n"; for i in ${apno[*]}; do $sudo show $i &>/dev/null; printf %b "\n $i"; apnoav+=($i); done; 
-printf %b "\n\n\n\n\n\n\e[4A -- Install? [Y/n] "; read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; }; 
+# 12ap() { ap=($(command ls $HOME/start/config/apts)); unset apin apno apnoav; for i in ${ap[*]}; do hash $i 2>/dev/null && apin+=($i) || apno+=($i); done; printf %b "\n${apin[*]}\n\n${apno[*]}\n\n"; printf %b "  -- available apts --\n"; 
+#for i in ${apno[*]}; do $sudo show $i &>/dev/null; printf %b "\n $i"; apnoav+=($i); done; 
+# printf %b "\n\n\n\n\n\n\e[4A -- Install? [Y/n] "; 
+#read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; }; 
 # apts=(bat batcat ripgrep fzf tmux ncdu curl wget aria2 file exiftool mediainfio miniserve micro lsd lynx lf)
 ######
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
@@ -169,7 +169,7 @@ printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; d
 [ -e $HOME/logs/calendar.json ] && \
 printf %b "$(getcal 2>/dev/null; )" && dots; 
 printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
-12aptest && dots; 
+# 12aptest && dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
 printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
 wotd_m && dots; 
