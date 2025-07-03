@@ -12,7 +12,9 @@ bat -ppflc --theme Dracula;
 #cd 
 # &>/dev/null; 
 aapp=($(ls $HOME/logs/apts|fzf --query " $1" -i -m --color \
-preview-bg:0 --bind "q:abort" --preview 'cat $HOME/logs/apts/{}|grep -Ev "Package|Version|Maintainer|APT-Sources|Download-Size"|sed -e "s/Homepage: //" -e "s/Description: //"|bat -ppfld' --preview-window "wrap,12,noborder,top" --cycle --ansi --inline-info))||\
+preview-bg:0 --bind "q:abort" --preview "bat -ppfld $HOME/logs/apts/{}" \
+--preview-window "wrap,12,noborder,top" \
+--cycle --ansi --inline-info))||\
 (printf %b "\n\n"&& cd $pwd &>/dev/null&& return 1;)||\
 return 1; cd - &>/dev/null && \
 printf %b "\n\n"; (printf %b " -- Install: "; 
