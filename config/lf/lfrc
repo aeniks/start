@@ -9,7 +9,7 @@ set icons false
 set globfilter true
 set globsearch true
 
-map f :search
+map f
 map . set hidden! 
 map <esc> quit
 map i set icons!
@@ -106,6 +106,7 @@ map x !$f
 map T hora
 map t tag-toggle
 map <c-s> sese
+
 map fs :ffzz 
 map ff :search 
 map fz :fzf_search 

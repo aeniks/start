@@ -38,7 +38,8 @@ C-z: undo
 "\eu": upcase-word
 # "\e1": dump-functions
 "\e2": '2>/dev/null'
-"\e4": 'kk' insert-comment 'kk'
+"\e4": insert-comment
+# 'kk' insert-comment 'kk'
 "\e0": 'tmux split-window -v\n'
 "\e9": 'tmux split-window -h\n'
 "\e8": complete-into-braces 

@@ -62,8 +62,8 @@ export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk';
 #read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; }; 
 # apts=(bat batcat ripgrep fzf tmux ncdu curl wget aria2 file exiftool mediainfio miniserve micro lsd lynx lf)
 ######
-export LESS='-R --file-size --use-color --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
-export FZF_DEFAULT_OPTS='-i -m --cycle --bind 'q:abort' --info inline'; 
+export LESS='-R --file-size --use-color --incsearch --mouse  --prompt=(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t '; 
+export FZF_DEFAULT_OPTS='-i -m --cycle --bind 'q:abort' --info inline --inline-info'; 
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
 else sudo=sudo; fi; 
 # [ -z "${EDITOR}" ]&& 
