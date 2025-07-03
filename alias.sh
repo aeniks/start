@@ -1,7 +1,7 @@
 #!/bin/bash
 ## aaaaaa
-#<<<<<<< HEAD
 # alias yno='nyo'; 
+alias f='fff; cd $(cat $HOME/.cache/fff/.fff_d)'; 
 alias 12path='$EDITOR $HOME/.config/path.sh; '; 
 alias path_change='$EDITOR $HOME/.config/path.sh; '; 
 # export LESS='-R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 

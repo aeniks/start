@@ -600,3 +600,4 @@ univers
 rozzo
 nscript
 fraktur
+colossal
