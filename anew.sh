@@ -13,6 +13,8 @@ elif [ -f /etc/bash_completion ]; then . /etc/bash_completion;
 fi; fi; fi; 
 [ $PREFIX ]&& [ -r $PREFIX/share/bash-completion/bash_completion ]&& \
 . $PREFIX/share/bash-completion/bash_completion; 	
+[ -r $PREFIX/.config/fzf/fzfbash.sh ] && \
+. $PREFIX/.config/fzf/fzfbash.sh; 
 shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth; 
 ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp"; 
@@ -60,13 +62,14 @@ export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk';
 #read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; }; 
 # apts=(bat batcat ripgrep fzf tmux ncdu curl wget aria2 file exiftool mediainfio miniserve micro lsd lynx lf)
 ######
+export LESS='-R --file-size --use-color --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
+export FZF_DEFAULT_OPTS='-i -m --cycle --bind 'q:abort' --info inline'; 
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
 else sudo=sudo; fi; 
-export TERM="xterm-256color"; 
 # [ -z "${EDITOR}" ]&& 
-export EDITOR='micro';
+export EDITOR='micro' PAGER='less' TERM="xterm-256color"; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' 
-GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36' PAGER='less'; 
+GREP_COLORS='ms=01;32:mc=01;34:sl=35:cx=36:fn=37:ln=95;32:bn=32:se=36';   
 [ $PREFIX ]&& \
 model=($(getprop ro.product.manufacturer; 
 getprop ro.product.marketname; 

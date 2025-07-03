@@ -1,10 +1,10 @@
 #!/bin/bash
 ## aaaaaa
 #<<<<<<< HEAD
-alias yno='nyo'; 
+# alias yno='nyo'; 
 alias 12path='$EDITOR $HOME/.config/path.sh; '; 
 alias path_change='$EDITOR $HOME/.config/path.sh; '; 
-alias less='less -R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
+# export LESS='-R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
 alias sd='cd /sdcard';
 alias ss='cd $start; '; 
 alias mm='$EDITOR '
@@ -68,7 +68,8 @@ sudo apt update &>/dev/null|tail -n1 > $HOME/logs/aptup.log && \
 printf %b "\n -- done\n\n"'; 
 alias uu='uuuu'; 
 alias rb='$sudo reboot'; 
-alias open='termux-open'; 
+open() { [ $PREFIX ] && termux-open $@ || xdg-open $@; }; 
+alias url='termux-open-url'; 
 alias path='$EDITOR ~/.config/path.sh'; 
 # alias ff='fastfetch -l small --logo-position top --logo-padding-right 1||neofetch';
 

@@ -8,6 +8,7 @@ set drawbox false
 set icons false
 set globfilter true
 set globsearch true
+
 map f :search
 map . set hidden! 
 map <esc> quit
@@ -105,7 +106,9 @@ map x !$f
 map T hora
 map t tag-toggle
 map <c-s> sese
-map F :ffzz 
+map fs :ffzz 
+map ff :search 
+map fz :fzf_search 
 map D :set dironly! 
 map R !read -ep ' ' -i '192.168.0.' 'ipa' && read -ep ' port: ' -i '8022' 'pp' && read -ep ' user: ' -i 'aa' 'uu' && read -ep 'folder: ' -i './' ipf; echo; rsync -avPe "ssh -p $pp" $fx $uu@$ipa:$ipf; echo
 map <space> :toggle; down
@@ -115,6 +118,20 @@ cmd sese ${{
 mv $(basename $f) $(slugify ${f/*\/})
 }}
 cmd hora ${{ printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%D); printf "\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M); printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\n\n\n\n\n\n\n\e[25m\e[0m"; read }} 
+
+cmd fzf_search ${{
+    cmd="rg --column --line-number --no-heading --color=always"
+    fzf --ansi --disabled --layout=reverse --delimiter=: \
+        --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
+        --preview='bat -p --color=always --highlight-line {2} -- {1}' # Use your favorite previewer here (bat, source-highlight, etc.), for example:
+        #--preview-window='+{2}-/2' \
+        #--preview='bat --color=always --highlight-line={2} -- {1}'
+        # Alternatively you can even use the same previewer you've configured for lf
+        #--preview='~/.config/lf/cleaner; ~/.config/lf/previewer {1} "$FZF_PREVIEW_COLUMNS" "$FZF_PREVIEW_LINES" "$FZF_PREVIEW_LEFT" "$FZF_PREVIEW_TOP"'
+}}
+
 # map x :push :shell<space>$f 
 # cmd tamo ${{ 
 # printf "\e[2;38;5;24m"; 

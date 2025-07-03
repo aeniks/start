@@ -8,7 +8,9 @@ RELOAD='reload:rg --column --color=always --smart-case {q} || :'
 OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then micro {1} +{2}; 
 else micro {+f}; fi'; 
 old="$PWD"; 
-dd=($(cd $HOME/logs/appa 2>/dev/null; fzf -i --cycle --disabled --ansi --multi \
+dd=($(
+#cd $HOME/logs/appa 2>/dev/null; 
+		fzf -i --cycle --disabled --ansi --multi \
       --bind "change:$RELOAD" \
       --bind "start:$RELOAD" \
       --bind "ctrl-o:execute:$OPENER" \
@@ -17,7 +19,7 @@ dd=($(cd $HOME/logs/appa 2>/dev/null; fzf -i --cycle --disabled --ansi --multi \
       --delimiter : \
       --preview 'bat -p --color=always --highlight-line {2} {1}' \
       --preview-window '<70(9),<80(up,2,wrap)' \
-)); 
+))||(printf %b "nope\n\n"; return 1; )|| return 0; 
 cd $old; 
 echo; 
 pp=($(for i in ${dd[*]}; do 

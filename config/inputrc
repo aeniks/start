@@ -4,58 +4,62 @@
 # Be 8 bit clean.
 set input-meta on
 set output-meta on
-
 # some defaults / modifications for the emacs mode
 $if mode=emacs
-
 # allow the use of the Home/End keys
 "\e[1~": beginning-of-line
 "\e[2~": quoted-insert
-
 # allow the use of the Delete/Insert keys
 "\e[3~": delete-char
 "\e[4~": end-of-line
-
 # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
 "\e[5C": forward-word
 "\e[5D": backward-word
-
 "\e[8~": end-of-line
-
-$endif
 "\ek": backward-kill-line
-C-t: '\ek\nklock\n'
+C-t: '\e4klock\n'
 C-o: '\ek\ncd $(lf -print-last-dir); \n'
 C-p: 'printf %b "";\C-b\C-b' 
 "\e[v": '\ek\nsed -n l;\n' 
 C-x: '\ek\nexec bash;\n'
-C-f: '\ek\nserch\n'
+# C-f: '\ek\nserch\n'
 C-z: undo
-C-q: insert-comment
 ^Z: undo
 "\e[z": undo
 "\ez": undo
 "\eq": insert-comment
+"\e[q": insert-comment
 "\e3": insert-comment
+\C-q: insert-comment
 "£": insert-insert
 "\eU": upcase-word
 "\eu": upcase-word
 # "\e1": dump-functions
 "\e2": '2>/dev/null'
-"\e4": insert-comment
+"\e4": 'kk' insert-comment 'kk'
 "\e0": 'tmux split-window -v\n'
 "\e9": 'tmux split-window -h\n'
 "\e8": complete-into-braces 
 # "\e9": complete-into-braces 
-"\eb": copy-region-as-kill
+"\ew": copy-region-as-kill
 "\e[1;2D": copy-backward-word
+C-f: copy-backward-word
+C-b: copy-forward-word
+C-y: yank
 "\e[p": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
 "\e[6~": kill-whole-line
+"\e[6": kill-whole-line
 "\e[5~": '\e[6~\ hh\n'
 "\e[1;2A": '\e[6~\ hh\n'
+"°": '\e4\l\n'
+"⁰": '\e[6~'
+"\eq": '\e[q'
+"⁹": '\e[612_inputrc\n'
 
+
+$endif
 
 # C-3: insert-comment
 # C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
@@ -107,7 +111,7 @@ set match-hidden-files on
 # Turn off the use of the internal pager when returning long tab-completion lists
 set page-completions off
 # Display completions with matches sorted horizontally in alphabetical order, rather than down the screen
-set print-completions-horizontally off
+set print-completions-horizontally on
 # Only require single tab key press for tab-completion
 # (Default is double tab key press)
 set show-all-if-ambiguous on
