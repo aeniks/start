@@ -1,31 +1,4 @@
 #!/data/data/com.termux/files/usr/bin/bash
-#
-# This is a termux-url-opener script to do diffrent tasks on my Android phone 
-#
-#
-#
-# How to use this script
-#############################
-# 
-# Install git
-# ➜ ~ pkg install git
-# 
-# clone this script
-# ➜ ~ 
-# git clone https://gist.github.com/dc35e8df3dc41d126683f18fe44ebe17.git $HOME/termux-url-opener
-#
-# Create the bin directory
-# ➜ ~ mkdir bin
-#
-# Link the script
-# ➜ ~ ln -s $HOME/termux-url-opener/termux-url-opener $HOME/bin/termux-url-opener
-# ➜ ~ ln -s $HOME/termux-url-opener/termux-url-opener $HOME/bin/termux-file-editor
-# 
-# run the following command to enable the termux storage features
-# ➜ termux-setup-storage
-# 
-# https://wiki.termux.com/wiki/Termux-setup-storage
-#
 url="$1"; 
 ## selection menu
 qqmenu() { local IFS=$'\n\t ';local ops=($2);[ "$2" ]||local ops=(*);
