@@ -1,9 +1,0 @@
-Package: proxychains-ng
-Version: 4.17
-Maintainer: @termux
-Installed-Size: 131 kB
-Homepage: https://github.com/rofl0r/proxychains-ng
-Download-Size: 24.0 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A hook preloader that allows to redirect TCP traffic of existing dynamically linked programs through one or more SOCKS or HTTP proxies
-

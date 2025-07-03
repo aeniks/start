@@ -1,9 +1,0 @@
-Package: antiword
-Version: 0.37-3
-Maintainer: @termux
-Installed-Size: 614 kB
-Homepage: https://en.m.wikipedia.org/wiki/Antiword
-Download-Size: 90.7 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A free MS Word reader
-

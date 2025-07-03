@@ -1,0 +1,80 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# This is a termux-url-opener script to do diffrent tasks on my Android phone 
+#
+#
+#
+# How to use this script
+#############################
+# 
+# Install git
+# ➜ ~ pkg install git
+# 
+# clone this script
+# ➜ ~ 
+# git clone https://gist.github.com/dc35e8df3dc41d126683f18fe44ebe17.git $HOME/termux-url-opener
+#
+# Create the bin directory
+# ➜ ~ mkdir bin
+#
+# Link the script
+# ➜ ~ ln -s $HOME/termux-url-opener/termux-url-opener $HOME/bin/termux-url-opener
+# ➜ ~ ln -s $HOME/termux-url-opener/termux-url-opener $HOME/bin/termux-file-editor
+# 
+# run the following command to enable the termux storage features
+# ➜ termux-setup-storage
+# 
+# https://wiki.termux.com/wiki/Termux-setup-storage
+#
+url="$1"; 
+## selection menu
+qqmenu() { local IFS=$'\n\t ';local ops=($2);[ "$2" ]||local ops=(*);
+local prompt="$1" index="0" cur="0" count="${#ops[@]}" esc=$(echo -ne "\e");
+printf "\e[?25l    -- $prompt --\n\n"; ## print prompt
+while true; do local index="0"; for o in "${ops[@]}"; ## print options
+do if [ "$index" == "$cur" ];
+then printf %b "\e[0m > \e[7m $o \e[0m\e[K\n"; ## mark & highlight the current option
+else printf %b "\e[0m    $o  \e[K\n";
+fi;
+(( index++ ));
+done; ## list all options (option list is zero-based)
+read -srn1 key; ## wait for user to key in arrows or ENTER
+if [[ "$key" == A ]]; then (( cur-- )); (( cur < 0 ))&& (( cur = 0 ));
+elif [ "$key" == B ]; then (( cur++ )); (( cur >= count )) && (( cur = count - 1 ));
+elif [[ $key == C ]]; then mark+=(${ops[$cur]});
+printf %b "\e[s\e[6;22H\e[K${mark[@]}\e[K\e[u";
+elif [[ $key == "" ]]; then break;
+elif [[ $key == "q" ]]; then break; fi; # enter
+echo -en "\e[${count}A"; done; # go up to the beginning to re-render
+printf -v sel "${ops[$cur]}"; printf  "\e[?25h\n \e[7m $sel \e[0m\n\n"; }; 
+# which transmission-daemon > /dev/null
+# if [ ! $? -eq 0 ]; then
+	# pkg install transmission
+# fi
+printf %b "$url"|tail -c288|bat -ppfld; printf %b "\n-\e[$((COLUMNS - 1))b\n\n"; 
+qqmenu "what to do?" "aria2c yt-dlp save-link-url"; 
+dir="$HOME/storage/downloads/"
+printf %b "\n whereto? 
+ -- [c]hoose 
+ -- [H]ere >> $dir\n"; 
+read -srn1 "wt"; 
+case $wt in 
+c) dir="$(command lf -print-last-dir)";; 
+h|*) printf %b "ok\n";; 
+q) return;; 
+esac; 
+
+case $sel in 
+yt-dlp) printf %b "yt $dir / "; 
+yt="$(yt-dlp --get-filename --restrict-filenames -P "$dir" "$url";)"; 
+yt-dlp --restrict-filenames -P "$dir" "$url"; 
+nyt="$(realpath "$yt";)"; ffmpegthumbnailer -i "$nyt" -o "$nyt.jpg"; 
+termux-notification --image-path "$nyt.jpg" --action "xdg-open "$nyt"" -c "$nyt";; 
+
+aria2c) aria2c -d "$dir" "$url";; 
+
+save-link-url) printf %b "\n$url\n"|tee -a ${dir}/links.url;
+printf %b "\n\n  saved to: \n  ${dir}/links.url\n\n  ok\n"; sleep 1;; 
+# mkdir $HOME/links 2>/dev/null; 
+
+esac; 

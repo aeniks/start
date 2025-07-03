@@ -1,9 +1,0 @@
-Package: cc65
-Version: 2.19
-Maintainer: @termux
-Installed-Size: 33.9 MB
-Homepage: https://cc65.github.io/
-Download-Size: 1835 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A free compiler for 6502 based system.
-

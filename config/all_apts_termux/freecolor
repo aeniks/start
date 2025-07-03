@@ -1,9 +1,0 @@
-Package: freecolor
-Version: 0.9.3
-Maintainer: @termux
-Installed-Size: 69.6 kB
-Homepage: http://rkeene.org/oss/freecolor/
-Download-Size: 5584 B
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Freecolor is a replacement for Linux that displays free memory graphically
-

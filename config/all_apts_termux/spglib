@@ -1,9 +1,0 @@
-Package: spglib
-Version: 2.6.0
-Maintainer: @termux
-Installed-Size: 2773 kB
-Homepage: https://spglib.github.io/spglib/index.html
-Download-Size: 391 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: C library for finding and handling crystal symmetries
-

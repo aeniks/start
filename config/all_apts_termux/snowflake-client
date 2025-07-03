@@ -1,9 +1,0 @@
-Package: snowflake-client
-Version: 2.11.0
-Maintainer: @termux
-Installed-Size: 16.5 MB
-Homepage: https://snowflake.torproject.org/
-Download-Size: 4037 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Pluggable Transport using WebRTC, inspired by Flashproxy (Client)
-

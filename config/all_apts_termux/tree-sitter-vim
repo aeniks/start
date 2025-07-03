@@ -1,9 +1,0 @@
-Package: tree-sitter-vim
-Version: 0.5.0-1
-Maintainer: Joshua Kahn @TomJo2000
-Installed-Size: 1311 kB
-Homepage: https://github.com/tree-sitter-grammars/tree-sitter-vim
-Download-Size: 108 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Vimscript grammar for tree-sitter
-

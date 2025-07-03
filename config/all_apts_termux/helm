@@ -1,9 +1,0 @@
-Package: helm
-Version: 3.17.2
-Maintainer: @termux
-Installed-Size: 80.8 MB
-Homepage: https://helm.sh
-Download-Size: 14.4 MB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Helm helps you manage Kubernetes applications
-

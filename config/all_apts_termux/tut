@@ -1,9 +1,0 @@
-Package: tut
-Version: 2.0.1-2
-Maintainer: @termux
-Installed-Size: 11.0 MB
-Homepage: https://github.com/RasmusLindroth/tut
-Download-Size: 2786 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A TUI for Mastodon with vim inspired keys
-

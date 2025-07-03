@@ -1,9 +1,0 @@
-Package: angle-android
-Version: 2.1.24923-f09a19ce-1
-Maintainer: @termux
-Installed-Size: 20.0 MB
-Homepage: https://chromium.googlesource.com/angle/angle
-Download-Size: 3008 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A conformant OpenGL ES implementation for Windows, Mac, Linux, iOS and Android
-

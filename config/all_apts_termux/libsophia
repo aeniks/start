@@ -1,9 +1,0 @@
-Package: libsophia
-Version: 2.2
-Maintainer: @termux
-Installed-Size: 283 kB
-Homepage: http://sophia.systems/
-Download-Size: 98.5 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Advanced transactional MVCC key-value/row storage library
-

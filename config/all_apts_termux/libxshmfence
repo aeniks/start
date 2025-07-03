@@ -1,9 +1,0 @@
-Package: libxshmfence
-Version: 1.3.3
-Maintainer: @termux
-Installed-Size: 77.8 kB
-Homepage: https://xorg.freedesktop.org/
-Download-Size: 4544 B
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A library that exposes a event API on top of Linux futexes
-

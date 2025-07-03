@@ -1,9 +1,0 @@
-Package: libtomcrypt
-Version: 1.18.2
-Maintainer: @termux
-Installed-Size: 942 kB
-Homepage: https://www.libtom.net/LibTomCrypt/
-Download-Size: 290 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A fairly comprehensive, modular and portable cryptographic toolkit
-

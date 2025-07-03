@@ -1,9 +1,0 @@
-Package: sops
-Version: 3.10.1
-Maintainer: @termux
-Installed-Size: 48.1 MB
-Homepage: https://github.com/getsops/sops
-Download-Size: 8700 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Simple and flexible tool for managing secrets
-

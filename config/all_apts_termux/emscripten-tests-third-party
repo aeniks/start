@@ -1,9 +1,0 @@
-Package: emscripten-tests-third-party
-Version: 4.0.6
-Maintainer: @termux
-Installed-Size: 85.4 MB
-Homepage: https://emscripten.org
-Download-Size: 9471 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Emscripten third party test suite files
-

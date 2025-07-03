@@ -1,9 +1,0 @@
-Package: agate
-Version: 3.3.14
-Maintainer: @termux
-Installed-Size: 2179 kB
-Homepage: https://github.com/mbrubeck/agate
-Download-Size: 792 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Very simple server for the Gemini hypertext protocol
-

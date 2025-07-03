@@ -1,3 +1,4 @@
+#!/bin/sh
 # This is `bat`s configuration file. Each line either contains a comment or
 # a command-line option that you want to pass to `bat` by default. You can
 # run `bat --help` to get a list of all possible configuration options.
@@ -18,7 +19,7 @@
 # disable text selection, unless you press shift.
 
 
-# --pager='less --mouse -R --file-size --tilde --squeeze-blank-lines --clear-screen --use-color --incsearch --prompt="[/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t"'
+--pager='less --mouse -R --file-size --tilde --squeeze-blank-lines --clear-screen --use-color --color="Pwm" --incsearch --prompt="[/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t"'
 
 
 

@@ -1,9 +1,0 @@
-Package: tokei
-Version: 13.0.0-alpha.8-0
-Maintainer: @termux
-Installed-Size: 4841 kB
-Homepage: https://github.com/XAMPPRocky/tokei
-Download-Size: 1241 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A blazingly fast CLOC (Count Lines Of Code) program
-

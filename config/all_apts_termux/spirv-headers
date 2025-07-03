@@ -1,9 +1,0 @@
-Package: spirv-headers
-Version: 1.4.309.0
-Maintainer: @termux
-Installed-Size: 3690 kB
-Homepage: https://github.com/KhronosGroup/SPIRV-Headers
-Download-Size: 147 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: SPIR-V Headers
-

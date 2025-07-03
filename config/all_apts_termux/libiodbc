@@ -1,9 +1,0 @@
-Package: libiodbc
-Version: 3.52.16
-Maintainer: @termux
-Installed-Size: 1294 kB
-Homepage: https://www.iodbc.org/
-Download-Size: 178 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Independent Open DataBase Connectivity for Linux, MacOS X and Unix systems
-

@@ -1,9 +1,0 @@
-Package: 2048-c
-Version: 1:1.0.3
-Maintainer: @termux
-Installed-Size: 57.3 kB
-Homepage: https://github.com/mevdschee/2048.c
-Download-Size: 6028 B
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Console version of the game '2048' for GNU/Linux
-

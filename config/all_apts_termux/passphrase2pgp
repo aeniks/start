@@ -1,9 +1,0 @@
-Package: passphrase2pgp
-Version: 1.3.0-2
-Maintainer: @termux
-Installed-Size: 2953 kB
-Homepage: https://github.com/skeeto/passphrase2pgp
-Download-Size: 935 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Generate EdDSA/cv25519 private key in GnuPG/SSH format reproducibly per hash of user given passphrase
-

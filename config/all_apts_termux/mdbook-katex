@@ -1,9 +1,0 @@
-Package: mdbook-katex
-Version: 0.9.3
-Maintainer: @termux
-Installed-Size: 3297 kB
-Homepage: https://github.com/lzanini/mdbook-katex
-Download-Size: 924 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A preprocessor for mdBook, pre-rendering LaTex equations to HTML at build time
-

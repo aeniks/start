@@ -1,9 +1,0 @@
-Package: poppler-data
-Version: 0.4.12
-Maintainer: @termux
-Installed-Size: 13.5 MB
-Homepage: https://poppler.freedesktop.org/
-Download-Size: 1640 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Consists of encoding files for use with poppler
-

@@ -1,9 +1,0 @@
-Package: speedtest-go
-Version: 1.7.10
-Maintainer: @termux
-Installed-Size: 8458 kB
-Homepage: https://github.com/showwin/speedtest-go/
-Download-Size: 2258 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Command line interface to test internet speed using speedtest.net
-

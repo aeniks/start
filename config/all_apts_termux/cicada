@@ -1,9 +1,0 @@
-Package: cicada
-Version: 1.0.3-1
-Maintainer: @termux
-Installed-Size: 4583 kB
-Homepage: https://github.com/mitnk/cicada
-Download-Size: 1497 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A bash like Unix shell
-

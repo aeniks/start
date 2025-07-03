@@ -1,9 +1,0 @@
-Package: rq
-Version: 1.0.4
-Maintainer: @termux
-Installed-Size: 3355 kB
-Homepage: https://github.com/dflemstr/rq
-Download-Size: 897 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A tool for doing record analysis and transformation
-

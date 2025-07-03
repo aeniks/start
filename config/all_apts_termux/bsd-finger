@@ -1,9 +1,0 @@
-Package: bsd-finger
-Version: 0.17-1
-Maintainer: @termux
-Installed-Size: 98.3 kB
-Homepage: https://packages.debian.org/sid/source/bsd-finger
-Download-Size: 17.1 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: User information lookup program
-

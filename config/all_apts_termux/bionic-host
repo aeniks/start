@@ -1,9 +1,0 @@
-Package: bionic-host
-Version: 8.0.0-r51-5
-Maintainer: @termux
-Installed-Size: 33.9 MB
-Homepage: https://android.googlesource.com/platform/bionic/
-Download-Size: 8409 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: bionic libc, libm, libdl and dynamic linker for ubuntu host
-

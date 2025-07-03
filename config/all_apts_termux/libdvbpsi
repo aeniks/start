@@ -1,9 +1,0 @@
-Package: libdvbpsi
-Version: 1.3.3
-Maintainer: @termux
-Installed-Size: 729 kB
-Homepage: https://code.videolan.org/videolan/libdvbpsi/
-Download-Size: 73.1 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Simple MPEG TS PSI parser library supporting various standards
-

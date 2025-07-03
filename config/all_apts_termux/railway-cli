@@ -1,9 +1,0 @@
-Package: railway-cli
-Version: 4.0.0
-Maintainer: @termux
-Installed-Size: 4944 kB
-Homepage: https://railway.app
-Download-Size: 1902 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: This is the command line interface for Railway
-

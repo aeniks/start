@@ -1,9 +1,0 @@
-Package: git-lfs
-Version: 3.6.1
-Maintainer: @termux
-Installed-Size: 13.0 MB
-Homepage: https://git-lfs.github.com/
-Download-Size: 3324 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Git extension for versioning large files
-

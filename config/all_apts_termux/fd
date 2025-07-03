@@ -1,9 +1,0 @@
-Package: fd
-Version: 10.2.0
-Maintainer: @termux
-Installed-Size: 2871 kB
-Homepage: https://github.com/sharkdp/fd
-Download-Size: 802 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Simple, fast and user-friendly alternative to find
-

@@ -1,9 +1,0 @@
-Package: snowflake
-Version: 2.11.0
-Maintainer: @termux
-Installed-Size: 41.0 kB
-Homepage: https://snowflake.torproject.org/
-Download-Size: 1720 B
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Pluggable Transport using WebRTC, inspired by Flashproxy
-

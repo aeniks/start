@@ -1,9 +1,0 @@
-Package: libdisplay-info
-Version: 0.2.0
-Maintainer: @termux
-Installed-Size: 397 kB
-Homepage: https://emersion.pages.freedesktop.org/libdisplay-info/
-Download-Size: 94.9 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: EDID and DisplayID library
-

@@ -1,9 +1,0 @@
-Package: mcfly
-Version: 0.9.3
-Maintainer: @termux
-Installed-Size: 3699 kB
-Homepage: https://github.com/cantino/mcfly
-Download-Size: 1334 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Replaces your default ctrl-r shell history search with an intelligent search engine
-

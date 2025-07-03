@@ -1,9 +1,0 @@
-Package: teseq
-Version: 1.1.1-1
-Maintainer: Fredrik Fornwall @fornwall
-Installed-Size: 139 kB
-Homepage: https://www.gnu.org/software/teseq/
-Download-Size: 24.7 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Tool for analyzing control characters and terminal control sequences
-

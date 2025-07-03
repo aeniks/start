@@ -1,9 +1,0 @@
-Package: logo-ls
-Version: 2024.07.17
-Maintainer: @termux
-Installed-Size: 4985 kB
-Homepage: https://github.com/Yash-Handa/logo-ls
-Download-Size: 1403 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Modern ls command with vscode like File Icon and Git Integrations
-

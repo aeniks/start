@@ -1,9 +1,0 @@
-Package: yq
-Version: 4.45.1
-Maintainer: @termux
-Installed-Size: 10.9 MB
-Homepage: https://mikefarah.gitbook.io/yq/
-Download-Size: 2860 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A lightweight and portable command-line YAML, JSON and XML processor
-

@@ -1,9 +1,0 @@
-Package: libccd
-Version: 2.1-1
-Maintainer: Pooya Moradi <pvonmoradi@gmail.com>
-Installed-Size: 782 kB
-Homepage: https://github.com/danfis/libccd
-Download-Size: 140 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Library for collision detection between two convex shapes
-

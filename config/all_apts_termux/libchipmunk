@@ -1,9 +1,0 @@
-Package: libchipmunk
-Version: 7.0.3-1
-Maintainer: @termux
-Installed-Size: 426 kB
-Homepage: http://chipmunk2d.net
-Download-Size: 79.7 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A fast and lightweight 2D game physics library
-

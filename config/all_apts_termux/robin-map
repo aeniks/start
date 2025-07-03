@@ -1,9 +1,0 @@
-Package: robin-map
-Version: 1.4.0
-Maintainer: @termux
-Installed-Size: 197 kB
-Homepage: https://github.com/Tessil/robin-map/
-Download-Size: 20.1 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: C++ implementation of a fast hash map and hash set using robin hood hashing
-

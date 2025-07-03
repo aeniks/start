@@ -1,9 +1,0 @@
-Package: restic-server
-Version: 0.13.0
-Maintainer: @termux
-Installed-Size: 10.6 MB
-Homepage: https://restic.net/
-Download-Size: 2673 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Restic's REST backend API server
-

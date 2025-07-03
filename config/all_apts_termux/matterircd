@@ -1,9 +1,0 @@
-Package: matterircd
-Version: 0.28.0
-Maintainer: @termux
-Installed-Size: 14.7 MB
-Homepage: https://github.com/42wim/matterircd
-Download-Size: 3595 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Connect to your mattermost or slack using your IRC-client of choice
-

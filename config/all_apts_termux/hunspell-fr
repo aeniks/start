@@ -1,9 +1,0 @@
-Package: hunspell-fr
-Version: 20221031
-Maintainer: @termux
-Installed-Size: 1475 kB
-Homepage: https://hunspell.github.io
-Download-Size: 283 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: French dictionary for hunspell
-

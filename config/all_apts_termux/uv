@@ -1,9 +1,0 @@
-Package: uv
-Version: 0.6.9
-Maintainer: @termux
-Installed-Size: 33.6 MB
-Homepage: https://docs.astral.sh/uv/
-Download-Size: 9055 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: An extremely fast Python package installer and resolver, written in Rust.
-

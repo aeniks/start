@@ -1,9 +1,0 @@
-Package: libseat
-Version: 0.9.1
-Maintainer: @termux
-Installed-Size: 147 kB
-Homepage: https://sr.ht/~kennylevinsen/seatd/
-Download-Size: 24.4 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Reference implementation of a wayland compositor
-

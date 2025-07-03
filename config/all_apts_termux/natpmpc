@@ -1,9 +1,0 @@
-Package: natpmpc
-Version: 20230423-1
-Maintainer: @termux
-Installed-Size: 90.1 kB
-Homepage: https://miniupnp.tuxfamily.org/libnatpmp.html
-Download-Size: 9688 B
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Portable and fully compliant implementation of NAT-PMP
-

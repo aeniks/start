@@ -1,9 +1,0 @@
-Package: ruff
-Version: 0.11.4
-Maintainer: @termux
-Installed-Size: 27.0 MB
-Homepage: https://github.com/charliermarsh/ruff
-Download-Size: 6287 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: An extremely fast Python linter, written in Rust
-

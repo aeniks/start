@@ -1,9 +1,0 @@
-Package: just
-Version: 1.40.0
-Maintainer: @flipee
-Installed-Size: 3690 kB
-Homepage: https://just.systems
-Download-Size: 1077 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: A handy way to save and run project-specific commands
-

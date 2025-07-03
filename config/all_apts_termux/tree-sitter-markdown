@@ -1,9 +1,0 @@
-Package: tree-sitter-markdown
-Version: 0.4.1
-Maintainer: Joshua Kahn @TomJo2000
-Installed-Size: 913 kB
-Homepage: https://github.com/tree-sitter-grammars/tree-sitter-markdown
-Download-Size: 90.5 kB
-APT-Sources: https://packages-cf.termux.dev/apt/termux-main stable/main aarch64 Packages
-Description: Markdown grammar for tree-sitter
-
