@@ -97,7 +97,7 @@ set completion-prefix-display-length 4
 set completion-query-items 500
 # Don't expand the home dir tilde (~)
 set expand-tilde on
- #Scroll text horizontally on a single line when longer than the width of the screen, instead of wrapping onto a new line
+# Scroll text horizontally on a single line when longer than the width of the screen, instead of wrapping onto a new line
 #set horizontal-scroll-mode on
 # Display the common prefix of the list of possible completions (which may be empty) before cycling through the list
 set menu-complete-display-prefix on
@@ -112,7 +112,7 @@ set match-hidden-files on
 # Turn off the use of the internal pager when returning long tab-completion lists
 set page-completions off
 # Display completions with matches sorted horizontally in alphabetical order, rather than down the screen
-set print-completions-horizontally on
+set print-completions-horizontally off
 # Only require single tab key press for tab-completion
 # (Default is double tab key press)
 set show-all-if-ambiguous on

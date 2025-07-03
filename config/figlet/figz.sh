@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-figz2=( 1943____ 
+figz2=(
+1943____ 
 letters 
 fender 
 Elite 
@@ -15,7 +15,6 @@ abraxas
 3d 
 3-d 
 3D-ASCII )
-=======
 1943____
 1Row
 3-d
@@ -596,10 +595,8 @@ zone7___
 colossal
 banner3-D
 char3___
-rozzo
 Georgia11
 univers
 rozzo
 nscript
->>>>>>> 835288379e72c679ff908f9ec196b5d2566dccde
 fraktur
