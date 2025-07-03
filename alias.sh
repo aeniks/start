@@ -5,6 +5,7 @@
 alias 12path='$EDITOR $HOME/.config/path.sh; '; 
 alias path_change='$EDITOR $HOME/.config/path.sh; '; 
 # export LESS='-R --file-size --use-color  --incsearch --prompt="(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t "'; 
+alias mmmmmm='ssh -p 8022 192.168.0.19 "mpv start/media/money.mp3"'; 
 alias sd='cd /sdcard';
 alias ss='cd $start; '; 
 alias mm='$EDITOR '
