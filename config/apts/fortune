@@ -1,10 +1,5 @@
-Package: fortune
-Version: 1.2-1
-Maintainer: Fredrik Fornwall @fornwall
-Installed-Size: 2658 kB
-Homepage: https://www.fefe.de/fortune/
-Download-Size: 818 kB
-APT-Manual-Installed: yes
-APT-Sources: https://md.mirrors.hacktegic.com/termux/termux-main stable/main aarch64 Packages
-Description: Revealer of fortunes
+[38;2;255;255;255mInstalled[0m[38;2;249;38;114m-[0m[38;2;255;255;255mSize[0m[38;2;248;248;242m:[0m[38;2;248;248;242m [0m[38;2;190;132;255m2654[0m[38;2;248;248;242m [0m[38;2;248;248;240mk[0m[38;2;248;248;240mB[0m
+[38;2;248;248;240mh[0m[38;2;248;248;240mt[0m[38;2;248;248;240mt[0m[38;2;248;248;240mp[0m[38;2;248;248;240ms[0m[38;2;248;248;242m:[0m[38;2;117;113;94m//[0m[38;2;117;113;94mwww.fefe.de/fortune/[0m
+[38;2;255;255;255mAPT[0m[38;2;249;38;114m-[0m[38;2;255;255;255mManual[0m[38;2;249;38;114m-[0m[38;2;255;255;255mInstalled[0m[38;2;248;248;242m:[0m[38;2;248;248;242m [0m[38;2;255;255;255myes[0m
+[38;2;248;248;240mR[0m[38;2;248;248;240me[0m[38;2;248;248;240mv[0m[38;2;248;248;240me[0m[38;2;248;248;240ma[0m[38;2;248;248;240ml[0m[38;2;248;248;240me[0m[38;2;248;248;240mr[0m[38;2;248;248;242m [0m[38;2;102;217;239mof[0m[38;2;248;248;242m [0m[38;2;166;226;46mfortunes[0m
 
