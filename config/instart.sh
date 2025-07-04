@@ -317,6 +317,7 @@ apts
 ####
 ####
 _quit() { printf %b ""; return 0; }; 
+_be_sudo; [[ $ny = q ]] && _quit && return 0; 
 _update; [[ $ny = q ]] && _quit && return 0; 
 _apt_installer; [[ $ny = q ]] && _quit && return 0; 
 _download; [[ $ny = q ]] && _quit && return 0; 
