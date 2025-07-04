@@ -2,7 +2,7 @@
 ## install config-files 
 instart() { 
 hash sudo 2>/dev/null && sudo="sudo"; hash sudo 2>/dev/null || alias sudo=' '; 
-[ $PREFIX ] && unset sudo; [ $UID = 0 ] && unset sudo; 
+[ $PREFIX ] && unset sudo; [ $UID = 0 ] && unset sudo && unalias sudo; 
 mkdir $HOME/tmp 2>/dev/null; mkdir $HOME/logs 2>/dev/null; 
 mkdir $HOME/gh 2>/dev/null; mkdir $HOME/.config 2>/dev/null; 
 export tmp=$HOME/tmp; 
@@ -12,7 +12,7 @@ local IFS=$'\n\t ' green='\e[32m' dim='\e[2m' re='\e[0m' red='\e[31m' \
 cyan='\e[36m' yellow='\e[33m' blue='\e[36m' bold='\e[1m' \
 height="$(stty size|cut -f1 -d" ")" width="$(stty size|cut -f2 -d" ")" \
 yno='\e[0m[\e[2mY\e[0m/\e[2mn\e[0m]' c2='\e[0m\e[36m--\e[0m' uu="60" \
-enter='\e[0m[\e[2mq\e[0m]\e[2muit \e[0mor [\e[2mENTER\e[0m]' x="2>/dev/null"; 
+enter='\e[\e[0m [\e[2mENTER\e[0m] to accept or [\e[2mq\e[0m]\e[2mto Quit \e[0m' x="2>/dev/null"; 
 ####
 ####
 unalias _loader 2>/dev/null; 
@@ -36,9 +36,9 @@ printf %b "\e[0J";
 # gh fzf wget micro bash-completion \
 # ssh openssh-server &>/dev/null & disown;
 apts_basic=(\
-gh git rsync file openssl openssh-sftp-server openssh bsdmainutils \
+sudo gh git rsync file openssl openssh-sftp-server openssh bsdmainutils \
 micro gnupg fzf mediainfo lf bat batcat runsv ncdu2 htop wget \
-bash-completion lsd tmux cron texinfo iproute2 mandoc nala ffmpegthumbnailer ffmpeg-thumbnailer\
+bash-completion lsd tmux cron texinfo iproute2 mandoc nala 
 fortunes fortune fortune-mod figlet w3m nmap net-tools btop \
 termux-tools termux-api termux-api cronie mpvb curl \
 ); 
@@ -50,6 +50,7 @@ apt_termux=(\
 termux-tools termux-api termux-api cronie \
 ); 
 apts_more=(\
+ffmpegthumbnailer ffmpeg-thumbnailer\
 toilet rclone w3m w3m-img googler exiftool aha \
 ); 
 ####
@@ -106,13 +107,15 @@ sleep .1; printf %b "\e[0m\e[91m"; echo ' \ \  __ \ \  __\\ \ \___\ \ \___\ \ \/
 sleep .1; printf %b "\e[0m\e[95m"; echo '  \ \_\ \_\ \_____\ \_____\ \_____\ \_____\ '
 sleep .1; printf %b "\e[0m\e[96m"; echo '   \/_/\/_/\/_____/\/_____/\/_____/\/_____/ 
 '; 
+printf %b "\t\t${enter[*]}\n\n"; 
 # for i in {1..7}; do echo; sleep .1; done; 
 ####
 #### Update system? 
 _be_sudo() { 
 p2 " $c2 "; p1 "Become Superuser? "; _yno update; if [[ $_yno_update == true ]]; then _newcolor; 
-p2 " $c2 "; p1 "For whom? "; read -ri "$SUDO_USER " "us"; _ok; 
-sudo printf %b '\n${us} ALL=(ALL) NOPASSWD: ALL\n' | tee -a  /etc/sudoers.d/sudo.sh 2>/dev/null; 
+p2 " $c2 "; p1 "For whom? "; us="$USER"; [ $UID = 0 ] && us="${SUDO_USER}"; read -ri "$us " "us"; _ok; 
+sudo printf %b '${us} ALL=(ALL) NOPASSWD: ALL\n'|tee -a /etc/sudoers.d/sudo.sh 2>/dev/null; _newcolor; 
+p2 " $c2 "; p1 "$us is now in GOD mode... "; _newcolor; 
 fi; 
 }; 
 
@@ -304,21 +307,22 @@ for i in {1..6}; do echo; sleep .2; done;
 fi; 
 $sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null; 
 }; 
-apts() { 
+_aapts() { 
 IFS=$'\n '; mkdir -p -m 775 $HOME/logs/apts_basic 2>/dev/null; 
-printf %b "\n \e[96m--\e[0m Updating apts..."; $sudo apt update &>/dev/null; 
+p2 " $c2 "; p1 "Updating apts ... ";
+$sudo apt update &>/dev/null; 
 for i in ${apts_basic[*]}; do $sudo apt show $i 2>/dev/null|grep -e "Installed-Size" -e "Description" > $HOME/logs/apts_basic/_$i; 
 cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i; 
 [ $(wc -l $HOME/logs/apts_basic/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
 done; rm $HOME/logs/apts_basic/_*; 
 printf %b "\n \e[96m--\e[0m DONE\n"
 }; 
-apts 
 ####
 ####
 _quit() { printf %b ""; return 0; }; 
 _be_sudo; [[ $ny = q ]] && _quit && return 0; 
 _update; [[ $ny = q ]] && _quit && return 0; 
+_aapts; [[ $ny = q ]] && _quit && return 0; 
 _apt_installer; [[ $ny = q ]] && _quit && return 0; 
 _download; [[ $ny = q ]] && _quit && return 0; 
 _install_conf; [[ $ny = q ]] && _quit && return 0; 
