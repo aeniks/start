@@ -70,7 +70,7 @@ printf %b "\n -- done\n\n"';
 alias uu='uuuu'; 
 alias rb='$sudo reboot'; 
 open() { [ $PREFIX ] && termux-open $@ || xdg-open $@; }; 
-alias url='termux-open-url'; 
+alias open-url='termux-open-url'; 
 alias path='$EDITOR ~/.config/path.sh'; 
 # alias ff='fastfetch -l small --logo-position top --logo-padding-right 1||neofetch';
 
