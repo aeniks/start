@@ -109,6 +109,13 @@ sleep .1; printf %b "\e[0m\e[96m"; echo '   \/_/\/_/\/_____/\/_____/\/_____/\/__
 # for i in {1..7}; do echo; sleep .1; done; 
 ####
 #### Update system? 
+_be_sudo() { 
+p2 " $c2 "; p1 "Become Superuser? "; _yno update; if [[ $_yno_update == true ]]; then _newcolor; 
+p2 " $c2 "; p1 "For whom? "; read -ri "$SUDO_USER " "us"; _ok; 
+sudo printf %b '\n${us} ALL=(ALL) NOPASSWD: ALL\n' | tee -a  /etc/sudoers.d/sudo.sh 2>/dev/null; 
+fi; 
+}; 
+
 _update() {
 p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then _newcolor; printf %b "\e7"; _newcolor; $sudo apt update 2>/dev/null;  _newcolor; 
 printf %b "\e8\e[J"; $sudo apt upgrade -y 2>/dev/null; _newcolor;  printf %b "\e8\e[J"; 
