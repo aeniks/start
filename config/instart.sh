@@ -107,31 +107,48 @@ sleep .1; printf %b "\e[0m\e[91m"; echo ' \ \  __ \ \  __\\ \ \___\ \ \___\ \ \/
 sleep .1; printf %b "\e[0m\e[95m"; echo '  \ \_\ \_\ \_____\ \_____\ \_____\ \_____\ '
 sleep .1; printf %b "\e[0m\e[96m"; echo '   \/_/\/_/\/_____/\/_____/\/_____/\/_____/ 
 '; 
-printf %b "\t\t${enter[*]}\n\n"; 
+# printf %b "\e[20G\b\b\b\b\b\b\b\b${enter[*]}\n\n"; 
 # for i in {1..7}; do echo; sleep .1; done; 
 ####
 #### Update system? 
 _be_sudo() { 
+us=${USER}; [ $UID = 0 ] && us="${SUDO_USER}"; 
 p2 " $c2 "; p1 "Become Superuser? "; _yno update; if [[ $_yno_update == true ]]; then _newcolor; 
-p2 " $c2 "; p1 "For whom? "; us="$USER"; [ $UID = 0 ] && us="${SUDO_USER}"; read -ri "$us " "us"; _ok; 
-sudo printf %b '${us} ALL=(ALL) NOPASSWD: ALL\n'|tee -a /etc/sudoers.d/sudo.sh 2>/dev/null; _newcolor; 
-p2 " $c2 "; p1 "$us is now in GOD mode... "; _newcolor; 
+p2 " $c2 "; p1 "For whom"; printf %b "\e[2m?\e[0m\e[96m\e[1m "; 
+read -ep ' ' -ri "${us}" "us"; printf %b "\e[0m"; _ok; 
+printf %b "\e[s\e[6;6H"; 
+$sudo printf %b "${us} ALL=(ALL) NOPASSWD: ALL\n"|tee -a /etc/sudoers.d/sudo.sh 2>/dev/null; 
+_newcolor; printf %b "\e[u"; 
+p2 " $c2 "; p1 "$us is now in $(printf %b "${bold}${green}")GOD$(printf %b "${re}") mode . . . ."; 
+_newcolor; 
 fi; 
+printf %b "\e[0m\n"; 
 }; 
 
 _update() {
-p2 " $c2 "; p1 "Update system? "; _yno update; if [[ $_yno_update == true ]]; then _newcolor; printf %b "\e7"; _newcolor; $sudo apt update 2>/dev/null;  _newcolor; 
-printf %b "\e8\e[J"; $sudo apt upgrade -y 2>/dev/null; _newcolor;  printf %b "\e8\e[J"; 
-hash fzf git gh lf gnupg curl micro 2>/dev/null||$sudo apt install -y curl fzf git gh lf gnupg micro 2>/dev/null; _newcolor; printf %b "\e8\e[J"; 
-printf %b "\e8\e[A${re} \e[46G [${dim}done \b${re}]\e[0J \n"; fi; 
+p2 " $c2 "; p1 "Update system? "; _yno update; 
+if [[ $_yno_update == true ]]; then _newcolor; 
+printf %b "\e[s"; _newcolor; 
+$sudo apt update 2>/dev/null;  _newcolor; 
+printf %b "\e[u\e[J"; $sudo apt upgrade -y 2>/dev/null; _newcolor; 
+printf %b "\e[u\e[J"; 
+aps_need=(curl fzf git gh lf gnupg micro); hash ${aps_need[*]} 2>/dev/null || \
+(p2 " $c2 "; p1 "Installing... "; printf %b "\e[s"; _newcolor; 
+
+for i in ${aps_need[*]}; do printf %b "\e[38;5$((RANDOM%44 + 66))m \e[u"; done; 
+printf %b "\n"; 
+
+$sudo apt install -y $i 2>/dev/null; _newcolor; ); printf %b "\e[u\e[J"; 
+printf %b "\e8\e[2A${re} \e[46G [${dim}done \b${re}]\e[0J \n\n"; fi; 
 }; 
 ####
 #### Install apps? 
 _apt_installer() { 
 p2 " $c2 "; p1 "Install apps? "; _yno aptins; if [[ $_yno_aptins == true ]]; then \
-printf %b "\e7\n\e[0K"; for ap in ${apts_basic[*]}; do  _newcolor; 
-# printf %b "\n"; 
-$sudo nohup apt install -y $ap --assume-yes &>/dev/null && \
+
+printf %b "\n\e[0K Installing: \e[s"; for ap in ${apts_basic[*]}; do _newcolor; 
+printf %b "$ap \e[u"; 
+$sudo apt install -y $ap --assume-yes &>/dev/null && \
 _newcolor && printf %b "\e[4G\e[0m    installed" && \
 _newcolor && printf %b " $ap\e[0K"; 
 # printf %b " $ap\e8\e[J"; 
@@ -210,11 +227,11 @@ $sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null;
 ######
 ###### github & ssh - config files 
 ###### link config files to home 
-conf=(newsboat bat lf tmux htop); 
+conf=(newsboat bat lf tmux htop glow aichat ranger); 
 for q in ${conf[*]}; do 
 mkdir -p $HOME/.config/$q 2>/dev/null; 
 _backup $HOME/.config/$q/*; _newcolor; 
-ln -s $start/config/$q/* -t $HOME/.config/$q/; sleep .2; 
+ln -s $start/config/$q/* -t $HOME/.config/$q/ 2>/dev/null; sleep .2; 
 printf %b "\n\e[0m"; p1 "updated"; _newcolor; printf %b " $q"; 
 done; echo; cd; _newcolor; 
 printf %b "${PATH}:${HOME}/.local/bin" > $HOME/.config/path.sh; chmod 775 $HOME/.config/path.sh; _newcolor; 
@@ -265,10 +282,13 @@ git config --global user.email $ghmail;
 git config --global init.defaultBranch main; 
 # printf %b "\nHost *\nForwardAgent yes\n" >> $HOME/.ssh/config;
 shgh=(ssh openssl openssh-server gh git); 
-$sudo chmod 775 $HOME/.ssh -R; 
+
+[ $(ls $HOME/.ssh/*.pub) ] || [ -r $HOME/.ssh/id_ed25519.pub ] || ssh-keygen -N '' -f $HOME/.ssh/id_ed25519; 
+chmod 600 $HOME/.ssh/*; chmod 644 $HOME/.ssh/*.pub;
+
 for sigh in ${shgh[*]}; do printf %b "\b\b\b\b$sigh"; 
-$sudo nohup apt install -y ${sigh} &>/dev/null; done; 
-[ -e $HOME/.ssh/id_ed25519.pub ] || ssh-keygen -N "" -f $HOME/.ssh/; 
+$sudo apt install -y ${sigh} &>/dev/null; done; 
+# [ -e $HOME/.ssh/id_ed25519.pub ] || ssh-keygen -N "" -f $HOME/.ssh/; 
 gh config set git_protocol ssh; 
 gh ssh-key add $HOME/.ssh/id_ed25519.pub; 
 printf %b "\e[96m\u990 \e[0m"; 
@@ -276,9 +296,10 @@ ssh -T git@github.com; printf %b "\n";
 ####
 # ssh-keygen -N "" -f ~/.ssh/ll_${USER}_${HOSTNAME}_ll; 
 # gh ssh-key add ~/.ssh/*.pub; 
-cd $start; git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; 
-cd -; 
-ssh -T git@github.com; fi; 
+cd $start; 
+git config remote.origin.url git@github.com:aeniks/start.git 2>/dev/null; cd -; 
+# ssh -T git@github.com; 
+fi; 
 _link $PREFIX/var/spool/cron $HOME/ 2>/dev/null; 
 }; 
 ####
@@ -286,10 +307,10 @@ _link $PREFIX/var/spool/cron $HOME/ 2>/dev/null;
 _install_apps() {
 p2 " $c2 "; p1 "Install apps? "; _yno in_apps
 if [[ $_yno_in_apps == true ]]; then \
-p2 " $c2 "; p1 "updating system ..."; echo; echo; _newcolor; 
-$sudo apt update; _newcolor; $sudo apt upgrade -y; _newcolor; echo; 
+p2 " $c2 "; p1 "Updating system ..."; echo; echo; _newcolor; 
+spin $sudo apt update; _newcolor; spin $sudo apt upgrade -y; _newcolor; echo; 
 ####
-[ -e $HOME/logs/apa.log ] || $sudo apt list > $HOME/logs/apa_1.log; 
+[ -e $HOME/logs/apa.log ] || $sudo apt list|grep -v "static"|cut -f1 -d"/" > $HOME/logs/apa_1.log; 
 tail -n+1 $HOME/logs/apa_1.log|cut -f1 -d"/" > $HOME/logs/apa.log; 
 ####
 apts_install=($(for i in ${apts_basic[*]}; do hash $i 2>/dev/null || \
@@ -307,27 +328,57 @@ for i in {1..6}; do echo; sleep .2; done;
 fi; 
 $sudo ln -s $PREFIX/usr/bin/batcat $PREFIX/usr/bin/bat 2>/dev/null; 
 }; 
-_aapts() { 
-IFS=$'\n '; mkdir -p -m 775 $HOME/logs/apts_basic 2>/dev/null; 
-p2 " $c2 "; p1 "Updating apts ... ";
-$sudo apt update &>/dev/null; 
-for i in ${apts_basic[*]}; do $sudo apt show $i 2>/dev/null|grep -e "Installed-Size" -e "Description" > $HOME/logs/apts_basic/_$i; 
-cat  $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i; 
-[ $(wc -l $HOME/logs/apts_basic/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
-done; rm $HOME/logs/apts_basic/_*; 
-printf %b "\n \e[96m--\e[0m DONE\n"
+_apt_get_info() { 
+
+
+local IFS=$'\n\t '; 
+_newcolor; $sudo apt update &>/dev/null; $sudo apt install -y fzf grep &>/dev/null; $sudo apt install -y bat &>/dev/null; $sudo apt install -y batcat &>/dev/null; 
+
+aapp=($(cd $HOME/start/config/apts 2>/dev/null; ls -p|grep -v "/")); 
+p2 " $c2 "; p1 "Updating apts ... "; 
+_newcolor; $sudo apt update &>/dev/null; 
+
+for i in $((LINES / 2)); do printf %b "\n"; sleep .1; done; 
+for i in $((LINES / 2)); do printf %b "\e[A"; sleep .1; done; 
+
+ap="$HOME/logs/ap"; 
+printf %b "\n\n\e[s"; 
+mkdir -p -m 775 $apfolder 2>/dev/null; 
+############
+for i in ${aapp[*]}; do _newcolor; 
+printf %b "\e[u $i"; 
+$sudo apt show $i 2>/dev/null|grep -E 'Installed-Size|Description' -C2 > $ap/$i; 
+[ $(wc -c --total=only $ap/$i 2>/dev/null) -lt 2 ] && rm $ap/$i 2>/dev/null; 
+done; 
+####
+apppp=($(cd $HOME/logs/ap 2>/dev/null; fzf --preview "bat -ppfld {}" --height "~100%" --ansi --marker "@" --header '[q]uit  [c-a]select-all [alt-a]toggle-all  [tab]select  [enter] - done  ' --style "minimal" --preview-window "66%,<22(top,12)" --bind "ctrl-a:select-all,alt-a:toggle-all" --inline-info --highlight-line;)); 
+
+p2 " $c2 "; p1 "Install choosen apts? "; _yno apppp; 
+if [[ $_yno_apppp == true ]]; then 
+for i in ${apppp[*]}; do _newcolor; printf %b "\t$i\n\e[A"; $sudo apt install -y $i &>/dev/null; done; 
+fi; 
+printf %b "\n\n -- gg\n\n"; 
+reset; exec bash; 
+# printf %b "\n \e[96m--\e[0m DONE\n"; 
+# [ wc -c --total=only $HOME/logs/apts_basic/$i; ]
+# cat $HOME/logs/apts/_$i 2>/dev/null|cut -f2- -d" " > $HOME/logs/apts_basic/$i; 
+
+# [ $(wc -l $HOME/logs/apts_basic/_$i|cut -b1-2) -eq 0 ] 2>/dev/null && rm $HOME/logs/apts_basic/$i; 
+# rm $HOME/logs/apts_basic/_*; 
+
 }; 
 ####
 ####
 _quit() { printf %b ""; return 0; }; 
 _be_sudo; [[ $ny = q ]] && _quit && return 0; 
 _update; [[ $ny = q ]] && _quit && return 0; 
-_aapts; [[ $ny = q ]] && _quit && return 0; 
-_apt_installer; [[ $ny = q ]] && _quit && return 0; 
+# _aapts; [[ $ny = q ]] && _quit && return 0; 
+# _apt_installer; [[ $ny = q ]] && _quit && return 0; 
 _download; [[ $ny = q ]] && _quit && return 0; 
 _install_conf; [[ $ny = q ]] && _quit && return 0; 
 _login_gh; [[ $ny = q ]] && _quit && return 0; 
-_install_apps; [[ $ny = q ]] && _quit && return 0; 
+_apt_get_info; [[ $ny = q ]] && _quit && return 0; 
+# _install_apps; [[ $ny = q ]] && _quit && return 0; 
 echo; . $start/anew.sh; 
 }; 
 
