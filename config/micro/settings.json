@@ -1,6 +1,7 @@
 {
     "autoclose": false,
     "clipboard": "internal",
+    "colorscheme": "solarized-tc",
     "fakecursor": true,
     "mkparents": true,
     "paste": true,

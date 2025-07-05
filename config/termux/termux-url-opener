@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 url="$1"; 
+##
+printf %b "$url"|grep -e "instagram" && python $HOME/bin/igdl/igdl.py "$1" && termux-notification -c "$(cat $HOME/logs/ff.log)" && exit 0; 
 ## selection menu
 qqmenu() { local IFS=$'\n\t ';local ops=($2);[ "$2" ]||local ops=(*);
 local prompt="$1" index="0" cur="0" count="${#ops[@]}" esc=$(echo -ne "\e");

@@ -1,5 +1,5 @@
 #!/bin/bash
-url() { urler=($(tmux capture-pane -J -p | \
-grep -oE '(https?):\/\/.*[^>]' | \
-fzf-tmux --height "~22%" -d20 --multi --bind alt-a:select-all,alt-d:deselect-all)); 
-xdg-open $urler || termux-open-url $urler ; }; 
+url() { url=($(tmux capture-pane -Jp | grep -oE '(https?):\/\/.*[^>]' 2>/dev/null || return 1)) || return 0; 
+[ $url ] && printf %b "${url[*]}"\
+|fzf --height "~12%" || return 0; 
+xdg-open $url || termux-open-url $url ; }; 
