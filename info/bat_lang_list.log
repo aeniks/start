@@ -1,0 +1,174 @@
+ActionScript
+Ada
+Apache Conf
+AppleScript
+ARM Assembly
+AsciiDoc (Asciidoctor)
+ASP
+Assembly (x86_64)
+Authorized Keys
+AWK
+Batch File
+BibTeX
+Bourne Again Shell (bash)
+C
+C#
+C++
+Cabal
+CFML
+Clojure
+CMake
+CMake C Header
+CMake C++ Header
+CMakeCache
+CoffeeScript
+Comma Separated Values
+Command Help
+CpuInfo
+Crontab
+Crystal
+CSS
+D
+Dart
+Diff
+Dockerfile
+DotENV
+Elixir
+Elm
+Email
+Erlang
+F#
+Fish
+Fortran (Fixed Form)
+Fortran (Modern)
+Fortran Namelist
+fstab
+Git Attributes
+Git Commit
+Git Config
+Git Ignore
+Git Link
+Git Log
+Git Mailmap
+Git Rebase Todo
+GLSL
+gnuplot
+Go
+GraphQL
+Graphviz (DOT)
+Groff/troff
+Groovy
+group
+Haskell
+Highlight non-printables
+hosts
+HTML
+HTML (ASP)
+HTML (EEx)
+HTML (Erlang)
+HTML (Jinja2)
+HTML (Rails)
+HTML (Tcl)
+HTML (Twig)
+HTTP Request and Response
+INI
+Java
+Java Properties
+Java Server Page (JSP)
+JavaScript
+JavaScript (Babel)
+JavaScript (Rails)
+Jinja2
+JQ
+JSON
+jsonnet
+Julia
+Known Hosts
+Kotlin
+LaTeX
+Lean
+Less
+Lisp
+Literate Haskell
+LiveScript
+LLVM
+log
+Lua
+Makefile
+Manpage
+Markdown
+MATLAB
+MediaWiki
+MemInfo
+NAnt Build File
+nginx
+Nim
+Ninja
+Nix
+NSIS
+Objective-C
+Objective-C++
+OCaml
+OCamllex
+OCamlyacc
+orgmode
+Pascal
+passwd
+Perl
+PHP
+Plain Text
+PowerShell
+Protocol Buffer
+Protocol Buffer (TEXT)
+Puppet
+PureScript
+Python
+QML
+R
+Racket
+Rd (R Documentation)
+Rego
+Regular Expression
+Requirements.txt
+resolv
+reStructuredText
+Robot Framework
+Ruby
+Ruby Haml
+Ruby on Rails
+Ruby Slim
+Rust
+Salt State (SLS)
+Sass
+Scala
+SCSS
+SML
+Solidity
+SQL
+SQL (Rails)
+SSH Config
+SSHD Config
+Strace
+Stylus
+Svelte
+Swift
+syslog
+SystemVerilog
+Tcl
+Terraform
+TeX
+Textile
+Todo.txt
+TOML
+TypeScript
+TypeScriptReact
+varlink
+Verilog
+VimHelp
+VimL
+Vue Component
+Vyper
+WGSL
+XML
+YAML
+Zig
