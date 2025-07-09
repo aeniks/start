@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 ## A better bash. Written by 12ants.github.io
 ## _do nothing if not interactive
 case $- in
@@ -23,6 +23,10 @@ export PATH=$(cat $HOME/.config/path.sh);
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
 export PROMPT_COMMAND="history -a; history -n; "; 
 ####
+[ -e $HOME/start/config/glow/glow_bash ]&& export TMPDIR="$HOME/tmp"; 
+
+12funcall() { for i in $start/funcs/*.sh; do . $i; done; }; 
+
 #[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
@@ -63,7 +67,7 @@ export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk';
 # apts=(bat batcat ripgrep fzf tmux ncdu curl wget aria2 file exiftool mediainfio miniserve micro lsd lynx lf)
 ######
 export LESS='-R --file-size --use-color --incsearch --mouse  --prompt=(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t '; 
-export FZF_DEFAULT_OPTS='-i -m --cycle --bind 'q:abort' --info inline --inline-info'; 
+export FZF_DEFAULT_OPTS='-i -m --cycle --ansi --bind "q:abort" --info inline --inline-info'; 
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
 else sudo=sudo; fi; 
 # [ -z "${EDITOR}" ]&& 
@@ -146,6 +150,11 @@ printf %b "${model[*]}" > $HOME/logs/model.log;
 . $HOME/.tmux_bash.sh 2>/dev/null; 
 . $start/alias.sh; 
 ####
+if [ ${#iploc} -gt 2 ] 2>/dev/null; then \
+ipp=' \e[0;2m[\e[0;95m${iploc[*]}\e[0;2m]\e[0m ';
+else ipp=' \e[0;2m[\e[0;38m_\e[0;2m]\e[0m '; fi; 
+####
+####
 # alias mmwm='. $HOME/logs/mmww.log && \
 # printf %b "$w >$yellow $meaning$re >$dim $def"|bat -ppflzsh --theme Dracula'; 
 #battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
@@ -164,8 +173,10 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 # alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 # printf %b "$w >$yellow $meaning$re >$dim $def"|\
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
-alias dots='printf %b "$re\n··········${re}\n"'; 
 inbash() { 
+dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
+dots() { printf %b "$re\n··········${re}\n"; }; 
+12funcall 2>/dev/null; 
 printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
 printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; dots; 
@@ -182,8 +193,6 @@ printf %b "$cyan$ip4$re | $blue$iploc$re";
 [ -n "${SSH_CONNECTION}" ]&& \
 printf %b "$re | $red${sshc}$re"; dots; 
 ####
-dfree() { 
-[ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }
 dfree; 
 # dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme zenburn;)"; }; 
 
@@ -192,10 +201,13 @@ dfree;
 dots; 
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
 #timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
+#for i in $start/funcs/*.sh; do . $i; done; 
+. $start/_ps1.sh; _ps1; 
+bc=0; 
 }; 
 
 
-for i in $start/funcs/*.sh; do . $i; done; 
+
 ####
 ####
 # [ ${#apt_upgradable[*]} -gt 2 ]&& \
@@ -205,6 +217,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 #tmux source-file "$HOME/.tmux.conf"; 
 #if [ -z "${TMUX}" ]; then [ "$SSH_CONNECTION" ]|| tmux source&& exit; 
 #else tmux lock-server fi;
+####
 ##################################
 ## PS1:s to save >>
 ## PS1='\e[2;40;96m\t\e[37m$(echo $PWD|bat --theme Nord -ppflr;)/\e[0m\n'
@@ -219,7 +232,7 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -z "$TMUX" ]&& tmux;
+[ -z "$TMUX" ]&& [ -x "$HOME/.config/tmux_state" ]&& tmux;
 [ -n "$TMUX" ]&& inbash && tmuxbg; 
 # . $start/config/tmux/tmuxbg.sh
 # [ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||[ -z "$SSH_CONNECTION" ]&& inbash; 
@@ -227,15 +240,8 @@ for i in $start/funcs/*.sh; do . $i; done;
 ####
 ####
 ####
-if [ ${#iploc} -gt 2 ] 2>/dev/null; then \
-ipp=' \e[0;2m[\e[0;95m${iploc[*]}\e[0;2m]\e[0m ';
-else ipp=' \e[0;2m[\e[0;38m_\e[0;2m]\e[0m '; fi; 
-####
-####
 # _ps1() { PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re']'$re$ipp$re'['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:8}'$re'] ['$re$cyan'\u'$re'] '$re$(cat $HOME/logs/bat.sh 2>/dev/null)' ['$re$yellow'\w'$re']\e[25h\e[0m\n'; }; 
 # crond &>/dev/null; sshd &>/dev/null; 
-. $start/_ps1.sh; _ps1; 
-bc=0; 
 # pastel list |sed -n $((RANDOM%139))p|pastel color 
 # crond 2>/dev/null; 
 # sshd 2>/dev/null; 

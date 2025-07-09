@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 ## lf config
-#[ -e "/data/data/com.termux/files/usr/etc/lf/previewer" ]&&PREFIX="/data/data/com.termux/files/usr"; 
+#[ -e "/data/data/com.termux/files/usr/etc/lf/previewer"]&&PREFIX="/data/data/com.termux/files/usr"; 
 # set previewer $PREFIX/etc/lf/previewer
 # IFS=$""; 
 set shellopts '+eu'
@@ -8,7 +9,6 @@ set drawbox false
 set icons false
 set globfilter true
 set globsearch true
-
 map f
 map . set hidden! 
 map <esc> quit
@@ -47,17 +47,19 @@ map ss :search
 map sp :set preview! 
 map s0 :set ratios 1
 map s1 :set ratios 1:1
+map 1
+map 1 :set ratios 1:1
 map s2 :set ratios 1:2
 map s4 :set ratios 1:4
 map s8 :set ratios 1:8
 map s6 :set ratios 2:1
 map s9 :set ratios 1:1:1
 map s5 :set ratios 1:4:4
-
 map sl :sese 
 map sr :set reverse!
 map sz :set sortby size
 map sd :set drawbox!
+# map sn :set sortby natural && set reverse! 
 map S :search 
 map <c-s> :search-next
 cmap w
@@ -93,7 +95,10 @@ map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
 # map o :push !<space>$f<left><left><left>
 # map <enter>c !chafa $f 
-map b $batcat -pf $f
+map b
+map bb $batcat -pf $f
+map bg $glow -p $f
+map bq $return 0
 # map b $batcat --paging always --decorations never $f 
 map l :lenk
 # map <enter> pger
@@ -106,7 +111,6 @@ map x !$f
 map T hora
 map t tag-toggle
 map <c-s> sese
-
 map fs :ffzz 
 map ff :search 
 map fz :fzf_search 
@@ -119,6 +123,9 @@ cmd sese ${{
 mv $(basename $f) $(slugify ${f/*\/})
 }}
 cmd hora ${{ printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%D); printf "\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M); printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\n\n\n\n\n\n\n\e[25m\e[0m"; read }} 
+cmd sort_alpha ${{
+:set sortby natural
+}}
 
 cmd fzf_search ${{
     cmd="rg --column --line-number --no-heading --color=always"
@@ -479,7 +486,6 @@ set icons off
 set shell bash 
 set info size:time
 set sortby time
-set reverse 
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
 source "~/.config/lf/opener"
 #source "~/.config/lf/previewer"
