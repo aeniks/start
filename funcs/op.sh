@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash 
+#!/bin/bash 
 op() { op="$(tmux='-tmux -h'; command ls --color -Ap|\
 fzf$tmux -h --inline-info --expect q -i --ansi \
 --walker dir,file --border none --preview \
