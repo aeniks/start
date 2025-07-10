@@ -29,6 +29,7 @@ export PROMPT_COMMAND="history -a; history -n; $tmuxrf ";
 ########
 . $HOME/start/funcs/tmuxbg.sh; 
 . $HOME/start/funcs/wotd_m.sh; 
+. $HOME/start/funcs/hh.sh; 
 #[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
