@@ -1,7 +1,0 @@
-12ssh_fix() { 
-<<<<<<< HEAD
-chown $USER: $HOME/.ssh -R; chmod 700 $HOME/.ssh; chmod 600 $HOME/.ssh/*; chmod 644 $HOME/.ssh/*.pub; ls -pal --color=always $HOME/.ssh;   
-=======
-chown $USER: $HOME/.ssh -R; chmod 700 $HOME/.ssh; chmod 600 $HOME/.ssh/*; chmod 644 $HOME/.ssh/*.pub; ls -pal --color=always $HOME/.ssh  
->>>>>>> 884ecc9bcc6d04b8cc7881b605d94586ee941a0d
-}; 

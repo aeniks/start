@@ -6,8 +6,8 @@ or		    31;01   	# ORPHAN
 tw		    38;5;47 	# STICKY_OTHER_WRITABLE
 ow		    38;5;86 	# OTHER_WRITABLE
 st		    01;34   	# STICKY
-di		    30;48;5;248
-#di		    48;5;240   	# DIR
+home/		30;48;5;248
+di		    48;5;240   	# DIR
 pi		    33      	# FIFO
 so		    01;35   	# SOCK
 bd		    33;01   	# BLK
@@ -18,8 +18,8 @@ ex		    38;5;109   	# EXEC
 fi		    38;5;66     # FILE
 #home/ 		48;5;65
 #bin/ 		48;5;68 
-#media/ 		48;5;114
-#gh/	 		48;5;56
+media/ 		48;5;114
+gh/	 		48;5;56
 #GitHub/	 	48;5;56
 #ants/ 		48;5;198 
 #etc/ 		48;5;74

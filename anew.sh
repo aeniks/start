@@ -21,12 +21,14 @@ shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth;
 [ -e $HOME/.config/path.sh ]&& \
 export PATH=$(cat $HOME/.config/path.sh); 
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
-export PROMPT_COMMAND="history -a; history -n; tmux refresh-client; "; 
+[ $TMUX ]&& tmuxrf='tmux refresh-client; '||unset -v tmuxrf; 
+export PROMPT_COMMAND="history -a; history -n; $tmuxrf "; 
 ####
 [ -e $HOME/start/config/glow/glow_bash ]&& export TMPDIR="$HOME/tmp"; 
-
-12funcall() { for i in $start/funcs/*.sh; do . $i; done; }; 
-
+12funcall() { for i in $HOME/start/funcs/*.sh; do . $i; done; }; 
+########
+. $HOME/start/funcs/tmuxbg.sh; 
+. $HOME/start/funcs/wotd_m.sh; 
 #[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \

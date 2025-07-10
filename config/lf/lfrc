@@ -57,9 +57,10 @@ map s9 :set ratios 1:1:1
 map s5 :set ratios 1:4:4
 map sl :sese 
 map sr :set reverse!
-map sz :set sortby size
+map sz :set sortby size; set info size:time;  
+map st :set sortby time; set info size:time;  
 map sd :set drawbox!
-# map sn :set sortby natural && set reverse! 
+map sn :set sortby natural; set noreverse; set info size:time;  
 map S :search 
 map <c-s> :search-next
 cmap w
@@ -264,7 +265,6 @@ fi;
 set ifs "
 "
 set scrolloff 20
-set cursorpreviewfmt "\033[7;2m"
 ## cmds
 cmd open &{{
 case $(file --mime-type -Lb $f) in
@@ -475,9 +475,10 @@ set rulerfmt "%a  |%p  |\033[7;31m %m \033[30;44m| %{lf_user_selected_size} |\03
 cmd on-select &{{ s=$(find $fx -type f -maxdepth 1 -ls | awk '{total += $7} END {print total}' | numfmt --to=iec --format='%.2fB')
 lf -remote "send $id set user_selected_size $s" }} 
 ##
-set cursorparentfmt "\033[44m" 
-set cursorpreviewfmt "\033[4m" 
-set cursoractivefmt "\033[2;107m" 
+# set cursorpreviewfmt "\033[7m\033[31m"
+set cursorparentfmt "\033[46;30m" 
+set cursorpreviewfmt "\033[96m" 
+set cursoractivefmt "\033[7m"
 set drawbox false
 set drawbox off
 set mouse on 
