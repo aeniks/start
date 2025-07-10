@@ -40,12 +40,12 @@ hh=1$(date +%H;); mm=1$(date +%M;); ss=1$(date +%S);
 printf %b "\e[38;5;$((hh + 22))m${hh:1:2}$re:\e[38;5;$((mm + 22))m${mm:1:2}$re:\e[38;5;$((ss + 22))m${ss:1:2}"; 
 }; 
 _ps1() { 
-PS1=''$re'[\e[0;1;38;5;$((2 + $?))m$?'$re'] \
+PS1=''$re'\e[0m\n[\e[0;1;38;5;$((2 + $?))m$?'$re'] \
 ['$re'$(_dtime)'$re']'$re'\
 '$re'$(_bat) \
 ['$re'\e[1m\e[38;5;$((RANDOM%88 + 88))m${mod:0:12}'$re'] \
 ['$re$cyan'\u'$re']'$re' \
 $_host\
-['$re$yellow'\w'$re']\e[?25h\e[0m\n'; };
+['$re$yellow'\w'$re']\e[?25h\e[0m\n\e[A'; };
 
 
