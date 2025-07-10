@@ -21,7 +21,7 @@ shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth;
 [ -e $HOME/.config/path.sh ]&& \
 export PATH=$(cat $HOME/.config/path.sh); 
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
-export PROMPT_COMMAND="history -a; history -n; "; 
+export PROMPT_COMMAND="history -a; history -n; tmux refresh-client; "; 
 ####
 [ -e $HOME/start/config/glow/glow_bash ]&& export TMPDIR="$HOME/tmp"; 
 
