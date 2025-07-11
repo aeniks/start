@@ -248,3 +248,7 @@ bc=0;
 # pastel list |sed -n $((RANDOM%139))p|pastel color 
 # crond 2>/dev/null; 
 # sshd 2>/dev/null; 
+
+sv up sshd 2>/dev/null 
+
+sv up crond 2>/dev/null 
