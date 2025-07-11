@@ -478,7 +478,7 @@ lf -remote "send $id set user_selected_size $s" }}
 # set cursorpreviewfmt "\033[7m\033[31m"
 set cursorparentfmt "\033[46;30m" 
 set cursorpreviewfmt "\033[96m" 
-set cursoractivefmt "\033[7m"
+set cursoractivefmt "\033[0m\033[48;5;202m"
 set drawbox false
 set drawbox off
 set mouse on 

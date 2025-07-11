@@ -1,5 +1,5 @@
 #!/bin/sh
 set icons false
+set drawbox false
 set ratios 2:1 
 set mouse true
-set drawbox false
