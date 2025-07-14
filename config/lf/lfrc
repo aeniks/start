@@ -123,7 +123,7 @@ map bq $return 0
 # map f :push F<backspace><right><backspace><right><backspace>**<left>
 ####
 cmd bopen ${{ 
-if [[ ${f/*./} = md ]]; then glow ${f}; 
+if [[ ${f/*./} = md ]]; then glow -p ${f}; 
 elif [[ ${f/*./} = sh ]]; then bat -pf ${f}; 
 else bat -pfljava ${f}; 
 fi; }}
