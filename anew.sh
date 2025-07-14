@@ -243,7 +243,8 @@ dots;
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
 [ -x "$HOME/.config/tmux_state" ] && [ -z $TMUX ] && tmux || \
-inbash && tmuxbg; 
+inbash;
+# && tmuxbg; 
 # [ -n "$TMUX" ]&& 
 # . $start/config/tmux/tmuxbg.sh
 # [ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||[ -z "$SSH_CONNECTION" ]&& inbash; 
