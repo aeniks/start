@@ -23,15 +23,19 @@ shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth;
 export PATH=$(cat $HOME/.config/path.sh); 
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
 [ $TMUX ]&& tmuxrf='tmux refresh-client; '||unset -v tmuxrf; 
-export PROMPT_COMMAND="history -a; history -n; $tmuxrf "; 
+export PROMPT_COMMAND="history -a; history -n; "; 
+# $tmuxrf "; 
 ####
 #[ -e $HOME/start/config/glow/glow_bash ]&& 
 export TMPDIR="$HOME/tmp"; 
-12funcall() { for i in $HOME/start/funcs/*.sh; do . $i; done; }; 
+# 12funcall() { 
+for i in $HOME/start/funcs/*.sh; do . $i; done; 
+# }; 
+# 12funcall; 
 ########
-. $HOME/start/funcs/tmuxbg.sh; 
-. $HOME/start/funcs/wotd_m.sh; 
-. $HOME/start/funcs/hh.sh; 
+#. $HOME/start/funcs/tmuxbg.sh; 
+#. $HOME/start/funcs/wotd_m.sh; 
+#. $HOME/start/funcs/hh.sh; 
 #[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
@@ -180,7 +184,7 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 # alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 # printf %b "$w >$yellow $meaning$re >$dim $def"|\
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
-12funcall 
+# 12funcall 
 inbash() { 
 dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
 dots() { printf %b "$re\n··········${re}\n"; }; 
@@ -210,11 +214,8 @@ dots;
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
 #timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
 #for i in $start/funcs/*.sh; do . $i; done; 
-. $start/_ps1.sh; _ps1; 
-bc=0; 
-cd; 
+. $HOME/start/_ps1.sh; _ps1;  
 }; 
-cd; 
 
 
 ####
@@ -257,3 +258,4 @@ cd;
 
 sshd 2>/dev/null 
 crond 2>/dev/null 
+cd 
