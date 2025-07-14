@@ -5,6 +5,7 @@ case $- in
 *i*) ;;
 *) return;;
 esac
+# IFS=$'\n\t '; 
 if [ -z "${PREFIX}" ]; then 
 if ! shopt -oq posix; 
 then if [ -f /usr/share/bash-completion/bash_completion ]; 
@@ -24,7 +25,8 @@ export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null;
 [ $TMUX ]&& tmuxrf='tmux refresh-client; '||unset -v tmuxrf; 
 export PROMPT_COMMAND="history -a; history -n; $tmuxrf "; 
 ####
-[ -e $HOME/start/config/glow/glow_bash ]&& export TMPDIR="$HOME/tmp"; 
+#[ -e $HOME/start/config/glow/glow_bash ]&& 
+export TMPDIR="$HOME/tmp"; 
 12funcall() { for i in $HOME/start/funcs/*.sh; do . $i; done; }; 
 ########
 . $HOME/start/funcs/tmuxbg.sh; 
@@ -69,7 +71,9 @@ export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk';
 #read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; }; 
 # apts=(bat batcat ripgrep fzf tmux ncdu curl wget aria2 file exiftool mediainfio miniserve micro lsd lynx lf)
 ######
-export LESS='-R --file-size --use-color --incsearch --mouse  --prompt=(%T) [/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t '; 
+
+export LESS='-R --file-size --use-color --incsearch --mouse --prompt=%F(%T) [/]search [n]ext [p]rev ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t '; 
+export LESSKEY'm toggle-option --mouse\n\r'; 
 export FZF_DEFAULT_OPTS='-i -m --cycle --ansi --bind "q:abort" --info inline --inline-info'; 
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
 else sudo=sudo; fi; 
@@ -179,7 +183,7 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 inbash() { 
 dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
 dots() { printf %b "$re\n··········${re}\n"; }; 
-12funcall 2>/dev/null; 
+#12funcall 2>/dev/null; 
 printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
 printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
 printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; dots; 

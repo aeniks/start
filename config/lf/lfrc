@@ -4,6 +4,7 @@
 #[ -e "/data/data/com.termux/files/usr/etc/lf/previewer"]&&PREFIX="/data/data/com.termux/files/usr"; 
 # set previewer $PREFIX/etc/lf/previewer
 # IFS=$""; 
+set locale sv-SE 
 set shellopts '+eu'
 set drawbox false
 set icons false
@@ -61,7 +62,7 @@ map sz :set sortby size; set info size:time;
 map st :set sortby time; set info size:time;  
 map sd :set drawbox!
 map sn :set sortby natural; set noreverse; set info size:time;  
-map S :search 
+map S :cd ~/start
 map <c-s> :search-next
 cmap w
 map ww :search 
@@ -96,10 +97,6 @@ map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
 # map o :push !<space>$f<left><left><left>
 # map <enter>c !chafa $f 
-map b
-map bb $batcat -pf $f
-map bg $glow -p $f
-map bq $return 0
 # map b $batcat --paging always --decorations never $f 
 map l :lenk
 # map <enter> pger
@@ -119,7 +116,22 @@ map D :set dironly!
 map R !read -ep ' ' -i '192.168.0.' 'ipa' && read -ep ' port: ' -i '8022' 'pp' && read -ep ' user: ' -i 'aa' 'uu' && read -ep 'folder: ' -i './' ipf; echo; rsync -avPe "ssh -p $pp" $fx $uu@$ipa:$ipf; echo
 map <space> :toggle; down
 map <enter> :open $f 
+map b bopen 
+map bb $batcat -pf $f
+map bg $glow -p $f
+map bq $return 0
 # map f :push F<backspace><right><backspace><right><backspace>**<left>
+####
+cmd bopen ${{ 
+if [[ ${f/*./} = md ]]; then glow ${f}; 
+elif [[ ${f/*./} = sh ]]; then bat -pf ${f}; 
+else bat -pfljava ${f}; 
+fi; }}
+    # case $(file --mime-type -Lb $f) in
+    #     text/*) vi $fx;;
+    #     *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+    # esac
+####
 cmd sese ${{
 mv $(basename $f) $(slugify ${f/*\/})
 }}

@@ -19,7 +19,7 @@
 # disable text selection, unless you press shift.
 
 
---pager='less --mouse -R --file-size --tilde --squeeze-blank-lines --clear-screen --use-color --color="Pwm" --incsearch --prompt="[/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t"'
+--pager='less --mouse -R --file-size --tilde --squeeze-blank-lines --clear-screen --use-color --color="Pwm" --incsearch --prompt="%F[/]search [n]ext-match [p]rev-match ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t"'
 
 
 
