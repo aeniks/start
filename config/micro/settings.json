@@ -1,7 +1,6 @@
 {
     "autoclose": false,
     "clipboard": "internal",
-    "colorscheme": "default",
     "fakecursor": true,
     "mkparents": true,
     "paste": true,
