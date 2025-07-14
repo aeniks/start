@@ -252,7 +252,7 @@ dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthroug
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
 # [ -x "$HOME/.config/tmux_state" ] && [ -z $TMUX ] && tmux; 
-[ -z $TMUX ] && echo ok; 
+[ -z $TMUX ] && tmux; 
 [ $TMUX ] && inbash; 
 # && tmuxbg; 
 # [ -n "$TMUX" ]&& 
