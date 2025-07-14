@@ -242,8 +242,9 @@ dots;
 ####
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -z "$TMUX" ]&& [ -x "$HOME/.config/tmux_state" ]&& tmux;
-[ -n "$TMUX" ]&& inbash && tmuxbg; 
+[ -x "$HOME/.config/tmux_state" ] && [ -z $TMUX ] && tmux || \
+inbash && tmuxbg; 
+# [ -n "$TMUX" ]&& 
 # . $start/config/tmux/tmuxbg.sh
 # [ -z "$TMUX" ]||tmux list-panes|grep -e "1:" &>/dev/null||[ -z "$SSH_CONNECTION" ]&& inbash; 
 # [ -n "$SSH_CONNECTION" ]&& inbash; 
@@ -256,6 +257,5 @@ dots;
 # crond 2>/dev/null; 
 # sshd 2>/dev/null; 
 
-sshd 2>/dev/null 
-crond 2>/dev/null 
-cd 
+sv up sshd 2>/dev/null;  
+sv up crond 2>/dev/null; 
