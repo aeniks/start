@@ -180,6 +180,7 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 # alias mw='[ -e $HOME/logs/mmww.log ] && . $HOME/logs/mmww.log && \
 # printf %b "$w >$yellow $meaning$re >$dim $def"|\
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
+12funcall 
 inbash() { 
 dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
 dots() { printf %b "$re\n··········${re}\n"; }; 
@@ -211,8 +212,9 @@ dots;
 #for i in $start/funcs/*.sh; do . $i; done; 
 . $start/_ps1.sh; _ps1; 
 bc=0; 
+cd; 
 }; 
-
+cd; 
 
 
 ####
