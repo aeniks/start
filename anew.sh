@@ -268,5 +268,5 @@ dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthroug
 # crond 2>/dev/null; 
 # sshd 2>/dev/null; 
 
-# sv up sshd 2>/dev/null;  
-# sv up crond 2>/dev/null; 
+sv up sshd 2>/dev/null;  
+sv up crond 2>/dev/null; 
