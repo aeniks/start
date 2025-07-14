@@ -8,7 +8,7 @@
 # printf -v bc "\e[9$(cat $HOME/logs/bp.log|cut -c1)m" &&
 # cat $HOME/logs/bp.log 2>/dev/null && printf %b "\e[0m "; cat "/sys/class/power_supply/BAT0/capacity" 2>/dev/null;
 # }; 
-
+bc=0; 
 _bat() { 
 if [ -e "/sys/class/power_supply/BAT0/status" ]; \
 then printf -v "batstat" "/sys/class/power_supply/BAT0/status"; \

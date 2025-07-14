@@ -1,28 +1,29 @@
-#/bin/bash
+#!/bin/bash
 ## A better bash. Written by 12ants.github.io
 ## _do nothing if not interactive
 case $- in
 *i*) ;;
 *) return;;
 esac
-# IFS=$'\n\t '; 
+# export IFS=$' \n\t'; 
 if [ -z "${PREFIX}" ]; then 
 if ! shopt -oq posix; 
-then if [ -f /usr/share/bash-completion/bash_completion ]; 
-then . /usr/share/bash-completion/bash_completion; 
-elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; 
+then if [ -f $TERMUX__ROOTFS_DIR/usr/share/bash-completion/bash_completion ]; 
+then . $TERMUX__ROOTFS_DIR/usr/share/bash-completion/bash_completion; 
+elif [ -f $TERMUX__ROOTFS_DIR/usr/etc/bash_completion ]; then . $TERMUX__ROOTFS_DIR/usr/etc/bash_completion; 
 fi; fi; fi; 
 [ $PREFIX ]&& [ -r $PREFIX/share/bash-completion/bash_completion ]&& \
 . $PREFIX/share/bash-completion/bash_completion; 	
-[ -r $PREFIX/.config/fzf/fzfbash.sh ] && \
-. $PREFIX/.config/fzf/fzfbash.sh; 
-shopt -s histappend; shopt -s histverify; export HISTCONTROL=ignoreboth; 
+# [ -r $PREFIX/.config/fzf/fzfbash.sh ] && \
+# . $PREFIX/.config/fzf/fzfbash.sh; 
+shopt -s histappend; 
+shopt -s histverify; 
+export HISTCONTROL=ignoreboth; 
 ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp"; 
-[ -e $HOME/.config/path.sh ]&& \
-export PATH=$(cat $HOME/.config/path.sh); 
+[ -e $HOME/.config/path.sh ]&& export PATH=$(cat $HOME/.config/path.sh); 
 export tmp="$HOME/tmp" && mkdir $tmp 2>/dev/null; 
-[ $TMUX ]&& tmuxrf='tmux refresh-client; '||unset -v tmuxrf; 
+[ $TMUX ]&& tmuxrf='tmux refresh-client; '; 
 export PROMPT_COMMAND="history -a; history -n; "; 
 # $tmuxrf "; 
 ####
@@ -33,9 +34,9 @@ for i in $HOME/start/funcs/*.sh; do . $i; done;
 # }; 
 # 12funcall; 
 ########
-#. $HOME/start/funcs/tmuxbg.sh; 
-#. $HOME/start/funcs/wotd_m.sh; 
-#. $HOME/start/funcs/hh.sh; 
+# . $HOME/start/funcs/tmuxbg.sh; 
+. $HOME/start/funcs/wotd_m.sh; 
+. $HOME/start/funcs/hh.sh; 
 #[ -e "/bin/gcalcli" ]&& (sleep 8 && timeout 6 gcalcli --calendar leonljunghorn remind 11111 "notify-send -u normal -i appointment-soon -a ""'$(date)'"" %s") 2>/dev/null & disown; 
 # [ -e "/bin/gcalcli" ]&& sleep 8 && timeout 6 gcalcli remind \
 # --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" \
@@ -51,7 +52,7 @@ nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'
 [ -z $start ]&& export start="$HOME/start"; 
 ####
 export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk'; 
-[ $PREFIX ] && ( termux-api-start &>/dev/null; termux-wake-lock &>/dev/null; ) & disown; 
+# [ $PREFIX ] && ( termux-api-start &>/dev/null; termux-wake-lock &>/dev/null; ) & disown; 
 # ap=($(command ls -1 $HOME/start/config/apts)); 
 #apu() { unset apu; declare -a apu; for i in ${ap[*]}; do hash $i 2>/dev/null || apu+=($i); done; (( ${#apu[*]} > 4 )) && printf %b "\e[95m${#apu[*]}\e[0m apts can be installed with command$dim [${re}${cyan}apti${re}${dim}]$re "; }; 
 #12ap () { ap=($(command ls $HOME/start/config/apts)); unset apin apno apnoav; for i in ${ap[*]}; do hash $i 2>/dev/null && apin+=($i) || apno+=($i); done; printf %b "\n${apin[*]}\n\n${apno[*]}\n\n"; printf %b "  -- available apts --\n";for i in ${apno[*]}; do $sudo show $i &>/dev/null; printf %b "\n $i"; apnoav+=($i); done; printf %b "\n\n\n\n\n\n\e[4A -- Install? [Y/n] "; read -sn1 "ny"; [ -z $ny ] && $sudo apt install -y ${apnoav[*]} && printf %b "\n\n -- Done\n\n" || printf %b " OK\n\n"; };
@@ -77,7 +78,7 @@ export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk';
 ######
 
 export LESS='-R --file-size --use-color --incsearch --mouse --prompt=%F(%T) [/]search [n]ext [p]rev ?f%f .?n?m(%T %i of %m) ..?lt %lt-%lb?L/%L. :byte %bB?s/%s.  .?e(END)  ?x-  Next\:   %x.:?pB  %pB\%..%t '; 
-export LESSKEY='m toggle-option --mouse\n\r'; 
+# export LESSKEY='m toggle-option --mouse\n\r'; 
 export FZF_DEFAULT_OPTS='-i -m --cycle --ansi --bind "q:abort" --info inline --inline-info'; 
 if [ $(echo $HOME|grep -w "termux") ]; then alias sudo='command'; 
 else sudo=sudo; fi; 
@@ -186,37 +187,45 @@ aptup=($(cat $HOME/logs/aptup.log 2>/dev/null;));
 # bat -ppflzsh --theme Dracula && printf %b "$dots" '; 
 # 12funcall 
 inbash() { 
-dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
-dots() { printf %b "$re\n··········${re}\n"; }; 
+. $HOME/start/_ps1.sh; _ps1;  
 #12funcall 2>/dev/null; 
-printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m$(tput so 2>/dev/null; printf %b "${model[*]}"; tput so 2>/dev/null; )$re${cyan}]"; dots;
-printf %b "\e[0;2m\e[48m$(date -R)"; dots; 
-printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; dots; 
+printf %b "$cyan[\e[38;5;$((RANDOM%122))m\e[1m${model[*]}$re${cyan}]"; 
+dots;
+printf %b "\e[0;2m\e[48m$(date -R)"; 
+dots; 
+printf %b "$re$(cat $HOME/logs/ff.log 2>/dev/null|bat -ppflzig --theme Nord)"; 
+dots; 
 [ -e $HOME/logs/calendar.json ] && \
-printf %b "$(getcal 2>/dev/null; )" && dots; 
-printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; dots; 
+printf %b "$(getcal 2>/dev/null; )" && \
+dots; 
+printf %b "$yellow$MACHTYPE$re |$pink $(uname --kernel-release)$re | $cyan$cpu"; 
+dots; 
 # 12aptest && dots; 
 grep -e "[1-9]" $HOME/logs/aptup.log &>/dev/null && \
-printf %b "$red${aptup[0]}$re upgrades available$re" && dots; 
-wotd_m && dots; 
+printf %b "$red${aptup[0]}$re upgrades available$re" && \
+dots; 
+wotd_m && \
+dots; 
 # printf %b "\e[0m$(wotd|bat -ppflbash --theme Dracula;)"; dots; 
-printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; dots; 
+printf %b "\e[38;5;2$(( $(id -u|tail -c2) * 2 ))m$USER$re@$re$cyan$HOSTNAME$re | $green$TERM$re | $cyan$0$re | $pink$TERM_PROGRAM"; \
+dots; 
 printf %b "$cyan$ip4$re | $blue$iploc$re"; 
 [ -n "${SSH_CONNECTION}" ]&& \
-printf %b "$re | $red${sshc}$re"; dots; 
+printf %b "$re | $red${sshc}$re"; \
+dots; 
 ####
 dfree; 
+dots; 
 # dfree() { printf %b "$(df -h|cut -f2- -d" "|tr -s " " " "|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme zenburn;)"; }; 
 
 # alias dfree2='printf %b "\e[0;2m$(df -h|head -n1|tr -s " " "\t"|batcat --theme=Nord -ppflc++; )\e[0;1m"; df="/dev"; [ $PREFIX ]&& df="/dev/fuse"; df -h|tr -s " " "\t"|grep -v "100%"|grep -v "tmpfs"|grep -v "none"|grep -v "run"|grep -v "efivars"|grep -v "boot"|grep -v loop|grep -e "$df"|batcat --theme=Dracula -ppflc++'; 
 # [ "$PREFIX" ] && dfree; [ -z "$PREFIX" ] && dfree2; 
-dots; 
 # df -h|cut -f2- -d" "|tr -s " " " "|column --table --table-columns=4|grep -v "tmpfs"|grep -v "passthrough"|grep -E 'sdcard/default|storage|Size'|bat --theme Dracula -ppflc++; 
 #timme() { while true; do sleep 1800; printf %b "\e7\e[14H\e[1J\e[4H"; figlet -f Roman -w $COLUMNS -c "$(date +%H:%M)"|bat -ppfljs; printf %b "\e[2A\e[K\e8"; done; }; timme & 
 #for i in $start/funcs/*.sh; do . $i; done; 
-. $HOME/start/_ps1.sh; _ps1;  
 }; 
-
+dots() { printf %b "$re\n··········${re}\n"; }; 
+dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
 
 ####
 ####
@@ -237,13 +246,14 @@ dots;
 # [ "$TMUX" ] || [ -z "$SSH_CONNECTION" ] || tmux;
 # battery="$(cat ~/logs/battery.log |grep -e "percentage"|tr -d 'A-z ,\":';)"; 
 ####
-[ -e "$HOME/.config/tmux_state" ]||touch "$HOME/.config/tmux_state"; 
+# [ -e "$HOME/.config/tmux_state" ]||touch "$HOME/.config/tmux_state"; 
 # [ -x "$HOME/.config/tmux_state" ]&& [ -z "$TMUX" ]&& [ -z "$SSH_CONNECTION" ]&& #tmux; [ -n "$TMUX" ]&& inbash; [ -n "$SSH_CONNECTION" ]&& inbash; 
 ####
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
-[ -x "$HOME/.config/tmux_state" ] && [ -z $TMUX ] && tmux || \
-inbash;
+# [ -x "$HOME/.config/tmux_state" ] && [ -z $TMUX ] && tmux; 
+[ -z $TMUX ] && echo ok; 
+[ $TMUX ] && inbash; 
 # && tmuxbg; 
 # [ -n "$TMUX" ]&& 
 # . $start/config/tmux/tmuxbg.sh
@@ -258,5 +268,5 @@ inbash;
 # crond 2>/dev/null; 
 # sshd 2>/dev/null; 
 
-sv up sshd 2>/dev/null;  
-sv up crond 2>/dev/null; 
+# sv up sshd 2>/dev/null;  
+# sv up crond 2>/dev/null; 

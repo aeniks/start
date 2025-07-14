@@ -2,7 +2,7 @@
 # The parser is also very primitive, and not human-friendly.
 htop_version=3.4.1
 config_reader_min_version=3
-fields=6 45 48 46 2 106 111 47 0 1
+fields=2 46 47 1
 hide_kernel_threads=0
 hide_userland_threads=0
 hide_running_in_container=0
@@ -44,7 +44,7 @@ sort_direction=-1
 tree_sort_direction=-1
 tree_view_always_by_pid=0
 all_branches_collapsed=0
-screen:Main=TTY ST_UID USER PERCENT_CPU STATE RBYTES IO_RATE PERCENT_MEM PID Command
+screen:Main=STATE PERCENT_CPU PERCENT_MEM Command
 .sort_key=PERCENT_MEM
 .tree_sort_key=PERCENT_MEM
 .tree_view_always_by_pid=0
