@@ -1,0 +1,14 @@
+#!/bin/bash
+# IFS=$'\n\t'; 
+foff="${HOME}/fofo"; 
+##
+seq 12 > ${foff}/ff.log; 
+##
+while [ "$(cat ${foff}/ff.log | wc --lines)" -gt "4" ]; do fortune > ${foff}/ff.log; done; 
+##
+fofo=($(cat ${foff}/ff.log)); 
+##
+mv ${foff}/fofo.jpg ${foff}/ff${EPOCHSECONDS}.jpg; 
+##
+convert -size 1000x1000 \
+pango:"<span size='50000'>${fofo[*]}</span>" ${foff}/fofo.jpg; 
