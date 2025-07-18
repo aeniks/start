@@ -51,7 +51,10 @@ nyo='\e[0m[\e[2mY\e[0m/\e[2mn\e[om]'
 [ -z $USER ]&& export USER="$(id -nu)"; 
 [ -z $start ]&& export start="$HOME/start"; 
 ####
-export GEMINI_API_KEY='AIzaSyBHkbeLnrPu8-m1j2Osvlqx-WHId5LLxFk'; 
+[ -e $HOME/.config/cloudflare_id.conf ] && . $HOME/.config/cloudflare_id.conf; 
+[ -e $HOME/.config/gemini_api_id.conf ] && . $HOME/.config/gemini_api_id.conf; 
+
+
 # [ $PREFIX ] && ( termux-api-start &>/dev/null; termux-wake-lock &>/dev/null; ) & disown; 
 # ap=($(command ls -1 $HOME/start/config/apts)); 
 #apu() { unset apu; declare -a apu; for i in ${ap[*]}; do hash $i 2>/dev/null || apu+=($i); done; (( ${#apu[*]} > 4 )) && printf %b "\e[95m${#apu[*]}\e[0m apts can be installed with command$dim [${re}${cyan}apti${re}${dim}]$re "; }; 
