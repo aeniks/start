@@ -1,7 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
 url="$1"; 
 ##
-printf %b "$url"|grep -e "instagram" && zzvv=$(python $HOME/bin/igdl/igdl.py "$1") && termux-notification -c "$(cat $HOME/logs/ff.log)" && exit 0; 
+# if [ $(printf %b "$url"|grep -e "instagram") ]; then 
+# cd /storage/emulated/0/Pictures; pwd; 
+# yt-dlp --restrict-filenames "$url" && termux-notification --action 'termux-open $pp' -c "gg" || termux-storage-get; exit 0; fi; 
+# pp="$(realpath $(ls -t /sdcard/Pictures/*.mp4|head -n1))"; 
+# --paths /storage/emulated/0/Pictures; 
+# termux-media-scan -r /storage/emulated/0/Pictures; 
+# python $HOME/bin/igdl/igdl.py "$1" && nf="$(realpath $(command ls -t /sdcard/Pictures/igdl|head -n1))" && 
+ # && termux-notification -c "$nf" --action 'termux-open $nf' && exit 0; 
 ## selection menu
 qqmenu() { local IFS=$'\n\t ';local ops=($2);[ "$2" ]||local ops=(*);
 local prompt="$1" index="0" cur="0" count="${#ops[@]}" esc=$(echo -ne "\e");

@@ -10,6 +10,7 @@ set drawbox false
 set icons false
 set globfilter true
 set globsearch true
+set mouse true
 map f
 map . set hidden! 
 map <esc> quit
