@@ -2,7 +2,7 @@
 ## aaaaaa
 # alias yno='nyo'; 
 alias f='fff; cd $(cat $HOME/.cache/fff/.fff_d)'; 
-alias sshaa='mosh aa@ants.ftp.sh'; 
+alias sshaa='mosh aa@ants.ftp.sh||ssh aa@ants.ftp.sh'; 
 alias 12moshants='sshaa'; 
 alias 12path='$EDITOR $HOME/.config/path.sh; '; 
 alias path_change='$EDITOR $HOME/.config/path.sh; '; 
