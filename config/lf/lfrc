@@ -488,10 +488,10 @@ set rulerfmt "%a  |%p  |\033[7;31m %m \033[30;44m| %{lf_user_selected_size} |\03
 cmd on-select &{{ s=$(find $fx -type f -maxdepth 1 -ls | awk '{total += $7} END {print total}' | numfmt --to=iec --format='%.2fB')
 lf -remote "send $id set user_selected_size $s" }} 
 ##
-# set cursorpreviewfmt "\033[7m\033[31m"
-set cursorparentfmt "\033[46;30m" 
-set cursorpreviewfmt "\033[96m" 
-set cursoractivefmt "\033[0m\033[48;5;202m"
+set cursorpreviewfmt "\033[2m\033[91m"
+set cursorparentfmt "\033[92m" 
+set cursorpreviewfmt "\033[1m" 
+set cursoractivefmt "\033[4;7m"
 set drawbox false
 set drawbox off
 set mouse on 
