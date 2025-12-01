@@ -1,6 +1,6 @@
 {
     "autoclose": false,
-    "clipboard": "internal",
+    "clipboard": "terminal",
     "fakecursor": true,
     "mkparents": true,
     "paste": true,

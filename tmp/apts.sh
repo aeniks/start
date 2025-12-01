@@ -16,8 +16,6 @@ gnupg
 mediainfo
 chafa
 micro 
-tilde 
-byobu
 figlet
 ncurse
 file

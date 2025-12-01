@@ -1,6 +1,6 @@
 #!/bin/bash
 uuoo() { local IFS=$'\n\t '; unset ll; declare -a ll; ll=($(for i in $(tmux list-panes | cut -c1 | rev; ); do tmux capture-pane -Jqpt$i|\
-grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*"|sed -e "s/\ /\n/g"|tr -s " " " "; done; sort -u;));
+grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-].*.*"|tr -s " " " "; done; sort -u;));
 
 # tr "; " "\n" |grep -oE "(http?[s]://)?([\da-z\.-]+)\.([a-z\.]{0,12})([/\w?=.-].*)"|sed -e "s/\ /\n/g"|tr -s " " " "; done|sort -u;)); 
 

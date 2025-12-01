@@ -19,6 +19,7 @@ fi; fi; fi;
 shopt -s histappend; 
 shopt -s histverify; 
 export HISTCONTROL=ignoreboth; 
+export TERM=xterm-256color; 
 ## append to history, don't overwrite it
 [ -z $TMPDIR ]&& export TMPDIR="$HOME/tmp"; 
 [ -e $HOME/.config/path.sh ]&& export PATH=$(cat $HOME/.config/path.sh); 
@@ -229,6 +230,7 @@ dots;
 }; 
 dots() { printf %b "$re\n··········${re}\n"; }; 
 dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthrough"|cut -f2- -d" "|tr -s " " " "|grep -E "sdcard/default|storage|Size"|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"|| printf %b "$(df -h|grep -v "tmpfs"|tr -s " " " "|column --table --table-columns-limit 5 --output-separator ' | '|bat -ppfljs --theme DarkNeon)"; }; 
+[ -z $TMUX ] && tmux; [ $TMUX ] && [ "$(tmux list-panes | wc -l)" -lt 2 ] && inbash; 
 
 ####
 ####
@@ -255,8 +257,6 @@ dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthroug
 ####
 # [ -x "$HOME/.config/tmux_state" ]&&[ -z "$TMUX" ]&&[ -z "$SSH_CONNECTION" ]&& tmux; 
 # [ -x "$HOME/.config/tmux_state" ] && [ -z $TMUX ] && tmux; 
-[ -z $TMUX ] && tmux; 
-[ $TMUX ] && inbash; 
 # && tmuxbg; 
 # [ -n "$TMUX" ]&& 
 # . $start/config/tmux/tmuxbg.sh
@@ -273,3 +273,7 @@ dfree() { [ "$PREFIX" ]&& printf %b "$(df -h|grep -v "tmpfs"|grep -v "passthroug
 
 sv up sshd 2>/dev/null;  
 sv up crond 2>/dev/null; 
+
+## cursor style
+printf "]12;cyan\
+"

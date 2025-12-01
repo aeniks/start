@@ -1,6 +1,7 @@
 #!/bin/bash
 ## aaaaaa
 # alias yno='nyo'; 
+alias zz='col -b|tr -s "\n\t " "\n\t "|bat -pfljava --pager "more"'; 
 alias f='fff; cd $(cat $HOME/.cache/fff/.fff_d)'; 
 alias sshaa='mosh aa@ants.ftp.sh||ssh aa@ants.ftp.sh'; 
 alias 12moshants='sshaa'; 
@@ -13,7 +14,8 @@ alias ss='cd $start; ';
 alias mm='$EDITOR '
 alias qq='cd .. ; ll ';
 alias rr='sudo -s';
-alias ll='lsd -l --extensionsort --group-directories-first -tr'; 
+# alias ll='lsd -l --extensionsort --group-directories-first -tr'; 
+alias ll='ls -hk -Gltr --color=always'; 
 alias ipme='wget https://icanhazip.com -qLO-'; 
 alias quotes='fortune $s|tr -s "\t" " "'
 alias reloadbash='clear; exec bash '; 

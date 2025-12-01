@@ -2,11 +2,15 @@
 ## conf for $HOME/.inputrc
 # See readline(3readline) and `info rluserman' for more information.
 # Be 8 bit clean.
+set colored-stats on
+# Suffix each returned file tab-completion with a character denoting its type
+set visible-stats on
 set input-meta on
 set output-meta on
 # some defaults / modifications for the emacs mode
-$if mode=emacs
+#$if mode=emacs
 # allow the use of the Home/End keys
+"§": '\e4para\n'
 "\e[1~": beginning-of-line
 "\e[2~": quoted-insert
 # allow the use of the Delete/Insert keys
@@ -33,7 +37,7 @@ C-z: undo
 "\e[q": insert-comment
 "\e3": insert-comment
 \C-q: insert-comment
-"£": insert-insert
+# "£": insert-insert
 "\eU": upcase-word
 "\eu": upcase-word
 # "\e1": dump-functions
@@ -54,13 +58,13 @@ C-y: yank
 "\e[6": kill-whole-line
 "\e[5~": '\e[6~\ hh\n'
 "\e[1;2A": '\e[6~\ hh\n'
-"°": '\e4\l\n'
-"⁰": '\e[6~'
+# "°": '\e4\l\n'
+# "⁰": '\e[6~'
+# "⁹": '\e[612_inputrc\n'
 "\eq": '\e[q'
-"⁹": '\e[612_inputrc\n'
 
 
-$endif
+#$endif
 
 # C-3: insert-comment
 # C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
